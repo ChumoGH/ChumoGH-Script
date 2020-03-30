@@ -1,15 +1,28 @@
 #!/bin/bash
+
 echo -ne " KEY: "; read key
-mkdir chumogh
+
+
+if [[ $key != $key ]];
+then
+echo "Ingrese una Key Valida"
+rm instala.sh
+else
+mkdir -p chumogh
 cd chumogh
 wget -q http://35.183.107.139:81/chumogh.val
 validar=$(cat < chumogh.val)
+cd
+cd
 rm -rf chumogh
+fi
+
 if [[ $key = $validar ]];
-	then
+then
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
+
 fun_bar () {
 comando[0]="$1"
 comando[1]="$2"
@@ -138,13 +151,14 @@ id="es"
 4)
 id="fr"
 ;;
+
 *)
 id="es"
 ;;
 esac
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e ""
-echo -e "${cor[2]} $(source trans -b pt:${id} "idioma")\n\033[1;37m  Script Patrocinado por: @ChumoGH - Henry Chumo"
+echo -e "${cor[2]} $(source trans -b pt:${id} "")\n\033[1;37m  Script Patrocinado por: @ChumoGH - Henry Chumo"
 echo -e ""
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[5]} INSTALADOR ChumoGH-SCRIPTS  ®"
@@ -160,11 +174,12 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
 	  valid_fun
 	else
 	  rm -f setup.sh
+	  rm -rf chumogh
 	  rm -f instala.sh
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
+	  
 	  echo "Key Invalida, Contacta con el Desarrolador"
 	  key=null
 	  validar=null
-	  echo ""
 	fi
