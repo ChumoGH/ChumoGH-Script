@@ -28,7 +28,7 @@ validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
-echo "CGH-#"$key"ChumoGH" > exito
+echo "CGH-"$key"" > exito
 fi
 if [[ $key = $validar ]];
 then
@@ -179,7 +179,6 @@ echo -e "${cor[3]} $(source trans -b pt:${id} "Iniciando Instalacion...")"
 echo -e "${cor[3]} Script sujeto a mejoras"
 echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
-	  echo "CGH-"#$key"ChumoGH" > /etc/adm-lite/exito
 	  echo -ne "${cor[4]}"
 	  echo -e "${cor[1]}MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 	  wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
