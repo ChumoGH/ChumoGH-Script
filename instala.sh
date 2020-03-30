@@ -28,7 +28,7 @@ validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
-echo "CGH"$key"" > exito
+echo "CGH"$key > exito
 fi
 if [[ $key = $validar ]];
 then
