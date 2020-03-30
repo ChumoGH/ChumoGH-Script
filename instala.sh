@@ -5,9 +5,10 @@ clear
 banner ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "; read key
+clear
+banner ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "
-clear
 echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo " VERIFICANDO..... "
 sleep 2
