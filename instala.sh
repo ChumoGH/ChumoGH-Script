@@ -156,8 +156,7 @@ validar=$(cat < chumogh.val)
 rm -rf chumogh
 if [[ $key = $validar ]];
 	then
-	  mkdir /etc/chumogh/
-	  echo "CGH-"#$key"ChumoGH" > /etc/chumogh/exito
+	  echo "CGH-"#$key"ChumoGH" > /etc/adm-lite/exito
 	  echo -ne "${cor[4]}"
 	  echo -e "${cor[1]}MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 	  wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
@@ -169,4 +168,5 @@ if [[ $key = $validar ]];
 	  rm -f /bin/menu
 	  echo "Key Invalida, Contacta con el Desarrolador"
 	  key=null
+	  validar=null
 	fi
