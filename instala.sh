@@ -1,5 +1,8 @@
 #!/bin/bash
 clear
+fun_bar 'apt install sysvbanner'
+clear
+banner ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "; read key
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
@@ -22,11 +25,11 @@ validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
+echo "CGH-#"$key"ChumoGH" > exito
 fi
 
 if [[ $key = $validar ]];
 then
-echo "CGH-#"$key"ChumoGH" > /etc/adm-lite/exito
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
