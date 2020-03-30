@@ -1,5 +1,7 @@
 #!/bin/bash
+echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 clear
+echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 apt install sysvbanner
 clear
 banner ChumoGH
