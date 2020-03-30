@@ -168,4 +168,5 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
 	  echo "Key Invalida, Contacta con el Desarrolador"
 	  key=null
 	  validar=null
+	  echo ""
 	fi
