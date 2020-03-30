@@ -1,5 +1,4 @@
 #!/bin/bash
-
 echo -ne " KEY: "; read key
 mkdir chumogh
 cd chumogh
