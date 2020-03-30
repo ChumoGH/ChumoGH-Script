@@ -1,7 +1,11 @@
 #!/bin/bash
 
+echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "; read key
-
+echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+echo " VERIFICANDO..... "
+sleep 2
+clear
 
 if [[ $key != $key ]];
 then
