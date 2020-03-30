@@ -1,5 +1,13 @@
 #!/bin/bash
 
+echo -ne " KEY: "; read key
+mkdir chumogh
+cd chumogh
+wget -q http://35.183.107.139:81/chumogh.val
+validar=$(cat < chumogh.val)
+rm -rf chumogh
+if [[ $key = $validar ]];
+	then
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
@@ -148,14 +156,6 @@ echo -e "${cor[3]} $(source trans -b pt:${id} "Iniciando Instalacion...")"
 echo -e "${cor[3]} Script sujeto a mejoras"
 echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
-echo -ne " KEY: "; read key
-mkdir chumogh
-cd chumogh
-wget -q http://35.183.107.139:81/chumogh.val
-validar=$(cat < chumogh.val)
-rm -rf chumogh
-if [[ $key = $validar ]];
-	then
 	  echo "CGH-"#$key"ChumoGH" > /etc/adm-lite/exito
 	  echo -ne "${cor[4]}"
 	  echo -e "${cor[1]}MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
