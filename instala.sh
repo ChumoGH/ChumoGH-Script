@@ -5,6 +5,7 @@ clear
 banner ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "; read key
+sleep 1
 clear
 banner ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
