@@ -189,13 +189,16 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
 	  wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
 	  valid_fun
 	else
+          cd
 	  rm -f setup.sh
 	  rm -rf chumogh
 	  rm -f instala.sh
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
-	  
+	  banner ChumoGH
+
 	  echo "Key Invalida, Contacta con el Desarrolador"
+          echo "  ● Compra Keys al +593987072611 "
 	  key=null
 	  validar=null
 	fi
