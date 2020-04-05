@@ -2,14 +2,16 @@
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-apt-get install sysvbanner
+apt-get install sysvbanner -y
+apt-get install figlet -y
 clear
 banner ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "; read key
 sleep 1
 clear
-banner ChumoGH
+figlet ChumoGH
+echo -e ""
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "
 echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
@@ -28,11 +30,11 @@ validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
-echo "CGH"$key > exito
+echo "ChumoGH-"$key > exito
 fi
 if [[ $key = $validar ]];
 then
-usu=$(cat /etc/passwd | grep "system-root")
+#usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
@@ -117,6 +119,15 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, ch
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -e "${cor[5]}  Agregaremos un nombre de tu servidor.... OPCIONAL"
+echo -e "${cor[3]}Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ"
+echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -ne " Nombre del Servidor : "; read name
+echo -e "\033[1;32m"$name > /root/name
+fun_bar 
+figlet $name
+echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
+
 echo -ne " \033[0m"
 }
 
@@ -193,7 +204,7 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
           cd
 	  rm -f setup.sh
 	  rm -rf chumogh
-	  rm -f instala.sh
+	  #rm -f setup.sh
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
 	  banner ChumoGH
