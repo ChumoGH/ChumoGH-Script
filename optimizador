@@ -3,6 +3,7 @@
 #Alias : ChumoGH
 opti=$(cat /bin/ejecutar/val)
 if [ "$opti" = "0" ]; then
+rm -f /bin/ejecutar/automatizar.sh
 echo "echo 3 > /proc/sys/vm/drop_caches" >> /bin/ejecutar/automatizar.sh
 echo "sudo sync"  >> /bin/ejecutar/automatizar.sh
 echo "sudo sysctl -w vm.drop_caches=3" >> /bin/ejecutar/automatizar.sh
