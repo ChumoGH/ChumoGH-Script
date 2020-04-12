@@ -129,6 +129,7 @@ figlet $name
 opti=0
 mkdir /bin/ejecutar
 echo $opti > /bin/ejecutar/val
+echo "desactivado" > /bin/ejecutar/val1
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
 }
