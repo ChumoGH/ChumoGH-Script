@@ -127,6 +127,7 @@ echo -e $name > /root/name
 fun_bar 
 figlet $name
 opti=0
+mkdir /bin/ejecutar
 echo $opti > /bin/ejecutar/val
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
