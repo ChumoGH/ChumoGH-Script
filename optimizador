@@ -1,0 +1,19 @@
+#!/bin/sh
+#Autor: Henry Chumo 
+#Alias : ChumoGH
+if [ "$opti" = "0" ]; then
+mkdir /bin/ejecutar
+echo "echo 3 > /proc/sys/vm/drop_caches" >> /bin/ejecutar/automatizar.sh
+echo "sudo sync"  >> /bin/ejecutar/automatizar.sh
+echo "sudo sysctl -w vm.drop_caches=3" >> /bin/ejecutar/automatizar.sh
+echo "sysctl -w vm.drop_caches=3 > /dev/null 2>&1" >> /bin/ejecutar/automatizar.sh
+echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
+echo 'echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
+echo "tiempo=$(hwclock)" >> /bin/ejecutar/automatizar.sh
+echo 'echo $tiempo >> /root/dropcache' >> /bin/ejecutar/automatizar.sh
+opti=1
+echc "* */5 * * *	root 	sh /bin/ejecutar/automatizar.sh"
+_opti="\033[1;32m${txt[10]}"
+else
+_opti="\033[1;32m${txt[11]}"
+fi
