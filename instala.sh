@@ -123,11 +123,12 @@ echo -e "${cor[5]}  Agregaremos un nombre de tu servidor.... OPCIONAL"
 echo -e "${cor[3]}Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ"
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -ne " Nombre del Servidor : "; read name
-echo -e "\033[1;32m"$name > /root/name
+echo -e $name > /root/name
 fun_bar 
 figlet $name
+opti=0
+echo $opti > /bin/ejecutar/val
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
-
 echo -ne " \033[0m"
 }
 
