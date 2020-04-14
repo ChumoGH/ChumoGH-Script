@@ -14,6 +14,7 @@ echo 'tiempo=$(hwclock)' >> /bin/ejecutar/automatizar.sh
 echo 'echo $tiempo >> /root/dropcache' >> /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/crontab.original
 echo '* */5 * * *	root 	sh /bin/ejecutar/automatizar.sh' >> /etc/crontab
+echo '* 20 * * *  root  rm /root/dropcache' >> /etc/crontab
 _opti="\033[1;31m${txt[11]}"
 else
 _opti="\033[1;32m${txt[10]}"
