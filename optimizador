@@ -10,8 +10,8 @@ echo "sudo sysctl -w vm.drop_caches=3" >> /bin/ejecutar/automatizar.sh
 echo "sysctl -w vm.drop_caches=3 > /dev/null 2>&1" >> /bin/ejecutar/automatizar.sh
 echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
 echo 'echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
-echo "tiempo=$(hwclock)" >> /bin/ejecutar/automatizar.sh
-echo "echo $tiempo >> /root/dropcache" >> /bin/ejecutar/automatizar.sh
+echo 'tiempo=$(hwclock)' >> /bin/ejecutar/automatizar.sh
+echo 'echo $tiempo >> /root/dropcache' >> /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/crontab.original
 echo '* */5 * * *	root 	sh /bin/ejecutar/automatizar.sh' >> /etc/crontab
 _opti="\033[1;31m${txt[11]}"
