@@ -4,6 +4,7 @@ clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 apt-get install sysvbanner -y
 apt-get install figlet -y
+apt install vnstat -y
 clear
 banner ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
@@ -34,6 +35,8 @@ echo "ChumoGH-"$key > exito
 fi
 if [[ $key = $validar ]];
 then
+vnstat -u -i eth0
+/etc/init.d/vnstat start
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
