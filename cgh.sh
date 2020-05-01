@@ -9,12 +9,12 @@ apt-get install figlet -y
 rm -f instala.sh*
 rm -f cgh.sh*
 clear
-banner ChumoGH
+figlet ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "; read key
 sleep 1
 clear
-figlet ChumoGH
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e ""
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -e " KEY: "
