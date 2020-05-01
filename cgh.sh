@@ -6,8 +6,6 @@ apt-get install sysvbanner -y
 apt-get install lolcat -y
 apt-get install cowsay -y
 apt-get install figlet -y
-rm -f instala.sh*
-rm -f cgh.sh*
 clear
 figlet ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
@@ -140,6 +138,8 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, ch
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
+rm -f instala.sh*
+rm -f cgh.sh*
 }
 
 
