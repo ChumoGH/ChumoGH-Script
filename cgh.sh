@@ -13,18 +13,19 @@ echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 echo -ne " KEY: "; read key
 sleep 1
 clear
-cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR        ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e ""
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-echo -e " KEY: "
+echo -e " KEY: ********************************"
 echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-echo " VERIFICANDO..... "
+read -rsp $'VERIFICANDO..\n' -n 1 -t 5;
 sleep 2
 clear
 if [[ $key != $key ]];
 then
 echo "Ingrese una Key Valida"
-rm instala.sh
+rm -f instala.sh*
+rm -f cgh.sh*
 else
 mkdir -p chumogh
 cd chumogh
