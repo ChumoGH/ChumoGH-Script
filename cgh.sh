@@ -129,7 +129,7 @@ echo "desactivado" > /bin/ejecutar/val1
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
 clear
-cowsay -f eyes "BIENVENIDO Y GRACIAS POR UTILIZAR ChumoGH ADM SCRIPT" | lolcat
+cowsay -f "BIENVENIDO Y GRACIAS POR UTILIZAR ChumoGH ADM SCRIPT" | lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE ChumoGH-Pannel Instalada Correctamente!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE")"
