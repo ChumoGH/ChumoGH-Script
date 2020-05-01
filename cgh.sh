@@ -129,7 +129,7 @@ echo "desactivado" > /bin/ejecutar/val1
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
 clear
-cowsay -f "BIENVENIDO Y GRACIAS POR UTILIZAR ChumoGH ADM SCRIPT" | lolcat
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE ChumoGH-Pannel Instalada Correctamente!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE")"
@@ -169,6 +169,7 @@ update-locale LANG=en_US.UTF-8 > /dev/null 2>&1
 apt-get install gawk -y > /dev/null 2>&1
 wget -O trans https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/trans -o /dev/null 2>&1
 mv -f ./trans /bin/ && chmod 777 /bin/*
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[2]}ESCOJE TU IDIOMA DE PRERENCIA (Default: 3) :\n${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠\n${cor[2]}[1]-BRASILEÑO\n[2]-INGLES\n[3]-ESPAÑOL\n[4]-FRANCES\n[5]-ITALIANO\n[6]-CHINO"
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
