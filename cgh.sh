@@ -4,6 +4,8 @@ clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 apt-get install sysvbanner -y
 apt-get install figlet -y
+rm -f instala.sh*
+rm -f cgh.sh*
 clear
 banner ChumoGH
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
@@ -206,6 +208,7 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
 	else
           cd
 	  rm -f setup.sh
+	  rm -f instala.sh*
 	  rm -rf chumogh
 	  #rm -f setup.sh
 	  rm -f /bin/cgh
