@@ -1,5 +1,6 @@
 #!/bin/bash
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+dom='base64 -d'
 clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 apt-get install sysvbanner -y
@@ -7,7 +8,7 @@ apt-get install lolcat -y
 apt-get install cowsay -y
 apt-get install figlet -y
 clear
-figlet ChumoGH
+figlet ChumoGH 
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -ne " KEY: "; read key
@@ -29,7 +30,9 @@ rm -f cgh.sh*
 else
 mkdir -p chumogh
 cd chumogh
-wget -q http://35.183.107.139:81/chumogh.val
+update1='aHR0cDovLzM1LjE4My4xMDcuMTM5OjgxL2NodW1vZ2gudmFs'
+update2=$(echo $update1|$dom)
+wget -q $update2
 validar=$(cat < chumogh.val)
 cd
 cd
@@ -39,7 +42,6 @@ fi
 if [[ $key = $validar ]];
 then
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
-dom='base64 -d'
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
