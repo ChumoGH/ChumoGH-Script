@@ -38,6 +38,8 @@ echo "ChumoGH-"$key > exito
 fi
 if [[ $key = $validar ]];
 then
+src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
+dom='base64 -d'
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
@@ -212,7 +214,8 @@ echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
 	  echo -ne "${cor[4]}"
 	  echo -e "${cor[1]}MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
-	  wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
+	  RE=$(echo $src|$dom)
+	  wget -O lista $RE -o /dev/null
 	  valid_fun
 	else
           cd
