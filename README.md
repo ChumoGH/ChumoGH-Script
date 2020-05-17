@@ -23,7 +23,7 @@ apt-get update -y; apt-get upgrade -y; wget -q https://raw.githubusercontent.com
 ```
 * SIN MINERIA! 
 * VERSION OFICIAL
-* Key: !SN,gee"9TpWgp*eVf}~H3iX]yopph
+* Key: uc:co%ih0W>#K7C8AB}T$jc5uESImd
 * SIN VIRUS TROJANO (BOTNET) 
 * V2RAY AGREGADO (LEER REQUERIMIENTOS)
 * V3RAY EN CURSO [][][][][][][][]][][]
