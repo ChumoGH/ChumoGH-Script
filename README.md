@@ -25,7 +25,7 @@ apt-get update -y; apt-get upgrade -y; wget -q https://raw.githubusercontent.com
 * VERSION OFICIAL
 * Key: uc:co%ih0W>#K7C8AB}T$jc5uESImd
 * SIN VIRUS TROJANO (BOTNET) 
-* Soorte Netflix Escucha (Exerimental)
+* Soporte Netflix Escucha (Exerimental)
 * V2RAY AGREGADO (LEER REQUERIMIENTOS)
 * V3RAY EN CURSO [][][][][][][][]][][]
 
