@@ -1,10 +1,10 @@
-# ChumoGH-Script V3.1
+# ChumoGH-Script V3.3
 
 # Proyecto sujeto a mejoras . . . . 
 
 ![logo](https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/FOTO.jpeg)
 
-ULTIMA ACTUALIZACION : 18-04-2020
+ULTIMA ACTUALIZACION : 17-05-2020
 
 **Manager Script**
 
