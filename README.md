@@ -40,4 +40,4 @@ apt-get update -y; apt-get upgrade -y; wget -q https://raw.githubusercontent.com
 
 ```
 
-**By: [ FULL SCRIPTS ⃘⃤꙰✰ ]**
+**By: [ ChumoGH SCRIPTS ⃘⃤꙰✰ ]**
