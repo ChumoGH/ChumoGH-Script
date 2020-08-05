@@ -59,16 +59,16 @@ rm -f cgh.*
 else
 mkdir -p chumogh
 cd chumogh
-#update1='aHR0cDovLzM1LjE4My4xMDcuMTM5OjgxL2NodW1vZ2gudmFs'
-#update2=$(echo $update1|$dom)
-#wget -q $update2
-#validar=$(cat < chumogh.val)
+update1='IGh0dHA6Ly8zNS4xODMuMjA5Ljk4OjgxL2NodW1vZ2gudmFs'
+update2=$(echo $update1|$dom)
+wget -q $update2
+validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
 echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > exito
 fi
-if [[ $key = $key ]];
+if [[ $key = $validar ]];
 then
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
 #usu=$(cat /etc/passwd | grep "system-root")
