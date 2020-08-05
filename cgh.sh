@@ -1,12 +1,39 @@
 #!/bin/bash
+fun_bar () {
+comando[0]="$1"
+comando[1]="$2"
+ (
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} -y > /dev/null 2>&1
+${comando[1]} -y > /dev/null 2>&1
+touch $HOME/fim
+ ) > /dev/null 2>&1 &
+echo -ne "\033[1;33m ["
+while true; do
+   for((i=0; i<18; i++)); do
+   echo -ne "\033[1;31m##"
+   sleep 0.1s
+   done
+   [[ -e $HOME/fim ]] && rm $HOME/fim && break
+   echo -e "\033[1;33m]"
+   sleep 1s
+   tput cuu1
+   tput dl1
+   echo -ne "\033[1;33m ["
+done
+echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
+}
+
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 dom='base64 -d'
 clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-apt-get install sysvbanner -y 1> /dev/null 2> /dev/null
-apt-get install lolcat -y 1> /dev/null 2> /dev/null
-apt-get install cowsay -y 1> /dev/null 2> /dev/null
-apt-get install figlet -y 1> /dev/null 2> /dev/null
+fun_bar 'apt-get install sysvbanner -y' 'apt-get install lolcat -y'
+fun_bar 'apt-get install cowsay -y' 'apt-get install figlet -y'
+# 1> /dev/null 2> /dev/null
+# 1> /dev/null 2> /dev/null
+# 1> /dev/null 2> /dev/null
+# 1> /dev/null 2> /dev/null
 clear
 figlet ChumoGH 
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
@@ -46,31 +73,6 @@ src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
-fun_bar () {
-comando[0]="$1"
-comando[1]="$2"
- (
-[[ -e $HOME/fim ]] && rm $HOME/fim
-${comando[0]} -y > /dev/null 2>&1
-${comando[1]} -y > /dev/null 2>&1
-touch $HOME/fim
- ) > /dev/null 2>&1 &
-echo -ne "\033[1;33m ["
-while true; do
-   for((i=0; i<18; i++)); do
-   echo -ne "\033[1;31m##"
-   sleep 0.1s
-   done
-   [[ -e $HOME/fim ]] && rm $HOME/fim && break
-   echo -e "\033[1;33m]"
-   sleep 1s
-   tput cuu1
-   tput dl1
-   echo -ne "\033[1;33m ["
-done
-echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
-}
-
 instalar_fun () {
 cd /etc/adm-lite && bash cabecalho --instalar
 }
