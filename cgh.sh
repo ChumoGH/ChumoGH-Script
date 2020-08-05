@@ -41,7 +41,7 @@ echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 echo -ne " KEY: "; read key
 sleep 1
 clear
-cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR        ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
 echo -e ""
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -e " KEY: ********************************"
@@ -52,15 +52,15 @@ clear
 if [[ $key != $key ]];
 then
 echo "Ingrese una Key Valida"
-rm -f instala.sh*
-rm -f cgh.sh*
+rm -f instala.*
+rm -f cgh.*
 else
 mkdir -p chumogh
 cd chumogh
-update1='aHR0cDovLzM1LjE4My4xMDcuMTM5OjgxL2NodW1vZ2gudmFs'
-update2=$(echo $update1|$dom)
-wget -q $update2
-validar=$(cat < chumogh.val)
+#update1='aHR0cDovLzM1LjE4My4xMDcuMTM5OjgxL2NodW1vZ2gudmFs'
+#update2=$(echo $update1|$dom)
+#wget -q $update2
+#validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
@@ -223,12 +223,14 @@ fun_bar
 	  valid_fun
 	else
           cd
-	  rm -f setup.sh
-	  rm -f instala.sh*
+	  
+	  rm -f setup.*
+	  rm -f instala.*
 	  rm -rf chumogh
 	  #rm -f setup.sh
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
+	  rm -rf *
 	  banner ChumoGH
 
 	  echo "Key Invalida, Contacta con el Desarrolador"
