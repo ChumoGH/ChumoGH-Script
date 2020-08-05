@@ -23,13 +23,15 @@ while true; do
 done
 echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 }
-
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 dom='base64 -d'
 clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 fun_bar 'apt-get install sysvbanner -y' 'apt-get install lolcat -y'
 fun_bar 'apt-get install cowsay -y' 'apt-get install figlet -y'
+echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+echo -e " LOLCAT - FIGLET - COWSAY - SYSVBANNER INSTALADOS CORRECTAMENTE " | lolcat
+sleep 5
 # 1> /dev/null 2> /dev/null
 # 1> /dev/null 2> /dev/null
 # 1> /dev/null 2> /dev/null
@@ -41,11 +43,11 @@ echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 echo -ne " KEY: "; read key
 sleep 1
 clear
-cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR       【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
 echo -e ""
-echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+echo -e " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -e " KEY: ********************************"
-echo " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
+echo -e " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 read -rsp $'VERIFICANDO..\n' -n 1 -t 5;
 sleep 2
 clear
