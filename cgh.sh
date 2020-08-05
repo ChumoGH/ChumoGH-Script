@@ -43,7 +43,7 @@ echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 echo -ne " KEY: "; read key
 sleep 1
 clear
-cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR       【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR - - - - - - - -【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
 echo -e ""
 echo -e " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -e " KEY: ********************************"
