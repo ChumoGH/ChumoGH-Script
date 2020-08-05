@@ -3,10 +3,10 @@ echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 dom='base64 -d'
 clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-apt-get install sysvbanner -y
-apt-get install lolcat -y
-apt-get install cowsay -y
-apt-get install figlet -y
+apt-get install sysvbanner -y 1> /dev/null 2> /dev/null
+apt-get install lolcat -y 1> /dev/null 2> /dev/null
+apt-get install cowsay -y 1> /dev/null 2> /dev/null
+apt-get install figlet -y 1> /dev/null 2> /dev/null
 clear
 figlet ChumoGH 
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
