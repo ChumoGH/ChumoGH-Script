@@ -37,7 +37,7 @@ validar=$(cat < chumogh.val)
 cd
 cd
 rm -rf chumogh
-echo "ChumoGH-"$key > exito
+echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > exito
 fi
 if [[ $key = $validar ]];
 then
