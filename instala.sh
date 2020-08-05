@@ -20,6 +20,7 @@ while true; do
    tput dl1
    echo -ne "\033[1;33m ["
 done
+}
 echo -e ' TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!'
 fun_bar 'apt-get update -y' 'apt-get upgrade -y'
 update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvQ2h1bW9HSC1TY3JpcHQvbWFzdGVyL2NnaC5zaA=='
