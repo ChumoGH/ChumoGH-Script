@@ -55,7 +55,8 @@ echo "$IP" > /usr/bin/vendor_code
 meu_ip
 echo -e "\033[1;33mVerificando key... "
 cd $HOME
-wget -O "$HOME/lista-arq" https://raw.githubusercontent.com/ENZOLU/KEYGEN-ADM/master/gerador/lista-arq > /dev/null 2>&1
+wget -O "$HOME/lista-arq" $(ofus "$Key")/$IP > /dev/null 2>&1
+#wget -O "$HOME/lista-arq" https://raw.githubusercontent.com/ENZOLU/KEYGEN-ADM/master/gerador/lista-arq > /dev/null 2>&1
 IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
 sleep 1s
 #wget -O "$HOME/lista-arq" $(ofus "$Key")/$IP > /dev/null 2>&1
