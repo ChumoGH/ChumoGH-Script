@@ -4,16 +4,26 @@
 opti=$(cat /bin/ejecutar/val)
 if [ "$opti" = "0" ]; then
 rm -f /bin/ejecutar/automatizar.sh
+echo "Limpiando sistema y Reiniciando Servicios"
+echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
+sysctl -w vm.drop_caches=3 1> /dev/null 2> /dev/null
+swapoff -a && swapon -a 1> /dev/null 2> /dev/null
+echo "Limpieza Finalizada"
 echo "echo 3 > /proc/sys/vm/drop_caches" >> /bin/ejecutar/automatizar.sh
 echo "sudo sync"  >> /bin/ejecutar/automatizar.sh
 echo "sudo sysctl -w vm.drop_caches=3" >> /bin/ejecutar/automatizar.sh
 echo "sysctl -w vm.drop_caches=3 > /dev/null 2>&1" >> /bin/ejecutar/automatizar.sh
+echo "swapoff -a && swapon -a 1> /dev/null 2> /dev/null"  >> /bin/ejecutar/automatizar.sh
 echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
 echo 'echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
 echo 'tiempo=$(hwclock)' >> /bin/ejecutar/automatizar.sh
 echo 'echo $tiempo >> /tmp/dropcache' >> /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/crontab.original
-echo '* */3 * * *	root 	sh /bin/ejecutar/automatizar.sh' >> /etc/crontab
+echo -e "Activando autolimpieza del Servidor"
+echo -e "Todos los días a las 7 am se limpiará el Servidor automáticamente"
+echo "00 07 * * * root /bin/ejecutar/automatizar.sh" >> /etc/crontab
+/etc/init.d/cron restart
+echo -e "Finalizando activacion"
 _opti="\033[1;31m${txt[11]}"
 else
 _opti="\033[1;32m${txt[10]}"
