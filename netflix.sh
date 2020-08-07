@@ -9,5 +9,5 @@ cmake /etc/adm-lite/badvpn-1.999.128 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=
 make install
 badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/nul &
 #echo 'badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/nul &' >> /etc/rc.local
-rm -rf badvpn-1.*
+rm -f badvpn-1.*
 
