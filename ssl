@@ -86,11 +86,11 @@ echo "PPP_RESTART=0" >> /etc/default/stunnel4
 service stunnel4 restart
 cowsay -f stegosaurus "GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ CHUMOGH ☆ ADM SCRIPT "| lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
-echo -e "${cor[2]}STUNNEL ACTIVO en Puertos: $sslports " Escojido "  $port | lolcat
+echo -e "${cor[2]}STUNNEL ACTIVO en Puertos:" $sslports " Escojido "  $port | lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
-echo -e "\033[1;34m ################################################"
+echo -e "\033[1;34m #####################################################"
 echo -e "\033[1;37m I N I C I A N D O  -  STUNNEL4 - SSL/TLS Custom Cert"
-echo -e "\033[1;34m ##################################################"
+echo -e "\033[1;34m #####################################################"
 sleep 1
 service ssh restart 1>/dev/null 2 /dev/null
 service stunnel4 start 1>/dev/null 2 /dev/null
