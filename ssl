@@ -80,7 +80,7 @@ echo -e "\033[1;31m ***********REINICIADO...*************"
 echo -e "\033[1;34m ###################################"
 echo -e "\033[1;31mCONFIGURACION SSL ACEPTADA CON EXITO"
 echo -e "\033[1;34m ###################################"
-echo -e "SU IP HOST DEL SERVIDOR:\037[0m $ip"
+echo -e "SU IP HOST DEL SERVIDOR:\037[1;30m $ip"
 sleep 1
 echo -e "Reinicie su VPS (Opcional) - sudo reboot"
 read -p " "
