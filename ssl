@@ -1,34 +1,58 @@
 #/bin/bash
+fun_bar () {
+comando[0]="$1"
+comando[1]="$2"
+ (
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} -y > /dev/null 2>&1
+${comando[1]} -y > /dev/null 2>&1
+touch $HOME/fim
+ ) > /dev/null 2>&1 &
+echo -ne "\033[1;33m ["
+while true; do
+   for((i=0; i<18; i++)); do
+   echo -ne "\033[1;31m##"
+   sleep 0.1s
+   done
+   [[ -e $HOME/fim ]] && rm $HOME/fim && break
+   echo -e "\033[1;33m]"
+   sleep 1s
+   tput cuu1
+   tput dl1
+   echo -ne "\033[1;33m ["
+done
+echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
+}
 
 sleep 2
 
-apt-get update -y
+fun_bar 'apt-get update -y'
 clear
-yum update -y
-apt-get install openssh-server -y
+fun_bar 'yum update -y'
+fun_bar 'apt-get install openssh-server -y'
 clear
-apt-get install curl -y
+fun_bar 'apt-get install curl -y'
 clear
-yum install openssh-server -y
+fun_bar 'yum install openssh-server -y'
 clear
-apt-get install openssh-client -y
+fun_bar 'apt-get install openssh-client -y'
 clear
-yum install openssh-client -y
+fun_bar 'yum install openssh-client -y'
 clear
-apt-get install stunnel4 -y
+fun_bar 'apt-get install stunnel4 -y'
 clear
-yum install stunnel4 -y
+fun_bar 'yum install stunnel4 -y'
 clear
-apt-get install stunnel -y
+fun_bar 'apt-get install stunnel -y'
 clear
-yum install stunnel -y
+fun_bar 'yum install stunnel -y'
 clear
 
 ip=$(curl https://api.ipify.org/)
 echo $ip
 clear
 
-echo -e "Presione Enter"
+echo -e "Paquetes Instalados"
 sleep 1
 
 openssl genrsa 2048 > stunnel.key
@@ -42,6 +66,10 @@ clear
 cat stunnel.crt stunnel.key > stunnel.pem 
 mv stunnel.pem /etc/stunnel/
 clear
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ CHUMOGH ☆ ADM SCRIPT "| lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -e "${cor[2]}STUNNEL ACTIVO en Puertos: $sslports " | lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
 echo -e "\033[1;31mESCRIBA EL PUERTO SSL A UTILIZAR"
 read -p ": " port
 clear
@@ -56,24 +84,23 @@ echo "FILES="/etc/stunnel/*.conf" " >> /etc/default/stunnel4
 echo "OPTIONS="" " >> /etc/default/stunnel4
 echo "PPP_RESTART=0" >> /etc/default/stunnel4
 service stunnel4 restart
-echo -e "\033[1;34m ##############################"
-echo -e "\033[1;37mI N I C I A N D O  -  STUNNEL4 - SSL"
-echo -e "\033[1;34m ##############################"
+cowsay -f stegosaurus "GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ CHUMOGH ☆ ADM SCRIPT "| lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -e "${cor[2]}STUNNEL ACTIVO en Puertos: $sslports " Escojido "  $port | lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -e "\033[1;34m ################################################"
+echo -e "\033[1;37m I N I C I A N D O  -  STUNNEL4 - SSL/TLS Custom Cert"
+echo -e "\033[1;34m ##################################################"
 sleep 1
 service ssh restart 1>/dev/null 2 /dev/null
 service stunnel4 start 1>/dev/null 2 /dev/null
 service stunnel4 restart 1>/dev/null 2 /dev/null
-clear
 echo -e "\033[1;31m ***********REINICIADO...*************"
-clear
-
 echo -e "\033[1;34m ###################################"
-echo -e "\033[1;31mCONFIGURACION SSL CREADA CON EXITO"
+echo -e "\033[1;31mCONFIGURACION SSL ACEPTADA CON EXITO"
 echo -e "\033[1;34m ###################################"
-echo -e "\033[1;31m- - - - -> \033[01;31mSU IP HOST:\037[0m $ip"
+echo -e "SU IP HOST DEL SERVIDOR:\037[0m $ip"
 sleep 1
-echo -e "\033[1;31mReinicie su VPS (Opcional) - sudo reboot"
-sleep 2
-echo -e "\033[1;31m- - ->>Modulo ChumoGH \033[01;37mHenry Chumo"
-sleep 1
+echo -e "Reinicie su VPS (Opcional) - sudo reboot"
+read -p " "
 cgh
