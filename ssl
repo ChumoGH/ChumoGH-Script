@@ -45,6 +45,7 @@ clear
 cat stunnel.crt stunnel.key > stunnel.pem 
 mv stunnel.pem /etc/stunnel/
 clear
+sslports=`netstat -tunlp | grep stunnel4 | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/ssl.txt && echo | cat /tmp/ssl.txt | tr '\n' ' ' > /etc/adm-lite/sslports.txt && cat /etc/adm-lite/sslports.txt`;
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ CHUMOGH ☆ ADM SCRIPT "| lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
 echo -e "${cor[2]}STUNNEL ACTIVO en Puertos: $sslports " | lolcat
@@ -63,6 +64,7 @@ echo "FILES="/etc/stunnel/*.conf" " >> /etc/default/stunnel4
 echo "OPTIONS="" " >> /etc/default/stunnel4
 echo "PPP_RESTART=0" >> /etc/default/stunnel4
 service stunnel4 restart
+sslports=`netstat -tunlp | grep stunnel4 | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/ssl.txt && echo | cat /tmp/ssl.txt | tr '\n' ' ' > /etc/adm-lite/sslports.txt && cat /etc/adm-lite/sslports.txt`;
 cowsay -f stegosaurus "GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ CHUMOGH ☆ ADM SCRIPT "| lolcat
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
 echo -e "${cor[2]}STUNNEL ACTIVO en Puertos:" $sslports " Escojido "  $port | lolcat
