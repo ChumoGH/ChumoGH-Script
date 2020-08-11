@@ -138,9 +138,6 @@ echo "desactivado" > /bin/ejecutar/val1
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
 clear
-if cat /root/.bashrc | grep ChumoGH; then
-echo -e ":)"
-else
 echo "clear" >> .bashrc
 echo 'DATE=$(date +"%d-%m-%y")' >> .bashrc
 echo 'TIME=$(date +"%T")' >> .bashrc
@@ -154,7 +151,6 @@ echo 'echo -e "Bienvenido!"' >> .bashrc
 echo 'echo -e "Teclee cgh o menu para Entrar al MENU."' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 echo "STARTUP AGREGADO EXITOSAMENTE"
-fi
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE ChumoGH-Pannel Instalada Correctamente!")"
