@@ -153,6 +153,7 @@ echo 'echo -e ""' >> .bashrc
 echo 'echo -e "Bienvenido!"' >> .bashrc
 echo 'echo -e "Teclee cgh o menu para Entrar al MENU."' >> .bashrc
 echo 'echo -e ""' >> .bashrc
+echo "STARTUP AGREGADO EXITOSAMENTE"
 fi
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
