@@ -166,8 +166,8 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, ch
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
-rm -f instala.sh*
-rm -f cgh.sh*
+rm -f instala.*
+rm -f cgh.*
 }
 
 
