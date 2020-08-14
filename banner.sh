@@ -15,23 +15,23 @@ echo -e "\E[44;1;37m             BANNER             \E[0m"
 echo ""
 echo -e "\033[1;31m[\033[1;36m1\033[1;31m]\033[1;37m • \033[1;33mADICIONAR BANNER"
 echo -e "\033[1;31m[\033[1;36m2\033[1;31m]\033[1;37m • \033[1;33mREMOVER BANNER"
-echo -e "\033[1;31m[\033[1;36m3\033[1;31m]\033[1;37m • \033[1;33mVOLTAR"
+echo -e "\033[1;31m[\033[1;36m3\033[1;31m]\033[1;37m • \033[1;33mVOLVER"
 echo ""
-echo -ne "\033[1;32mOQUE DESEJA FAZER\033[1;31m ?\033[1;37m : "; read resp
+echo -ne "\033[1;32mEscoje \033[1;31m ?\033[1;37m : "; read resp
 if [[ "$resp" = "1" ]]; then
 echo ""
-echo -ne "\033[1;32mQUAL MENSAGEM DESEJA EXIBIR\033[1;31m ?\033[1;37m : "; read msg1
+echo -ne "\033[1;32mEscribe su BANNER\033[1;31m ?\033[1;37m : "; read msg1
 if [[ -z "$msg1" ]]; then
-	echo -e "\n\033[1;31mCampo vazio ou invalido !\033[0m"
+	echo -e "\n\033[1;31mMensaje Invalido !\033[0m"
 	sleep 2
 	banner
 fi
-echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m FONTE PEQUENA"
-echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m FONTE MEDIA"
-echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m FONTE GRANDE"
-echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m FONTE GIGANTE"
+echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m Letra Pequeña"
+echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m Letra Media"
+echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m Letra Grande"
+echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m Letra ExtraGrande"
 echo ""
-echo -ne "\033[1;32mQUAL O TAMANHO DA FONTE\033[1;31m ?\033[1;37m : "; read opc
+echo -ne "\033[1;32mEscoje el Tamaño de Letra\033[1;31m ?\033[1;37m : "; read opc
 if [[ "$opc" = "1" ]] || [[ "$opc" = "01" ]]; then
 _size='6'
 elif [[ "$opc" = "2" ]] || [[ "$opc" = "02" ]]; then
@@ -44,8 +44,8 @@ fi
 
 echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m AZUL"
 echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m VERDE"
-echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m VERMELHO"
-echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m AMARELO"
+echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m ROJO"
+echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m AMARILLO"
 echo -e "\033[1;31m[\033[1;36m05\033[1;31m]\033[1;33m ROSA"
 echo -e "\033[1;31m[\033[1;36m06\033[1;31m]\033[1;33m CYANO"
 echo -e "\033[1;31m[\033[1;36m07\033[1;31m]\033[1;33m LARANJA"
