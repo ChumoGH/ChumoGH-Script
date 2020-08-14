@@ -56,8 +56,8 @@ echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
 dom='base64 -d'
 clear
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-fun_bar1 'apt-get install sysvbanner -y' 'apt-get install lolcat -y'
-fun_bar1 'apt-get install cowsay -y' 'apt-get install figlet -y'
+fun_bar 'apt-get install sysvbanner -y' 'apt-get install lolcat -y'
+fun_bar 'apt-get install cowsay -y' 'apt-get install figlet -y'
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 echo -e " LOLCAT - FIGLET - COWSAY - SYSVBANNER INSTALADOS CORRECTAMENTE " | lolcat
 sleep 5
