@@ -1,4 +1,5 @@
 #!/bin/bash
+fecha=`date`;
 fun_bar () {
 comando[0]="$1"
 comando[1]="$2"
@@ -132,6 +133,7 @@ echo -e $name > /root/name
 fun_bar 
 figlet $name
 opti=0
+rm -rf /bin/ejecutar 2>/dev/null 
 mkdir /bin/ejecutar
 echo $opti > /bin/ejecutar/val
 echo "desactivado" > /bin/ejecutar/val1
@@ -165,6 +167,8 @@ echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=�
 echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Ahora puedes acceder al PANNEL")"
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, chumogh"
+echo -e "$fecha" >> /bin/ejecutar/fecha
+echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
