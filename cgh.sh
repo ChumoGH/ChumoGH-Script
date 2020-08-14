@@ -138,19 +138,25 @@ echo "desactivado" > /bin/ejecutar/val1
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
 clear
+if cat /root/.bashrc | grep ChumoGH; then
+echo -e ":)"
+else
 echo "clear" >> .bashrc
 echo 'DATE=$(date +"%d-%m-%y")' >> .bashrc
 echo 'TIME=$(date +"%T")' >> .bashrc
-echo 'figlet -k ☆ChumoGH☆ | lolcat' >> .bashrc
+echo 'figlet -k ChumoGH | lolcat' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> .bashrc
 echo 'echo -e "Fecha del Servidor : $DATE"' >> .bashrc
 echo 'echo -e "Hora del Servidor : $TIME"' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 echo 'echo -e "Bienvenido!"' >> .bashrc
-echo 'echo -e "Teclee cgh o menu para Entrar al MENU."' >> .bashrc
+echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 echo "STARTUP AGREGADO EXITOSAMENTE"
+sleep 5
+fi
+clear
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE ChumoGH-Pannel Instalada Correctamente!")"
