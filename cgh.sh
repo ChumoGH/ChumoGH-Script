@@ -167,6 +167,8 @@ clear
 if cat /root/.bashrc | grep ChumoGH; then
 echo -e ":)"
 else
+wget -o /dev/null -O- https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster > /bin/toolmaster
+chmod +x /bin/toolmaster
 echo "clear" >> .bashrc
 echo 'DATE=$(date +"%d-%m-%y")' >> .bashrc
 echo 'TIME=$(date +"%T")' >> .bashrc
