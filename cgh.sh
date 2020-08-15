@@ -146,6 +146,40 @@ cd /etc/adm-lite
 chmod +x ./*
 instalar_fun
 function_verify
+if cat /root/.bashrc | grep ChumoGH; then
+echo "clear" >> .bashrc
+echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
+echo 'TIME=$(date +"%T")' >> /root/.bashrc
+echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e "Bienvenido!"' >> .bashrc
+echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo "STARTUP AGREGADO EXITOSAMENTE"
+else
+wget -o /dev/null -O- https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster > /bin/toolmaster
+chmod +x /bin/toolmaster
+echo "clear" >> .bashrc
+echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
+echo 'TIME=$(date +"%T")' >> /root/.bashrc
+echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e "Bienvenido!"' >> .bashrc
+echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo "STARTUP AGREGADO EXITOSAMENTE"
+sleep 5
+fi
 [[ -e $HOME/lista ]] && rm $HOME/lista
 clear
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
@@ -163,27 +197,6 @@ echo $opti > /bin/ejecutar/val
 echo "desactivado" > /bin/ejecutar/val1
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
-clear
-if cat /root/.bashrc | grep ChumoGH; then
-echo -e ":)"
-else
-wget -o /dev/null -O- https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster > /bin/toolmaster
-chmod +x /bin/toolmaster
-echo "clear" >> .bashrc
-echo 'DATE=$(date +"%d-%m-%y")' >> .bashrc
-echo 'TIME=$(date +"%T")' >> .bashrc
-echo 'figlet -k ChumoGH | lolcat' >> .bashrc
-echo 'echo -e ""' >> .bashrc
-echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> .bashrc
-echo 'echo -e "Fecha del Servidor : $DATE"' >> .bashrc
-echo 'echo -e "Hora del Servidor : $TIME"' >> .bashrc
-echo 'echo -e ""' >> .bashrc
-echo 'echo -e "Bienvenido!"' >> .bashrc
-echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> .bashrc
-echo 'echo -e ""' >> .bashrc
-echo "STARTUP AGREGADO EXITOSAMENTE"
-sleep 5
-fi
 clear
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
@@ -282,11 +295,12 @@ fun_bar
 	  #rm -f setup.sh
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
+	  rm - rf /etc/adm-lite > /dev/null
 	  rm -rf *
-	  banner ChumoGH
-
+	  cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 	  echo "Key Invalida, Contacta con el Desarrolador"
           echo "  ● Compra Keys al +593987072611 "
+	  echo -e ' t.me/ChumoGH  - @ChumoGH' 
 	  key=null
 	  validar=null
 	fi
