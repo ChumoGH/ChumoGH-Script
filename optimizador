@@ -21,8 +21,7 @@ echo 'echo $tiempo >> /tmp/dropcache' >> /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/crontab.original
 echo -e "Activando autolimpieza del Servidor"
 echo -e "Todos los días a las 7 am se limpiará el Servidor automáticamente"
-echo "00 07 * * * root /bin/ejecutar/automatizar.sh" >> /etc/crontab
-/etc/init.d/cron restart
+echo "00 07 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
 echo -e "Finalizando activacion"
 _opti="\033[1;31m${txt[11]}"
 else
