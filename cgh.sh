@@ -213,6 +213,8 @@ echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/
 figlet $name | lolcat
 rm -f instala.*
 rm -f cgh.*
+read -p " "
+cgh
 }
 
 
