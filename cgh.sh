@@ -1,4 +1,5 @@
 #!/bin/bash
+rm instala.* > /dev/null
 fecha=`date +"%d-%m-%y"`;
 fun_bar1 () {
 comando[0]="$1"
