@@ -1,5 +1,5 @@
 #!/bin/bash
-fecha=`date`;
+fecha=`date +"%d-%m-%y"`;
 fun_bar1 () {
 comando[0]="$1"
 comando[1]="$2"
@@ -147,12 +147,12 @@ chmod +x ./*
 instalar_fun
 function_verify
 if cat /root/.bashrc | grep ChumoGH; then
-echo "clear" >> .bashrc
+echo "clear" >> /root/.bashrc
 echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
 echo 'TIME=$(date +"%T")' >> /root/.bashrc
 echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
 echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
 echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
 echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
@@ -178,7 +178,7 @@ echo 'echo -e "Bienvenido!"' >> .bashrc
 echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo "STARTUP AGREGADO EXITOSAMENTE"
-sleep 5
+sleep 2
 fi
 [[ -e $HOME/lista ]] && rm $HOME/lista
 clear
@@ -207,7 +207,7 @@ echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Ahora puedes acced
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, chumogh"
 echo $fecha > /bin/ejecutar/fecha
-echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)
+echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
