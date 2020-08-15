@@ -35,15 +35,15 @@ make install
 badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/nul &
 #echo 'badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/nul &' >> /etc/rc.local
 rm -f badvpn-1.999.128.tar.*
-apt-get install cmake -y
-apt-get install screen wget gcc build-essential g++ make -y
-wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/badvpn/badvpn-1.999.128.tar.bz2
+apt-get install cmake -y 1>/dev/null 2>/dev/null
+apt-get install screen wget gcc build-essential g++ make -y 1>/dev/null 2>/dev/null
+wget -q https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/badvpn/badvpn-1.999.128.tar.bz2
 tar xf badvpn-1.999.128.tar.bz2
 cd badvpn-1.999.128/
 cmake ~/badvpn-1.999.128 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
 make install
 echo "Ejecutando BadVPN en puerto 7300"
 badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
-rm install
+rm -f install
 echo "Finalizado"
 echo "Modulo BadUDP - ChumoGH"
