@@ -18,10 +18,15 @@ echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
 echo 'echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
 echo 'tiempo=$(hwclock)' >> /bin/ejecutar/automatizar.sh
 echo 'echo $tiempo >> /tmp/dropcache' >> /bin/ejecutar/automatizar.sh
+echo 'service stunnel4 restart' >> /bin/ejecutar/automatizar.sh
+echo 'service dropbear restart' >> /bin/ejecutar/automatizar.sh
+echo 'service ssh restart' >> /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/crontab.original
+sed '/automatizar.sh/ d' /etc/crontab > /bin/ejecutar/crontab
+cat /bin/ejecutar/crontab > /etc/crontab
 echo -e "Activando autolimpieza del Servidor"
 echo -e "Todos los días a las 7 am se limpiará el Servidor automáticamente"
-echo "00 07 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
+echo "00 0 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
 echo -e "Finalizando activacion"
 _opti="\033[1;31m${txt[11]}"
 else
