@@ -9,7 +9,7 @@ echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
 sysctl -w vm.drop_caches=3 1> /dev/null 2> /dev/null
 swapoff -a && swapon -a 1> /dev/null 2> /dev/null
 echo "Limpieza Finalizada"
-echo "echo 3 > /proc/sys/vm/drop_caches" >> /bin/ejecutar/automatizar.sh
+echo "echo 3 > /proc/sys/vm/drop_caches" > /bin/ejecutar/automatizar.sh
 echo "sudo sync"  >> /bin/ejecutar/automatizar.sh
 echo "sudo sysctl -w vm.drop_caches=3" >> /bin/ejecutar/automatizar.sh
 echo "sysctl -w vm.drop_caches=3 > /dev/null 2>&1" >> /bin/ejecutar/automatizar.sh
@@ -18,10 +18,12 @@ echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
 echo 'echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
 echo 'tiempo=$(hwclock)' >> /bin/ejecutar/automatizar.sh
 echo 'echo $tiempo >> /tmp/dropcache' >> /bin/ejecutar/automatizar.sh
-echo 'service stunnel4 restart' >> /bin/ejecutar/automatizar.sh
-echo 'service dropbear restart' >> /bin/ejecutar/automatizar.sh
-echo 'service ssh restart' >> /bin/ejecutar/automatizar.sh
-cp /etc/crontab /bin/crontab.original
+echo "service stunnel4 restart" >> /bin/ejecutar/automatizar.sh
+echo "service dropbear restart" >> /bin/ejecutar/automatizar.sh
+echo "service ssh restart" >> /bin/ejecutar/automatizar.sh
+echo "echo -e >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
+echo "echo $tiempo >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
+cp /etc/ /bin/crontab.original
 sed '/automatizar.sh/ d' /etc/crontab > /bin/ejecutar/crontab
 cat /bin/ejecutar/crontab > /etc/crontab
 echo -e "Activando autolimpieza del Servidor"
