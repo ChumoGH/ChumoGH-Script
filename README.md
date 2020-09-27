@@ -1,10 +1,10 @@
-# ChumoGH-Script V3.4.2
+# ChumoGH-Script V3.4.3
 
 # Proyecto sujeto a mejoras . . . . 
 
 ![logo](https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/FOTO.jpeg)
 
-ULTIMA ACTUALIZACION : 30-09-2020 | 12:31
+ULTIMA ACTUALIZACION : 26-09-2020 | 21:10
 
 **Manager Script**
 
@@ -23,7 +23,7 @@ wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/instala.
 ```
 * SIN MINERIA! 
 * VERSION OFICIAL
-* Key: 4My0zT!I2060/U?0%m}"PX2(w?F892
+* Key: 04My0zT!I2060/U?0%m}"PX2(w?F892
 * SIN VIRUS TROJANO (BOTNET) 
 * Soporte Netflix Escucha (Exerimental)
 * V2RAY AGREGADO (LEER REQUERIMIENTOS)
