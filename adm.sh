@@ -95,13 +95,13 @@ sleep 1
 grep $key cgh.key > troyan.buf
 #cat cgh.key | grep $key > troyan.buf
 pecho=$(cat < troyan.buf)
+echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > exito
+fi
+if cat cgh.key | grep $key >/dev/null 2>/dev/null
+then
 cd
 cd
 rm -rf chumogh
-echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > exito
-fi
-if [[ $key = $pecho ]];
-then
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
