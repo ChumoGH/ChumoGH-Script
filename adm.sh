@@ -24,7 +24,7 @@ tput cuu1
 tput dl1
 echo -ne "  \033[1;33mESPERE \033[1;37m- \033[1;33m["
 done
-echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+echo -e "\033[1;33m]\033[1;37m -\033[1;32m EXITO !\033[1;37m"
 tput cnorm
 }
 
@@ -90,7 +90,10 @@ update1='IGh0dHA6Ly8zNS4xODMuMjA5Ljk4OjgxL2NnaC5rZXk='
 update2=$(echo $update1|$dom)
 wget -q $update2
 validar=$(cat < cgh.key)
-cat cgh.key | grep $key > troyan.buf
+echo "Capturando key en VALIDAR"
+sleep 1
+grep $key cgh.key > troyan.buf
+#cat cgh.key | grep $key > troyan.buf
 pecho=$(cat < troyan.buf)
 cd
 cd
@@ -269,7 +272,7 @@ id="fr"
 5)
 id="it"
 ;;
-5)
+6)
 id="ch"
 ;;
 *)
@@ -294,14 +297,13 @@ fun_bar
 	  valid_fun
 	else
           cd
-	  
 	  rm -f setup.*
 	  rm -f instala.*
 	  rm -rf chumogh
 	  #rm -f setup.sh
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
-	  rm - rf /etc/adm-lite > /dev/null
+	  rm -rf /etc/adm-lite > /dev/null
 	  rm -rf *
 	  cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 	  echo "Key Invalida, Contacta con el Desarrolador"
