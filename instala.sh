@@ -1,3 +1,26 @@
+killall apt apt-get &> /dev/null
+dpkg --configure -a
+fun_bar3 () {
+comando="$1"
+ _=$(
+$comando > /dev/null 2>&1
+) & > /dev/null
+pid=$!
+while [[ -d /proc/$pid ]]; do
+echo -ne " \033[1;33m["
+   for((i=0; i<10; i++)); do
+   echo -ne "\033[1;31m##"
+   sleep 0.2
+   done
+echo -ne "\033[1;33m]"
+sleep 1s
+echo
+tput cuu1
+tput dl1
+done
+echo -e " \033[1;33m[\033[1;31m########################################\033[1;33m] - \033[1;32m100%\033[0m"
+sleep 1s
+}
 fun_bar () {
 comando[0]="$1"
 comando[1]="$2"
@@ -51,6 +74,10 @@ tput cnorm
 clear
 echo -e ' TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!'
 fun_bar1 'apt-get update -y' 'apt-get upgrade -y'
+fun_bar 'apt-get install software-properties-common -y' 'apt-add-repository universe -y'
+rm -rf /etc/localtime &>/dev/null
+ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
+rm $(pwd)/$0 &> /dev/null
 update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvQ2h1bW9HSC1TY3JpcHQvbWFzdGVyL2NnaC5zaA=='
 dom='base64 -d'
 RE=$(echo $update1|$dom)
