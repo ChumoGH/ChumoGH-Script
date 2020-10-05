@@ -77,13 +77,17 @@ clear
 echo -e ' TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!'
 echo -e
 fun_bar1 'apt-get update -y' 'apt-get upgrade -y'
+echo -e
 fun_bar 'apt-get install software-properties-common -y' 
+echo -e
 fun_bar 'apt-add-repository universe -y'
+echo -e
 fun_bar 'sudo add-apt-repository ppa:neurobin/ppa -y' 
+echo -e
 fun_bar3 'sudo apt-get install shc -y'
 echo -e 'Listo!!! TERMINAMOS DE ACTUALIZAR TODOS LOS REPOSITORIOS'
-shc -f cgh.sh
-rm -rf cgh.sh.c cgh.sh
+shc -f cgh.sh &> /dev/null
+rm -rf cgh.sh.c cgh.sh &> /dev/null
 sleep 2s
 rm -rf /etc/localtime &>/dev/null
 ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
