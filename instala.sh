@@ -73,8 +73,11 @@ tput cnorm
 }
 clear
 echo -e ' TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!'
+echp 
 fun_bar1 'apt-get update -y' 'apt-get upgrade -y'
+echo 
 fun_bar 'apt-get install software-properties-common -y' 'apt-add-repository universe -y'
+echo 
 fun_bar3 'sudo add-apt-repository ppa:neurobin/ppa' 'sudo apt-get update' 'sudo apt-get install shc'
 rm -rf /etc/localtime &>/dev/null
 ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
