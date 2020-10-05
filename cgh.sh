@@ -89,14 +89,14 @@ cd chumogh
 update1='IGh0dHA6Ly8zNS4xODMuMjA5Ljk4OjgxL2NodW1vZ2gudmFs'
 update2=$(echo $update1|$dom)
 wget -q $update2
-#validar=$(cat < chumogh.val)
-echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > exito
+#validar=$(cat < archivito)
 fi
 if cat chumogh.val | grep $key >/dev/null 2>/dev/null
 then
 cd
 cd
 rm -rf chumogh
+echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > exito
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
@@ -292,11 +292,9 @@ fun_bar
 	  valid_fun
 	else
           cd
-	  
 	  rm -f setup.*
 	  rm -f instala.*
 	  rm -rf chumogh
-	  #rm -f setup.sh
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
 	  rm - rf /etc/adm-lite > /dev/null
@@ -305,6 +303,5 @@ fun_bar
 	  echo "Key Invalida, Contacta con el Desarrolador"
           echo "  ● Compra Keys al +593987072611 "
 	  echo -e ' t.me/ChumoGH  - @ChumoGH' 
-	  key=null
-	  validar=null
+	  rm $(key)/$0 &> /dev/null
 	fi
