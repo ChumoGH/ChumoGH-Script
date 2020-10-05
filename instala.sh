@@ -78,7 +78,7 @@ fun_bar1 'apt-get update -y' 'apt-get upgrade -y'
 echo 
 fun_bar 'apt-get install software-properties-common -y' 'apt-add-repository universe -y'
 echo 
-fun_bar3 'sudo add-apt-repository ppa:neurobin/ppa' 'sudo apt-get update' 'sudo apt-get install shc'
+fun_bar3 'sudo add-apt-repository ppa:neurobin/ppa -y' 'sudo apt-get update -y 'sudo apt-get install shc -y'
 rm -rf /etc/localtime &>/dev/null
 ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
 rm $(pwd)/$0 &> /dev/null
