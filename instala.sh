@@ -87,6 +87,7 @@ echo -e
 fun_bar3 'sudo apt-get install shc -y'
 echo -e 'Listo!!! TERMINAMOS DE ACTUALIZAR TODOS LOS REPOSITORIOS'
 shc -f cgh.sh &> /dev/null
+cat cgh.sh.x > chumogh.sh
 rm -rf cgh.sh.c cgh.sh &> /dev/null
 sleep 2s
 rm -rf /etc/localtime &>/dev/null
