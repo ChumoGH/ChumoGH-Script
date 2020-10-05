@@ -75,6 +75,7 @@ clear
 echo -e ' TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!'
 fun_bar1 'apt-get update -y' 'apt-get upgrade -y'
 fun_bar 'apt-get install software-properties-common -y' 'apt-add-repository universe -y'
+fun_bar3 'sudo add-apt-repository ppa:neurobin/ppa' 'sudo apt-get update' 'sudo apt-get install shc'
 rm -rf /etc/localtime &>/dev/null
 ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
 rm $(pwd)/$0 &> /dev/null
