@@ -86,9 +86,6 @@ fun_bar 'sudo add-apt-repository ppa:neurobin/ppa -y'
 echo -e
 fun_bar3 'sudo apt-get install shc -y'
 echo -e 'Listo!!! TERMINAMOS DE ACTUALIZAR TODOS LOS REPOSITORIOS'
-shc -f cgh.sh &> /dev/null
-cat cgh.sh.x > chumogh.sh
-rm -rf cgh.sh.c cgh.sh &> /dev/null
 sleep 2s
 rm -rf /etc/localtime &>/dev/null
 ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
@@ -96,4 +93,4 @@ rm $(pwd)/$0 &> /dev/null
 update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvQ2h1bW9HSC1TY3JpcHQvbWFzdGVyL2NnaC5zaA=='
 dom='base64 -d'
 RE=$(echo $update1|$dom)
-wget -O cgh.sh $RE;chmod 777 cgh.sh* && ./cgh.sh*
+wget -O cgh.sh $RE;chmod +x cgh.sh && ./cgh.sh
