@@ -75,12 +75,11 @@ tput cnorm
 }
 update_pak () {
 echo -ne " \033[1;31m[ ! ] apt-get update"
-apt-get update -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+fun_bar 'apt-get update -y' echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] apt-get upgrade"
-apt-get upgrade -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+fun_bar 'apt-get upgrade -y' echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] apt-get Repositorios Universales"
 apt-get install software-properties-common -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
-msg -bar
 return
 }
 clear
