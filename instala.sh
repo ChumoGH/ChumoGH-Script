@@ -73,18 +73,23 @@ done
 echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
 tput cnorm
 }
+update_pak () {
+echo -ne " \033[1;31m[ ! ] apt-get update"
+apt-get update -y > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] apt-get upgrade"
+apt-get upgrade -y > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] apt-get Repositorios Universales"
+apt-get install software-properties-common -y > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+msg -bar
+return
+}
 clear
 echo -e ' TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!'
 echo -e
-fun_bar1 'apt-get update -y' 'apt-get upgrade -y'
-echo -e
-fun_bar 'apt-get install software-properties-common -y' 
-echo -e
+update_pak
 fun_bar 'apt-add-repository universe -y'
 echo -e
 fun_bar 'sudo add-apt-repository ppa:neurobin/ppa -y' 
-echo -e
-fun_bar3 'sudo apt-get install shc -y'
 echo -e 'Listo!!! TERMINAMOS DE ACTUALIZAR TODOS LOS REPOSITORIOS'
 sleep 2s
 rm -rf /etc/localtime &>/dev/null
