@@ -30,7 +30,7 @@ tput cnorm
 update_pak () {
 echo -ne " \033[1;31m[ ! ] Install SysBanner"
 apt-get install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Install Lolcat  "
+echo -ne " \033[1;31m[ ! ] Install Lolcat   "
 apt-get install lolcat -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Figlet   "
 apt-get install figlet -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
