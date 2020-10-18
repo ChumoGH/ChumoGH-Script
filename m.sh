@@ -59,3 +59,5 @@ echo -e "\e[0;31m➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
 service stunnel4 restart > /dev/null 2>&1
 echo  "AGREGADO CON EXITO"
 }
+
+ssl_redir
