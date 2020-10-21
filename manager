@@ -154,7 +154,7 @@ cat $arquivo_move
 listbar
 sleep 2s
 removeonline
-return
+gerar
 fi
 ;;
 2)
@@ -176,7 +176,7 @@ cat $arquivo_move
 listbar
 sleep 2s
 removeonline
-return 
+gerar 
 fi
 ;;
 3)
@@ -201,7 +201,7 @@ echo -e "\033[1;34m Keys Activas En Linea"
 nano $arquivo_move
 listbar
 removeonline
-return
+gerar
 ;;
 4)figlet -p -f slant < /root/name
 echo -e "\033[1;37m      【     ★ ChumoGH - ADM 2020 ★     】\033[0m"
@@ -223,11 +223,11 @@ echo -e "\033[1;34m Keys Activas En Linea"
 nano $arquivo_move
 listbar 
 removeonline
-return
+gerar
 ;;
 5)
 rm -f chumogh.*
-return
+gerar
 ;;
 6)
 figlet -p -f slant < /root/name
