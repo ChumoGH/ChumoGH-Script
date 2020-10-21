@@ -109,11 +109,12 @@ done
 echo "$txtofus" | rev
 }
 listbar () {
+rm -f $arquivo_enc
 ml=$(wc -l  $arquivo_move | grep $arquivo_move | sed 's/\s\+/,/g' | cut -d , -f1)
 for((i=1; i<$ml; i++)); do
 mk=$(cat -n $arquivo_move | grep $i | sed 's/\s\+/,/g' | cut -d , -f3)
 txt="$mk"
-ofus $txt > $arquivo_enc
+ofus $txt >> $arquivo_enc
 done
 echo "CARGADO LISTAS DE KEYS ENCRIPTADAS"
 }
