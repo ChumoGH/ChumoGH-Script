@@ -117,15 +117,18 @@ echo -e "\033[1;32m [2] > GENERAR KEY EN ADM RUSS"
 echo -e "\033[1;32m [3] > Retirar KEY EN ADM CHUMOGH"
 echo -e "\033[1;32m [4] > Retirar KEY EN ADM RUSS"
 echo -e "\033[1;32m [5] > DESTRUIR KEYS \033[1;35m (No Recomendado) "
+echo -e "\033[1;32m [6] > Ver KEYS de ChumoGH \033[1;34m (Encriptada) "
+echo -e "\033[1;32m [7] > Ver KEYS de RUSS \033[1;34m (Encriptada) "
 echo -e $barra
 unset selection
-while [[ ${selection} != @([0-5]) ]]; do
+while [[ ${selection} != @([0-7]) ]]; do
 echo -ne "\033[1;37mEscoje: " && read selection
 tput cuu1 && tput dl1
 done
 case ${selection} in
 1)
 arquivo_move=chumogh.val
+arquivo_enc=chumogh.enc
 echo "INGRESA TUS DIGITOS A GERERAR TU KEY"
 echo -ne "\033[1;37mKEY: " && read gerar
  #>> chumogh.val
@@ -135,7 +138,8 @@ read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
 done
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
-echo $(ofus $gerar) >> $arquivo_move
+echo $(ofus $gerar) >> $arquivo_enc
+echo $gerar >> $arquivo_move
 echo -e "\033[1;34m Keys Activas En Linea"
 cat $arquivo_move
 sleep 2s
@@ -144,6 +148,7 @@ fi
 ;;
 2)
 arquivo_move=russ.val
+arquivo_enc=russ.enc
 echo "INGRESA TUS DIGITOS A GERERAR TU KEY"
 echo -ne "\033[1;37mKEY: " && read gerar
  #>> chumogh.val
@@ -153,7 +158,8 @@ read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
 done
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
-echo $(ofus $gerar) >> $arquivo_move
+echo $(ofus $gerar) >> $arquivo_enc
+echo $gerar >> $arquivo_move
 echo -e "\033[1;34m Keys Activas En Linea"
 cat $arquivo_move
 sleep 2s
@@ -170,7 +176,7 @@ echo -e "\033[1;37m ∆ Linux Dist:	$distribution › Version: $os_version\033[0
 echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
 echo -e "\033[1;37m - Edicion Manual de Keys -  \033[0m"
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m #######################################\033[1;33m"
-echo -e "\033[1;37mSeleccione su Sistema:    Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
+echo -e "\033[1;37m Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
 echo -e " \033[1;31m[ !!! ]\033[1;33m BORRA AQUI TU KEY   \033[1;31m\033[1;33m"
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -e " \033[1;31mLuego de Editar tus KEYS Presiona Ctrl + O y Enter \033[1;33m \033[1;31m\033[1;33m"
@@ -190,7 +196,7 @@ echo -e "\033[1;37m ∆ Linux Dist:	$distribution › Version: $os_version\033[0
 echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
 echo -e "\033[1;37m - Edicion Manual de Keys -  \033[0m"
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m #######################################\033[1;33m"
-echo -e "\033[1;37mSeleccione su Sistema:    Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
+echo -e "\033[1;37m Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
 echo -e " \033[1;31m[ !!! ]\033[1;33m BORRA AQUI TU KEY   \033[1;31m\033[1;33m"
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -e " \033[1;31mLuego de Editar tus KEYS Presiona Ctrl + O y Enter \033[1;33m \033[1;31m\033[1;33m"
@@ -206,6 +212,40 @@ exit
 5)
 echo 'FUNCION EN PRECAUSION'
 exit
+;;
+6)
+figlet -p -f slant < /root/name
+echo -e "\033[1;37m      【     ★ ChumoGH - ADM 2020 ★     】\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
+echo -e "\033[1;37m ∆ Linux Dist:	$distribution › Version: $os_version\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
+echo -e "\033[1;37m -  Keys de CHUMOGH ADM -  \033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m #######################################\033[1;33m"
+echo -e "\033[1;37m Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
+echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e " \033[1;31m  Lista de Keys GENERADAS \033[1;33m \033[1;31m\033[1;33m"
+echo -ne "\033[1;37m"
+cat chumogh.enc
+echo -ne "\033[1;35m"
+cat chumogh.val
+read -p " Presiona Enter para Continuar "
+;;
+7)
+figlet -p -f slant < /root/name
+echo -e "\033[1;37m      【     ★ ChumoGH - ADM 2020 ★     】\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
+echo -e "\033[1;37m ∆ Linux Dist:	$distribution › Version: $os_version\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
+echo -e "\033[1;37m -  Keys de RUSS ADM -  \033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m #######################################\033[1;33m"
+echo -e "\033[1;37m Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
+echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e " \033[1;31m  Lista de Keys GENERADAS \033[1;33m \033[1;31m\033[1;33m"
+echo -ne "\033[1;37m"
+cat russ.enc
+echo -ne "\033[1;35m"
+cat russ.val
+read -p " Presiona Enter para Continuar "
 ;;
 0)cd $HOME && exit;;
 esac
