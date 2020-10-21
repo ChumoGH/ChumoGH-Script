@@ -26,8 +26,8 @@ MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
 IP="$(fun_ip)"
 declare -A cor=( [0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;31m" [3]="\033[1;33m" [4]="\033[1;32m" )
 barra="\033[0m\e[34m======================================================\033[1;37m"
-SCPfrm="/etc/ger-frm" && [[ ! -d ${SCPfrm} ]] && exit
-SCPinst="/etc/ger-inst" && [[ ! -d ${SCPinst} ]] && exit
+#SCPfrm="/etc/ger-frm" && [[ ! -d ${SCPfrm} ]] && exit
+#SCPinst="/etc/ger-inst" && [[ ! -d ${SCPinst} ]] && exit
 #MENUS ONLINES
 veronline(){
 [[ -z $(ls /var/www/html) ]] && echo -e "$barra"  || {
@@ -64,8 +64,7 @@ echo -e "$barra"
 echo -e "${cor[5]}Key Exitosa!"
 echo -e "$barra"
 }
-#FIN MENUS ONLINES
-#OFUSCAR
+
 ofus () {
 unset txtofus
 number=$(expr length $1)
@@ -94,15 +93,19 @@ case ${txt[$i]} in
 "m")txt[$i]="+";;
 "z")txt[$i]="o";;
 "o")txt[$i]="z";;
-" ")txt[$i]="s";;
-"s")txt[$i]=" ";;
+"h")txt[$i]="6";;
+"6")txt[$i]="h";;
+"-")txt[$i]="s";;
+"s")txt[$i]="-";;
+"1")txt[$i]="7";;
+"7")txt[$i]="1";;
+"9")txt[$i]="5";;
+"5")txt[$i]="9";;
 esac
 txtofus+="${txt[$i]}"
 done
 echo "$txtofus" | rev
 }
-#FIN OFUSCAR
-menu1(){
 echo -e "\033[1;32m [0] > Regresar / Salir"
 echo -e "\033[1;32m [1] > GENERAR KEY EN ADM CHUMOGH"
 echo -e "\033[1;32m [2] > GENERAR KEY EN ADM RUSS"
@@ -132,7 +135,6 @@ echo -e "\033[1;34m Keys Activas En Linea"
 cat $arquivo_move
 sleep 2s
 removeonline
-exit
 fi
 ;;
 2)
@@ -172,8 +174,5 @@ exit
 echo 'FUNCION EN PRECAUSION'
 exit
 ;;
-0)cd $HOME && exit 0;;
+0)cd $HOME && exit;;
 esac
-}
-fun_a
-menu1
