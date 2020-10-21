@@ -1,9 +1,7 @@
 
-SCPdir="/etc/cgh" && [[ ! -d ${SCPdir} ]] && mkdir ${SCPdir}
+SCPdir="/etc/cgh" && [[ ! -d ${SCPdir} ]] && mkdir  ${SCPdir}
 cd /etc/cgh
+rm -f manager*
 wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/manager
-cat << EOF > /bin/gerar
-#!/bin/bash
-cd ${SCPdir} && ./manager
-EOF
+cat manager > /bin/gerar
 chmod +x /bin/gerar
