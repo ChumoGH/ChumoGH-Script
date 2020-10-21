@@ -1,6 +1,48 @@
 #!/bin/bash
 rm instala.* > /dev/null
 fecha=`date +"%d-%m-%y"`;
+ofus () {
+unset txtofus
+number=$(expr length $1)
+for((i=1; i<$number+1; i++)); do
+txt[$i]=$(echo "$1" | cut -b $i)
+case ${txt[$i]} in
+".")txt[$i]="a";;
+"a")txt[$i]=".";;
+"<")txt[$i]="*";;
+"*")txt[$i]="<";;
+">")txt[$i]="#";;
+"#")txt[$i]=">";;
+"4")txt[$i]="@";;
+"@")txt[$i]="4";;
+"2")txt[$i]="?";;
+"?")txt[$i]="2";;
+"3")txt[$i]="%";;
+"%")txt[$i]="3";;
+"/")txt[$i]="K";;
+"K")txt[$i]="/";;
+"a")txt[$i]="8";;
+"8")txt[$i]="a";;
+"c")txt[$i]="g";;
+"g")txt[$i]="c";;
+"+")txt[$i]="m";;
+"m")txt[$i]="+";;
+"z")txt[$i]="o";;
+"o")txt[$i]="z";;
+"h")txt[$i]="6";;
+"6")txt[$i]="h";;
+"-")txt[$i]="s";;
+"s")txt[$i]="-";;
+"1")txt[$i]="7";;
+"7")txt[$i]="1";;
+"9")txt[$i]="5";;
+"5")txt[$i]="9";;
+esac
+txtofus+="${txt[$i]}"
+done
+echo "$txtofus" | rev
+}
+
 fun_bar1 () {
 comando[0]="$1"
 comando[1]="$2"
@@ -96,9 +138,9 @@ cd chumogh
 update1='IGh0dHA6Ly8zNS4xODMuMjA5Ljk4OjgxL2NodW1vZ2gudmFs'
 update2=$(echo $update1|$dom)
 wget -q $update2
-#validar=$(cat < archivito)
+dns=$(ofus $key)
 fi
-if cat chumogh.val | grep $key >/dev/null 2>/dev/null
+if cat chumogh.val | grep $dns >/dev/null 2>/dev/null
 then
 cd
 cd
