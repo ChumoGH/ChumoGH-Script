@@ -111,8 +111,14 @@ done
 echo "$txtofus" | rev
 }
 listbar () {
-
-for testus in $(ls /etc/$coco |sort |sed 's/.sh//g')
+for testus in $(ls /etc/adm-cgh |sort |sed 's/.sh//g')
+do
+echo "$testus"
+done
+sleep 5s
+}
+listbarr () {
+for testus in $(ls /etc/adm-russ |sort |sed 's/.sh//g')
 do
 echo "$testus"
 done
@@ -236,7 +242,7 @@ exit" > /etc/adm-russ/$(ofus $gerar).sh
 echo $gerar >> /root/russ.val
 echo -e "\033[1;33m Keys Activas En Linea"
 cat /root/russ.val
-listbar
+listbarr
 sleep 2s
 removeonline
 bash /etc/adm-russ/$(ofus $gerar).sh &
