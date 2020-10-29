@@ -10,7 +10,6 @@ echo -e "OFF"
 fi`;
 if [[ $texto = "ON" ]];then
 echo "Apache2 Instalado y Activo"
-sleep 5s
 sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
 service apache2 restart > /dev/null 2>&1
 else
