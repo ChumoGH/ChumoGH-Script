@@ -142,6 +142,7 @@ echo "INGRESA TUS DIGITOS A GERERAR TU KEY"
 echo -ne "\033[1;37mKEY: " && read gerar
  #>> chumogh.val
 echo -e "\033[1;32mKEY GENERADA ES :\033[1;35m $(ofus $gerar) \033[1;32m DESEAS COLOCARLA " 
+mm=$(ofus $gerar)
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
@@ -170,6 +171,7 @@ cp /root/chumogh.val /var/www/chumogh.val
 cp /root/chumogh.val /var/www/html/chumogh.val
 service apache2 restart
 }
+#kk=$(ofus $mm)
 sed -i /$(ofus $mm)/d /root/chumogh.val
 rm -rf /etc/adm-cgh/$(ofus $gerar).sh
 removeonline
@@ -195,6 +197,7 @@ echo "INGRESA TUS DIGITOS A GERERAR TU KEY"
 echo -ne "\033[1;37mKEY: " && read gerar
  #>> chumogh.val
 echo -e "\033[1;32mKEY GENERADA ES :\033[1;35m $(ofus $gerar) \033[1;32m DESEAS COLOCARLA " 
+mm=$(ofus $gerar)
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
