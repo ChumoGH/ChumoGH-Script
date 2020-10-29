@@ -122,9 +122,9 @@ clear
 echo -e "\033[1;32m [0] > Regresar / Salir"
 echo -e "\033[1;32m [1] > GENERAR KEY EN ADM CHUMOGH"
 echo -e "\033[1;32m [2] > GENERAR KEY EN ADM RUSS"
-echo -e "\033[1;32m [3] > Retirar KEY EN ADM CHUMOGH"
-echo -e "\033[1;32m [4] > Retirar KEY EN ADM RUSS"
-echo -e "\033[1;32m [5] > DESTRUIR KEYS de ChumoGH \033[1;35m (No Recomendado) "
+#echo -e "\033[1;32m [3] > Retirar KEY EN ADM CHUMOGH"
+#echo -e "\033[1;32m [4] > Retirar KEY EN ADM RUSS"
+echo -e "\033[1;32m [5] > DESTRUIR KEYS de ChumoGH & RUSS\033[1;35m (No Recomendado) "
 echo -e "\033[1;32m [6] > Ver KEYS de ChumoGH \033[1;34m (Encriptada) "
 echo -e "\033[1;32m [7] > Ver KEYS de RUSS \033[1;34m (Encriptada) "
 echo -e $barra
@@ -288,6 +288,9 @@ gerar
 ;;
 5)
 rm -f chumogh.*
+rm -rf /etc/adm-cgh/*
+rm -f russ.*
+rm -rf /etc/adm-russ/*
 gerar
 ;;
 6)
@@ -319,7 +322,7 @@ gerar
 ;;
 7)
 figlet -p -f slant < /root/name
-echo -e "\033[1;37m      【     ★ ChumoGH - ADM 2020 ★     】\033[0m"
+echo -e "\033[1;37m      【     ★ RUSS - ADM 2020 ★     】\033[0m"
 echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
 echo -e "\033[1;37m ∆ Linux Dist:	$distribution › Version: $os_version\033[0m"
 echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
