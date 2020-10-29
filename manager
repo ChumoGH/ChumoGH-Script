@@ -1,4 +1,6 @@
 #!/bin/bash
+cd
+cd
 rm -f key.*
 os_version=$(lsb_release -sr);
 distribution=$(lsb_release -si);
