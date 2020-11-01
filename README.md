@@ -1,4 +1,4 @@
-# ChumoGH-Script V3.4.3
+# ChumoGH-Script V3.4.4
 
 # Proyecto sujeto a mejoras . . . . 
 
@@ -16,6 +16,8 @@ ULTIMA ACTUALIZACION : 26-09-2020 | 21:10
 
 3 • V2ray ( Tener Dominio Agregado a la Distribucion).
 
+4 • \\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 ## Installation
 
 wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/instala.sh; chmod +x instala.sh; ./instala.sh
@@ -23,11 +25,15 @@ wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/instala.
 ```
 * SIN MINERIA! 
 * VERSION OFICIAL
-* Key: 04My0zT!I2060/U?0%m}"PX2(w?F892
+* Key: +593987072611 ChumoGH
 * SIN VIRUS TROJANO (BOTNET) 
 * Soporte Netflix Escucha (Exerimental)
+* Kill Multilogin Funcional
 * V2RAY AGREGADO (LEER REQUERIMIENTOS)
-* V3RAY EN CURSO [][][][][][][][]][][]
+* V2RAY Version Consola
+* Fix Login ROOT Amazon-Google
+* Fix PassWD Vulrt
+* Auto Optimizacion
 
 ```
 
