@@ -537,8 +537,8 @@ done
 }
 install_prepare_password(){
 echo "Escribe una contraseña ${software[${selected}-1]}"
-read -p "(Default password: vpspack):" shadowsockspwd
-[ -z "${shadowsockspwd}" ] && shadowsockspwd="vpspack"
+read -p "(Default password: chumogh):" shadowsockspwd
+[ -z "${shadowsockspwd}" ] && shadowsockspwd="chumogh"
 echo
 echo "password = ${shadowsockspwd}"
 echo
@@ -1028,8 +1028,8 @@ install_completed_libev
 qr_generate_libev
 fi
 echo
-echo "VPSPACK - Shadowsocks"
-echo "t.me/PowerMX"
+echo "ChumoGH - Shadowsocks"
+echo "t.me/ChumoGH"
 echo
 }
 install_cleanup(){
