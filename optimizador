@@ -36,7 +36,7 @@ echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
 sysctl -w vm.drop_caches=3 1> /dev/null 2> /dev/null
 swapoff -a && swapon -a 1> /dev/null 2> /dev/null
 echo "Limpieza Finalizada"
-echo "echo 3 > /proc/sys/vm/drop_caches" > /bin/ejecutar/automatizar.sh
+echo "echo 3 > /proc/sys/vm/drop_caches" >> /bin/ejecutar/automatizar.sh
 echo "sudo sync"  >> /bin/ejecutar/automatizar.sh
 echo "sudo sysctl -w vm.drop_caches=3" >> /bin/ejecutar/automatizar.sh
 echo "sysctl -w vm.drop_caches=3 > /dev/null 2>&1" >> /bin/ejecutar/automatizar.sh
