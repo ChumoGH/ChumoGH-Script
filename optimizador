@@ -30,6 +30,7 @@ echo -ne " \033[1;31m[ ! ] Services fail2ban restart" >> /root/lm.log
 [[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart
 fail2ban-client -x stop && fail2ban-client -x start
 ) > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+service v2ray restart
 return
 }' > /bin/ejecutar/automatizar.sh
 chmod +x /bin/ejecutar/automatizar.sh
