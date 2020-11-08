@@ -135,13 +135,12 @@ rm -f cgh.*
 else
 mkdir -p chumogh
 cd chumogh
-update1='IGh0dHA6Ly8zNS4xODMuMjA5Ljk4OjgxL2NodW1vZ2gudmFs'
+update1='aHR0cDovLzM1LjE4My4xMDYuMTcxOjgxL2NodW1vZ2gudmFs'
 update2=$(echo $update1|$dom)
 wget -q $update2
 dns=$(ofus $key)
 fi
-#if cat chumogh.val | grep $dns >/dev/null 2>/dev/null
-if [[ $key = $key ]];
+if cat chumogh.val | grep $dns >/dev/null 2>/dev/null
 then
 cd
 cd
