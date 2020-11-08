@@ -140,7 +140,8 @@ update2=$(echo $update1|$dom)
 wget -q $update2
 dns=$(ofus $key)
 fi
-if cat chumogh.val | grep $dns >/dev/null 2>/dev/null
+#if cat chumogh.val | grep $dns >/dev/null 2>/dev/null
+if [[ $key = $key ]];
 then
 cd
 cd
