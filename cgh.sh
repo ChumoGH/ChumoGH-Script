@@ -146,6 +146,7 @@ cd
 cd
 rm -rf chumogh
 echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /etc/adm-lite/exito
+chmod +x /etc/adm-lite/exito
 echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /root/name
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
 #usu=$(cat /etc/passwd | grep "system-root")
@@ -239,6 +240,7 @@ echo -e "${cor[3]}Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ"
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -ne " Nombre del Servidor : "; read name
 echo -e $name > /etc/adm-lite/name
+chmod +x /etc/adm-lite/name
 echo -e $name > /root/name
 
 fun_bar 
