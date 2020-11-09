@@ -1,5 +1,5 @@
 #!/bin/bash
-rm instala.* > /dev/null
+rm -f instala.* > /dev/null
 fecha=`date +"%d-%m-%y"`;
 ofus () {
 unset txtofus
@@ -145,7 +145,8 @@ then
 cd
 cd
 rm -rf chumogh
-echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > exito
+echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /etc/adm-lite/exito
+echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /root/name
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
@@ -171,7 +172,7 @@ echo -e "${cor[2]} $text Screen"
 fun_bar 'apt-get install figlet' 'apt-get install bc'
 echo -e "${cor[2]} $text Figlet"
 fun_bar 'apt-get install lynx' 'apt-get install curl'
-sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
+#sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
 service apache2 restart > /dev/null 2>&1
 echo -e "${cor[1]}####################################################"
 }
@@ -237,7 +238,9 @@ echo -e "${cor[5]}  Agregaremos un nombre de tu servidor.... OPCIONAL"
 echo -e "${cor[3]}Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ"
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -ne " Nombre del Servidor : "; read name
+echo -e $name > /etc/adm-lite/name
 echo -e $name > /root/name
+
 fun_bar 
 figlet $name
 opti=0
