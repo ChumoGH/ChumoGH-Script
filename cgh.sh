@@ -352,10 +352,13 @@ fun_bar
 	  rm -f /bin/cgh
 	  rm -f /bin/menu
 	  rm - rf /etc/adm-lite > /dev/null
+	  rm - rf /bin/ejecutar > /dev/null
+	  unset * > /dev/null
 	  rm -rf *
-	  cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
-	  echo "Key Invalida, Contacta con el Desarrolador"
-          echo "  ● Compra Keys al +593987072611 "
-	  echo -e ' t.me/ChumoGH  - @ChumoGH' 
+	  cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT " > error.log
+	  echo "Key Invalida, Contacta con el Desarrolador" >> error.log
+          echo "  ● Compra Keys al +593987072611 " >> error.log
+	  echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
+	  cat error.log | lolcat
 	  rm $(key)/$0 &> /dev/null
 	fi
