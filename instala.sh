@@ -11,7 +11,7 @@ pid=$!
 while [[ -d /proc/$pid ]]; do
 echo -ne " \033[1;33m["
    for((i=0; i<10; i++)); do
-   echo -ne "\033[1;31m☺☻"
+   echo -ne "\033[1;31m☻"
    sleep 0.2
    done
 echo -ne "\033[1;33m]"
@@ -20,7 +20,7 @@ echo
 tput cuu1
 tput dl1
 done
-echo -e " \033[1;33m[\033[1;31m♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦\033[1;33m] - \033[1;32m100%\033[0m"
+echo -e " \033[1;33m[\033[1;31m♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦\033[1;33m] - \033[1;32m100%\033[0m"
 sleep 1s
 }
 fun_bar () {
@@ -35,7 +35,7 @@ touch $HOME/fim
 echo -ne "\033[1;33m ["
 while true; do
    for((i=0; i<18; i++)); do
-   echo -ne "\033[1;31m✬✯"
+   echo -ne "\033[1;31m✯"
    sleep 0.1s
    done
    [[ -e $HOME/fim ]] && rm $HOME/fim && break
@@ -60,7 +60,7 @@ tput civis
 echo -ne "  \033[1;33mESPERE \033[1;37m- \033[1;33m["
 while true; do
 for((i=0; i<18; i++)); do
-echo -ne "\033[1;31m≛≛"
+echo -ne "\033[1;31m≛"
 sleep 0.1s
 done
 [[ -e $HOME/fim ]] && rm $HOME/fim && break
