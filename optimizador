@@ -4,7 +4,8 @@
 unset opti
 opti=$(cat /bin/ejecutar/val)
 if [ "$opti" = "0" ]; then
-rm -f /bin/ejecutar/automatizar.sh
+echo "activado" > /bin/ejecutar/val1
+echo "1" > /bin/ejecutar/val
 echo 'reiniciar_ser () {
 ##
 echo -ne " \033[1;31m[ ! ] Services BadVPN restart" >> /root/lm.log
