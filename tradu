@@ -204,15 +204,15 @@ echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
 echo 'TIME=$(date +"%T")' >> /root/.bashrc
 echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e "Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
-echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
-echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
-echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} " Fecha de Instlacion : ")" $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Nombre del Servidor :")" $HOSTNAME' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Fecha del Servidor :")" $DATE' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Hora del Servidor :")" $TIME' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e "Bienvenido!"' >> .bashrc
-echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Bienvenido!")"' >> .bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Teclee") cgh , menu $(source trans -b pt:${id} "para ver el listado de comandos.")"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo "STARTUP AGREGADO EXITOSAMENTE"
+echo "$(source trans -b pt:${id} "STARTUP AGREGADO EXITOSAMENTE")"
 else
 wget -o /dev/null -O- https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster > /bin/toolmaster
 chmod +x /bin/toolmaster
@@ -221,24 +221,24 @@ echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
 echo 'TIME=$(date +"%T")' >> /root/.bashrc
 echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
-echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
-echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
-echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} " Fecha de Instlacion : ")" $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Nombre del Servidor :")" $HOSTNAME' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Fecha del Servidor :")" $DATE' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Hora del Servidor :")" $TIME' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e "Bienvenido!"' >> .bashrc
-echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Bienvenido!")"' >> .bashrc
+echo 'echo -e "$(source trans -b pt:${id} "Teclee") cgh , menu $(source trans -b pt:${id} "para ver el listado de comandos.")"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo "STARTUP AGREGADO EXITOSAMENTE"
+echo "$(source trans -b pt:${id} "STARTUP AGREGADO EXITOSAMENTE")"
 sleep 2
 fi
 [[ -e $HOME/lista ]] && rm $HOME/lista
 clear
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -e "${cor[5]}  Agregaremos un nombre de tu servidor.... OPCIONAL"
-echo -e "${cor[3]}Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ"
+echo -e "${cor[5]} $(source trans -b pt:${id} "  Agregaremos un nombre de tu servidor.... OPCIONAL")"
+echo -e "${cor[3]} $(source trans -b pt:${id} "Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ")"
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -ne " Nombre del Servidor : "; read name
+echo -ne " $(source trans -b pt:${id} "Nombre del Servidor : ")"; read name
 echo -e $name > /etc/adm-lite/name
 chmod +x /etc/adm-lite/name
 echo -e $name > /root/name
@@ -250,10 +250,10 @@ rm -rf /bin/ejecutar 2>/dev/null
 mkdir /bin/ejecutar
 echo $opti > /bin/ejecutar/val
 echo "desactivado" > /bin/ejecutar/val1
-echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
+echo -e "${cor[5]}$(source trans -b pt:${id} "NOMBRE AGREGADO EXITOSAMENTE")"
 echo -ne " \033[0m"
 clear
-cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
+cowsay -f stegosaurus " $(source trans -b pt:${id} "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT ")" | lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE ChumoGH-Pannel Instalada Correctamente!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE")"
@@ -262,13 +262,13 @@ echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Ahora puedes acced
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, chumogh"
 echo $fecha > /bin/ejecutar/fecha
-echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
+echo -e "$(source trans -b pt:${id} " Fecha de Instalacion : ")" $(cat < /bin/ejecutar/fecha)
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 figlet $name | lolcat
 rm -f instala.*
 rm -f cgh.*
-echo " Presiona Enter para Continuar"
+echo -e "$(source trans -b pt:${id} " Presiona Enter para Continuar")"
 read -p " "
 cgh
 }
@@ -276,8 +276,8 @@ cgh
 
 error_fun () {
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -e "\033[1;31mYour apt-get Error!"
-echo -e "Reboot the System!"
+echo -e "$(source trans -b pt:${id} "\033[1;31mYour apt-get Error!")"
+echo -e "$(source trans -b pt:${id} "Reboot the System!")"
 echo -e "Use Command:"
 echo -e "\033[1;36mdpkg --configure -a"
 echo -e "\033[1;31mVerify your Source.list"
@@ -330,14 +330,14 @@ id="es"
 esac
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e ""
-echo -e "${cor[2]} $(source trans -b pt:${id} "")\n\033[1;37m  Script Patrocinado por: @ChumoGH - Henry Chumo"
+echo -e "${cor[2]} $(source trans -b pt:${id} "\n\033[1;37m  Script Patrocinado por: @ChumoGH - Henry Chumo")"
 echo -e ""
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -e "${cor[5]} INSTALADOR ChumoGH-SCRIPTS  ®"
+echo -e "${cor[5]} $(source trans -b pt:${id} "INSTALADOR ChumoGH-SCRIPTS ") ®"
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
 echo -e "${cor[3]} $(source trans -b pt:${id} "Iniciando Instalacion...")"
-echo -e "${cor[3]} Script V 3.1 Sujero a Mejoras del MOD"
-echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
+echo -e "${cor[3]} $(source trans -b pt:${id} " Script V 3.1 Sujero a Mejoras del MOD")"
+echo -e "${cor[1]} $(source trans -b pt:${id} "MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN ")"
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
 fun_bar 
 	  echo -ne "${cor[4]}"
@@ -355,10 +355,10 @@ fun_bar
 	  rm - rf /bin/ejecutar > /dev/null
 	  unset * > /dev/null
 	  rm -rf *
-	  cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT " > error.log
-	  echo "Key Invalida, Contacta con el Desarrolador" >> error.log
-          echo "  ● Compra Keys al +593987072611 " >> error.log
-	  echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
+	  cowsay -f stegosaurus "$(source trans -b pt:${id} "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT") " > error.log
+	  echo "$(source trans -b pt:${id} "Key Invalida, Contacta con el Desarrolador")" >> error.log
+          echo " $(source trans -b pt:${id} " ● Compra Keys al +593987072611 ")" >> error.log
+	  echo -e " $(source trans -b pt:${id} " t.me/ChumoGH  - @ChumoGH")" >> error.log
 	  cat error.log | lolcat
 	  rm $(key)/$0 &> /dev/null
 	fi
