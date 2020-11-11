@@ -10,7 +10,7 @@ touch $HOME/fim
  ) > /dev/null 2>&1 &
 echo -ne "\033[1;33m ["
 while true; do
-   for((i=0; i<22; i++)); do
+   for((i=0; i<18; i++)); do
    echo -ne "\033[1;31m✦✧"
    sleep 0.1s
    done
@@ -25,7 +25,8 @@ echo -e "\033[1;33m]\033[1;31m EXITO -\033[1;32m 100 %\033[1;37m"
 }
 
 fun_bar 'apt install cmake -y'
-fun_bar 'apt-get install screen wget gcc build-essential g++ make -y'
+#fun_bar 'apt-get install screen wget gcc build-essential g++ make -y'
+rm -f badvpn-1.999.128.tar.*
 wget -q https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/badvpn/badvpn-1.999.128.tar.bz2
 tar xf badvpn-1.999.128.tar.bz2
 cd /etc/adm-lite/badvpn-1.999.128/
