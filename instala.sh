@@ -95,6 +95,7 @@ rm -rf /etc/localtime &>/dev/null
 echo -e 'ZONA HORARIA EN UTC - 05:00 America/Guayaquil'
 ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
 rm $(pwd)/$0 &> /dev/null
+sleep 2s
 update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvQ2h1bW9HSC1TY3JpcHQvbWFzdGVyL2NnaC5zaA=='
 dom='base64 -d'
 RE=$(echo $update1|$dom)
