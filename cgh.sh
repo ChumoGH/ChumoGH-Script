@@ -242,13 +242,13 @@ echo -ne " Nombre del Servidor : "; read name
 echo -e $name > /etc/adm-lite/name
 chmod +x /etc/adm-lite/name
 echo -e $name > /root/name
-
 fun_bar 
 figlet $name
 opti=0
 rm -rf /bin/ejecutar 2>/dev/null 
 mkdir /bin/ejecutar
 echo $opti > /bin/ejecutar/val
+echo $opti > /bin/ejecutar/uskill
 echo "desactivado" > /bin/ejecutar/val1
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
@@ -265,6 +265,7 @@ echo $fecha > /bin/ejecutar/fecha
 echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
+echo ""
 figlet $name | lolcat
 rm -f instala.*
 rm -f cgh.*
