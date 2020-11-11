@@ -6,6 +6,14 @@ opti=$(cat /bin/ejecutar/val)
 if [ "$opti" = "0" ]; then
 rm -f /bin/ejecutar/automatizar.sh
 echo 'reiniciar_ser () {
+##
+echo -ne " \033[1;31m[ ! ] Services BadVPN restart" >> /root/lm.log
+kill -9 $(ps x | grep badvpn | grep -v grep | awk '{print $1'}) > /dev/null 2>&1
+killall badvpn-udpgw > /dev/null 2>&1
+unset pid_badvpn
+[[ -e /bin/badvpn-udpgw ]] && screen -dmS screen /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+pid_badvpn=$(ps x | grep badvpn | grep -v grep | awk '{print $1}')
+##
 echo -ne " \033[1;31m[ ! ] Services stunnel4 restart" >> /root/lm.log
 service stunnel4 restart > /dev/null 2>&1
 [[ -e /etc/init.d/stunnel4 ]] && /etc/init.d/stunnel4 restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
