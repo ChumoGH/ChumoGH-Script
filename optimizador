@@ -12,9 +12,7 @@ echo -ne " \033[1;31m[ ! ] Services BadVPN and Netflix restart"
 kill -9 $(ps x | grep badvpn | grep -v grep | awk '{print $1'}) > /dev/null 2>&1
 killall badvpn-udpgw > /dev/null 2>&1
 unset pid_badvpn
-[[ -e /bin/badvpn-udpgw ]] && bash <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/netflix.sh) > /dev/null > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-pid_badvpn=$(ps x | grep badvpn | grep -v grep | awk '{print $1}')
-[[ -e /bin/badvpn-udpgw ]] && screen -dmS screen /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+[[ -e /bin/badvpn-udpgw ]] && screen -dmS screen /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 > /dev/null 2>&1 && bash <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/netflix.sh) > /dev/null && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 pid_badvpn=$(ps x | grep badvpn | grep -v grep | awk '{print $1}')
 ##
 echo -ne " \033[1;31m[ ! ] Services stunnel4 restart"
