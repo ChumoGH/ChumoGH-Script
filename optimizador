@@ -8,38 +8,42 @@ echo "activado" > /bin/ejecutar/val1
 echo "1" > /bin/ejecutar/val
 echo 'reiniciar_ser () {
 ##
-echo -ne " \033[1;31m[ ! ] Services BadVPN restart" >> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services BadVPN and Netflix restart"
 kill -9 $(ps x | grep badvpn | grep -v grep | awk '{print $1'}) > /dev/null 2>&1
 killall badvpn-udpgw > /dev/null 2>&1
 unset pid_badvpn
+[[ -e /bin/badvpn-udpgw ]] && bash <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/netflix.sh) > /dev/null > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+pid_badvpn=$(ps x | grep badvpn | grep -v grep | awk '{print $1}')
 [[ -e /bin/badvpn-udpgw ]] && screen -dmS screen /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 pid_badvpn=$(ps x | grep badvpn | grep -v grep | awk '{print $1}')
 ##
-echo -ne " \033[1;31m[ ! ] Services stunnel4 restart" >> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services stunnel4 restart"
 service stunnel4 restart > /dev/null 2>&1
 [[ -e /etc/init.d/stunnel4 ]] && /etc/init.d/stunnel4 restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services squid restart">> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services V2RAY restart"
+service v2ray restart > /dev/null 2>&1
+[[ -e /etc/v2ray/config.json ]] && v2ray restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Services squid restart"
 service squid restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services squid3 restart">> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services squid3 restart"
 service squid3 restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services apache2 restart" >> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services apache2 restart"
 service apache2 restart > /dev/null 2>&1
 [[ -e /etc/init.d/apache2 ]] && /etc/init.d/apache2 restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services openvpn restart" >> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services openvpn restart"
 service openvpn restart > /dev/null 2>&1
 [[ -e /etc/init.d/openvpn ]] && /etc/init.d/openvpn restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services dropbear restart" >> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services dropbear restart"
 service dropbear restart > /dev/null 2>&1
 [[ -e /etc/init.d/dropbear ]] && /etc/init.d/dropbear restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services ssh restart" >> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services ssh restart"
 service ssh restart > /dev/null 2>&1
 [[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services fail2ban restart" >> /root/lm.log
+echo -ne " \033[1;31m[ ! ] Services fail2ban restart"
 ( 
 [[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart
 fail2ban-client -x stop && fail2ban-client -x start
 ) > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-service v2ray restart
 return
 }' > /bin/ejecutar/automatizar.sh
 chmod +x /bin/ejecutar/automatizar.sh
@@ -57,7 +61,7 @@ echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
 echo 'echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
 echo 'tiempo=$(hwclock)' >> /bin/ejecutar/automatizar.sh
 echo 'echo $tiempo >> /tmp/dropcache' >> /bin/ejecutar/automatizar.sh
-echo "reiniciar_ser" >> /bin/ejecutar/automatizar.sh
+echo "reiniciar_ser >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
 echo "echo -e >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
 echo "echo "Limpio $tiempo" >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/ejecutar/crontab.original
