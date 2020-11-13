@@ -1,10 +1,10 @@
-# ChumoGH-Script V4
+# ChumoGH-Script V4.1
 
 # Proyecto sujeto a mejoras . . . . 
 
 ![logo](https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/FOTO.jpeg)
 
-ULTIMA ACTUALIZACION : 11-11-2020 | 18:10
+ULTIMA ACTUALIZACION : 13-11-2020 | 8:25 
 
 **Manager Script**
 
@@ -34,7 +34,8 @@ wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/instala.
 * Fix Login ROOT Amazon-Google
 * Fix PassWD Vulrt
 * Auto Optimizacion
-
+* Contador de Usuarios Eliminados
+* Reinicio de Servicios programado
 ```
 
 ```
