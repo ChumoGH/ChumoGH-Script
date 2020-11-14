@@ -145,7 +145,7 @@ then
 cd
 cd
 rm -rf chumogh
-echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /root/name
+echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > /root/exito
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
 #usu=$(cat /etc/passwd | grep "system-root")
 function_verify () {
@@ -237,9 +237,9 @@ echo -e "${cor[5]}  Agregaremos un nombre de tu servidor.... OPCIONAL"
 echo -e "${cor[3]}Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ"
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -ne " Nombre del Servidor : "; read name
-echo -e $name > /etc/adm-lite/name
+echo $name > /etc/adm-lite/name
 chmod +x /etc/adm-lite/name
-echo -e $name > /root/name
+echo $name > /root/name
 fun_bar 
 figlet $name
 opti=0
@@ -248,7 +248,7 @@ mkdir /bin/ejecutar
 echo $opti > /bin/ejecutar/val
 echo $opti > /bin/ejecutar/uskill
 echo "desactivado" > /bin/ejecutar/val1
-echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /etc/adm-lite/exito
+echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > /etc/adm-lite/exito
 chmod +x /etc/adm-lite/exito
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
