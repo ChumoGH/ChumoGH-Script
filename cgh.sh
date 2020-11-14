@@ -145,8 +145,6 @@ then
 cd
 cd
 rm -rf chumogh
-echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /etc/adm-lite/exito
-chmod +x /etc/adm-lite/exito
 echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /root/name
 src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
 #usu=$(cat /etc/passwd | grep "system-root")
@@ -250,6 +248,8 @@ mkdir /bin/ejecutar
 echo $opti > /bin/ejecutar/val
 echo $opti > /bin/ejecutar/uskill
 echo "desactivado" > /bin/ejecutar/val1
+echo "Verified【 ★ ChumoGH ★ 】 ADM 2020" > /etc/adm-lite/exito
+chmod +x /etc/adm-lite/exito
 echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
 echo -ne " \033[0m"
 clear
