@@ -1,24 +1,36 @@
 #!/usr/bin/env python
 
+# -*- coding: utf-8 -*-
+# Edit By GlEmYsSoN & @e8th4ever
+
+from pprint import pprint
 import sys
-import httplib
-from SocketServer import ThreadingMixIn
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+import http.client
+from socketserver import ThreadingMixIn
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Lock, Timer
-from cStringIO import StringIO
-from urlparse import urlsplit
+from io import StringIO
+from urllib.parse import urlsplit
 import socket
 import select
 import gzip
 import zlib
 import re
 import traceback
+import subprocess
+subprocess.call("clear",shell=True)
 
 if sys.argv[2:]:
  msg1 = sys.argv[2]
 else:
- msg1 = "ADM-ULTIMATE"
+ msg1 = 'ADM-ULTIMATE'
 
+if sys.argv[3:]:
+ server = sys.argv[3]
+else:
+ server = "127.0.0.1"
+
+msg2 = 'Server Forbidden'
 
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
 
@@ -26,10 +38,10 @@ class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
 
     def handle_error(self, request, client_address):
         
-        print >>sys.stderr, '-'*40
-        print >>sys.stderr, 'Exception happened during processing of request from', client_address
+        print('-'*40, file=sys.stderr)
+        print('Exception happened during processing of request from', client_address, file=sys.stderr)
         traceback.print_exc()
-        print >>sys.stderr, '-'*40
+        print('-'*40, file=sys.stderr)
         
      
 class ThreadingHTTPServer6(ThreadingHTTPServer):
@@ -50,10 +62,13 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
         self.log_message(format, *args)
 
     def do_CONNECT(self):
-        
 
         req = self
         reqbody = None
+        if ':22' in req.path:
+            hostip = req.path.replace(':22', '')
+        elif ':443' in req.path:
+            hostip = req.path.replace(':443', '')
         req.path = "https://%s/" % req.path.replace(':443', '')
 
         replaced_reqbody = self.request_handler(req, reqbody)
@@ -66,13 +81,17 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
             conn = socket.create_connection(address)
         except socket.error:
             return
+
         self.send_response(200, msg1)
         self.send_header('Connection', 'close')
         self.end_headers()
 
-        conns = [self.connection, conn] 
+        conns = [self.connection, conn]
         keep_connection = True
         while keep_connection:
+            if not server.find(hostip) != -1:
+                self.send_error(403, msg2)
+                self.close_connection
             keep_connection = False
             rlist, wlist, xlist = select.select(conns, [], conns, self.timeout)
             if xlist:
@@ -96,6 +115,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
 
     def do_SPAM(self):
         req = self
+
         content_length = int(req.headers.get('Content-Length', 0))
         if content_length > 0:
             reqbody = self.rfile.read(content_length)
@@ -145,7 +165,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
             self.modify_via_header(res.headers)
 
         self.send_response(res.status, res.reason)
-        for k, v in res.headers.items():
+        for k, v in list(res.headers.items()):
             if k == 'set-cookie':
                 
                 for value in self.split_set_cookie_header(v):
@@ -161,6 +181,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
 
     def request_to_upstream_server(self, req, reqbody):
         u = urlsplit(req.path)
+
         origin = (u.scheme, u.netloc)
 
         
@@ -178,7 +199,7 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
                     raise
                 try:
                     res = conn.getresponse(buffering=True)
-                except httplib.BadStatusLine as e:
+                except http.client.BadStatusLine as e:
                     if e.line == "''":
                         
                         self.close_origin(origin)
@@ -204,9 +225,9 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
         if not conn:
             scheme, netloc = origin
             if scheme == 'https':
-                conn = httplib.HTTPSConnection(netloc)
+                conn = http.client.HTTPSConnection(netloc)
             else:
-                conn = httplib.HTTPConnection(netloc)
+                conn = http.client.HTTPConnection(netloc)
             self.reset_timer(origin)
             self.conn_table[origin]['connection'] = conn
         return conn
@@ -299,20 +320,16 @@ class SimpleHTTPProxyHandler(BaseHTTPRequestHandler):
 
 
 def test(HandlerClass=SimpleHTTPProxyHandler, ServerClass=ThreadingHTTPServer, protocol="HTTP/1.1"):
-    if sys.argv[1:]:
-        port = int(sys.argv[1])
-    else:
-        port = 8799
+    port = int(sys.argv[1])
     server_address = ('', port)
 
     HandlerClass.protocol_version = protocol
     httpd = ServerClass(server_address, HandlerClass)
 
     sa = httpd.socket.getsockname()
-    print "Serving HTTP on", sa[0], "port", sa[1], "..."
+    print("Servidor: " + str(sa[0]) + " Porta " + str(sa[1]))
     httpd.serve_forever()
 
 
 if __name__ == '__main__':
     test()
-
