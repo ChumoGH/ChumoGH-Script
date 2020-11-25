@@ -175,7 +175,6 @@ case $opx in
 	fun_bar
 	act_hora4
 	unset opx
-	
   	break;;
 esac
 done
