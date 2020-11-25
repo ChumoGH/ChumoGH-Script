@@ -105,6 +105,7 @@ menu
 }
 shadowe_fun () {
 #source /etc/adm-lite/cabelcaho
+unset opx
 echo -e " \033[1;36m ZONA HORARIO \033[1;32m[ChumoGH-ADM]"
 echo -e "$barra"
 while true; do
