@@ -129,41 +129,51 @@ case $opx in
 	1)
 	fun_bar
 	act_hora
+	unset opx
 	break;;
 	2)
 	fun_bar
 	act_hora1
+	unset opx
 	break;;
 	3)
 	fun_bar
 	act_hora2
+	unset opx
 	break;;
    	 4)
 	 fun_bar
 	act_hora3
+	unset opx
 	break;;
 	 5)
 	 fun_bar
 	act_hora4
+	unset opx
 	break;;
 	 6)
 	 fun_bar
 	act_hora5
+	unset opx
 	break;;
 	 7)
 	 fun_bar
 	act_hora6
+	unset opx
 	break;;
 	 8)
 	 fun_bar
 	act_hora7
+	unset opx
 	break;;
 	 9)
 	 fun_bar
 	act_hora8
+	unset opx
 	break;;
 	10)
 	verzm
+	unset opx
   	break;;
 esac
 done
