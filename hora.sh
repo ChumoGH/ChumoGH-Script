@@ -112,12 +112,12 @@ echo -e "${cor[4]} [1] > ${cor[5]}ACTUALIZAR HORARIO  CHICHUAHUA"
 echo -e "${cor[4]} [2] > ${cor[5]}ACTUALIZAR HORARIO  MEXICO"
 echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO  HERMOSILLO"
 echo -e "${cor[4]} [4] > ${cor[5]}ACTUALIZAR HORARIO  AMERICA/SANTIAGO"
-echo -e "${cor[4]} [5] > ${cor[5]}ACTUALIZAR HORARIO  America/Los_Angeles"
+echo -e "${cor[4]} [5] > ${cor[2]}VER ZONA HORARIA ACTUAL "
 echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO  America/New_York"
 echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO  America/Guatemala"
 echo -e "${cor[4]} [8] > ${cor[5]}ACTUALIZAR HORARIO  America/Bogota"
 echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO  ECUADOR "
-echo -e "${cor[4]} [10] > ${cor[5]}VER ZONA HORARIA ACTUAL "
+echo -e "${cor[4]} [10] > ${cor[5]}ACTUALIZAR HORARIO  America/Los_Angeles"
 echo -e "${cor[4]} [0] > ${cor[0]}SALIR\n${barra}"
 while [[ ${opx} != @(0|[1-9]) ]]; do
 echo -ne "${cor[0]}Digite una Opcion (1 a 1O) : \033[1;37m" && read opx
@@ -147,8 +147,7 @@ case $opx in
 	unset opx
 	break;;
 	 5)
-	 fun_bar
-	act_hora4
+	verzm
 	unset opx
 	break;;
 	 6)
@@ -172,8 +171,10 @@ case $opx in
 	unset opx
 	break;;
 	10)
-	verzm
+	fun_bar
+	act_hora4
 	unset opx
+	
   	break;;
 esac
 done
