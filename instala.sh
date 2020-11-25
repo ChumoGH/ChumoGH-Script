@@ -90,12 +90,12 @@ return
 }
 clear
 update_pak
-sleep 2s
-rm -rf /etc/localtime &>/dev/null
-echo -e 'ZONA HORARIA EN UTC - 05:00 America/Guayaquil'
-ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
+#rm -rf /etc/localtime &>/dev/null
+ echo -e "\033[1;32m CAMBIAR ZONA HORARIA EN ( * \033[1;33m menu\033[1;32m *\033[1;33m opcion 7 \033[1;32m*\033[1;33m opcion 14 \033[1;32m)"
+#echo -e 'ZONA HORARIA EN UTC - 05:00 America/Guayaquil'
+#ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
 rm $(pwd)/$0 &> /dev/null
-sleep 2s
+read -rsp $'Presiona una TECLA o Espere 5 segundos para continuar...\n' -n 1 -t 6;
 update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvQ2h1bW9HSC1TY3JpcHQvbWFzdGVyL2NnaC5zaA=='
 dom='base64 -d'
 RE=$(echo $update1|$dom)
