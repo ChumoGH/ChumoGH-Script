@@ -51,8 +51,45 @@ timedatectl set-timezone America/Santiago > /dev/null 2>&1
 echo -e "$barra"
 menu
 }
+act_hora4 () {
+timedatectl > /dev/null 2>&1
+timedatectl list-timezones > /dev/null 2>&1
+timedatectl list-timezones  | grep Los_Angeles > /dev/null 2>&1
+timedatectl set-timezone America/Los_Angeles > /dev/null 2>&1
+echo -e "$barra"
+menu
+}
+act_hora5 () {
+echo "America/New_York" > /etc/timezone
+ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime > /dev/null 2>&1
+dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -e "$barra"
+menu
+}
+act_hora6 () {
+echo "America/Guatemala" > /etc/timezone
+ln -fs /usr/share/zoneinfo/America/Guatemala /etc/localtime > /dev/null 2>&1
+dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -e "$barra"
+menu
+}
+act_hora7 () {
+echo "America/Bogota" > /etc/timezone
+ln -fs /usr/share/zoneinfo/America/Bogota /etc/localtime > /dev/null 2>&1
+dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -e "$barra"
+menu
+}
+act_hora8 () {
+echo "America/Guayaquil" > /etc/timezone
+ln -fs /usr/share/zoneinfo/America/Guayaquil /etc/localtime > /dev/null 2>&1
+dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -e "$barra"
+menu
+}
 shadowe_fun () {
-echo -e " \033[1;36m ZONA HORARIO \033[1;32m[NEW-ADM]"
+source /etc/adm-lite/cabelcaho
+echo -e " \033[1;36m ZONA HORARIO \033[1;32m[ChumoGH-ADM]"
 echo -e "$barra"
 while true; do
 echo -e "${cor[4]} [1] > ${cor[5]}ACTUALIZAR HORARIO  CHICHUAHUA"
@@ -63,12 +100,9 @@ echo -e "${cor[4]} [5] > ${cor[5]}ACTUALIZAR HORARIO  America/Los_Angeles"
 echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO  America/New_York"
 echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO  America/Guatemala"
 echo -e "${cor[4]} [8] > ${cor[5]}ACTUALIZAR HORARIO  America/Bogota"
-echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO  "
-echo -e "${cor[4]} [1O] > ${cor[5]}ACTUALIZAR HORARIO  "
-echo -e "${cor[4]} [1] > ${cor[5]}ACTUALIZAR HORARIO  "
-
+echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO  ECUADOR "
 echo -e "${cor[4]} [0] > ${cor[0]}SALIR\n${barra}"
-while [[ ${opx} != @(0|[1-4]) ]]; do
+while [[ ${opx} != @(0|[1-9]) ]]; do
 echo -ne "${cor[0]}Digite una Opcion: \033[1;37m" && read opx
 tput cuu1 && tput dl1
 done
@@ -84,8 +118,23 @@ case $opx in
 	3)
 	act_hora2
 	break;;
-    4)
+   	 4)
 	act_hora3
+	break;;
+	 5)
+	act_hora4
+	break;;
+	 6)
+	act_hora5
+	break;;
+	 7)
+	act_hora6
+	break;;
+	 8)
+	act_hora7
+	break;;
+	 9)
+	act_hora8
 	break;;
   
 esac
