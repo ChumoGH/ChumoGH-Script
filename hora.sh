@@ -88,7 +88,7 @@ echo -e "$barra"
 menu
 }
 shadowe_fun () {
-source /etc/adm-lite/cabelcaho
+#source /etc/adm-lite/cabelcaho
 echo -e " \033[1;36m ZONA HORARIO \033[1;32m[ChumoGH-ADM]"
 echo -e "$barra"
 while true; do
