@@ -117,10 +117,10 @@ echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO  America/New_York"
 echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO  America/Guatemala"
 echo -e "${cor[4]} [8] > ${cor[5]}ACTUALIZAR HORARIO  America/Bogota"
 echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO  ECUADOR "
-echo -e "${cor[4]} [10] > ${cor[1]}VER ZONA HORARIA ACTUAL "
+echo -e "${cor[4]} [10] > ${cor[5]}VER ZONA HORARIA ACTUAL "
 echo -e "${cor[4]} [0] > ${cor[0]}SALIR\n${barra}"
 while [[ ${opx} != @(0|[1-10]) ]]; do
-echo -ne "${cor[0]}Digite una Opcion: \033[1;37m" && read opx
+echo -ne "${cor[0]}Digite una Opcion (1 a 1O) : \033[1;37m" && read opx
 tput cuu1 && tput dl1
 done
 case $opx in
