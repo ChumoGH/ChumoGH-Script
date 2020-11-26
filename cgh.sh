@@ -347,15 +347,14 @@ fun_bar
 	  valid_fun
 	else
           cd
-	  rm -f setup.*
-	  rm -f instala.*
-	  rm -rf chumogh
-	  rm -f /bin/cgh
-	  rm -f /bin/menu
+	  rm -f setup.* > /dev/null
+	  rm -f instala.*  > /dev/null
+	  rm -rf chumogh > /dev/null
+	  rm -f /bin/cgh > /dev/null
+	  rm -f /bin/menu > /dev/null
 	  rm - rf /etc/adm-lite > /dev/null
 	  rm - rf /bin/ejecutar > /dev/null
 	  unset * > /dev/null
-	  rm -rf *
 	  cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT " > error.log
 	  echo "Key Invalida, Contacta con el Desarrolador" >> error.log
           echo "  ● Compra Keys al +593987072611 " >> error.log
