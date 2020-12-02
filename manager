@@ -340,6 +340,7 @@ gerar
     ;;
     0)cd $HOME && exit;;
     esac
+;;
 6)
 figlet -p -f slant < /root/name
 echo -e "\033[1;37m      【     ★ ChumoGH - ADM 2020 ★     】\033[0m"
