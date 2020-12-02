@@ -343,7 +343,7 @@ gerar
     read -p " "
     gerar
     ;;
-    0)cd $HOME && exit;;
+    0)cd $HOME && gerar;;
     esac
 ;;
 6)
