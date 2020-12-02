@@ -323,7 +323,8 @@ gerar
     echo -e "\033[1;37m Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
     rm -f chumogh.*
     rm -rf /etc/adm-cgh/*
-    rm -f  /etc/adm-tm
+    #rm -f  /etc/adm-tm
+    rm -f /etc/adm-ct/tm
     echo " Presiona Enter para Continuar"
     read -p " "
     gerar
@@ -340,7 +341,8 @@ gerar
     echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
     rm -f russ.*
     rm -rf /etc/adm-russ/*
-    rm -f  /etc/adm-tmr
+    #rm -f  /etc/adm-tmr
+    rm -f /etc/adm-ct/tmr
     echo " Presiona Enter para Continuar"
     read -p " "
     gerar
@@ -370,7 +372,7 @@ done
 echo -e "\033[1;35m            KEYS ORIGINAL EN SISTEMA"
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -ne "\033[1;35m"
-cat chumogh.val    /etc/adm-ct/tm
+cat chumogh.val    
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
 gerar
@@ -397,7 +399,7 @@ done
 echo -e "\033[1;35m            KEYS ORIGINAL EN SISTEMA"
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -ne "\033[1;35m"
-cat russ.val    /etc/adm-ct/tmr
+cat russ.val    
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
 gerar
