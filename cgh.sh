@@ -17,8 +17,8 @@ case ${txt[$i]} in
 "%")txt[$i]="4";;
 "-")txt[$i]="K";;
 "K")txt[$i]="-";;
-"m")txt[$i]="|";;
-"|")txt[$i]="m";;
+"m")txt[$i]="7";;
+"7")txt[$i]="m";;
 "S")txt[$i]="i";;
 "i")txt[$i]="S";;
 "C")txt[$i]="h";;
