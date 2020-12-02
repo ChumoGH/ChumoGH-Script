@@ -1,6 +1,5 @@
 #!/bin/bash
 cd
-cd
 rm -f key.*
 os_version=$(lsb_release -sr);
 distribution=$(lsb_release -si);
@@ -12,8 +11,8 @@ echo -e "OFF"
 fi`;
 if [[ $texto = "ON" ]];then
 echo "Apache2 Instalado y Activo"
-sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
-service apache2 restart > /dev/null 2>&1
+#sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
+#service apache2 restart > /dev/null 2>&1
 else
 echo "Apache2 No Instalado"
 echo -ne " \033[1;31m[ ! ] INSTALANDO APACHE2 "
@@ -160,10 +159,12 @@ tput cuu1 && tput dl1
 done
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
 mkdir /etc/adm-cgh 1>/dev/null 2>/dev/null
+mkdir /etc/adm-ct 1>/dev/null 2>/dev/null
 echo -e "\033[1;34m Tiempo de Uso del KEY "
 echo -e "  Use s = segundos, m = minutos, h = horas e d = dias EX: 14s ."
 read -p " INGRESA : " tempoin
 tempo=$(echo "$tempoin" |sed 's/ //g')
+echo $tempo >> /etc/adm-ct/tm
 echo "#!/bin/bash
 sleep $tempo
 removeonline(){
@@ -215,10 +216,12 @@ tput cuu1 && tput dl1
 done
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
 mkdir /etc/adm-russ 1>/dev/null 2>/dev/null
+mkdir /etc/adm-tm 1>/dev/null 2>/dev/null
 echo -e "\033[1;34m Tiempo de Uso del KEY "
 echo -e "  Use s = segundos, m = minutos, h = horas e d = dias EX: 14s ."
 read -p " INGRESA : " tempoin
 tempo=$(echo "$tempoin" |sed 's/ //g')
+echo $tempo >> /etc/adm-ct/tmr
 echo "#!/bin/bash
 sleep $tempo
 removeonline(){
@@ -323,6 +326,7 @@ gerar
     echo -e "\033[1;37m Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
     rm -f chumogh.*
     rm -rf /etc/adm-cgh/*
+    rm -f  /etc/adm-tm
     echo " Presiona Enter para Continuar"
     read -p " "
     gerar
@@ -339,6 +343,7 @@ gerar
     echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
     rm -f russ.*
     rm -rf /etc/adm-russ/*
+    rm -f  /etc/adm-tmr
     echo " Presiona Enter para Continuar"
     read -p " "
     gerar
@@ -363,12 +368,12 @@ echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪�
 echo -ne "\033[1;37m"
 for testus in $(ls /etc/adm-cgh |sort |sed 's/.sh//g')
 do
-echo "$testus"
+echo "$testus" 
 done
 echo -e "\033[1;35m            KEYS ORIGINAL EN SISTEMA"
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -ne "\033[1;35m"
-cat chumogh.val
+cat chumogh.val " | " /etc/adm-ct/tm
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
 gerar
@@ -395,7 +400,7 @@ done
 echo -e "\033[1;35m            KEYS ORIGINAL EN SISTEMA"
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -ne "\033[1;35m"
-cat russ.val
+cat russ.val " | " /etc/adm-ct/tmr
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
 gerar
