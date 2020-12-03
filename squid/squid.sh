@@ -382,3 +382,4 @@ online_squid
 else
 fun_squid
 fi
+##squid
