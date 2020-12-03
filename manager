@@ -219,7 +219,6 @@ echo -e "  Use s = segundos, m = minutos, h = horas e d = dias EX: 14s ."
 read -p " INGRESA : " tempoin
 tempo=$(echo "$tempoin" |sed 's/ //g')
 echo $tempo","$gerar >> /etc/adm-ct/tmr
-#echo $tempo >> /etc/adm-ct/tmr
 echo "#!/bin/bash
 sleep $tempo
 removeonline(){
@@ -414,12 +413,13 @@ i=0
 #i=$(( $i + 1 ))
 xm=$(cat /etc/adm-ct/tmr | wc -l)
 #for((i=1; i=xm; i++)); do
+unset tim ky
 #echo -e "\033[1;34mKey\033[1;36m$i: \033[1;34m$ky \033[1;35mCaduca en: \033[1;34m$tim"
 #done
     while IFS=,  read -r tim ky
     do
         echo -e "\033[1;34mKey: \033[1;34m$ky \033[1;35mDIED:\033[1;34m$tim"
-    done < /etc/adm-ct/tmr 
+    done < /etc/adm-ct/tmr
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
 gerar
