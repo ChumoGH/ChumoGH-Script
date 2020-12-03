@@ -2,7 +2,7 @@
 #19/12/2019
 declare -A cor=( [0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;32m" [3]="\033[1;36m" [4]="\033[1;31m" )
 SCPfrm="/etc/adm-lite" && [[ ! -d ${SCPfrm} ]] && exit
-#SCPinst="/etc/ger-inst" && [[ ! -d ${SCPinst} ]] && exit
+SCPinst="/etc/adm-lite" && [[ ! -d ${SCPinst} ]] && exit
 #LISTA PORTAS
 mportas () {
 unset portas
