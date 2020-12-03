@@ -1,4 +1,5 @@
 #!/bin/bash
+unset source curl wget
 #03/12/2020
 ####
 msg () {
