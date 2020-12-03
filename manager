@@ -371,11 +371,13 @@ echo -e "\033[1;35m            KEYS ORIGINAL EN SISTEMA"
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -ne "\033[1;35m"
 #cat chumogh.val
-while IFS=, read -r tim ky
+ while IFS=, read -r tim ky
 do
-  i=0
-  i=$(( $i + 1))
-  echo -e "\033[1;34mKey\033[1;36m$i: \033[1;34m$ky \033[1;35mCaduca en: \033[1;34m$tim"
+xm=$(cat /etc/adm-ct/tm | wc -l)
+    for((i=0; i<xm; i++)); do
+    echo -e "\033[1;34mKey\033[1;36m$i: \033[1;34m$ky \033[1;35mCaduca en: \033[1;34m$tim"
+    done
+  
 done < /etc/adm-ct/tm
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
