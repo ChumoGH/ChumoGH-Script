@@ -218,7 +218,7 @@ echo -e "\033[1;34m Tiempo de Uso del KEY "
 echo -e "  Use s = segundos, m = minutos, h = horas e d = dias EX: 14s ."
 read -p " INGRESA : " tempoin
 tempo=$(echo "$tempoin" |sed 's/ //g')
-echo $tempo","$gerar >> /etc/adm-ct/tm
+echo $tempo","$gerar >> /etc/adm-ct/tmr
 #echo $tempo >> /etc/adm-ct/tmr
 echo "#!/bin/bash
 sleep $tempo
@@ -239,6 +239,7 @@ cp /root/russ.val /var/www/html/russ.val
 service apache2 restart
 }
 sed -i /$(ofus $mm)/d /root/russ.val
+sed -i /$tempo","$gerar/d /etc/adm-ct/tmr
 rm -rf /etc/adm-russ/$(ofus $gerar).sh
 removeonline
 exit" > /etc/adm-russ/$(ofus $gerar).sh
