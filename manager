@@ -373,7 +373,7 @@ echo -ne "\033[1;35m"
 #cat chumogh.val
 while IFS=, read -r tim ky
 do
-  i=1
+  i=0
   i=$(( $i + 1))
   echo -e "\033[1;34mKey \033[1;36m$i : \033[1;34m$ky \033[1;35mCaduca en : \033[1;34m$tim"
 done < /etc/adm-ct/tm
