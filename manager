@@ -375,7 +375,7 @@ while IFS=, read -r tim ky
 do
   i=0
   i=$(( $i + 1))
-  echo -e "\033[1;34mKey \033[1;36m$i : \033[1;34m$ky \033[1;35mCaduca en : \033[1;34m$tim"
+  echo -e "\033[1;34mKey\033[1;36m$i: \033[1;34m$ky \033[1;35mCaduca en: \033[1;34m$tim"
 done < /etc/adm-ct/tm
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
