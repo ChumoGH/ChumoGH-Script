@@ -1,8 +1,6 @@
 #!/bin/bash
-#19/12/2019
+#03/12/2020
 ####
-
-
 msg () {
 local colors="/etc/new-adm-color"
 if [[ ! -e $colors ]]; then
@@ -126,7 +124,7 @@ fun_squid  () {
   [[ -e $var_squid ]] && rm $var_squid
   return 0
   }
-echo -e "\033[1;32m INSTALADOR SQUID ADM-NEW By MOD MEX"
+echo -e "\033[1;32m INSTALADOR SQUID ADM-NEW By MOD ChumoGH"
 msg -bar
 fun_ip
 echo -ne " Confirme su ip \033[1;91m"; read -p ": " -e -i $IP ip
