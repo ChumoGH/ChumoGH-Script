@@ -218,7 +218,8 @@ echo -e "\033[1;34m Tiempo de Uso del KEY "
 echo -e "  Use s = segundos, m = minutos, h = horas e d = dias EX: 14s ."
 read -p " INGRESA : " tempoin
 tempo=$(echo "$tempoin" |sed 's/ //g')
-echo $tempo >> /etc/adm-ct/tmr
+echo $tempo","$gerar >> /etc/adm-ct/tm
+#echo $tempo >> /etc/adm-ct/tmr
 echo "#!/bin/bash
 sleep $tempo
 removeonline(){
@@ -379,7 +380,7 @@ xm=$(cat /etc/adm-ct/tm | wc -l)
 #done
     while IFS=,  read -r tim ky
     do
-        echo -e "\033[1;34mKey: \033[1;34m$ky \033[1;35mCaduca en: \033[1;34m$tim"
+        echo -e "\033[1;34mKey: \033[1;34m$ky \033[1;35mDIED:\033[1;34m$tim"
     done < /etc/adm-ct/tm
 #done
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
@@ -408,7 +409,16 @@ done
 echo -e "\033[1;35m            KEYS ORIGINAL EN SISTEMA"
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -ne "\033[1;35m"
-cat russ.val    
+i=0
+#i=$(( $i + 1 ))
+xm=$(cat /etc/adm-ct/tmr | wc -l)
+#for((i=1; i=xm; i++)); do
+#echo -e "\033[1;34mKey\033[1;36m$i: \033[1;34m$ky \033[1;35mCaduca en: \033[1;34m$tim"
+#done
+    while IFS=,  read -r tim ky
+    do
+        echo -e "\033[1;34mKey: \033[1;34m$ky \033[1;35mDIED:\033[1;34m$tim"
+    done < /etc/adm-ct/tmr 
 echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
 gerar
