@@ -116,8 +116,6 @@ for testus in $(ls /etc/adm-cgh |sort |sed 's/.sh//g')
 do
 echo "$testus"
 done
-echo " Presiona Enter para Continuar"
-read -p " "
 }
 listbarr () {
 echo -e "\033[1;35m Keys Activas En Linea"
@@ -125,7 +123,6 @@ for testus in $(ls /etc/adm-russ |sort |sed 's/.sh//g')
 do
 echo "$testus"
 done
-sleep 5s
 }
 clear
 fun_a
@@ -374,9 +371,11 @@ echo -e "\033[1;35m            KEYS ORIGINAL EN SISTEMA"
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -ne "\033[1;35m"
 #cat chumogh.val
-while IFS=, read -r distro pm
+while IFS=, read -r tim ky
 do
-  echo "$pm" con "$distro"
+  i=1
+  i=$(( $i + 1))
+  echo -e "\033[1;34mKey \033[1;36m$i : \033[1;34m$ky \033[1;35mCaduca en : \033[1;34m$tim"
 done < /etc/adm-ct/tm
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
