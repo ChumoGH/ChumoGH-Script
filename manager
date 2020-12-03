@@ -165,7 +165,7 @@ echo -e "\033[1;34m Tiempo de Uso del KEY "
 echo -e "  Use s = segundos, m = minutos, h = horas e d = dias EX: 14s ."
 read -p " INGRESA : " tempoin
 tempo=$(echo "$tempoin" |sed 's/ //g')
-echo $tempo >> /etc/adm-ct/tm
+echo $tempo","$gerar >> /etc/adm-ct/tm
 echo "#!/bin/bash
 sleep $tempo
 removeonline(){
@@ -186,6 +186,7 @@ service apache2 restart
 }
 #kk=$(ofus $mm)
 sed -i /$(ofus $mm)/d /root/chumogh.val
+sed -i /$tempo","$gerar/d /etc/adm-ct/tm
 rm -rf /etc/adm-cgh/$(ofus $gerar).sh
 removeonline
 exit" > /etc/adm-cgh/$(ofus $gerar).sh
@@ -372,7 +373,11 @@ done
 echo -e "\033[1;35m            KEYS ORIGINAL EN SISTEMA"
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 echo -ne "\033[1;35m"
-cat chumogh.val    
+#cat chumogh.val
+while IFS=, read -r distro pm
+do
+  echo "$pm" con "$distro"
+done < /etc/adm-ct/tm
 echo -e "${cor[1]}▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
 read -p " Presiona Enter para Continuar "
 gerar
