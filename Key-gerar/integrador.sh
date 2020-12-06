@@ -1,10 +1,8 @@
 #!/bin/bash
-
-IVAR="/etc/http-instas"
-SCPT_DIR="/etc/SCRIPT"
-SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyLw=="
-SUB_DOM='base64 -d'
-echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
+IVAR="/etc/http-instas";
+SCPT_DIR="/etc/SCRIPT";
+SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyLw==";
+SUB_DOM='base64 -d';
 meu_ip () {
 MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 MIP2=$(wget -qO- ipv4.icanhazip.com)
@@ -31,8 +29,7 @@ chmod +x /bin/http-server.py
 echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
 cd /etc/SCRIPT
 chmod +x ./*
-} || echo -e "\033[1;31m- \033[1;31mFalha (nao recebido!)"
-done
+
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Install/trans &> /dev/null
 [[ -e /bin/http-server.py ]] && mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
 [[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || apt-get install bc -y &>/dev/null
