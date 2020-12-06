@@ -1,13 +1,7 @@
 #!/bin/bash
 # INSTALACAO BASICA
 clear
-[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="beta-v2ray.sh  ferramentas       limitera      menu_inst     painel.zip  PPub.py         speedtest.py  usercodes
-bot_codes      ferramentascodes  limiterb      menu-txt      payloads    proxydirect.py  ssl           user-txt
-cabecalho      ferramentas-txt   limiter.sh    name          paysnd.sh   proxypriv.py    trans         verifica
-confdropbear   get               lista         netflix.sh    PDirect.py  proxypub.py     ultimatebot   versao_script
-dados.zip      idioma_geral      MasterBin.sh  openproxy.py  PGet.py     pwd.pwd         ultrahost
-exito          idioma_menuinst   menu          optimizador   POpen.py    shadowsocks.sh  updateadm
-fai2ban        insta_painel      menu_credito  overtcp       PPriv.py    ShellBot.sh     user"
+[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="beta-v2ray.sh ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads proxydirect.py ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh proxypriv.py trans verifica confdropbear get lista netflix.sh PDirect.py proxypub.py ultimatebot versao_script dados.zip idioma_geral MasterBin.sh openproxy.py PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh updateadm fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user"
 IVAR="/etc/http-instas"
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "$BARRA"
@@ -29,7 +23,7 @@ MIP2=$(wget -qO- ipv4.icanhazip.com)
 }
 mudar_instacao () {
 while [[ ${var[$value]} != 0 ]]; do
-[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="menu PGet.py ports.sh ADMbot.sh message.txt usercodes sockspy.sh POpen.py PPriv.py PPub.py PDirect.py speedtest.py speed.sh utils.sh dropbear.sh apacheon.sh openvpn.sh shadowsocks.sh ssl.sh squid.sh"
+[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="beta-v2ray.sh ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads proxydirect.py ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh proxypriv.py trans verifica confdropbear get lista netflix.sh PDirect.py proxypub.py ultimatebot versao_script dados.zip idioma_geral MasterBin.sh openproxy.py PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh updateadm fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user"
 clear
 echo -e $BARRA
 echo -e "MENU SELECAO DE INSTALACAO"
