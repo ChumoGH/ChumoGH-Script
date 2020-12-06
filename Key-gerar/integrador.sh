@@ -16,7 +16,7 @@ echo -e "\033[1;36m-------------------------------------------------------------
 cd $HOME
 REQUEST=$(echo $SCPresq|$SUB_DOM)
 wget -O "$HOME/lista-arq" ${REQUEST}/lista > /dev/null 2>&1
-#########################
+sleep 1s
 [[ -e $HOME/lista-arq ]] && {
 [[ -d /etc/SCRIPT ]] && rm -rf /etc/SCRIPT
 mkdir /etc/SCRIPT
@@ -32,13 +32,6 @@ cd /etc/SCRIPT
 chmod +x ./*
 } || echo -e "\033[1;31m- \033[1;31mFalha (nao recebido!)"
 done
-
-
-################
-
-
-sleep 1s
-
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Install/trans &> /dev/null
 [[ -e /bin/http-server.py ]] && mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
 [[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || apt-get install bc -y &>/dev/null
