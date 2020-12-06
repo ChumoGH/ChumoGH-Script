@@ -21,18 +21,21 @@ REQUEST=$(echo $SCPresq|$SUB_DOM)
 wget -O "$HOME/lista-arq" ${REQUEST}/lista > /dev/null 2>&1
 sleep 1s
 [[ -e $HOME/lista-arq ]] && {
-[[ -d /etc/SCRIPT ]] && rm -rf /etc/SCRIPT
-mkdir /etc/SCRIPT
-cd /etc/SCRIPT
-touch /etc/SCRIPT/index.html
+[[ -d $SCPT_DIR ]] && rm -rf $SCPT_DIR
+[[ -d $IVAR ]] && rm -rf $IVAR
+mkdir $SCPT_DIR
+mkdir $IVAR
+cd $SCPT_DIR
+touch $SCPT_DIR/index.html
 wget -i ${REQUEST}/lista -o /dev/null
 mv -f gerar.sh /usr/bin/
 chmod +x /usr/bin/gerar.sh
 mv -f http-server.py /bin/
 chmod +x /bin/http-server.py
 echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
-cd /etc/SCRIPT
+cd $SCPT_DIR
 chmod +x ./*
+cd $HOME
 
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Install/trans &> /dev/null
 [[ -e /bin/http-server.py ]] && mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
