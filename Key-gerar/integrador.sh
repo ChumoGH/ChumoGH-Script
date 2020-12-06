@@ -52,22 +52,28 @@ REQUEST=$(echo $SCPresq|$SUB_DOM)
 wget -O "$HOME/lista-arq" ${REQUEST}/lista > /dev/null 2>&1
 sleep 1s
 [[ -e $HOME/lista-arq ]] && {
-[[ -d $SCPT_DIR ]] && rm -rf $SCPT_DIR
 [[ ! -d ${IVAR} ]] && touch ${IVAR}
-mkdir $SCPT_DIR
-mkdir $IVAR
-cd $SCPT_DIR
-touch $SCPT_DIR/index.html
-wget -i ${REQUEST}/lista -o /dev/null
-mv -f gerar.sh /usr/bin/
-chmod +x /usr/bin/gerar.sh
-mv -f http-server.py /bin/
-chmod +x /bin/http-server.py
-echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
-cd $SCPT_DIR
-chmod +x ./*
+[[ ! -d ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
+unset ARQ
+#mkdir $SCPT_DIR
+#mkdir $IVAR
+#cd $SCPT_DIR
+#touch $SCPT_DIR/index.html
+#wget -i ${REQUEST}/lista -o /dev/null
+#mv -f gerar.sh /usr/bin/
+#chmod +x /usr/bin/gerar.sh
+#mv -f http-server.py /bin/
+#chmod +x /bin/http-server.py
+#echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
+#cd $SCPT_DIR
+#chmod +x ./*
 cd $HOME
-
+for arqx in `cat $HOME/lista-arq`; do
+echo -ne "\033[1;33mBaixando Arquivo \033[1;31m[$arqx] "
+wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && {
+echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
+[[ -e $HOME/$arqx ]] && veryfy_fun $arqx
+} || echo -e "\033[1;31m- \033[1;31mFalha (nao recebido!)"
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Install/trans &> /dev/null
 [[ -e /bin/http-server.py ]] && mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
 [[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || apt-get install bc -y &>/dev/null
