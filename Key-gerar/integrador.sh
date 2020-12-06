@@ -3,40 +3,6 @@ IVAR="/etc/http-instas"
 SCPT_DIR="/etc/SCRIPT"
 SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyLw=="
 SUB_DOM='base64 -d'
-rm $(pwd)/$0
-ofus () {
-unset txtofus
-number=$(expr length $1)
-for((i=1; i<$number+1; i++)); do
-txt[$i]=$(echo "$1" | cut -b $i)
-case ${txt[$i]} in
-".")txt[$i]="+";;
-"+")txt[$i]=".";;
-"1")txt[$i]="@";;
-"@")txt[$i]="1";;
-"2")txt[$i]="?";;
-"?")txt[$i]="2";;
-"3")txt[$i]="%";;
-"%")txt[$i]="3";;
-"/")txt[$i]="K";;
-"K")txt[$i]="/";;
-esac
-txtofus+="${txt[$i]}"
-done
-echo "$txtofus" | rev
-}
-veryfy_fun () {
-[[ ! -d ${IVAR} ]] && touch ${IVAR}
-[[ ! -d ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
-unset ARQ
-case $1 in
-"gerar.sh")ARQ="/usr/bin/";;
-"http-server.py")ARQ="/bin/";;
-*)ARQ="${SCPT_DIR}/";;
-esac
-mv -f $HOME/$1 ${ARQ}/$1
-chmod +x ${ARQ}/$1
-}
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 meu_ip () {
 MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
