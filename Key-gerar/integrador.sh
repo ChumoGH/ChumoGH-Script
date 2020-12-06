@@ -22,7 +22,7 @@ wget -O "$HOME/lista-arq" ${REQUEST}/lista > /dev/null 2>&1
 sleep 1s
 [[ -e $HOME/lista-arq ]] && {
 [[ -d $SCPT_DIR ]] && rm -rf $SCPT_DIR
-[[ -d $IVAR ]] && rm -rf $IVAR
+[[ ! -d ${IVAR} ]] && touch ${IVAR}
 mkdir $SCPT_DIR
 mkdir $IVAR
 cd $SCPT_DIR
