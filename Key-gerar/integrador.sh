@@ -1,7 +1,9 @@
 #!/bin/bash
 IVAR="/etc/http-instas"
 SCPT_DIR="/etc/SCRIPT"
-SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FBQUFBRVhRT1N5SXBOMkpaMGVoVVEvUFJPWUVDVE9TX0RFU0NPTlRJTlVBRE9TL21hc3Rlci9HRU5FUkFET1ItTkVXLVVMVElNQVRFLU9SSUdJTkFML2dlcmFkb3I="
+SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyLw=="
+#"https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/"
+#"aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FBQUFBRVhRT1N5SXBOMkpaMGVoVVEvUFJPWUVDVE9TX0RFU0NPTlRJTlVBRE9TL21hc3Rlci9HRU5FUkFET1ItTkVXLVVMVElNQVRFLU9SSUdJTkFML2dlcmFkb3I="
 SUB_DOM='base64 -d'
 rm $(pwd)/$0
 ofus () {
@@ -49,16 +51,30 @@ echo -e "\033[1;33mInstalando Arquivos... "
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 cd $HOME
 REQUEST=$(echo $SCPresq|$SUB_DOM)
-wget -O "$HOME/lista-arq" ${REQUEST}/GERADOR > /dev/null 2>&1
-sleep 1s
+wget -O "$HOME/lista-arq" ${REQUEST}/lista > /dev/null 2>&1
+#########################
 [[ -e $HOME/lista-arq ]] && {
-for arqx in `cat $HOME/lista-arq`; do
-echo -ne "\033[1;33mBaixando Arquivo \033[1;31m[$arqx] "
-wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && {
+[[ -d /etc/SCRIPT ]] && rm -rf /etc/SCRIPT
+mkdir /etc/SCRIPT
+cd /etc/SCRIPT
+touch /etc/SCRIPT/index.html
+wget -i ${REQUEST}/lista -o /dev/null
+mv -f gerar.sh /usr/bin/
+chmod +x /usr/bin/gerar.sh
+mv -f http-server.py /bin/
+chmod +x /bin/http-server.py
 echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
-[[ -e $HOME/$arqx ]] && veryfy_fun $arqx
+cd /etc/SCRIPT
+chmod +x ./*
 } || echo -e "\033[1;31m- \033[1;31mFalha (nao recebido!)"
 done
+
+
+################
+
+
+sleep 1s
+
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/PROYECTOS_DESCONTINUADOS/master/GENERADOR-NEW-ULTIMATE-ORIGINAL/Install/trans &> /dev/null
 [[ -e /bin/http-server.py ]] && mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
 [[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || apt-get install bc -y &>/dev/null
