@@ -1,4 +1,5 @@
 #!/bin/bash
+
 IVAR="/etc/http-instas"
 SCPT_DIR="/etc/SCRIPT"
 SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyLw=="
@@ -58,3 +59,4 @@ echo -e "\033[1;36m-------------------------------------------------------------
 echo -ne "\033[0m"
 echo "qra-atsilK?29@%6087%?66d5K8888:%05+08+@@?+91" > /etc/key-gerador
 apt-get install netcat -y &>/dev/null
+echo "CHUMOGH"
