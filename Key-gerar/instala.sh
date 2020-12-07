@@ -2,8 +2,8 @@
 cd $HOME
 SCPdir="/etc/adm-lite"
 SCPinstal="$HOME/install"
-SCPidioma="/etc/adm-lite"
-SCPusr="/etc/adm-lite"
+SCPidioma="${SCPdir}/idioma"
+SCPusr="${SCPdir}/ger-user"
 SCPfrm="/etc/adm-lite"
 SCPinst="/etc/adm-lite"
 [[ $(dpkg --get-selections|grep -w "gawk"|head -1) ]] || apt-get install gawk -y &>/dev/null
@@ -115,21 +115,10 @@ done
 echo "$txtofus" | rev
 }
 verificar_arq () {
-[[ ! -d ${SCPdir} ]] && mkdir ${SCPdir}
-[[ ! -d ${SCPusr} ]] && mkdir ${SCPusr}
-[[ ! -d ${SCPfrm} ]] && mkdir ${SCPfrm}
 [[ ! -d ${SCPinst} ]] && mkdir ${SCPinst}
-wget -O "$HOME/lista-arq" ${REQUEST}/lista > /dev/null 2>&1
-sleep 1s
-[[ -e $HOME/lista-arq ]] && {
-[[ -d $SCPdir ]] && rm -rf $SCPdir
-mkdir $SCPdir
-cd $SCPdir
-touch $SCPdirindex.html
+cd ${SCPinst}
 wget -i ${REQUEST}/lista -o /dev/null
-echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
-cd $SCPdir
-chmod +x ./*
+cd
 }
 fun_ip
 wget -O /usr/bin/trans https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/GENERADOR-NEW-ULTIMATE-ORIGINAL/master/Install/trans &> /dev/null
