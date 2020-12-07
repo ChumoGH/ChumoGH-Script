@@ -92,7 +92,7 @@ cd $SCPT_DIR
 wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
 cat http-server.py > /bin/http-server.py
 chmod +x /bin/http-server.py
-mv-f gerar.sh /usr/bin/
+mv -f gerar.sh /usr/bin/
 chmod +x /usr/bin/gerar.sh
 cd $HOME
   [[ -e $HOME/lista ]] && rm $HOME/lista
