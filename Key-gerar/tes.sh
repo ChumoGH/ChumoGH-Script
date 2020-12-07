@@ -29,8 +29,8 @@ arq2="$HOME/update/$1"
      case $1 in
      "gerar.sh")ARQ="/usr/bin/";;
      "http-server.py")ARQ="/bin/";;
-     esac
-     mv -f $arq2 ${ARQ}/$1 #> /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32m $arqs Recibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla  $arqs (no recibido!)"
+      esac
+     mv -f $arq2 ${ARQ}/$1
      chmod +x ${ARQ}/$1
      return
      }
@@ -43,7 +43,7 @@ echo -e "\033[1;31m ${txt[203]}: $1"
      case $1 in
      "gerar.sh")ARQ="/usr/bin/";;
      "http-server.py")ARQ="/bin/";;
-     esac
+      esac
      mv -f $arq2 ${ARQ}/$1
      chmod +x ${ARQ}/$1
      lista_atualizados=$(($lista_atualizados + 1))
@@ -88,7 +88,7 @@ echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqs] "
 fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 done
 cd $SCPT_DIR
-wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista
+wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
 cd $HOME
   [[ -e $HOME/lista ]] && rm $HOME/lista
   [[ -d $HOME/update ]] && rm -rf $HOME/update
