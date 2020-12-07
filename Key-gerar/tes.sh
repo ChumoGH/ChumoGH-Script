@@ -91,6 +91,8 @@ cd $SCPT_DIR
 wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
 mv -f http-server.py /bin/
 chmod +x /bin/http-server.py
+mv -f gerar.sh /usr/bin/
+chmod +x /usr/bin/gerar.sh
 cd $HOME
   [[ -e $HOME/lista ]] && rm $HOME/lista
   [[ -d $HOME/update ]] && rm -rf $HOME/update
@@ -164,7 +166,7 @@ IVAR2="/etc/key-gerador"
 echo "$Key" > $IVAR2
 echo $Key > /etc/http-instas
 rm $HOME/lista-arq
-echo "/usr/bin/gerar.sh" > /usr/bin/gerar && chmod +x /usr/bin/gerar
+echo "source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/Key-gerar/gerar.sh)" > /usr/bin/gerar && chmod +x /usr/bin/gerar
 echo -e "\033[1;33m Perfecto, utilize el comando \033[1;31mgerar.sh o gerar \033[1;33mpara administrar sus keys y
  actualizar la base del servidor"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
