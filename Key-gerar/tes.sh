@@ -8,9 +8,12 @@ SUB_DOM='base64 -d'
 fun_filez () {
 arq="/etc/SCRIPT/$1"
 arq2="$HOME/update/$1"
-
      [[ ! -e "/etc/adm-lite/$1" ]] && {
      mv -f $arq2 $arq
+     mv -f gerar.sh /usr/bin/
+     chmod +x /usr/bin/gerar.sh
+     mv -f http-server.py /bin/
+     chmod +x /bin/http-server.py
      return
      }
 equal=$(diff -q $arq $arq2)
@@ -18,6 +21,10 @@ echo -e "\033[1;31m ${txt[203]}: $1"
      [[ "$equal" = "" ]] && rm $arq2 || {
      mv -f $arq2 $arq
      chmod +x $arq
+      mv -f gerar.sh /usr/bin/
+     chmod +x /usr/bin/gerar.sh
+     mv -f http-server.py /bin/
+     chmod +x /bin/http-server.py
      lista_atualizados=$(($lista_atualizados + 1))
      echo -e "\033[1;32m ${txt[204]}: $1 - ${txt[205]}!"
      sleep 0.5s
