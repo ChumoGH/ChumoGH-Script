@@ -81,10 +81,10 @@ echo -e "${cor[1]} =================================== ${cor[0]}"
 cd $HOME
 [[ ! -d ./update ]] && mkdir ./update
 cd ./update
-wget -i $HOME/lista -o /dev/null
+wget -i $HOME/lista -o /dev/null # > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 unset arqs
 for arqs in `ls $HOME/update`; do
-fun_filez $arqs
+fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32m $arqs Recibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 done
 cd $HOME
   [[ -e $HOME/lista ]] && rm $HOME/lista
