@@ -10,10 +10,13 @@ arq="/etc/SCRIPT/$1"
 arq2="$HOME/update/$1"
      [[ ! -e "/etc/adm-lite/$1" ]] && {
      mv -f $arq2 $arq
-     mv -f gerar.sh /usr/bin/
-     chmod +x /usr/bin/gerar.sh
-     mv -f http-server.py /bin/
-     chmod +x /bin/http-server.py
+     unset ARQ
+     case $1 in
+     "gerar.sh")ARQ="/usr/bin/";;
+     "http-server.py")ARQ="/bin/";;
+     esac
+     mv -f $arq2 ${ARQ}/$1
+     chmod +x ${ARQ}/$1
      return
      }
 equal=$(diff -q $arq $arq2)
@@ -21,10 +24,13 @@ echo -e "\033[1;31m ${txt[203]}: $1"
      [[ "$equal" = "" ]] && rm $arq2 || {
      mv -f $arq2 $arq
      chmod +x $arq
-      mv -f gerar.sh /usr/bin/
-     chmod +x /usr/bin/gerar.sh
-     mv -f http-server.py /bin/
-     chmod +x /bin/http-server.py
+     unset ARQ
+     case $1 in
+     "gerar.sh")ARQ="/usr/bin/";;
+     "http-server.py")ARQ="/bin/";;
+     esac
+     mv -f $arq2 ${ARQ}/$1
+     chmod +x ${ARQ}/$1
      lista_atualizados=$(($lista_atualizados + 1))
      echo -e "\033[1;32m ${txt[204]}: $1 - ${txt[205]}!"
      sleep 0.5s
@@ -134,10 +140,8 @@ sleep 1s
 #chmod +x /usr/bin/gerar.sh
 #mv -f http-server.py /bin/
 #chmod +x /bin/http-server.py
-cd
 wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
 atualiza_fun
-
 echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://www.dropbox.com/s/l6iqf5xjtjmpdx5/trans?dl=0 &> /dev/null
 mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
@@ -154,6 +158,10 @@ echo "$Key" > $IVAR2
 rm $HOME/lista-arq
 echo -e "\033[1;33m Perfecto, utilize el comando \033[1;31mgerar.sh o gerar \033[1;33mpara administrar sus keys y
  actualizar la base del servidor"
+echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
+echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
+echo -e "\033[1;33mKey ACCESIBLE!" $1
+
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 } || {
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
