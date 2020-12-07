@@ -30,7 +30,7 @@ arq2="$HOME/update/$1"
      "gerar.sh")ARQ="/usr/bin/";;
      "http-server.py")ARQ="/bin/";;
      esac
-     mv -f $arq2 ${ARQ}/$1
+     mv -f $arq2 ${ARQ}/$1 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32m $arqs Recibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla  $arqs (no recibido!)"
      chmod +x ${ARQ}/$1
      return
      }
@@ -81,11 +81,13 @@ echo -e "${cor[1]} =================================== ${cor[0]}"
 cd $HOME
 [[ ! -d ./update ]] && mkdir ./update
 cd ./update
-wget -i $HOME/lista -o /dev/null # > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
+wget -i $HOME/lista -o /dev/null  > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 unset arqs
 for arqs in `ls $HOME/update`; do
-fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32m $arqs Recibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
+echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqs] "
+veryfy_fun $arqs 
 done
+
 cd $HOME
   [[ -e $HOME/lista ]] && rm $HOME/lista
   [[ -d $HOME/update ]] && rm -rf $HOME/update
