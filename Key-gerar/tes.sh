@@ -4,6 +4,21 @@ SCPT_DIR="/etc/SCRIPT"
 SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyLw=="
 SUB_DOM='base64 -d'
 
+#CORES
+cor[1]="\033[1;36m"
+cor[2]="\033[1;32m"
+cor[3]="\033[1;31m"
+cor[4]="\033[1;33m"
+cor[0]="\033[1;37m"
+
+#TEXTOS
+txt[206]="Archivito(s) Actualizado(s)!"
+txt[208]="Invalid Key, Contact the Script Admin!"
+txt[207]="Valid!!!"
+txt[203]="☹"
+txt[204]="㋡--->"
+txt[205]="Actualizado"
+
 #COMPARA
 fun_filez () {
 arq="/etc/SCRIPT/$1"
@@ -38,22 +53,6 @@ echo -e "\033[1;31m ${txt[203]}: $1"
      }
 }
 
-#CORES
-cor[1]="\033[1;36m"
-cor[2]="\033[1;32m"
-cor[3]="\033[1;31m"
-cor[4]="\033[1;33m"
-cor[0]="\033[1;37m"
-
-#TEXTOS
-txt[206]="Archivito(s) Actualizado(s)!"
-txt[208]="Invalid Key, Contact the Script Admin!"
-txt[207]="Valid!!!"
-txt[203]="☹"
-txt[204]="㋡--->"
-txt[205]="Actualizado"
-
-
 rm $(pwd)/$0
 ofus () {
 unset txtofus
@@ -83,9 +82,13 @@ cd $HOME
 [[ ! -d ./update ]] && mkdir ./update
 cd ./update
 wget -i $HOME/lista -o /dev/null
+unset arqs
 for arqs in `ls $HOME/update`; do
 fun_filez $arqs
 done
+cd $HOME
+  [[ -e $HOME/lista ]] && rm $HOME/lista
+  [[ -d $HOME/update ]] && rm -rf $HOME/update
 [[ "$lista_atualizados" != "" ]] && echo -e "${cor[5]} $lista_atualizados ${txt[206]}"
 }
 
@@ -123,10 +126,8 @@ echo "$IP" > /usr/bin/vendor_code
 meu_ip
 echo -e "\033[1;33mVerificando key... "
 cd $HOME
-[[ -d $HOME/update ]] && rm -rf $HOME/update
-[[ -e $HOME/lista ]] && rm $HOME/lista
 REQUEST=$(echo $SCPresq|$SUB_DOM)
-wget -O "$HOME/lista-arq" ${REQUEST}/lista > /dev/null 2>&1
+wget -O "$HOME/lista-arq" ${REQUEST}lista > /dev/null 2>&1
 sleep 1s
 [[ -e $HOME/lista-arq ]] && {
 [[ ! -d ${IVAR} ]] && touch ${IVAR}
@@ -140,6 +141,7 @@ sleep 1s
 #chmod +x /usr/bin/gerar.sh
 #mv -f http-server.py /bin/
 #chmod +x /bin/http-server.py
+cd 
 wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
 atualiza_fun
 echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
