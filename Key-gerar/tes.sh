@@ -87,7 +87,8 @@ for arqs in `ls $HOME/update`; do
 echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqs] "
 fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 done
-
+cd $SCPT_DIR
+wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista
 cd $HOME
   [[ -e $HOME/lista ]] && rm $HOME/lista
   [[ -d $HOME/update ]] && rm -rf $HOME/update
@@ -160,7 +161,7 @@ service apache2 restart > /dev/null 2>&1 &
 IVAR2="/etc/key-gerador"
 echo "$Key" > $IVAR2
 rm $HOME/lista-arq
-
+echo "/usr/bin/gerar.sh" > /usr/bin/gerar && chmod +x /usr/bin/gerar
 echo -e "\033[1;33m Perfecto, utilize el comando \033[1;31mgerar.sh o gerar \033[1;33mpara administrar sus keys y
  actualizar la base del servidor"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
@@ -173,4 +174,6 @@ echo -e "\033[1;36m-------------------------------------------------------------
 echo -e "\033[1;33mKey inválida!"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 }
+echo "qra-atsilK?29@%6087%?66d5K8888:%05+08+@@?+91" > /etc/key-gerador
+apt-get install netcat -y &>/dev/null
 echo -ne "\033[0m"1
