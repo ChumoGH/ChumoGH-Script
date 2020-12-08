@@ -1,7 +1,7 @@
 #!/bin/bash
 cd $HOME
 SCPdir="/etc/adm-lite"
-SCPinstal="${SCPdir}"
+SCPinstal="$HOME/install"
 SCPidioma="${SCPdir}"
 SCPusr="${SCPdir}"
 SCPfrm="${SCPdir}"
@@ -116,19 +116,12 @@ echo "$txtofus" | rev
 }
 verificar_arq () {
 [[ ! -d ${SCPdir} ]] && mkdir ${SCPdir}
+[[ ! -d ${SCPinst} ]] && mkdir ${SCPinst}
 case $1 in
 "menu")ARQ="${SCPdir}/";; #Menu
-"usercodes")ARQ="${SCPusr}/";; #User
-"openssh.sh")ARQ="${SCPinst}/";; #Instalacao
-"squid.sh")ARQ="${SCPinst}/";; #Instalacao
-"dropbear.sh")ARQ="${SCPinst}/";; #Instalacao
-"openvpn.sh")ARQ="${SCPinst}/";; #Instalacao
-"ssl.sh")ARQ="${SCPinst}/";; #Instalacao
-"shadowsocks.sh")ARQ="${SCPinst}/";; #Instalacao
-"sockspy.sh"|"PDirect.py"|"PPub.py"|"PPriv.py"|"POpen.py"|"PGet.py")ARQ="${SCPinst}/";; #Instalacao
-*)ARQ="${SCPfrm}/";; #Ferramentas
+*)ARQ="${SCPdir}/";; #Ferramentas
 esac
-mv -f ${SCPinstal}/$1 ${ARQ}/$1
+mv -f ${SCPinstal}/$1 ${ARQ}$1
 chmod +x ${ARQ}/$1
 }
 fun_ip
