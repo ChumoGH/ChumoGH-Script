@@ -134,12 +134,14 @@ msg -ama "[ ADM - CHUMOGH - SCRIPT ]"
 error_fun () {
 msg -bar2 && msg -verm "Esta Chave Era de Otro Servidor Por tanto Sera Excluida"|sed -e 's/[^a-z -]//ig' && msg -bar2
 [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
-exit
+echo "CARA de VERGA, se metio al error FUN"
+sleep 5s 
 }
 invalid_key () {
 msg -bar2 && msg -verm "Key Failed! " && msg -bar2
 [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
-exit
+echo "CARA de VERGA, se metio al INVALID KEY"
+sleep 5s
 }
 while [[ ! $Key ]]; do
 msg -ne "Script Key: " && read Key
@@ -150,7 +152,6 @@ cd $HOME
 wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Verified" || {
    echo -e "\033[1;32m Verified"
    invalid_key
-   exit
    }
 IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') && echo "$IP" > /usr/bin/vendor_code
 sleep 1s
