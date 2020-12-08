@@ -8,7 +8,8 @@ echo -e "$BARRA"
 cat << EOF
            NEW KEY GENERATOR BY 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】
            INSTALACIONES: $(cat $IVAR)
-   INSTALADOR OFICIAL :  source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/Key-gerar/test.sh)    
+                      INSTALADOR OFICIAL 
+source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/Key-gerar/test.sh)    
    
 EOF
 SCPT_DIR="/etc/SCRIPT"
