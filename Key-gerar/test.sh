@@ -118,7 +118,6 @@ verificar_arq () {
 [[ ! -d ${SCPdir} ]] && mkdir ${SCPdir}
 [[ ! -d ${SCPinst} ]] && mkdir ${SCPinst}
 case $1 in
-"menu")ARQ="${SCPdir}/";; #Menu
 *)ARQ="${SCPdir}/";; #Ferramentas
 esac
 mv -f ${SCPinstal}/$1 ${ARQ}$1
