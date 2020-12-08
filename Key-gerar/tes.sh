@@ -90,9 +90,9 @@ fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con 
 done
 cd $SCPT_DIR
 wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
-mv -f http-server.py  /bin/
+cat http-server.py > /bin/http-server.py
 chmod +x /bin/http-server.py
-mv -f gerar.sh /usr/bin/
+cp gerar.sh /usr/bin/gerar.sh
 chmod +x /usr/bin/gerar.sh
 cd $HOME
   [[ -e $HOME/lista ]] && rm $HOME/lista
