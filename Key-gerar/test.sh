@@ -122,6 +122,7 @@ case $1 in
 *)ARQ="${SCPdir}/";; #Ferramentas
 esac
 mv -f ${SCPinstal}/$1 ${ARQ}$1
+sleep 2s
 chmod +x ${ARQ}/$1
 }
 fun_ip
@@ -132,7 +133,7 @@ msg -ama "[ ADM - CHUMOGH - SCRIPT ]"
 [[ ${#1} -gt 2 ]] && funcao_idioma || id="$1"
  }
 error_fun () {
-msg -bar2 && msg -verm "$(source trans -b pt:${id} "Esta Chave Era de Outro Servidor Portanto Foi Excluida"|sed -e 's/[^a-z -]//ig') " && msg -bar2
+msg -bar2 && msg -verm "Esta Chave Era de Otro Servidor Por tanto Sera Excluida"|sed -e 's/[^a-z -]//ig' && msg -bar2
 [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
 exit
 }
@@ -157,7 +158,7 @@ sleep 1s
 updatedb
 if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") ]]; then
    msg -bar2
-   msg -ama "$(source trans -b pt:${id} "BEM VINDO, OBRIGADO POR UTILIZAR"|sed -e 's/[^a-z -]//ig'): \033[1;31m[NEW-ULTIMATE]"
+   msg -ama "$(source trans -b pt:${id} "BEM VINDO, OBRIGADO POR UTILIZAR"|sed -e 's/[^a-z -]//ig'): \033[1;31m[ChumoGH ADM]"
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
    pontos="."
