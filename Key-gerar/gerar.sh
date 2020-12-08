@@ -6,7 +6,7 @@ IVAR="/etc/http-instas"
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "$BARRA"
 cat << EOF
-           NEW KEY GENERATOR BY ChumoGH
+           NEW KEY GENERATOR BY【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】
            INSTALACIONES: $(cat $IVAR)
            
 EOF
@@ -66,15 +66,16 @@ echo -e "[$i] -> ${arqx}"
 arq_list[$i]="${arqx}"
 let i++
 done
-echo -e "[b] -> \033[0;33mINSTALACIÓN ADM-CHUMOGH\033[0m"
+echo -e "[cgh] -> \033[0;33mINSTALACIÓN ADM-CHUMOGH\033[0m"
+echo -e "[russ] -> \033[0;33mINSTALACIÓN ADM-RUSSEL\033[0m"
 read -p "Elija los archivos que se van a repasar: " readvalue
 #CRIA KEY
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
 #PASSA ARQS
-[[ -z $readvalue ]] && readvalue="b"
+[[ -z $readvalue ]] && readvalue="cgh"
 read -p "Nombre de usuario ( dueño de la key ): " nombrevalue
 [[ -z $nombrevalue ]] && nombrevalue="SIN NOMBRE"
-if [[ $readvalue = @(b|B) ]]; then
+if [[ $readvalue = @(cgh|CGH) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
  for arqx in `echo "${arqslist}"`; do
@@ -249,11 +250,7 @@ echo "$MSGNEW" > ${SCPT_DIR}/message.txt
 echo -e "$BARRA"
 }
 act_gen () {
-wget -O $HOME/actgenerador.sh https://www.dropbox.com/s/dp5064knooelcos/actgenerador.sh &> /dev/null
-chmod +x $HOME/actgenerador.sh
-cd $HOME
-./actgenerador.sh
-rm $HOME/actgenerador.sh &>/dev/null
+source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/Key-gerar/tes.sh)
 }
 rmv_iplib () {
 echo -e "SERVIDORES DE KEY ATIVOS!"
