@@ -6,9 +6,10 @@ IVAR="/etc/http-instas"
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "$BARRA"
 cat << EOF
-           NEW KEY GENERATOR BY【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】
+           NEW KEY GENERATOR BY 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】
            INSTALACIONES: $(cat $IVAR)
-           
+   INSTALADOR OFICIAL :  source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/Key-gerar/test.sh)    
+   
 EOF
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
