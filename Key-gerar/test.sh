@@ -63,12 +63,6 @@ function_verify () {
 
 instalar_fun () {
 cd /etc/adm-lite && bash cabecalho --instalar
-echo "cd /etc/adm-lite && bash ./menu" > /bin/menu
-echo "cd /etc/adm-lite && bash ./menu" > /bin/cgh
-echo "cd /etc/adm-lite && bash ./menu" > /bin/chumogh
-chmod +x /bin/menu
-chmod +x /bin/cgh
-chmod +x /bin/chumogh
 }
 
 
@@ -176,6 +170,7 @@ echo $1 > $HOME/log.txt
 #cd ${SCPinstal}
 }
 fun_ip
+
 valid_fun () {
 [[ -d /etc/adm-lite ]] && rm -rf /etc/adm-lite
 mkdir /etc/adm-lite
@@ -189,10 +184,10 @@ chmod +x /bin/chumogh
 cd /etc/adm-lite
 touch /etc/adm-lite/index.html
 wget -i $HOME/lista -o /dev/null
+cd $HOME
 echo -e "${cor[3]} $(source trans -b pt:${id} "AGREGANDO PAQUETES, y SERVICIOS NECESARIOS")"
 echo -e "${cor[1]}####################################################"
-cd /etc/adm-lite
-chmod +x ./*
+chmod +x /etc/adm-lite/*
 instalar_fun
 function_verify
 sleep 1s 
