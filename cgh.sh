@@ -265,6 +265,7 @@ cor[3]="\033[1;31m"
 cor[5]="\033[1;32m"
 cor[4]="\033[0m"
 cd $HOME
+clear
 locale-gen en_US.UTF-8 > /dev/null 2>&1
 update-locale LANG=en_US.UTF-8 > /dev/null 2>&1
 apt-get install gawk -y > /dev/null 2>&1
