@@ -1,5 +1,8 @@
 #!/bin/bash
 killall apt apt-get &> /dev/null
+TIME_START="$(date +%s)"
+DOWEEK="$(date +'%u')"
+HOSTNAME="$(hostname)"
 rm -rf cgh.*
 dpkg --configure -a
 fun_bar3 () {
