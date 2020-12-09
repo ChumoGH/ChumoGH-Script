@@ -63,17 +63,16 @@ function_verify () {
 
 instalar_fun () {
 cd /etc/adm-lite && bash cabecalho --instalar
-}
-
-
-install_fim () {
-
 echo "cd /etc/adm-lite && bash ./menu" > /bin/menu
 echo "cd /etc/adm-lite && bash ./menu" > /bin/cgh
 echo "cd /etc/adm-lite && bash ./menu" > /bin/chumogh
 chmod +x /bin/menu
 chmod +x /bin/cgh
 chmod +x /bin/chumogh
+}
+
+
+install_fim () {
 if cat /root/.bashrc | grep ChumoGH; then
 echo "clear" >> /root/.bashrc
 echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
