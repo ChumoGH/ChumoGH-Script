@@ -173,18 +173,10 @@ done
 echo "$txtofus" | rev
 }
 verificar_arq () {
-[[ ! -d ${SCPdir} ]] && mkdir ${SCPdir}
-[[ ! -d ${SCPinst} ]] && mkdir ${SCPinst}
-case $1 in
-*)ARQ="${SCPdir}/";; #Ferramentas
-esac
-mv -f ${SCPinstal}/$1 ${ARQ}$1
-sleep 2s
-chmod +x ${ARQ}/$1
+echo $1 > $HOME/log.txt
 #cd ${SCPinstal}
 }
 fun_ip
-
 valid_fun () {
 [[ -d /etc/adm-lite ]] && rm -rf /etc/adm-lite
 mkdir /etc/adm-lite
@@ -298,19 +290,13 @@ echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
-   
-   pontos="."
-   stopping="$(source trans -b pt:${id} "Verificando Atualizacoes"|sed -e 's/[^a-z -]//ig')"
    src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
    for arqx in $(cat $HOME/lista-arq); do
-   #msg -verm "${stopping}${pontos}"
    wget -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}"  
-   tput cuu1 && tput dl1
-   pontos+="."
    done
 	  echo -ne "${cor[4]}"
 	  RE=$(echo $src|$dom)
-	  wget -O lista $RE -o /dev/null
+	  wget -O $HOME/lista $RE -o /dev/null
 	  valid_fun
    sleep 1s
    msg -bar2
