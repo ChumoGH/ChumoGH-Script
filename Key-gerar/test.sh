@@ -210,13 +210,16 @@ invalid_key () {
 msg -bar2 && msg -verm "Key Failed! " && msg -bar2
 [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
 cd $HOME
+[[ -d $HOME/chumogh ]] && rm -rf $HOME/chumogh
+[[ -d /etc/adm-lite ]] && rm -rf /etc/adm-lite
+[[ -d $HOME/chumogh ]] && rm -rf $HOME/chumogh
+[[ -e /bin/menu ]] && rm /bin/menu
+[[ -e $HOME/chumogh ]] && rm -rf $HOME/chumogh
 rm -f setup.* > /dev/null
 rm -f instala.*  > /dev/null
-rm -rf chumogh > /dev/null
 rm -f /bin/cgh > /dev/null
 rm -f /bin/menu > /dev/null
-rm - rf /etc/adm-lite > /dev/null
-rm - rf /bin/ejecutar > /dev/null
+rm -rf /bin/ejecutar > /dev/null
 unset * > /dev/null
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT " > error.log
 echo "Key Invalida, Contacta con el Desarrolador" >> error.log
