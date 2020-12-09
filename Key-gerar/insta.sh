@@ -40,9 +40,10 @@ tput cnorm
 update_pak () {
 echo -ne " \033[1;31m[ ! ]  TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!  [ ! ]"
 echo -e ' '
-fun_bar1 'apt-add-repository universe -y'
+apt-add-repository universe -y > /dev/null
+apt install wget -y > /dev/null
 echo -e ' '
-fun_bar1 'sudo add-apt-repository ppa:neurobin/ppa'
+sudo add-apt-repository ppa:neurobin/ppa > /dev/null
 echo -ne " \033[1;31m[ ! ] apt-get update"
 apt-get update -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] apt-get upgrade"
