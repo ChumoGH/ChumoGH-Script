@@ -9,7 +9,9 @@ cat << EOF
            NEW KEY GENERATOR BY 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】
            INSTALACIONES: $(cat $IVAR)
                       INSTALADOR OFICIAL 
-source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/Key-gerar/test.sh)    
+wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/instala.sh; 
+                      chmod +x instala.sh;
+                      ./instala.sh    
    
 EOF
 SCPT_DIR="/etc/SCRIPT"
