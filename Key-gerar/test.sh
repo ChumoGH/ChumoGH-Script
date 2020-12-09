@@ -2,6 +2,7 @@
 #rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 #rm $(Key) > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 killall apt apt-get &> /dev/null
+dom='base64 -d'
 dpkg --configure -a
 unset Key > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 cd $HOME
@@ -52,20 +53,8 @@ MIP2=$(wget -qO- ipv4.icanhazip.com)
 [[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
 }
 inst_components () {
-[[ $(dpkg --get-selections|grep -w "nano"|head -1) ]] || apt-get install nano -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "bc"|head -1) ]] || apt-get install bc -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "screen"|head -1) ]] || apt-get install screen -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "python"|head -1) ]] || apt-get install python -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "python3"|head -1) ]] || apt-get install python3 -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "curl"|head -1) ]] || apt-get install curl -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "ufw"|head -1) ]] || apt-get install ufw -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "unzip"|head -1) ]] || apt-get install unzip -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "zip"|head -1) ]] || apt-get install zip -y &>/dev/null
-[[ $(dpkg --get-selections|grep -w "apache2"|head -1) ]] || {
- apt-get install apache2 -y &>/dev/null
- sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
- service apache2 restart > /dev/null 2>&1 &
- }
+cd /etc/adm-lite && bash cabecalho --instalar
+}
 }
 funcao_idioma () {
 msg -bar2
@@ -111,10 +100,92 @@ pv="$(echo ${idioma[$selection]}|cut -d' ' -f1)"
 [[ ${#id} -gt 2 ]] && id="pt" || id="$pv"
 byinst="true"
 }
+function_verify () {
+  echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
+}
 install_fim () {
-msg -ama "$(source trans -b pt:${id} "Instalacao Completa, Utilize os Comandos"|sed -e 's/[^a-z -]//ig')" && msg bar2
-echo -e " menu / adm" && msg -verm "$(source trans -b pt:${id} "Reinicie seu servidor para concluir a instalacao"|sed -e 's/[^a-z -]//ig')"
-msg -bar2
+echo "cd /etc/adm-lite && bash ./menu" > /bin/menu
+echo "cd /etc/adm-lite && bash ./menu" > /bin/cgh
+echo "cd /etc/adm-lite && bash ./menu" > /bin/chumogh
+chmod +x /bin/menu
+chmod +x /bin/cgh
+chmod +x /bin/chumogh
+if cat /root/.bashrc | grep ChumoGH; then
+echo "clear" >> /root/.bashrc
+echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
+echo 'TIME=$(date +"%T")' >> /root/.bashrc
+echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e "Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e "Bienvenido!"' >> .bashrc
+echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo "STARTUP AGREGADO EXITOSAMENTE"
+else
+wget -o /dev/null -O- https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster > /bin/toolmaster
+chmod +x /bin/toolmaster
+echo "clear" >> .bashrc
+echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
+echo 'TIME=$(date +"%T")' >> /root/.bashrc
+echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e "Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e "Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e "Hora del Servidor : $TIME"' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo 'echo -e "Bienvenido!"' >> .bashrc
+echo 'echo -e "Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e ""' >> /root/.bashrc
+echo "STARTUP AGREGADO EXITOSAMENTE"
+sleep 2
+fi
+[[ -e $HOME/lista ]] && rm $HOME/lista
+clear
+echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -e "${cor[5]}  Agregaremos un nombre de tu servidor.... OPCIONAL"
+echo -e "${cor[3]}Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ"
+echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -ne " Nombre del Servidor : "; read name
+echo $name > /etc/adm-lite/name
+chmod +x /etc/adm-lite/name
+echo $name > /root/name
+fun_bar 
+figlet $name
+opti=0
+rm -rf /bin/ejecutar 2>/dev/null 
+mkdir /bin/ejecutar
+echo $opti > /bin/ejecutar/val
+echo $opti > /bin/ejecutar/uskill
+echo "desactivado" > /bin/ejecutar/val1
+echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > /etc/adm-lite/exito
+chmod +x /etc/adm-lite/exito
+echo -e "${cor[5]}NOMBRE AGREGADO EXITOSAMENTE"
+echo -ne " \033[0m"
+clear
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
+echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE ChumoGH-Pannel Instalada Correctamente!")"
+echo -e "${cor[2]} $(source trans -b pt:${id} "    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE")"
+echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Ahora puedes acceder al PANNEL")"
+echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, chumogh"
+echo $fecha > /bin/ejecutar/fecha
+echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
+echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
+echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
+echo ""
+figlet $name | lolcat
+rm -f instala.*
+rm -f cgh.*
+echo " Presiona Enter para Continuar"
+read -p " "
+cgh
 }
 ofus () {
 unset txtofus
@@ -146,14 +217,10 @@ esac
 mv -f ${SCPinstal}/$1 ${ARQ}$1
 sleep 2s
 chmod +x ${ARQ}/$1
+#cd ${SCPinstal}
 }
 fun_ip
-wget -O /usr/bin/trans https://www.dropbox.com/s/l6iqf5xjtjmpdx5/trans?dl=0 &> /dev/null
-msg -bar2
-msg -ama "[ ADM - CHUMOGH - SCRIPT ]"
-[[ $1 = "" ]] && funcao_idioma || {
-[[ ${#1} -gt 2 ]] && funcao_idioma || id="$1"
- }
+
 error_fun () {
 msg -bar2 && msg -verm "Esta Chave Era de Otro Servidor Por tanto Sera Excluida"|sed -e 's/[^a-z -]//ig' && msg -bar2
 echo "CARA de VERGA, se metio al error FUN"
@@ -163,8 +230,21 @@ sleep 5s
 invalid_key () {
 msg -bar2 && msg -verm "Key Failed! " && msg -bar2
 [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
-echo "CARA de VERGA, se metio al INVALID KEY"
-sleep 5s
+cd $HOME
+rm -f setup.* > /dev/null
+rm -f instala.*  > /dev/null
+rm -rf chumogh > /dev/null
+rm -f /bin/cgh > /dev/null
+rm -f /bin/menu > /dev/null
+rm - rf /etc/adm-lite > /dev/null
+rm - rf /bin/ejecutar > /dev/null
+unset * > /dev/null
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT " > error.log
+echo "Key Invalida, Contacta con el Desarrolador" >> error.log
+echo "  ● Compra Keys al +593987072611 " >> error.log
+echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
+cat error.log | lolcat
+rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 }
 while [[ ! $Key ]]; do
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR - - - - - - - -【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
@@ -175,7 +255,7 @@ tput cuu1 && tput dl1
 done
 msg -ne "Key: "
 cd $HOME
-wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Verified" || {
+wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Verificando" || {
    echo -e "\033[1;32m Verified"
    invalid_key
    }
@@ -183,28 +263,74 @@ IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o 
 sleep 1s
 updatedb
 if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") ]]; then
-   msg -bar2
-   msg -ama "$(source trans -b pt:${id} "BEM VINDO, OBRIGADO POR UTILIZAR"|sed -e 's/[^a-z -]//ig'): \033[1;31m[ChumoGH ADM]"
+cor[1]="\033[1;36m"
+cor[2]="\033[1;33m"
+cor[3]="\033[1;31m"
+cor[5]="\033[1;32m"
+cor[4]="\033[0m"
+cd $HOME
+locale-gen en_US.UTF-8 > /dev/null 2>&1
+update-locale LANG=en_US.UTF-8 > /dev/null 2>&1
+apt-get install gawk -y > /dev/null 2>&1
+wget -O trans https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/trans -o /dev/null 2>&1
+mv -f ./trans /bin/ && chmod 777 /bin/*
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -e "${cor[2]}ESCOJE TU IDIOMA DE PRERENCIA (Default: 3) :\n${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠\n${cor[2]}[1]-BRASILEÑO\n[2]-INGLES\n[3]-ESPAÑOL\n[4]-FRANCES\n[5]-ITALIANO\n[6]-CHINO" | lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -ne " ESCOJE: "; read lang
+case $lang in
+1)
+id="pt"
+;;
+2)
+id="en"
+;;
+3)
+id="es"
+;;
+4)
+id="fr"
+;;
+5)
+id="it"
+;;
+5)
+id="ch"
+;;
+*)
+id="es"
+;;
+esac
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -e ""
+echo -e "${cor[2]} $(source trans -b pt:${id} "")\n\033[1;37m  Script Patrocinado por: @ChumoGH - Henry Chumo"
+echo -e ""
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
+echo -e "${cor[5]} INSTALADOR ChumoGH-SCRIPTS  ®"
+echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
+echo -e "${cor[3]} $(source trans -b pt:${id} "Iniciando Instalacion...")"
+echo -e "${cor[3]} Script V 4.1 Sujeto a Mejoras del MOD"
+echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
+echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
+   
    pontos="."
    stopping="$(source trans -b pt:${id} "Verificando Atualizacoes"|sed -e 's/[^a-z -]//ig')"
+   src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
    for arqx in $(cat $HOME/lista-arq); do
-   msg -verm "${stopping}${pontos}"
-   wget -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" || error_fun
+   #msg -verm "${stopping}${pontos}"
+   wget -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}"  error_fun
    tput cuu1 && tput dl1
    pontos+="."
    done
    sleep 1s
    msg -bar2
    listaarqs="$(locate "lista-arq"|head -1)" && [[ -e ${listaarqs} ]] && rm $listaarqs   
-   cat /etc/bash.bashrc|grep -v '[[ $UID != 0 ]] && TMOUT=15 && export TMOUT' > /etc/bash.bashrc.2
-   echo -e '[[ $UID != 0 ]] && TMOUT=15 && export TMOUT' >> /etc/bash.bashrc.2
-   mv -f /etc/bash.bashrc.2 /etc/bash.bashrc
-   echo "${SCPdir}/menu" > /usr/bin/menu && chmod +x /usr/bin/menu
-   echo "${SCPdir}/menu" > /usr/bin/adm && chmod +x /usr/bin/adm
    inst_components
    echo "$Key" > ${SCPdir}/key.txt
+   echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > /root/exito
    [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}   
    [[ ${#id} -gt 2 ]] && echo "pt" > ${SCPidioma} || echo "${id}" > ${SCPidioma}
    [[ ${byinst} = "true" ]] && install_fim
