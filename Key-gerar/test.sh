@@ -55,7 +55,6 @@ MIP2=$(wget -qO- ipv4.icanhazip.com)
 inst_components () {
 cd /etc/adm-lite && bash cabecalho --instalar
 }
-}
 funcao_idioma () {
 msg -bar2
 declare -A idioma=( [1]="en English" [2]="fr Franch" [3]="de German" [4]="it Italian" [5]="pl Polish" [6]="pt Portuguese" [7]="es Spanish" [8]="tr Turkish" )
@@ -222,10 +221,25 @@ chmod +x ${ARQ}/$1
 fun_ip
 
 error_fun () {
-msg -bar2 && msg -verm "Esta Chave Era de Otro Servidor Por tanto Sera Excluida"|sed -e 's/[^a-z -]//ig' && msg -bar2
-echo "CARA de VERGA, se metio al error FUN"
-
-sleep 5s 
+[[ -d /etc/adm-lite ]] && rm -rf /etc/adm-lite
+mkdir /etc/adm-lite
+cd /etc/adm-lite
+echo "cd /etc/adm-lite && bash ./menu" > /bin/menu
+echo "cd /etc/adm-lite && bash ./menu" > /bin/cgh
+echo "cd /etc/adm-lite && bash ./menu" > /bin/chumogh
+chmod +x /bin/menu
+chmod +x /bin/cgh
+chmod +x /bin/chumogh
+cd /etc/adm-lite
+touch /etc/adm-lite/index.html
+wget -i $HOME/lista -o /dev/null
+echo -e "${cor[3]} $(source trans -b pt:${id} "AGREGANDO PAQUETES, y SERVICIOS NECESARIOS")"
+echo -e "${cor[1]}####################################################"
+cd /etc/adm-lite
+chmod +x ./*
+instalar_fun
+function_verify
+sleep 1s 
 }
 invalid_key () {
 msg -bar2 && msg -verm "Key Failed! " && msg -bar2
@@ -321,10 +335,11 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
    src='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyL2xpc3Rh'
    for arqx in $(cat $HOME/lista-arq); do
    #msg -verm "${stopping}${pontos}"
-   wget -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}"  error_fun
+   wget -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}"  
    tput cuu1 && tput dl1
    pontos+="."
    done
+   error_fun
    sleep 1s
    msg -bar2
    listaarqs="$(locate "lista-arq"|head -1)" && [[ -e ${listaarqs} ]] && rm $listaarqs   
