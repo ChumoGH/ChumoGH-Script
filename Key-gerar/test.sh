@@ -1,6 +1,8 @@
 #!/bin/bash
 #rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 #rm $(Key) > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
+killall apt apt-get &> /dev/null
+dpkg --configure -a
 unset Key > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 cd $HOME
 rm -f instala.* > /dev/null
