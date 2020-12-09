@@ -2,7 +2,7 @@
 IVAR="/etc/http-instas"
 SCPT_DIR="/etc/SCRIPT"
 [[ -d $SCPT_DIR ]] && rm -rf $SCPT_DIR
-SCPresq="aHR0cHM6Ly9naXRodWIuY29tL0NodW1vR0gvcnVzcy9ibG9iL21hc3Rlci9saXN0YQ=="
+SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvY2h1bW9naC1nbWFpbC5jb20vbWFzdGVyLw=="
 SUB_DOM='base64 -d'
 
 #CORES
@@ -89,7 +89,7 @@ echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqs] "
 fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
 done
 cd $SCPT_DIR
-wget -O lista https://github.com/ChumoGH/russ/blob/master/lista -o /dev/null
+wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
 cat http-server.py > /bin/http-server.py
 chmod +x /bin/http-server.py
 cp gerar.sh /usr/bin/gerar.sh
@@ -115,9 +115,9 @@ mv -f $HOME/$1 ${ARQ}/$1
 chmod +x ${ARQ}/$1
 }
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-echo -e "\033[1;36m--------------------KEY GENERATOR BY RUSSEL ADM----------------------\033[0m"
+echo -e "\033[1;36m--------------------KEY GENERATOR BY ChumoGH ADM----------------------\033[0m"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
-read -p "INGRESE SU KEY DE VERIFICACION o NOMBRE: " Key
+read -p "INTRODUZCA SU KEY DE INSTALACIÓN: " Key
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 [[ ! $Key ]] && {
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
@@ -150,7 +150,7 @@ sleep 1s
 #mv -f http-server.py /bin/
 #chmod +x /bin/http-server.py
 cd 
-wget -O lista https://github.com/ChumoGH/russ/blob/master/lista -o /dev/null
+wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
 atualiza_fun
 echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://www.dropbox.com/s/l6iqf5xjtjmpdx5/trans?dl=0 &> /dev/null
