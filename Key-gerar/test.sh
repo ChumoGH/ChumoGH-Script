@@ -18,13 +18,17 @@ SCPinst="${SCPdir}"
 
 update_pak () {
 echo -ne " \033[1;31m[ ! ] Install SysBanner"
-snap install sysvbanner -y > /dev/null 2>&1 && apt install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+#snap install sysvbanner -y > /dev/null 2>&1 && 
+apt install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Lolcat   "
-snap install lolcat -y > /dev/null 2>&1 && apt install lolcat -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+#snap install lolcat -y > /dev/null 2>&1 && 
+apt install lolcat -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Figlet   "
-snap install figlet -y > /dev/null 2>&1 && apt install figlet -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+#snap install figlet -y > /dev/null 2>&1 && 
+apt install figlet -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Cowsay   "
-snap install cowsay -y > /dev/null 2>&1 && apt install cowsay -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+#snap install cowsay -y > /dev/null 2>&1 && 
+apt install cowsay -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -e " LOLCAT - FIGLET - COWSAY - SYSVBANNER INSTALADOS CORRECTAMENTE "| lolcat
 sleep 5s
 return
@@ -52,57 +56,18 @@ MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1
 MIP2=$(wget -qO- ipv4.icanhazip.com)
 [[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
 }
-inst_components () {
-cd /etc/adm-lite && bash cabecalho --instalar
-}
-funcao_idioma () {
-msg -bar2
-declare -A idioma=( [1]="en English" [2]="fr Franch" [3]="de German" [4]="it Italian" [5]="pl Polish" [6]="pt Portuguese" [7]="es Spanish" [8]="tr Turkish" )
-for ((i=1; i<=12; i++)); do
-valor1="$(echo ${idioma[$i]}|cut -d' ' -f2)"
-[[ -z $valor1 ]] && break
-valor1="\033[1;32m[$i] > \033[1;33m$valor1"
-    while [[ ${#valor1} -lt 37 ]]; do
-       valor1=$valor1" "
-    done
-echo -ne "$valor1"
-let i++
-valor2="$(echo ${idioma[$i]}|cut -d' ' -f2)"
-[[ -z $valor2 ]] && {
-   echo -e " "
-   break
-   }
-valor2="\033[1;32m[$i] > \033[1;33m$valor2"
-     while [[ ${#valor2} -lt 37 ]]; do
-        valor2=$valor2" "
-     done
-echo -ne "$valor2"
-let i++
-valor3="$(echo ${idioma[$i]}|cut -d' ' -f2)"
-[[ -z $valor3 ]] && {
-   echo -e " "
-   break
-   }
-valor3="\033[1;32m[$i] > \033[1;33m$valor3"
-     while [[ ${#valor3} -lt 37 ]]; do
-        valor3=$valor3" "
-     done
-echo -e "$valor3"
-done
-msg -bar2
-unset selection
-while [[ ${selection} != @([1-8]) ]]; do
-echo -ne "\033[1;37mSELECT: " && read selection
-tput cuu1 && tput dl1
-done
-pv="$(echo ${idioma[$selection]}|cut -d' ' -f1)"
-[[ ${#id} -gt 2 ]] && id="pt" || id="$pv"
-byinst="true"
-}
+
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
+
+instalar_fun () {
+cd /etc/adm-lite && bash cabecalho --instalar
+}
+
+
 install_fim () {
+
 echo "cd /etc/adm-lite && bash ./menu" > /bin/menu
 echo "cd /etc/adm-lite && bash ./menu" > /bin/cgh
 echo "cd /etc/adm-lite && bash ./menu" > /bin/chumogh
@@ -220,7 +185,7 @@ chmod +x ${ARQ}/$1
 }
 fun_ip
 
-error_fun () {
+valid_fun () {
 [[ -d /etc/adm-lite ]] && rm -rf /etc/adm-lite
 mkdir /etc/adm-lite
 cd /etc/adm-lite
@@ -339,11 +304,14 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
    tput cuu1 && tput dl1
    pontos+="."
    done
-   error_fun
+	  echo -ne "${cor[4]}"
+	  RE=$(echo $src|$dom)
+	  wget -O lista $RE -o /dev/null
+	  valid_fun
    sleep 1s
    msg -bar2
-   listaarqs="$(locate "lista-arq"|head -1)" && [[ -e ${listaarqs} ]] && rm $listaarqs   
-   inst_components
+   [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq  
+   [[ -e $HOME/lista ]] && rm $HOME/lista   
    echo "$Key" > ${SCPdir}/key.txt
    echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > /root/exito
    [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}   
