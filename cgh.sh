@@ -324,12 +324,10 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
    cd $HOME
    [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq  
    [[ -e $HOME/lista ]] && rm $HOME/lista   
-   echo "$Key" > ${SCPdir}/key.txt
+   [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal} 
+   echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > $HOME/exito
    install_fim
-   echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > /root/exito
-   [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}   
    [[ ${#id} -gt 2 ]] && echo "pt" > ${SCPidioma} || echo "${id}" > ${SCPidioma}
-   [[ ${byinst} = "true" ]] 
 else
 invalid_key
 fi
