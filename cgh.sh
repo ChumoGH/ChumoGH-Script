@@ -221,7 +221,7 @@ function_verify
 sleep 1s 
 }
 invalid_key () {
-msg -bar2 && msg -verm "$(source trans -b pt:${id} "Key Failed! ")" && msg -bar2
+msg -bar2 && msg -verm "Key Failed! " && msg -bar2
 [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
 cd $HOME
 [[ -d $HOME/chumogh ]] && rm -rf $HOME/chumogh
@@ -235,16 +235,16 @@ rm -f /bin/cgh > /dev/null
 rm -f /bin/menu > /dev/null
 rm -rf /bin/ejecutar > /dev/null
 unset * > /dev/null
-cowsay -f stegosaurus "$(source trans -b pt:${id} "BIENVENIDO Y GRACIAS POR UTILIZAR ")  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT " > error.log
-echo "$(source trans -b pt:${id} "Key Invalida, Contacta con el Desarrolador")" >> error.log
-echo " $(source trans -b pt:${id} " ● Compra Keys al +593987072611 ") " >> error.log
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR   ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT " > error.log
+echo "Key Invalida, Contacta con el Desarrolador" >> error.log
+echo "  ● Compra Keys al +593987072611 " >> error.log
 echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
 cat error.log | lolcat
 rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32m$(source trans -b pt:${id} "Exito!")" || echo -e "\033[1;31m- \033[1;31m$(source trans -b pt:${id} "Fallo")"
 }
 while [[ ! $Key ]]; do
 clear
-cowsay -f stegosaurus "$(source trans -b pt:${id} "BIENVENIDO Y GRACIAS POR UTILIZAR - - - - - - - -")【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
+cowsay -f stegosaurus BIENVENIDO Y GRACIAS POR UTILIZAR - - - - - - - -【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games;
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 msg -ne "Script Key: " && read Key
@@ -303,14 +303,14 @@ id="es"
 esac
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e ""
-echo -e "${cor[2]} $(source trans -b pt:${id} "")\n\033[1;37m  Script Patrocinado por: @ChumoGH - Henry Chumo"
+echo -e "${cor[2]}\n\033[1;37m  Script Patrocinado por: @ChumoGH - Henry Chumo"
 echo -e ""
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -e "${cor[5]} $(source trans -b pt:${id} "INSTALADOR ChumoGH-SCRIPTS")  ®"
+echo -e "${cor[5]} INSTALADOR ChumoGH-SCRIPTS" ®"
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
-echo -e "${cor[3]} $(source trans -b pt:${id} "Iniciando Instalacion...")"
-echo -e "${cor[3]} $(source trans -b pt:${id} "Script V 4.1 Sujeto a Mejoras del MOD")"
-echo -e "${cor[1]} $(source trans -b pt:${id} "MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN ")"
+echo -e "${cor[3]} Iniciando Instalacion..."
+echo -e "${cor[3]} Script V 4.1 Sujeto a Mejoras del MOD"
+echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● ●●●●●● "
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
