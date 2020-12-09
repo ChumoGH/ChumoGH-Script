@@ -33,6 +33,32 @@ echo -e " LOLCAT - FIGLET - COWSAY - SYSVBANNER INSTALADOS CORRECTAMENTE "| lolc
 sleep 5s
 return
 }
+
+fun_bar () {
+comando[0]="$1"
+comando[1]="$2"
+ (
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} -y > /dev/null 2>&1
+${comando[1]} -y > /dev/null 2>&1
+touch $HOME/fim
+ ) > /dev/null 2>&1 &
+echo -ne "\033[1;33m ["
+while true; do
+   for((i=0; i<18; i++)); do
+   echo -ne "\033[1;31m##"
+   sleep 0.1s
+   done
+   [[ -e $HOME/fim ]] && rm $HOME/fim && break
+   echo -e "\033[1;33m]"
+   sleep 1s
+   tput cuu1
+   tput dl1
+   echo -ne "\033[1;33m ["
+done
+echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
+}
+
 update_pak
 [[ $(dpkg --get-selections|grep -w "gawk"|head -1) ]] || apt-get install gawk -y &>/dev/null
 [[ $(dpkg --get-selections|grep -w "mlocate"|head -1) ]] || apt-get install mlocate -y &>/dev/null
@@ -289,19 +315,21 @@ echo -e "${cor[1]}●●●●●● ●●●●●● ●●●●●● ●�
    for arqx in $(cat $HOME/lista-arq); do
    wget -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}"  
    done
+   fun_bar 
 	  echo -ne "${cor[4]}"
 	  RE=$(echo $src|$dom)
 	  wget -O $HOME/lista $RE -o /dev/null
 	  valid_fun
-   sleep 1s
    msg -bar2
+   cd $HOME
    [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq  
    [[ -e $HOME/lista ]] && rm $HOME/lista   
    echo "$Key" > ${SCPdir}/key.txt
+   install_fim
    echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > /root/exito
    [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}   
    [[ ${#id} -gt 2 ]] && echo "pt" > ${SCPidioma} || echo "${id}" > ${SCPidioma}
-   [[ ${byinst} = "true" ]] && install_fim
+   [[ ${byinst} = "true" ]] 
 else
 invalid_key
 fi
