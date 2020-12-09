@@ -1,11 +1,29 @@
 #!/bin/bash
 cd $HOME
+rm -f instala.* > /dev/null
+fecha=`date +"%d-%m-%y"`;
+dom='base64 -d'
 SCPdir="/etc/adm-lite"
 SCPinstal="$HOME/install"
 SCPidioma="${SCPdir}"
 SCPusr="${SCPdir}"
 SCPfrm="${SCPdir}"
 SCPinst="${SCPdir}"
+
+update_pak () {
+echo -ne " \033[1;31m[ ! ] Install SysBanner"
+apt-get install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Install Lolcat   "
+apt-get install lolcat -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Install Figlet   "
+apt-get install figlet -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Install Cowsay   "
+apt-get install cowsay -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+echo -e " LOLCAT - FIGLET - COWSAY - SYSVBANNER INSTALADOS CORRECTAMENTE "| lolcat
+sleep 5s
+return
+}
+update_pak
 [[ $(dpkg --get-selections|grep -w "gawk"|head -1) ]] || apt-get install gawk -y &>/dev/null
 [[ $(dpkg --get-selections|grep -w "mlocate"|head -1) ]] || apt-get install mlocate -y &>/dev/null
 rm $(pwd)/$0 &> /dev/null
@@ -133,8 +151,8 @@ msg -ama "[ ADM - CHUMOGH - SCRIPT ]"
  }
 error_fun () {
 msg -bar2 && msg -verm "Esta Chave Era de Otro Servidor Por tanto Sera Excluida"|sed -e 's/[^a-z -]//ig' && msg -bar2
-[[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
 echo "CARA de VERGA, se metio al error FUN"
+
 sleep 5s 
 }
 invalid_key () {
@@ -144,6 +162,9 @@ echo "CARA de VERGA, se metio al INVALID KEY"
 sleep 5s
 }
 while [[ ! $Key ]]; do
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR - - - - - - - -【 ★ ChumoGH ★ 】 ADM 2020 "| lolcat
+export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games;
+echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
 msg -ne "Script Key: " && read Key
 tput cuu1 && tput dl1
 done
