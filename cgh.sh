@@ -234,13 +234,13 @@ rm -f instala.*  > /dev/null
 rm -f /bin/cgh > /dev/null
 rm -f /bin/menu > /dev/null
 rm -rf /bin/ejecutar > /dev/null
-unset * > /dev/null
+unset * > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR   ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT " > error.log
 echo "Key Invalida, Contacta con el Desarrolador" >> error.log
 echo "  ● Compra Keys al +593987072611 " >> error.log
 echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
 cat error.log | lolcat
-rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32m$(source trans -b pt:${id} "Exito!")" || echo -e "\033[1;31m- \033[1;31m$(source trans -b pt:${id} "Fallo")"
+rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
 }
 while [[ ! $Key ]]; do
 clear
