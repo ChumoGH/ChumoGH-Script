@@ -152,8 +152,8 @@ echo -ne " \033[0m"
 clear
 cowsay -f stegosaurus " $(source trans -b pt:${id} "BIENVENIDO Y GRACIAS POR UTILIZAR ") ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -e " $(source trans -b pt:${id} "Tiempo que tomó Actualizacion e Instalacion")"
-echo "$((($(date +%s)-$TIME_START)/60)) min."
+#echo -e " $(source trans -b pt:${id} "Tiempo que tomó Actualizacion e Instalacion")"
+#echo "$((($(date +%s)-$TIME_START)/60)) min."
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE ChumoGH-Pannel Instalada Correctamente!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE")"
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
