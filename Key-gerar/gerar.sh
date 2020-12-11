@@ -295,7 +295,7 @@ echo -e "\033[1;32m DIGITA TU KEY A VERIFICAR "
 msg -ne "Script Key: " && read Keey
 tput cuu1 && tput dl1
 done
-msg -ne "Key: $(ofus $Keey)
+msg -ne "Key: $(ofus $Keey)"
 curl $(ofus $Keey) > /dev/null 2>&1 && echo -e "\033[1;32m [ KEY VALIDA ]" || echo -e "\033[1;31m [ KEY INVALIDA]"
 read -p "Enter"
 }
