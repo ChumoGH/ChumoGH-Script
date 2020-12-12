@@ -288,7 +288,7 @@ read -p "Enter"
 }
 
 fum_ver () {
-while [[ ! $Key ]]; do
+while [[ ! $Keey ]]; do
 clear
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games;
 echo -e "\033[1;32m DIGITA TU KEY A VERIFICAR "
