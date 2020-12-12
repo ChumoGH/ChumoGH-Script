@@ -303,7 +303,7 @@ read -p "Enter"
 meu_ip
 unset PID_GEN
 PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
-[[ ! $PID_GEN ]] && PID_GEN="\033[1;31moff" || PID_GEN="\033[1;32monline"
+[[ ! $PID_GEN ]] && PID_GEN="\033[1;31m APAGADO" || PID_GEN="\033[1;32m ENCENDIDO"
 echo -e "$BARRA"
 echo -e "Diretorio de los archivos repasados \033[1;31m${SCPT_DIR}\033[0m"
 echo -e "$BARRA"
