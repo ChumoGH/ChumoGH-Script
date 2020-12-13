@@ -99,7 +99,7 @@ update_pak
 #ln -s /usr/share/zoneinfo/America/Guayaquil /etc/localtime &>/dev/null
 rm $(pwd)/$0 &> /dev/null
 read -rsp $'Presiona una TECLA o Espere 5 segundos para continuar...\n' -n 1 -t 6;
-update1='aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvQ2h1bW9HSC1TY3JpcHQvbWFzdGVyL2NnaC5zaA=='
+update1='aHR0cHM6Ly9naXRodWIuY29tL0NodW1vR0gvQ2h1bW9HSC1TY3JpcHQvcmF3L21hc3Rlci9vZnVzY2F0ZS5zaA=='
 dom='base64 -d'
 RE=$(echo $update1|$dom)
 sleep 5s
