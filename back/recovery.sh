@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "FUNCION EN TESTUS "
 auto_add_user () {
 #$1 = usuário
 #$2 = senha
@@ -161,4 +160,39 @@ done < $arq_bkp
 echo -e "${cor[1]} ══════════════════════════════════= ${cor[0]}"
 cd /etc/adm-lite
 }
-#CUCARACHA
+
+function_3 () {
+echo -e "${cor[1]} ══════════════════════════════════= ${cor[0]}"
+echo -e "${cor[4]} ${txt[115]}
+ ${txt[116]}"
+echo -e "${cor[1]} ══════════════════════════════════= ${cor[0]}" 
+echo 3 > /proc/sys/vm/drop_caches
+sysctl -w vm.drop_caches=3 > /dev/null 2>&1
+rm -rf /tmp/*
+echo -e "${cor[5]} ${txt[117]}"
+echo -e "${cor[1]} ══════════════════════════════════= ${cor[0]}"
+}
+
+if [ "$1" = "1" ]; then
+function_1
+fi
+if [ "$1" = "2" ]; then
+function_2
+fi
+if [ "$1" = "3" ]; then
+function_3
+fi
+
+####_Eliminar_Tmps_####
+if [ -e $_tmp ]; then
+rm $_tmp
+fi
+if [ -e $_tmp2 ]; then
+rm $_tmp2
+fi
+if [ -e $_tmp3 ]; then
+rm $_tmp3
+fi
+if [ -e $_tmp4 ]; then
+rm $_tmp4
+fi
