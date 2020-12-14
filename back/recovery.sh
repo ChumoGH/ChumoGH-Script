@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "FUNCION EN TESTUS "
 auto_add_user () {
 #$1 = usuário
 #$2 = senha
@@ -161,3 +161,4 @@ done < $arq_bkp
 echo -e "${cor[1]} ══════════════════════════════════= ${cor[0]}"
 cd /etc/adm-lite
 }
+#CUCARACHA
