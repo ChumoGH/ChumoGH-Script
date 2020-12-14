@@ -1,3 +1,5 @@
+#!/bin/bash
+
 auto_add_user () {
 #$1 = usuário
 #$2 = senha
