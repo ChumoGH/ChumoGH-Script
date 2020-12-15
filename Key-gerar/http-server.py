@@ -96,9 +96,6 @@ log="/etc/gerar-sh-log"
 echo "USUARIO: $(cat ${FILE2}.name) IP FIJA: $(cat $PERM) SU IP: $USRIP" >> $log
 echo "SU KEY FIJA FUE BLOQUEADA" >> $log
 fi
-log="/etc/gerar-sh-log"
-echo "USUARIO: $(cat ${FILE2}.name) IP FIJA: $(cat $PERM) SU IP: $USRIP" >> $log
-echo "SU KEY FIJA FUE BLOQUEADA" >> $log
 num=$(cat ${IVAR})
  if [[ $num = "" ]]; then
  num=0
