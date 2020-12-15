@@ -21,12 +21,14 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 IVAR="/etc/http-instas"
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "$BARRA"
-cat << EOF
+#cat << EOF
+echo -e "\n\n"
+echo '
 
            NEW KEY GENERATOR BY 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】
            INSTALACIONES: $(cat $IVAR
-           
-EOF
+      '
+echo -e " \n\n "#EOF
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 INSTA_ARQUIVOS="ADMVPS.zip"
