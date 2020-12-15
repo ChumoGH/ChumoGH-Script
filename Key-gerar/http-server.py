@@ -115,6 +115,7 @@ if [[ -e $PERM ]]; then
   fi
 else
 log="/etc/gerar-sh-log"
+fun_ip
 echo "USUARIO: $(cat ${FILE2}.name) SU IP: $USRIP" >> $log
 echo "Key "$(ofus "$IP:8888/${FILE2}/lista-arq") >> $log
 echo "Key Fue Usada" >> $log
