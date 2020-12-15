@@ -8,6 +8,30 @@ MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1
 MIP2=$(wget -qO- ipv4.icanhazip.com)
 [[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
 }
+
+#OFUSCATE
+ofus () {
+unset txtofus
+number=$(expr length $1)
+for((i=1; i<$number+1; i++)); do
+txt[$i]=$(echo "$1" | cut -b $i)
+case ${txt[$i]} in
+".")txt[$i]="+";;
+"+")txt[$i]=".";;
+"1")txt[$i]="@";;
+"@")txt[$i]="1";;
+"2")txt[$i]="?";;
+"?")txt[$i]="2";;
+"3")txt[$i]="%";;
+"%")txt[$i]="3";;
+"/")txt[$i]="K";;
+"K")txt[$i]="/";;
+esac
+txtofus+="${txt[$i]}"
+done
+echo "$txtofus" | rev
+}
+
 # LISTEN
 listen_fun () {
 PORTA="8888"
@@ -91,8 +115,9 @@ if [[ -e $PERM ]]; then
   fi
 else
 log="/etc/gerar-sh-log"
-echo "USUARIO: $(cat ${FILE2}.name) IP FIJA: $(cat $PERM) SU IP: $USRIP" >> $log
-echo "SU KEY FIJA FUE BLOQUEADA" >> $log
+echo "USUARIO: $(cat ${FILE2}.name) SU IP: $USRIP" >> $log
+echo "Key "$(ofus "$IP:8888/${FILE2}/lista-arq") >> $log
+echo "Key Fue Usada" >> $log
 rm -rf "$FILE2"
 rm "${FILE2}.name"
 fi
