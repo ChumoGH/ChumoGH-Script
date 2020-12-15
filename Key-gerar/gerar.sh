@@ -22,13 +22,12 @@ IVAR="/etc/http-instas"
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "$BARRA"
 #cat << EOF
-echo -e "\n\n"
+echo -e "\n"
 echo '
-
            NEW KEY GENERATOR BY 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】
-           INSTALACIONES: $(cat $IVAR
+           INSTALACIONES: $(cat $IVAR)
       '
-echo -e " \n\n "#EOF
+echo -e "\n " ##EOF
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 INSTA_ARQUIVOS="ADMVPS.zip"
