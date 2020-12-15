@@ -300,11 +300,11 @@ clear
 unset PID_GEN
 PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 echo -e "$BARRA"  #echo -e '\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;34mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;31mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-figlet -f future ADM-ChumoGH-OFICIAL | lolcat
+figlet -f future "    ADM-ChumoGH" | lolcat
 [[ ! $PID_GEN ]] && PID_GEN="\033[1;31m APAGADO" || PID_GEN="\033[1;32m ENCENDIDO"
-echo -e "      Keys Usadas : " $(cat $IVAR) "\n"
+echo -e "          Keys Usadas : " $(cat $IVAR) #"\n"
 msg -bar
-echo -e "Ficheros Fijados en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
+echo -e "Ficheros Fijados local en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
 msg -bar
 echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m GENERAR 1 KEY ALEATORIA"
 echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m APAGAR/VER KEYS"
