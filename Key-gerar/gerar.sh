@@ -23,11 +23,12 @@ BARRA="\033[1;36m---------------------------------------------------------------
 echo -e "$BARRA"
 #cat << EOF
 echo -e "\n"
+iv=$(cat $IVAR)
 echo '
            NEW KEY GENERATOR BY 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】
-           INSTALACIONES: $(cat $IVAR)
+           INSTALACIONES: $iv
       '
-echo -e "\n " ##EOF
+echo -e "\n "
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 INSTA_ARQUIVOS="ADMVPS.zip"
