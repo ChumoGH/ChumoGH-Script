@@ -300,7 +300,7 @@ clear
 unset PID_GEN
 PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 echo -e "$BARRA"  #echo -e '\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;34mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;31mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-figlet -f future "    ADM-ChumoGH" | lolcat
+figlet -f future "   ADM-ChumoGH" | lolcat
 [[ ! $PID_GEN ]] && PID_GEN="\033[1;31m APAGADO" || PID_GEN="\033[1;32m ENCENDIDO"
 echo -e "          Keys Usadas : " $(cat $IVAR) #"\n"
 msg -bar
