@@ -21,9 +21,8 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 IVAR="/etc/http-instas"
 BARRA="\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "$BARRA"
-echo -e "\n"
 iv=$(cat $IVAR)
-echo -e"\n  NEW KEY GENERATOR BY 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】"
+echo -e "\n  NEW KEY GENERATOR BY 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】"
 echo -e "      INSTALACIONES: " $(cat $IVAR) "\n"
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
