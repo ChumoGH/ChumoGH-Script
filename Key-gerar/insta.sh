@@ -40,10 +40,6 @@ tput cnorm
 update_pak () {
 echo -ne " \033[1;31m[ ! ]  TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!  [ ! ]"
 echo -e ' '
-apt-add-repository universe -y > /dev/null
-apt install wget -y > /dev/null
-echo -e ' '
-sudo add-apt-repository ppa:neurobin/ppa > /dev/null
 echo -ne " \033[1;31m[ ! ] apt-get update"
 apt-get update -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] apt-get upgrade"
@@ -130,10 +126,10 @@ wget -i $HOME/lista -o /dev/null
 unset arqs
 for arqs in `ls $HOME/update`; do
 echo -ne "\033[1;33mDescargando archivo: \033[1;31m[$arqs] "
-fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mRecibido con éxito!" || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
+fun_filez $arqs > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mFalla (no recibido!)" || echo -e "\033[1;31m- \033[1;31mRecibido con éxito!"
 done
 cd $SCPT_DIR
-wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
+wget -i ${REQUEST}lista -o /dev/null
 cat http-server.py > /bin/http-server.py
 chmod +x /bin/http-server.py
 cp gerar.sh /usr/bin/gerar.sh
@@ -184,17 +180,8 @@ sleep 1s
 [[ -e $HOME/lista-arq ]] && {
 [[ ! -d ${IVAR} ]] && touch ${IVAR}
 [[ ! -d ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
-#unset ARQ
-#mkdir $SCPT_DIR
-#cd $SCPT_DIR
-#touch $SCPT_DIR/index.html
-#wget -i ${REQUEST}/lista -o /dev/null
-#mv -f gerar.sh /usr/bin/
-#chmod +x /usr/bin/gerar.sh
-#mv -f http-server.py /bin/
-#chmod +x /bin/http-server.py
 cd 
-wget -O lista https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/lista -o /dev/null
+wget -O lista ${REQUEST}lista -o /dev/null
 atualiza_fun
 echo -e "\033[1;31m- \033[1;32mRecebido Com Sucesso!"
 [[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://www.dropbox.com/s/l6iqf5xjtjmpdx5/trans?dl=0 &> /dev/null
