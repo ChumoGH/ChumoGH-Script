@@ -199,7 +199,8 @@ echo "$Key" > $IVAR2
 echo $Key > /etc/http-instas
 rm $HOME/lista-arq
 echo "source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/Key-gerar/gerar.sh)" > /usr/bin/gerar && chmod +x /usr/bin/gerar
-echo -e "\033[1;33m Perfecto, utilize el comando \033[1;31mgerar.sh o gerar \033[1;33mpara administrar sus keys y
+echo "cd /etc/SCRIPT && bash ./gerar.sh" > /usr/bin/keygen && chmod +x /usr/bin/keygen
+echo -e "\033[1;33m Perfecto, utilize el comando \033[1;31mkeygen o gerar \033[1;33mpara administrar sus keys y
  actualizar la base del servidor"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
 echo -e "\033[1;36m--------------------------------------------------------------------\033[0m"
