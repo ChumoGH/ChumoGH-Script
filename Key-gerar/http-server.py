@@ -90,11 +90,11 @@ if [[ -e $PERM ]]; then
   rm "${FILE2}.name"
   fi
 else
-rm -rf "$FILE2"
-rm "${FILE2}.name"
 log="/etc/gerar-sh-log"
 echo "USUARIO: $(cat ${FILE2}.name) IP FIJA: $(cat $PERM) SU IP: $USRIP" >> $log
 echo "SU KEY FIJA FUE BLOQUEADA" >> $log
+rm -rf "$FILE2"
+rm "${FILE2}.name"
 fi
 num=$(cat ${IVAR})
  if [[ $num = "" ]]; then
