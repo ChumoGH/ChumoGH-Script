@@ -375,7 +375,7 @@ pidproxy3=$(ps x | grep -w  "PDirect.py" | grep -v "grep" | awk -F "pts" '{print
 pidproxy4=$(ps x | grep -w  "POpen.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy4 ]] && P4="\033[1;32m[ON]" || P4="\033[1;31m[OFF]"
 pidproxy5=$(ps x | grep "PGet.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy5 ]] && P5="\033[1;32m[ON]" || P5="\033[1;31m[OFF]"
 pidproxy6=$(ps x | grep "scktcheck" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy6 ]] && P6="\033[1;32m[ON]" || P6="\033[1;31m[OFF]"
-echo -e "\033[1;32m INSTALADOR SOCKS VPS-MX By MOD @Kalix1"
+echo -e "\033[1;32m INSTALADOR SOCKS ADM-ChumoGH Mod V4.1"
 msg -bar
 echo -e "${cor[4]} [1] > \033[1;36m  Socks Python SIMPLE $P1"
 echo -e "${cor[4]} [2] > \033[1;36m  Socks Python SEGURO $P2"
@@ -383,7 +383,7 @@ echo -e "${cor[4]} [3] > \033[1;36m  Socks Python DIRETO $P3"
 echo -e "${cor[4]} [4] > \033[1;36m  Socks Python OPENVPN $P4"
 echo -e "${cor[4]} [5] > \033[1;36m  Socks Python GETTUNEL $P5"
 echo -e "${cor[4]} [6] > \033[1;36m  Socks Python TCP BYPASS $P6"
-echo -e "${cor[4]} [7] > \033[1;36m  PARAR TODOS SOCKS PYTHON"
+echo -e "${cor[4]} [7] > \033[1;36m  DETENER TODOS SOCKS PYTHON"
 echo -e "${cor[4]} [0] > \033[1;37m VOLVER"
 msg -bar
 IP=(meu_ip)
