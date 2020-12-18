@@ -23,6 +23,7 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 
 ####inicio puertos
 ports_ () {
+unset porta
 porta=`if netstat -tunlp |grep nc.traditional 1> /dev/null 2> /dev/null; then
 echo -e "\033[0;36m   Keygen:\033[0;35m 8888"
 fi`;
