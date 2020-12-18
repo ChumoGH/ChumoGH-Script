@@ -20,49 +20,10 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 
 ####inicio puertos
 ports_ () {
-portas_var="/tmp/portas"
-porta_var="/tmp/portas2"
-lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" > $portas_var
-while read port; do
-var1=$(echo $port | awk '{print $1}')
-var2=$(echo $port | awk '{print $9}' | awk -F ":" '{print $2}')
- if [ ! -e "$porta_var" ]; then
- echo -e "$var1 $var2" > $porta_var
- fi
- if [ "$(cat $porta_var | grep "$var1" | grep "$var2")" = "" ]; then
- echo -e "$var1 $var2" >> $porta_var
- fi
-done < $portas_var
-i=1
-while true; do
-a=$(sed -n "$i"p $porta_var | awk '{print $1}')
-b=$(sed -n "$i"p $porta_var | awk '{print $2}')
-[[ "$a" != "" ]] && texto="\033[1;34m ▸ \033[1;37m$a: \033[1;31m$b" || texto=""
-[[ "$a" = "" ]] && break
-#if [[ $a = "systemd-r" ]];then
-#texto=""
-#fi
-if [[ $a = "nc.tradit" ]];then
-texto1="\033[1;34m ▸ \033[1;37mKeygen: \033[1;31m$b"
-fi
-
-i=$(($i+1))
-c=$(sed -n "$i"p $porta_var | awk '{print $1}')
-d=$(sed -n "$i"p $porta_var | awk '{print $2}')
-[[ "$c" != "" ]] && texto_="\033[1;34m ◂ \033[1;37m$c: \033[1;31m$d" || texto_=""
-[[ "$a" = "" ]] && break
-#if [[ $c = "systemd-r" ]];then
-#texto_=""
-#fi
-if [[ $c = "nc.tradit" ]];then
-texto_1="\033[1;34m ◂ \033[1;37mKeygen: \033[1;31m$d"
-fi
-
-i=$(($i+1))
-echo -e "$texto1 "
-done
-rm $portas_var
-rm $porta_var
+porta=`if netstat -tunlp |grep nc.traditional 1> /dev/null 2> /dev/null; then
+echo -e "\033[0;36mKeygen :\033[0;35m 8888"
+fi`;
+echo $porta
 }
 ####fin puertos
 
