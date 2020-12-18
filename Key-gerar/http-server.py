@@ -4,6 +4,7 @@ install_fun () {
 apt-get install netcat -y
 }
 fun_ip () {
+_hora=$(printf '%(%D-%H:%M:%S)T')
 MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 MIP2=$(wget -qO- ipv4.icanhazip.com)
 [[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
@@ -116,9 +117,10 @@ if [[ -e $PERM ]]; then
 else
 log="/etc/gerar-sh-log"
 fun_ip
+_hora=$(printf '%(%D-%H:%M:%S)T') 
 echo "USUARIO: $(cat ${FILE2}.name) SU IP: $USRIP" >> $log
-echo "Key "$(ofus "$IP:8888/${FILE2}/lista-arq") >> $log
-echo "Key Fue Usada" >> $log
+echo "Key "$(ofus "$IP:8888/$FILE2/lista-arq") >> $log
+echo "Key Fue Usada >" $_hora  >> $log
 rm -rf "$FILE2"
 rm "${FILE2}.name"
 fi
