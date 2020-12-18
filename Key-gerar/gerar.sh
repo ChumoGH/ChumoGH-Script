@@ -59,7 +59,7 @@ texto_1="\033[1;34m ◂ \033[1;37mKeygen: \033[1;31m$d"
 fi
 
 i=$(($i+1))
-echo -e "$texto1  $texto_1"
+echo -e "$texto1 "
 done
 rm $portas_var
 rm $porta_var
@@ -352,10 +352,10 @@ PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 echo -e "$BARRA"  #echo -e '\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;34mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;31mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 figlet -f future "   ADM-ChumoGH" | lolcat
 [[ ! $PID_GEN ]] && PID_GEN="\033[0;35m[\033[0;31mAPAGADO\033[0;35m]" || PID_GEN="\033[0;35m[\033[0;36mENCENDIDO\033[0;35m]"
-echo -e "          Keys Usadas : " $(cat $IVAR) #"\n"
+echo -e "          Keys Usadas : " $(cat $IVAR)  ports_
 msg -bar
 echo -e "Ficheros Fijados local en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
-ports_
+
 msg -bar
 echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m GENERAR 1 KEY ALEATORIA"
 echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m APAGAR/VER KEYS"
