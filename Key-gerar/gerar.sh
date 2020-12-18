@@ -62,9 +62,9 @@ porta=`if netstat -tunlp |grep nc.traditional 1> /dev/null 2> /dev/null; then
 echo -e "\033[0;36mKeygen :\033[0;35m 8888"
 fi`;
 portaa=`if netstat -tunlp |grep apache2 1> /dev/null 2> /dev/null; then
-echo -e "\033[0;36mKeygen :\033[0;35m 8888"
+echo -e "\033[0;36mApache2 :\033[0;35m 81"
 fi`;
-echo -e "          Keys Usadas : " $(cat $IVAR) $porta
+echo -ne "$(msg -verd "     Keys Usadas") $(msg -verm2 " : ") " && msg -bra "\033[1;41m $(cat $IVAR) " $porta
 }
 ####fin puertos
 
