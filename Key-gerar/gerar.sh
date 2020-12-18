@@ -24,13 +24,10 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 ####inicio puertos
 ports_ () {
 unset porta
-porta=`if netstat -tunlp |grep nc.traditional 1> /dev/null 2> /dev/null; then
+porta=`if netstat -tunlp |grep nc.tradit 1> /dev/null 2> /dev/null; then
 echo -e "\033[0;36m   Keygen:\033[0;35m 8888"
 fi`;
-portaa=`if netstat -tunlp |grep apache2 1> /dev/null 2> /dev/null; then
-echo -e "\033[0;36mApache2 :\033[0;35m 81"
-fi`;
-echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta"
+echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta "
 }
 ####fin puertos
 
@@ -317,8 +314,11 @@ figlet -f future "   ADM-ChumoGH" | lolcat
 [[ ! $PID_GEN ]] && PID_GEN="\033[0;35m[\033[0;31mAPAGADO\033[0;35m]" || PID_GEN="\033[0;35m[\033[0;36mENCENDIDO\033[0;35m]"
 ports_
 echo ""
+portaa=`if netstat -tunlp |grep apache2 1> /dev/null 2> /dev/null; then
+echo -e "\033[0;36mApache2 :\033[0;35m 81"
+fi`;
 msg -bar
-echo -e "Ficheros Fijados local en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
+echo -e "Ficheros Fijados en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m $portaa"
 
 msg -bar
 echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m GENERAR 1 KEY ALEATORIA"
