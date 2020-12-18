@@ -29,7 +29,7 @@ fi`;
 portaa=`if netstat -tunlp |grep apache2 1> /dev/null 2> /dev/null; then
 echo -e "\033[0;36mApache2 :\033[0;35m 81"
 fi`;
-echo -ne "$(msg -verd "     Keys Usadas") $(msg -verm2 " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta"
+echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta"
 }
 ####fin puertos
 
