@@ -17,6 +17,56 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
  esac
 }
 
+
+####inicio puertos
+ports_ () {
+portas_var="/tmp/portas"
+porta_var="/tmp/portas2"
+lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" > $portas_var
+while read port; do
+var1=$(echo $port | awk '{print $1}')
+var2=$(echo $port | awk '{print $9}' | awk -F ":" '{print $2}')
+ if [ ! -e "$porta_var" ]; then
+ echo -e "$var1 $var2" > $porta_var
+ fi
+ if [ "$(cat $porta_var | grep "$var1" | grep "$var2")" = "" ]; then
+ echo -e "$var1 $var2" >> $porta_var
+ fi
+done < $portas_var
+i=1
+while true; do
+a=$(sed -n "$i"p $porta_var | awk '{print $1}')
+b=$(sed -n "$i"p $porta_var | awk '{print $2}')
+[[ "$a" != "" ]] && texto="\033[1;34m ▸ \033[1;37m$a: \033[1;31m$b" || texto=""
+[[ "$a" = "" ]] && break
+#if [[ $a = "systemd-r" ]];then
+#texto=""
+#fi
+if [[ $a = "nc.tradit" ]];then
+texto1="\033[1;34m ▸ \033[1;37mKeygen: \033[1;31m$b"
+fi
+
+i=$(($i+1))
+c=$(sed -n "$i"p $porta_var | awk '{print $1}')
+d=$(sed -n "$i"p $porta_var | awk '{print $2}')
+[[ "$c" != "" ]] && texto_="\033[1;34m ◂ \033[1;37m$c: \033[1;31m$d" || texto_=""
+[[ "$a" = "" ]] && break
+#if [[ $c = "systemd-r" ]];then
+#texto_=""
+#fi
+if [[ $c = "nc.tradit" ]];then
+texto_1="\033[1;34m ◂ \033[1;37mKeygen: \033[1;31m$d"
+fi
+
+i=$(($i+1))
+echo -e "$texto1  $texto_1"
+done
+rm $portas_var
+rm $porta_var
+}
+####fin puertos
+
+
 [[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="beta-v2ray.sh ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads proxydirect.py ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh proxypriv.py trans verifica confdropbear get netflix.sh PDirect.py proxypub.py ultimatebot versao_script dados.zip idioma_geral MasterBin.sh openproxy.py PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh updateadm fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user"
 IVAR="/etc/http-instas"
 BARRA="\033[1;31m•••••••••••••••••••••••••••••••••••••••••••••••••\033[0m"
@@ -305,6 +355,7 @@ figlet -f future "   ADM-ChumoGH" | lolcat
 echo -e "          Keys Usadas : " $(cat $IVAR) #"\n"
 msg -bar
 echo -e "Ficheros Fijados local en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
+ports_
 msg -bar
 echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m GENERAR 1 KEY ALEATORIA"
 echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m APAGAR/VER KEYS"
