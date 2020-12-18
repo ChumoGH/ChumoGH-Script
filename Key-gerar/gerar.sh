@@ -1,6 +1,9 @@
 #!/bin/bash
 # INSTALACAO BASICA
 clear
+[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="beta-v2ray.sh ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads proxydirect.py ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh proxypriv.py trans verifica confdropbear get netflix.sh PDirect.py proxypub.py ultimatebot versao_script dados.zip idioma_geral MasterBin.sh openproxy.py PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh updateadm fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user"
+IVAR="/etc/http-instas"
+BARRA="\033[1;31m•••••••••••••••••••••••••••••••••••••••••••••••••\033[0m"
 
 msg () {
 BRAN='\033[1;37m' && VERMELHO='\e[31m' && VERDE='\e[32m' && AMARELO='\e[33m'
@@ -20,17 +23,50 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 
 ####inicio puertos
 ports_ () {
+
+portas_var="/tmp/portas"
+porta_var="/tmp/portas2"
+lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" > $portas_var
+while read port; do
+var1=$(echo $port | awk '{print $1}')
+var2=$(echo $port | awk '{print $9}' | awk -F ":" '{print $2}')
+ if [ ! -e "$porta_var" ]; then
+ echo -e "$var1 $var2" > $porta_var
+ fi
+ if [ "$(cat $porta_var | grep "$var1" | grep "$var2")" = "" ]; then
+ echo -e "$var1 $var2" >> $porta_var
+ fi
+done < $portas_var
+
+i=1
+while true; do
+a=$(sed -n "$i"p $porta_var | awk '{print $1}')
+b=$(sed -n "$i"p $porta_var | awk '{print $2}')
+#[[ "$a" != "" ]] && texto="\033[1;34m ▸ \033[1;37m$a: \033[1;31m$b" || texto=""
+[[ "$a" = "" ]] && break
+i=$(($i+1))
+c=$(sed -n "$i"p $porta_var | awk '{print $1}')
+d=$(sed -n "$i"p $porta_var | awk '{print $2}')
+[[ "$c" != "" ]] && texto_="\033[1;34m ◂ \033[1;37m$c: \033[1;31m$d" || texto_=""
+[[ "$a" = "" ]] && break
+if [[ $a = "apache2" ]];then
+echo -e "\033[1;34m ▸ \033[1;37mAPACHE: \033[1;31m$b"
+fi
+i=$(($i+1))
+#echo -e "$texto  $texto_"
+done
+rm $portas_var
+rm $porta_var
+
 porta=`if netstat -tunlp |grep nc.traditional 1> /dev/null 2> /dev/null; then
 echo -e "\033[0;36mKeygen :\033[0;35m 8888"
 fi`;
-echo $porta
+portaa=`if netstat -tunlp |grep apache2 1> /dev/null 2> /dev/null; then
+echo -e "\033[0;36mKeygen :\033[0;35m 8888"
+fi`;
+echo -e "          Keys Usadas : " $(cat $IVAR) $porta
 }
 ####fin puertos
-
-
-[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="beta-v2ray.sh ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads proxydirect.py ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh proxypriv.py trans verifica confdropbear get netflix.sh PDirect.py proxypub.py ultimatebot versao_script dados.zip idioma_geral MasterBin.sh openproxy.py PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh updateadm fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user"
-IVAR="/etc/http-instas"
-BARRA="\033[1;31m•••••••••••••••••••••••••••••••••••••••••••••••••\033[0m"
 
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
@@ -313,7 +349,7 @@ PID_GEN=$(ps x|grep -v grep|grep "http-server.sh")
 echo -e "$BARRA"  #echo -e '\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;33mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;34mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\033[0;31mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 figlet -f future "   ADM-ChumoGH" | lolcat
 [[ ! $PID_GEN ]] && PID_GEN="\033[0;35m[\033[0;31mAPAGADO\033[0;35m]" || PID_GEN="\033[0;35m[\033[0;36mENCENDIDO\033[0;35m]"
-echo -e "          Keys Usadas : " $(cat $IVAR)  ports_
+ports_
 msg -bar
 echo -e "Ficheros Fijados local en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
 
