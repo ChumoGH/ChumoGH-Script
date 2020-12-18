@@ -88,7 +88,6 @@ arq_list[$i]="${arqx}"
 let i++
 done
 echo -e "[cgh] -> \033[0;33mINSTALACIÓN ADM-CHUMOGH\033[0m"
-echo -e "[russ] -> \033[0;33mINSTALACIÓN ADM-RUSSEL\033[0m"
 read -p "Elija los archivos que se van a repasar: " readvalue
 #CRIA KEY
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
