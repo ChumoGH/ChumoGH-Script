@@ -356,7 +356,5 @@ elif [[ ${varread} = 7 ]]; then
 fum_ver
 elif [[ ${varread} = 8 ]]; then
 act_gen
-elif [[ ${varread} = 9]]; then
-att_gen_key 
 fi
 gerar
