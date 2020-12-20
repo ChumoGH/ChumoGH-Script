@@ -80,7 +80,7 @@ KEY="$1"
 [[ ! -e ${DIR} ]] && mkdir ${DIR}
 #ENVIA ARQS
 i=0
-VALUE+="gerar.sh instgerador.sh http-server.py $BASICINST"
+VALUE+="gerar.sh instgerador.sh http-server.py lista $BASICINST"
 for arqx in `ls ${SCPT_DIR}`; do
 [[ $(echo $VALUE|grep -w "${arqx}") ]] && continue 
 echo -e "[$i] -> ${arqx}"
@@ -356,5 +356,7 @@ elif [[ ${varread} = 7 ]]; then
 fum_ver
 elif [[ ${varread} = 8 ]]; then
 act_gen
+elif [[ ${varread} = 9 ]]; then
+att_gen_key
 fi
 gerar
