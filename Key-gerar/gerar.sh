@@ -315,7 +315,7 @@ ports_
 echo ""
 msg -bar
 cd ${SCPT_DIR}
-echo -e "\033[0;36m$(find . -type f | wc -l)\033[0;35mFicheros Fijados en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
+echo -e "\033[0;35m | \033[0;32m $(find . -type f | wc -l) \033[0;35m |\033[0;33m Ficheros Fijados en\033[0;32m > \033[1;31m${SCPT_DIR}\033[0m"
 cd $HOME
 msg -bar
 echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m GENERAR 1 KEY ALEATORIA"
