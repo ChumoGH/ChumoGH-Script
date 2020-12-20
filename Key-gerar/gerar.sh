@@ -326,11 +326,12 @@ echo -e "\033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m<\033[0;33m INICIAR/PARAR K
 echo -e "\033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m<\033[0;33m REGISTRO DE KEYS"
 echo -e "\033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m<\033[0;33m Checar KEY ACTIVADA"
 echo -e "\033[0;35m[\033[0;36m8\033[0;35m] \033[0;34m<\033[0;33m ACTUALIZAR GENERADOR"
-echo -e "\033[0;35m[\033[0;36mO\033[0;35m] \033[0;34m<\033[0;33m SALIR"
+echo -e "\033[0;35m[\033[0;36m9\033[0;35m] \033[0;34m<\033[0;33m FIJAR Key"
+echo -e "\033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m<\033[0;33m SALIR"
 echo -e "$BARRA"
 
 }
-while [[ ${varread} != @([0-8]) ]]; do
+while [[ ${varread} != @([0-9]) ]]; do
 menau
 read -p "ESCOJE: " varread
 done
@@ -355,5 +356,7 @@ elif [[ ${varread} = 7 ]]; then
 fum_ver
 elif [[ ${varread} = 8 ]]; then
 act_gen
+elif [[ ${varread} = 9]]; then
+att_gen_key 
 fi
 gerar
