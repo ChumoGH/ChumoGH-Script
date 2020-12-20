@@ -39,9 +39,8 @@ echo -e "$barra"
 menu
 }
 act_hora2 () {
-echo "America/Hermosillo"
-echo "America/Hermosillo" > /etc/timezone
-ln -fs /usr/share/zoneinfo/America/Hermosillo /etc/localtime > /dev/null 2>&1
+echo "Argentina"
+ln -sf /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
 menu
@@ -109,10 +108,10 @@ unset opx
 echo -e " \033[1;36m ZONA HORARIO \033[1;32m[ChumoGH-ADM]"
 echo -e "$barra"
 while true; do
-echo -e "${cor[4]} [1] > ${cor[5]}ACTUALIZAR HORARIO  CHICHUAHUA"
-echo -e "${cor[4]} [2] > ${cor[5]}ACTUALIZAR HORARIO  MEXICO"
-echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO  HERMOSILLO"
-echo -e "${cor[4]} [4] > ${cor[5]}ACTUALIZAR HORARIO  AMERICA/SANTIAGO"
+echo -e "${cor[4]} [1] > ${cor[5]}ACTUALIZAR HORARIO Local CHICHUAHUA"
+echo -e "${cor[4]} [2] > ${cor[5]}ACTUALIZAR HORARIO Local MEXICO"
+echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO Local Argentina
+echo -e "${cor[4]} [4] > ${cor[5]}ACTUALIZAR HORARIO Local AMERICA/SANTIAGO"
 echo -e "${cor[4]} [5] > ${cor[2]}VER ZONA HORARIA ACTUAL "
 echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO  America/New_York"
 echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO  America/Guatemala"
