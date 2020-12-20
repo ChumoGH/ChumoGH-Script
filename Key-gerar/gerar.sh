@@ -95,6 +95,14 @@ read -p "Elija los archivos que se van a repasar: " readvalue
 [[ -z $readvalue ]] && readvalue="cgh"
 read -p "Nombre de usuario ( dueño de la key ): " nombrevalue
 [[ -z $nombrevalue ]] && nombrevalue="SIN NOMBRE"
+echo -e "Deseas colocar una IP Fija\n" 
+while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
+read -p "[S/N]: " yesno
+tput cuu1 && tput dl1
+done
+if [[ ${yesno} = @(s|S|y|Y) ]]; then
+read -p "Ingresa Key FIJA ( IP a USAR ): "  IPFIX
+fi
 if [[ $readvalue = @(cgh|CGH) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
