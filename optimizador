@@ -56,10 +56,13 @@ echo "sudo sysctl -w vm.drop_caches=3" >> /bin/ejecutar/automatizar.sh
 echo "sysctl -w vm.drop_caches=3 > /dev/null 2>&1" >> /bin/ejecutar/automatizar.sh
 echo "swapoff -a && swapon -a 1> /dev/null 2> /dev/null"  >> /bin/ejecutar/automatizar.sh
 echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
+echo 'sudo apt autoremove -y' >> /bin/ejecutar/automatizar.sh
+echo 'sudo apt purge & sudo apt clean ' >> /bin/ejecutar/automatizar.sh
+echo 'sudo rm /var/lib/apt/lists/lock && sudo rm /var/cache/apt/archives/lock && sudo rm /var/lib/dpkg/lock' >> /bin/ejecutar/automatizar.sh
 echo 'echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
-echo 'tiempo=$(hwclock)' >> /bin/ejecutar/automatizar.sh
+echo 'tiempo=$(printf '%(%D-%H:%M:%S)T') ' >> /bin/ejecutar/automatizar.sh
 echo 'echo $tiempo >> /tmp/dropcache' >> /bin/ejecutar/automatizar.sh
-echo "reiniciar_ser >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
+echo "reiniciar_ser > /root/lm.log" >> /bin/ejecutar/automatizar.sh
 echo "echo -e >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
 echo "echo "Limpio $tiempo" >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/ejecutar/crontab.original
