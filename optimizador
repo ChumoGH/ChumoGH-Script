@@ -58,9 +58,9 @@ echo "swapoff -a && swapon -a 1> /dev/null 2> /dev/null"  >> /bin/ejecutar/autom
 echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
 echo 'sudo apt autoremove -y' >> /bin/ejecutar/automatizar.sh
 echo 'sudo apt purge & sudo apt clean ' >> /bin/ejecutar/automatizar.sh
-echo 'sudo rm /var/lib/apt/lists/lock && sudo rm /var/cache/apt/archives/lock && sudo rm /var/lib/dpkg/lock' >> /bin/ejecutar/automatizar.sh
-echo 'echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
-echo 'tiempo=$(printf '%(%D-%H:%M:%S)T') ' >> /bin/ejecutar/automatizar.sh
+echo 'sudo rm /var/lib/apt/lists/lock && sudo rm /var/cache/apt/archives/lock && sudo rm /var/lib/dpkg/lock
+echo "Memoria Liberada"
+tiempo=$(printf '%(%D-%H:%M:%S)T') ' >> /bin/ejecutar/automatizar.sh
 echo 'echo $tiempo >> /tmp/dropcache' >> /bin/ejecutar/automatizar.sh
 echo "reiniciar_ser > /root/lm.log" >> /bin/ejecutar/automatizar.sh
 echo "echo -e >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
