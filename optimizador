@@ -10,11 +10,13 @@ echo 'source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script
 chmod +x /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/ejecutar/crontab.original
 sed '/automatizar.sh/ d' /etc/crontab > /bin/ejecutar/crontab
+sed '/https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/killram.sh/ d' /etc/crontab >> /bin/ejecutar/crontab
 cat /bin/ejecutar/crontab > /etc/crontab
 echo -e "Activando autolimpieza del Servidor"
 echo -e "Todos los días a las 12 se limpiará el Servidor automáticamente"
 echo "00 00 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
 echo "00 12 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
+echo "00 * * * * root source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/killram.sh)" >> /etc/crontab
 cat /etc/crontab
 sleep 1s
 echo -e "Finalizando activacion"
