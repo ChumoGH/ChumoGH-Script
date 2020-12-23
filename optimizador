@@ -6,65 +6,8 @@ opti=$(cat /bin/ejecutar/val)
 if [ "$opti" = "0" ]; then
 echo "activado" > /bin/ejecutar/val1
 echo "1" > /bin/ejecutar/val
-echo 'reiniciar_ser () {
-##
-echo -ne " \033[1;31m[ ! ] Services BadVPN and Netflix restart"
-kill -9 $(ps x | grep badvpn | grep -v grep | awk '{print $1'}) > /dev/null 2>&1
-killall badvpn-udpgw > /dev/null 2>&1
-unset pid_badvpn
-[[ -e /bin/badvpn-udpgw ]] && screen -dmS screen /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 > /dev/null 2>&1 && bash <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/netflix.sh) > /dev/null && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-pid_badvpn=$(ps x | grep badvpn | grep -v grep | awk '{print $1}')
-##
-echo -ne " \033[1;31m[ ! ] Services stunnel4 restart"
-service stunnel4 restart > /dev/null 2>&1
-[[ -e /etc/init.d/stunnel4 ]] && /etc/init.d/stunnel4 restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services V2RAY restart"
-service v2ray restart > /dev/null 2>&1
-[[ -e /etc/v2ray/config.json ]] && v2ray restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services squid restart"
-service squid restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services squid3 restart"
-service squid3 restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services apache2 restart"
-service apache2 restart > /dev/null 2>&1
-[[ -e /etc/init.d/apache2 ]] && /etc/init.d/apache2 restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services openvpn restart"
-service openvpn restart > /dev/null 2>&1
-[[ -e /etc/init.d/openvpn ]] && /etc/init.d/openvpn restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services dropbear restart"
-service dropbear restart > /dev/null 2>&1
-[[ -e /etc/init.d/dropbear ]] && /etc/init.d/dropbear restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services ssh restart"
-service ssh restart > /dev/null 2>&1
-[[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services fail2ban restart"
-( 
-[[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart
-fail2ban-client -x stop && fail2ban-client -x start
-) > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-return
-}' > /bin/ejecutar/automatizar.sh
+echo 'source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/gnula.sh)' > /bin/ejecutar/automatizar.sh
 chmod +x /bin/ejecutar/automatizar.sh
-echo "Limpiando sistema y Reiniciando Servicios"
-echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
-sysctl -w vm.drop_caches=3 1> /dev/null 2> /dev/null
-swapoff -a && swapon -a 1> /dev/null 2> /dev/null
-echo "Limpieza Finalizada"
-echo "echo 3 > /proc/sys/vm/drop_caches" >> /bin/ejecutar/automatizar.sh
-echo "sudo sync"  >> /bin/ejecutar/automatizar.sh
-echo "sudo sysctl -w vm.drop_caches=3" >> /bin/ejecutar/automatizar.sh
-echo "sysctl -w vm.drop_caches=3 > /dev/null 2>&1" >> /bin/ejecutar/automatizar.sh
-echo "swapoff -a && swapon -a 1> /dev/null 2> /dev/null"  >> /bin/ejecutar/automatizar.sh
-echo "rm -rf /tmp/*" >> /bin/ejecutar/automatizar.sh
-echo 'sudo apt autoremove -y' >> /bin/ejecutar/automatizar.sh
-echo 'sudo apt purge & sudo apt clean ' >> /bin/ejecutar/automatizar.sh
-echo 'sudo rm /var/lib/apt/lists/lock && sudo rm /var/cache/apt/archives/lock && sudo rm /var/lib/dpkg/lock
-echo "Memoria Liberada"' >> /bin/ejecutar/automatizar.sh
-echo "tiempo=$(printf '%(%D-%H:%M:%S)T') " >> /bin/ejecutar/automatizar.sh
-echo 'echo $tiempo >> /tmp/dropcache' >> /bin/ejecutar/automatizar.sh
-echo "reiniciar_ser > /root/lm.log" >> /bin/ejecutar/automatizar.sh
-echo "echo -e >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
-echo "echo "Limpio $tiempo" >> /root/lm.log" >> /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/ejecutar/crontab.original
 sed '/automatizar.sh/ d' /etc/crontab > /bin/ejecutar/crontab
 cat /bin/ejecutar/crontab > /etc/crontab
@@ -73,11 +16,10 @@ echo -e "Todos los días a las 12 se limpiará el Servidor automáticamente"
 echo "00 00 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
 echo "00 12 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
 cat /etc/crontab
-sleep 5s
+sleep 1s
 echo -e "Finalizando activacion"
 _opti="\033[1;31m${txt[11]}"
 else
 unset _opti
 _opti="\033[1;32m${txt[10]}"
 fi
-
