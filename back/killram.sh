@@ -4,8 +4,8 @@ idm=$(echo $idM |sed 's/[a-z]//g')
 n=90
 tiempo=$(printf '%(%D-%H:%M:%S)T') 
 if [ "$n" -gt "$idm" ]; then 
-echo $idm "Limpiando y Reiniciado por sobreConsumo el " $tiempo
+echo $idm "Limpiando y Reiniciado por sobreConsumo el " $tiempo >> /root/lm.log
 source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/gnula.sh)
 else 
-echo $n " Esta bajo el limite en " $tiempo 
+echo $n " Esta bajo el limite en " $tiempo >> /root/lm.log
 fi
