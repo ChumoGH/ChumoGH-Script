@@ -10,6 +10,7 @@ killall apt apt-get &> /dev/null
 TIME_START="$(date +%s)"
 DOWEEK="$(date +'%u')"
 [[ -e $HOME/cgh.sh ]] && rm $HOME/cgh.*
+[[ -e $HOME/instala.sh ]] && rm $HOME/instala.*
 dpkg --configure -a
 fun_bar3 () {
 comando="$1"
