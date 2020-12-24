@@ -1,4 +1,12 @@
 #!/bin/bash
+## Title printing function
+function printTitle
+{
+    echo ""
+    echo -e "\033[1;92m$1\033[1;91m"
+    printf '%0.s-' $(seq 1 ${#1})
+    echo ""
+}
 killall apt apt-get &> /dev/null
 TIME_START="$(date +%s)"
 DOWEEK="$(date +'%u')"
@@ -107,5 +115,9 @@ clear
 wget -q -O cgh.sh $RE;chmod +x cgh.sh && ./cgh.sh
 rm -f instala.*
 rm -f cgh.*
+printTitle "Tiempo que tomó Actulizacion de Repositorios de UBUNTU"
+echo "$((($(date +%s)-$TIME_START)/60)) min."
+msg -bar2
+echo -e "\033[93m         -- ACTULIZACION DE UBUNTU COMPLETA -- "
 read -p "Presiona Enter para Continuar"
 cgh
