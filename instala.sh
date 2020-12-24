@@ -86,6 +86,7 @@ update_pak () {
 echo -ne " \033[1;31m[ ! ]  TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!  [ ! ]"
 echo -e ' '
 #fun_bar1 'apt-add-repository universe -y'
+fun_ba1
 #echo -e ' '
 #fun_bar1 'sudo add-apt-repository ppa:neurobin/ppa'
 echo -ne " \033[1;31m[ ! ] apt-get update"
