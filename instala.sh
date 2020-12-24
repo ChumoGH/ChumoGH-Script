@@ -115,7 +115,7 @@ clear
 wget -q -O cgh.sh $RE;chmod +x cgh.sh && ./cgh.sh
 rm -f instala.*
 rm -f cgh.*
-printTitle "Tiempo que tomó Actulizacion de Repositorios de UBUNTU"
+printTitle "Duracion de Uso del Instalador ADM"
 echo "$((($(date +%s)-$TIME_START)/60)) min."
 msg -bar2
 echo -e "\033[93m         -- ACTULIZACION DE UBUNTU COMPLETA -- "
