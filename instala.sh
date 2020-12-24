@@ -1,5 +1,4 @@
 #!/bin/bash
-## Title printing function
 function printTitle
 {
     echo ""
@@ -10,8 +9,7 @@ function printTitle
 killall apt apt-get &> /dev/null
 TIME_START="$(date +%s)"
 DOWEEK="$(date +'%u')"
-HOSTNAME="$(hostname)"
-rm -rf cgh.*
+[[ -e $HOME/cgh.sh ]] && rm $HOME/cgh.*
 dpkg --configure -a
 fun_bar3 () {
 comando="$1"
