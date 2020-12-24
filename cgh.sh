@@ -121,8 +121,8 @@ echo 'echo -e " $(source trans -b pt:${id} "Nombre del Servidor") : $HOSTNAME"' 
 echo 'echo -e " $(source trans -b pt:${id} "Fecha del Servidor") : $DATE"' >> /root/.bashrc
 echo 'echo -e " $(source trans -b pt:${id} "Hora del Servidor") : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Bienvenido!")"' >> .bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Teclee cgh o menu para ver el listado de comandos.")"' >> /root/.bashrc
+echo 'echo -e " $(source trans -b pt:${id} "Bienvenido!"' >> .bashrc
+echo 'echo -e " T eclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo " $(source trans -b pt:${id} "STARTUP AGREGADO EXITOSAMENTE")"
 sleep 2
@@ -145,7 +145,7 @@ mkdir /bin/ejecutar
 echo $opti > /bin/ejecutar/val
 echo $opti > /bin/ejecutar/uskill
 echo "desactivado" > /bin/ejecutar/val1
-echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2020" > /etc/adm-lite/exito
+echo "Verified 【 匚 卄 ㄩ 爪 ㄖ Ꮆ 卄 】 ADM 2021" > /etc/adm-lite/exito
 chmod +x /etc/adm-lite/exito
 echo -e "${cor[5]} $(source trans -b pt:${id} "NOMBRE AGREGADO EXITOSAMENTE")"
 echo -ne " \033[0m"
@@ -161,16 +161,13 @@ echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Ahora puedes acced
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, chumogh"
 echo $fecha > /bin/ejecutar/fecha
+echo $key > /bin/ejecutar/key.fix
 echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 echo ""
 figlet $name | lolcat
-rm -f instala.*
-rm -f cgh.*
-echo " Presiona Enter para Continuar"
-read -p " "
-cgh
+exit
 }
 ofus () {
 unset txtofus
