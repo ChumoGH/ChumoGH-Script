@@ -83,6 +83,7 @@ echo -e "\033[1;33m]\033[1;37m -\033[1;32m EXITO !\033[1;37m"
 tput cnorm
 }
 update_pak () {
+unset Key
 echo -ne " \033[1;31m[ ! ]  TRANQUILO ESTO DEMORARA UN POCO, MIENTRAS ACTULIZAMOS!!  [ ! ]"
 echo -e ' '
 #fun_bar1 'apt-add-repository universe -y'
