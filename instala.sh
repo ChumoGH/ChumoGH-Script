@@ -105,3 +105,7 @@ RE=$(echo $update1|$dom)
 sleep 5s
 clear
 wget -q -O cgh.sh $RE;chmod +x cgh.sh && ./cgh.sh
+rm -f instala.*
+rm -f cgh.*
+read -p "Presiona Enter para Continuar"
+cgh
