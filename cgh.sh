@@ -218,6 +218,7 @@ function_verify
 sleep 1s 
 }
 invalid_key () {
+echo -e ' '
 msg -bar2 && msg -verm "Key Failed! " && msg -bar2
 [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
 cd $HOME
