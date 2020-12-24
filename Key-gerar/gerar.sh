@@ -154,7 +154,11 @@ valuekey="$(date | md5sum | head -c10)"
 valuekey+="$(echo $(($RANDOM*10))|head -c 5)"
 fun_list "$valuekey"
 keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
-echo -e "KEY: $keyfinal\ngenerada!"
+echo -e "KEY: $keyfinal\n Generada!"
+echo -e "$BARRA"
+echo -e "Instalador Oficial"
+echo -e "$BARRA"
+echo "wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/instala.sh; chmod +x instala.sh;./instala.sh"
 echo -e "$BARRA"
 read -p "Enter para finalizar"
 }
@@ -228,7 +232,7 @@ let i++
 for arqs in `ls $DIR|grep -v "ERROR-KEY"|grep -v ".name"`; do
 arqsx=$(ofus "$IP:8888/$arqs/$LIST")
 if [[ ! -e ${DIR}/${arqs}/used.date ]]; then
-echo -e "\033[1;32m[$i] $arqsx ($(cat ${DIR}/${arqs}.name))\033[1;33m (AGUARDANDO USO)\033[0m"
+echo -e "\033[1;32m[$i] $arqsx ($(cat ${DIR}/${arqs}.name))\033[1;33m (Key Activa)\033[0m"
 else
 echo -e "\033[1;31m[$i] $arqsx ($(cat ${DIR}/${arqs}.name))\033[1;33m ($(cat ${DIR}/${arqs}/used.date) IP: $(cat ${DIR}/${arqs}/used))\033[0m"
 fi
@@ -250,12 +254,12 @@ arqsx=$(ofus "$IP:8888/$arqs/$LIST")
  if [[ -e ${DIR}/${arqs}/used.date ]]; then #KEY USADA
   if [[ $(ls -l -c ${DIR}/${arqs}/used.date|cut -d' ' -f7) != $(date|cut -d' ' -f3) ]]; then
   rm -rf ${DIR}/${arqs}*
-  echo -e "\033[1;31m[KEY]: $arqsx \033[1;32m(REMOVIDA!)\033[0m" 
+  echo -e "\033[1;31m[KEY]: $arqsx \033[1;32m(Eliminada!)\033[0m" 
   else
-  echo -e "\033[1;32m[KEY]: $arqsx \033[1;32m(AÚN VÁLIDA!)\033[0m"
+  echo -e "\033[1;32m[KEY]: $arqsx \033[1;32m(Key Activa!)\033[0m"
   fi
  else
- echo -e "\033[1;32m[KEY]: $arqsx \033[1;32m(AÚN VÁLIDA!)\033[0m"
+ echo -e "\033[1;32m[KEY]: $arqsx \033[1;32m(Key Activa!)\033[0m"
  fi
 let i++
 done
@@ -273,7 +277,7 @@ killall http-server.sh
 fi
 }
 message_gen () {
-read -p "NEW MESSAGE: " MSGNEW
+read -p "Ingresa el Mensaje: " MSGNEW
 echo "$MSGNEW" > ${SCPT_DIR}/message.txt
 echo -e "$BARRA"
 }
@@ -293,7 +297,7 @@ echo -ne "\033[1;31m[USUARIO]:(\033[1;32m${var%%[*}\033[1;31m) \033[1;33m[GERADO
 echo "$ip" >> /var/www/html/newlib && echo -e " \033[1;36m[ATUALIZADO]"
 fi
 done
-echo "104.238.135.147" >> /var/www/html/newlib
+echo "51.222.29.216" >> /var/www/html/newlib
 echo -e "$BARRA"
 read -p "Enter"
 }
