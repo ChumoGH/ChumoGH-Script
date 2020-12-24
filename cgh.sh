@@ -152,8 +152,8 @@ echo -ne " \033[0m"
 clear
 cowsay -f stegosaurus " $(source trans -b pt:${id} "BIENVENIDO Y GRACIAS POR UTILIZAR ") ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-#echo -e " $(source trans -b pt:${id} "Tiempo que tomó Actualizacion e Instalacion")"
-#echo "$((($(date +%s)-$TIME_START)/60)) min."
+echo -e "\033[1;32m$(source trans -b pt:${id} " CAMBIAR ZONA HORARIA EN ( * \033[1;33m menu\033[1;32m *\033[1;33m opcion 7 \033[1;32m*\033[1;33m opcion 14 \033[1;32m)")"
+echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} $(source trans -b pt:${id} "INSTALACION DE ChumoGH-Pannel Instalada Correctamente!")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE")"
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
@@ -226,31 +226,29 @@ cd $HOME
 [[ -d $HOME/chumogh ]] && rm -rf $HOME/chumogh
 [[ -e /bin/menu ]] && rm /bin/menu
 [[ -e $HOME/chumogh ]] && rm -rf $HOME/chumogh
-rm -f setup.* > /dev/null
 rm -f instala.*  > /dev/null
 rm -f /bin/cgh > /dev/null
-rm -f /bin/menu > /dev/null
 rm -rf /bin/ejecutar > /dev/null
-unset * > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
-cowsay  "☆ChumoGH☆ ADM SCRIPT Te agradece por preferirnos, pero desafortunadamente tu Key es INVALIDA" > error.log
+unset key > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo" > error.log
+cowsay  "☆ChumoGH☆ ADM SCRIPT Te agradece por preferirnos, pero desafortunadamente tu Key es INVALIDA" >> error.log
 echo "Key Invalida, Contacta con el Desarrolador" >> error.log
 echo "  ● Compra Keys al +593987072611 " >> error.log
 echo -e ' t.me/ChumoGH  - @ChumoGH' >> error.log
 cat error.log | lolcat
-rm $(pwd)/$0 > /dev/null 2>&1 && echo -e "\033[1;31m- \033[1;32mExito!" || echo -e "\033[1;31m- \033[1;31mFallo"
+exit
 }
+
 while [[ ! $Key ]]; do
 clear
 cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR - - - - - - - -【 ★ ChumoGH ★ 】 ADM 2021 "| lolcat
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games;
 echo -e "\033[1;32m ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ "
-msg -ne "Script Key: " && read Key
+msg -ne "Key de Instalacion: " && read Key
 tput cuu1 && tput dl1
 done
 msg -ne "Key: "
 cd $HOME
 wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Verificando" || {
-   echo -e "\033[1;32m Verified"
    invalid_key
    }
 echo -e "\033[1;32m Verified"
