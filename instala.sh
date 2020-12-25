@@ -110,6 +110,6 @@ wget -q -O cgh.sh $RE;chmod +x cgh.sh && ./cgh.sh
 rm -f instala.*
 rm -f cgh.*
 printTitle "Duracion de Uso del Instalador ADM"
-echo "$((($(date +%s)-$TIME_START)/60)) min."
+echo -e "   Ejecucion de  $((($(date +%s)-$TIME_START)/60)) min."
 read -p "Presiona Enter para Continuar"
 [[ -e /etc/adm-lite/menu ]] && cgh
