@@ -18,19 +18,15 @@ SCPinst="${SCPdir}"
 
 update_pak () {
 echo -ne " \033[1;31m[ ! ] Install SysBanner"
-#snap install sysvbanner -y > /dev/null 2>&1 && 
 apt install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Lolcat   "
-#snap install lolcat -y > /dev/null 2>&1 && 
 apt install lolcat -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Figlet   "
-#snap install figlet -y > /dev/null 2>&1 && 
 apt install figlet -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Cowsay   "
-apt install boxes -y > /dev/null 
 apt install cowsay -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
-echo -e " LOLCAT - FIGLET - COWSAY - BOXES INSTALADOS CORRECTAMENTE "| lolcat
-sleep 5s
+echo -e " LOLCAT - FIGLET - COWSAY - TOILET INSTALADOS CORRECTAMENTE "| lolcat
+sleep 2s
 return
 }
 
@@ -131,7 +127,7 @@ fi
 clear
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[5]}  $(source trans -b pt:${id} " Agregaremos un nombre de tu servidor.... OPCIONAL")"
-echo -e "${cor[3]} $(source trans -b pt:${id} "Maximo 10 Caracteres. Para no Dañar el DISEÑO-INTERFAZ")"
+echo -e "${cor[3]} $(source trans -b pt:${id} "Maximo 10 Caracteres. Para no distorcionar el DISEÑO/INTERFAZ")"
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -ne " Nombre del Servidor : "; read name
 echo $name > /etc/adm-lite/name
@@ -268,11 +264,10 @@ update-locale LANG=en_US.UTF-8 > /dev/null 2>&1
 apt-get install gawk -y > /dev/null 2>&1
 wget -O trans https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/trans -o /dev/null 2>&1
 mv -f ./trans /bin/ && chmod 777 /bin/*
-#cowsay -f stegosaurus 
-echo -e "    BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
-#echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
-echo -e "${cor[2]}ESCOJE TU IDIOMA DE PRERENCIA\n(Default : Español)\n${cor[1]}==================================\n${cor[2]}   [1]-BRASILEÑO : [2]-INGLES\n   [3]-ESPAÑOL   : [4]-FRANCES\n [5]-ITALIANO : [6]-CHINO"  | boxes -d twisted -a c | lolcat
-#echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=" | lolcat
+cowsay -f ghostbusters "    ESCOJE TU IDIOMA DE PRERENCIA"| lolcat
+echo -e "${cor[1]}==================================" | lolcat
+echo -e "${cor[2]}       (Default : Español)\n${cor[1]}==================================\n${cor[2]}   [1]-BRASILEÑO : [2]-INGLES\n   [3]-ESPAÑOL   : [4]-FRANCES\n   [5]-ITALIANO  : [6]-CHINO"
+echo -e "${cor[1]}==================================" | lolcat
 echo -ne " ESCOJE: "; read lang
 case $lang in
 1)
