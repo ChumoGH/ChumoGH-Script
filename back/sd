@@ -1,0 +1,1 @@
+trans -b pt:es "echo "浏览器访问'`colorEcho $BLUE https://域名`'可在线trojan多用户管理""
