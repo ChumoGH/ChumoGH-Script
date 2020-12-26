@@ -43,7 +43,7 @@ function restaurar_usuarios(){
 cd $HOME
 echo -n "INGRESE LINK DEL POSTER DE BACKUP : " 
 read url1
-wget -O recovey $url1 -o && echo -e "\033[1;31m- \033[1;32mFile Exito!" || echo -e "\033[1;31m- \033[1;31mFile Fallo"
+wget -q -O recovey $url1 && echo -e "\033[1;31m- \033[1;32mFile Exito!" || echo -e "\033[1;31m- \033[1;31mFile Fallo"
 #echo -n "Escriba el directorio del archivo Backup: "
 echo -e "\033[1;37mRestaurando Usuarios...\033[0m"
 [[ -d $HOME/recovery ]] && arq="$HOME/recovery" || exit 
