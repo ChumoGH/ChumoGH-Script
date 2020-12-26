@@ -5,12 +5,12 @@ bc="$HOME/backup"
 echo -e "\033[1;33mMenu de Respaldos de Usuarios\033[1;30m
 1) Crear respaldo de usuarios
 2) Restaurar usuarios de un backup"
-read -p "opcion: " option
+read -p "ECOJE: " option
 function backup_de_usuarios(){
 clear
 [[ -d $bc ]] && rm $bc
 echo -e "\033[1;37mHaciendo Backup de Usuarios...\033[0m"
-for user in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]`
+for user in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9] |sort`
 do
 if [ -e $dir$dir_user/$user ]
 then
@@ -25,7 +25,9 @@ fi
 if [ -e $dir$dir_user/$user ]
 then
 limite=$(cat $dir$dir_user/$user | grep "limite" | awk '{print $2}')
-
+ if [ -z "$limite" ]; then
+limite="5"
+ fi
 echo "$user:$pass:$limite" >> $bc
 echo -e "\033[1;37mUser $user Backup [\033[1;31mOK\033[1;37m]\033[0m"
 else
