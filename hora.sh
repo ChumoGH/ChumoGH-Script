@@ -110,7 +110,7 @@ echo -e "$barra"
 while true; do
 echo -e "${cor[4]} [1] > ${cor[5]}ACTUALIZAR HORARIO Local CHICHUAHUA"
 echo -e "${cor[4]} [2] > ${cor[5]}ACTUALIZAR HORARIO Local MEXICO"
-echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO Local Argentina
+echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO Local Argentina"
 echo -e "${cor[4]} [4] > ${cor[5]}ACTUALIZAR HORARIO Local AMERICA/SANTIAGO"
 echo -e "${cor[4]} [5] > ${cor[2]}VER ZONA HORARIA ACTUAL "
 echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO  America/New_York"
