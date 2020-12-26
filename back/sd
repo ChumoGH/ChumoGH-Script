@@ -1,2 +1,3 @@
 echo "traduciendo"
 trans -b pt:es "浏览器访问 colorEcho $BLUE https://域名 可在线trojan多用户管理"
+echo ""
