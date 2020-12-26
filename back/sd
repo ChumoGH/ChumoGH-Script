@@ -8,7 +8,7 @@ echo -e "\033[1;33mMenu de Respaldos de Usuarios\033[1;30m
 read -p "ECOJE: " option
 function backup_de_usuarios(){
 clear
-rm -f $bc
+[[ -e $bc ]] && rm $bc
 echo -e "\033[1;37mHaciendo Backup de Usuarios...\033[0m"
 for user in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9] |sort`
 do
@@ -42,7 +42,7 @@ read url1
 wget -q -O recovey $url1 && echo -e "\033[1;31m- \033[1;32mFile Exito!" || echo -e "\033[1;31m- \033[1;31mFile Fallo"
 #echo -n "Escriba el directorio del archivo Backup: "
 echo -e "\033[1;37mRestaurando Usuarios...\033[0m"
-[[ -d $HOME/recovery ]] && arq="$HOME/recovery" || return  
+[[ -e $HOME/recovery ]] && arq="$HOME/recovery" || return 
 for user in `cat $arq`
 do
 usuario=$(echo "$user" |awk -F : '{print $1}')
