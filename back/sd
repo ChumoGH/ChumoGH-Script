@@ -18,6 +18,9 @@ pass=$(cat $dir$dir_user/$user | grep "senha" | awk '{print $2}')
 else
 echo -e "\033[1;31mNo fue posible obtener la contraseña del usuario\033[1;37m ($user)"
 read -p "Introduzca la contraseña manualmente o pulse ENTER: " pass
+ if [ -z "$pass" ]; then
+pass="$user"
+ fi
 fi
 if [ -e $dir$dir_user/$user ]
 then
