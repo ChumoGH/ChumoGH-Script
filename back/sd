@@ -18,7 +18,6 @@ else
 echo -e "\033[1;31mNo fue posible obtener la contraseña del usuario\033[1;37m ($user)"
 read -p "Introduzca la contraseña manualmente o pulse ENTER: " pass
 fi
-
 if [ -e $dir$dir_user/$user ]
 then
 limite=$(cat /etc/VpsPackdir/limite/$user)
@@ -71,10 +70,8 @@ done
 }
 if [ $option -eq 1 ]; then
 backup_de_usuarios
-exit 0
 fi
 
 if [ $option -eq 2 ]; then
 restaurar_usuarios
-exit
 fi
