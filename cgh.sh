@@ -117,8 +117,8 @@ echo 'echo -e " $(source trans -b pt:${id} "Nombre del Servidor") : $HOSTNAME"' 
 echo 'echo -e " $(source trans -b pt:${id} "Fecha del Servidor") : $DATE"' >> /root/.bashrc
 echo 'echo -e " $(source trans -b pt:${id} "Hora del Servidor") : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Bienvenido!"' >> .bashrc
-echo 'echo -e " T eclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
+echo 'echo -e " $(source trans -b pt:${id} "Bienvenido!")"' >> .bashrc
+echo 'echo -e " Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo " $(source trans -b pt:${id} "STARTUP AGREGADO EXITOSAMENTE")"
 sleep 2
