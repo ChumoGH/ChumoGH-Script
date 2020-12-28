@@ -54,6 +54,6 @@ sudo apt purge & sudo apt clean
 sudo rm /var/lib/apt/lists/lock && sudo rm /var/cache/apt/archives/lock && sudo rm /var/lib/dpkg/lock
 tiempo=$(printf '%(%D-%H:%M:%S)T') 
 echo $tiempo >> /tmp/dropcache
-#reiniciar_ser >> /root/lm.log
+reiniciar_ser >> /root/lm.log
 echo -e >> $HOME/lm.log
 echo "Limpio >" $tiempo >> /root/lm.log
