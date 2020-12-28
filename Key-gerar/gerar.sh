@@ -27,10 +27,10 @@ porta=`if netstat -tunlp |grep nc.tradit 1> /dev/null 2> /dev/null; then
 echo -e "\033[0;36m   Keygen:\033[0;35m 8888"
 fi`;
 [[ $v1 = $v2 ]] && vesaoSCT="\033[1;32m${txt[315]} \033[0;33m ($v2)" || vesaoSCT="\033[1;31m${txt[316]}\033[0;33m($v2) ► \033[1;32m($v1)\033[1;31m"
-echo -e "     ${cor[2]} ${vesaoSCT} ${cor[0]}"
+echo -e "   ${cor[2]} ${vesaoSCT} ${cor[0]}"
 msg -bar
-echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta \n"
-echo -e "System: " $(cat /etc/issue.net)
+echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta "
+#echo -e "System: " $(cat /etc/issue.net)
 }
 ####fin puertos
 
