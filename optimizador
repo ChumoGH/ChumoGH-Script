@@ -10,6 +10,7 @@ echo 'source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script
 echo 'source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/killram.sh)' > /bin/ejecutar/gnula.sh
 chmod +x /bin/ejecutar/automatizar.sh
 cp /etc/crontab /bin/ejecutar/crontab.original
+sed -i "s;00 00 * * * root bash /bin/ejecutar/automatizar.sh;#;g" /etc/crontab
 sed '/automatizar.sh/ d' /etc/crontab > /bin/ejecutar/crontab
 cat /bin/ejecutar/crontab > /etc/crontab
 sed '/gnula.sh/ d' /etc/crontab > /bin/ejecutar/crontab
