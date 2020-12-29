@@ -1,5 +1,7 @@
 #source <(curl -sL https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/SCRIPT/C-SSR.sh)
-msg () {
+
+
+echo 'msg () {
 local colors="/etc/new-adm-color"
 if [[ ! -e $colors ]]; then
 COLOR[0]='\033[1;37m' #BRAN='\033[1;37m'
@@ -36,9 +38,8 @@ SEMCOR='\e[0m'
   -bra)ccor="${COLOR[0]}${SEMCOR}" && echo -e "${ccor}${2}${SEMCOR}";;
   "-bar2"|"-bar")ccor="${COLOR[1]}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
  esac
-}
-
-curl https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/SCRIPT/C-SSR.sh > /tmp/ssrrmu.sh
+}' > /tmp/ssrrmu.sh
+curl https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/SCRIPT/C-SSR.sh >> /tmp/ssrrmu.sh
 sed -i "s;VPS•MX;ChumoGH-ADM;g" /tmp/ssrrmu.sh
 sed -i "s;@Kalix1;ChumoGH;g" /tmp/ssrrmu.sh
 sed -i "s;VPS-MX;chumogh;g" /tmp/ssrrmu.sh
