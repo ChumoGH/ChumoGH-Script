@@ -177,7 +177,7 @@ echo $fecha > /bin/ejecutar/fecha
 echo $key > /bin/ejecutar/key.fix
 echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
 echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
-echo -e "${cor[2]} $(source trans -b pt:${id} "Reinicie su SERVIDOR para completar Instalacion - ${cor[3]}OPCIONAL${cor[2]} - ")"
+echo -e "${cor[2]} $(source trans -b pt:${id} "Reinicie para completar Instalacion - OPCIONAL - ")"
 echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
 echo ""
 figlet $name | lolcat
@@ -319,7 +319,7 @@ echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=�
 echo -e "${cor[5]} INSTALADOR ChumoGH-SCRIPTS ®"
 echo -e "${cor[1]}⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝ "
 echo -e "${cor[3]} Iniciando Instalacion..."
-echo -e "${cor[3]} Script V 4.2 Sujeto a Mejoras del MOD"
+echo -e "${cor[3]} Script V 4.3 Sujeto a Mejoras del MOD"
 echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 echo -e "${cor[1]}⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝ "
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
