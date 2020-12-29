@@ -5,7 +5,7 @@ unset opti
 opti=$(cat /bin/ejecutar/val)
 if [ "$opti" = "0" ]; then
 echo "activado" > /bin/ejecutar/val1
-echo "1" > /bin/ejecutar/val
+sed -i "s;0;1;g" /bin/ejecutar/val
 echo 'source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/gnula.sh)' > /bin/ejecutar/automatizar.sh
 echo 'source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/killram.sh)' > /bin/ejecutar/gnula.sh
 chmod +x /bin/ejecutar/automatizar.sh
@@ -21,7 +21,6 @@ echo "00 00 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
 echo "00 12 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
 echo "00 * * * * root bash  /bin/ejecutar/gnula.sh" >> /etc/crontab
 cat /etc/crontab
-sleep 1s
 echo -e "Finalizando activacion"
 _opti="\033[1;31m${txt[11]}"
 else
