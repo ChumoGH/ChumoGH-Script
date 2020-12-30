@@ -16,7 +16,7 @@ if [ -e $dir$dir_user/$user ]
 then
 pass=$(cat $dir$dir_user/$user | grep "senha" | awk '{print $2}')
 limite=$(cat $dir$dir_user/$user | grep "limite" | awk '{print $2}')
-data=(cat $dir$dir_user/$user | grep "data" | awk '{print $2}')
+data=$(cat $dir$dir_user/$user | grep "data" | awk '{print $2}')
  if [ -z "$limite" ]; then
  limite="5"
  fi
@@ -62,6 +62,7 @@ echo "$user" |cut -d: -f3 1> /dev/null 2>/dev/null
   limit $usuario $limite 1> /dev/null 2> /dev/null
   echo "senha: $senha" > /etc/adm-lite/userDIR/$usuario
   echo "limite: $limite" >> /etc/adm-lite/userDIR/$usuario
+  echo "data: $data" >> /etc/adm-lite/userDIR/$usuario
   else
   useradd -M -s /bin/false $usuario
   (echo $senha ; echo $senha) | passwd $usuario > /dev/null 2> /dev/null
