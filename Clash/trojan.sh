@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#fonts color
-
-
 #copy from SantyHack ss scripts
 if [[ -f /etc/redhat-release ]]; then
     release="centos"
