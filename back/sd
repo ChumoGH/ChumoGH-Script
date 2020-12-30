@@ -39,10 +39,11 @@ function restaurar_usuarios(){
 cd $HOME
 echo -n "INGRESE LINK DEL POSTER DE BACKUP : " 
 read url1
-wget -q -O recovey $url1 && echo -e "\033[1;31m- \033[1;32mFile Exito!" || echo -e "\033[1;31m- \033[1;31mFile Fallo"
+wget -q -O recovery $url1 && echo -e "\033[1;31m- \033[1;32mFile Exito!" || echo -e "\033[1;31m- \033[1;31mFile Fallo"
 #echo -n "Escriba el directorio del archivo Backup: "
 echo -e "\033[1;37mRestaurando Usuarios...\033[0m"
-for user in `cat $HOME/recovery`
+[[ -e $HOME/recovery ]] && arq="$HOME/recovery" || return 	for user in `cat $HOME/recovery`
+for user in `cat $arq`
 do
 usuario=$(echo "$user" |awk -F : '{print $1}')
 senha=$(echo "$user" |awk -F : '{print $2}')
