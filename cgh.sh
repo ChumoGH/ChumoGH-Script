@@ -340,7 +340,6 @@ echo -e "${cor[1]}⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝�
    [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal} 
    echo " Verified【 匚卄ㄩ爪ㄖᎶ卄 】 ADM 2021" > $HOME/exito
    install_fim
-   [[ ${#id} -gt 2 ]] && echo "pt" > ${SCPidioma} || echo "${id}" > ${SCPidioma}
-else
+   else
 invalid_key
 fi
