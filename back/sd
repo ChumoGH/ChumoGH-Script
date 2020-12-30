@@ -3,8 +3,11 @@ dir_user="/userDIR"
 dir="/etc/adm-lite"
 bc="$HOME/backup"
 echo -e "\033[1;33mMenu de Respaldos de Usuarios\033[1;30m
-1) Crear respaldo de usuarios
-2) Restaurar usuarios de un backup"
+ ----------------------------------
+ 1) Crear respaldo de usuarios
+ ----------------------------------
+ 2) Restaurar usuarios de un backup"
+ ----------------------------------
 read -p "ECOJE: " option
 function backup_de_usuarios(){
 clear
