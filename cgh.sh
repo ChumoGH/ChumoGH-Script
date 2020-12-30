@@ -115,6 +115,7 @@ echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
 echo 'echo -e " Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e " Tiempo en Linea : $(uptime -p)"' >> /root/.bashrc
 echo 'echo -e " Fecha del Servidor : $DATE"' >> /root/.bashrc
 echo 'echo -e " Hora del Servidor : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
@@ -132,6 +133,7 @@ echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
 echo 'echo -e " Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e " Tiempo en Linea : $(uptime -p)"' >> /root/.bashrc
 echo 'echo -e " Fecha del Servidor : $DATE"' >> /root/.bashrc
 echo 'echo -e " Hora del Servidor : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
