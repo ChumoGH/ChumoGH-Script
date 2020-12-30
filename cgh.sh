@@ -113,13 +113,13 @@ echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
 echo 'TIME=$(date +"%T")' >> /root/.bashrc
 echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Fecha de Instlacion "): " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Nombre del Servidor") : $HOSTNAME"' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Fecha del Servidor") : $DATE"' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Hora del Servidor") : $TIME"' >> /root/.bashrc
+echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e " Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e " Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e " Hora del Servidor : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Bienvenido!")"' >> .bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Teclee cgh o menu para ver el listado de comandos.")"' >> /root/.bashrc
+echo 'echo -e " Bienvenido!"' >> .bashrc
+echo 'echo -e " Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo " $(source trans -b pt:${id} "STARTUP AGREGADO EXITOSAMENTE")"
 else
@@ -130,12 +130,12 @@ echo 'DATE=$(date +"%d-%m-%y")' >> /root/.bashrc
 echo 'TIME=$(date +"%T")' >> /root/.bashrc
 echo 'figlet -k ChumoGH | lolcat' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Fecha de Instlacion "): " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Nombre del Servidor") : $HOSTNAME"' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Fecha del Servidor") : $DATE"' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Hora del Servidor") : $TIME"' >> /root/.bashrc
+echo 'echo -e " Fecha de Instlacion : " $(cat < /bin/ejecutar/fecha)' >> /root/.bashrc
+echo 'echo -e " Nombre del Servidor : $HOSTNAME"' >> /root/.bashrc
+echo 'echo -e " Fecha del Servidor : $DATE"' >> /root/.bashrc
+echo 'echo -e " Hora del Servidor : $TIME"' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
-echo 'echo -e " $(source trans -b pt:${id} "Bienvenido!")"' >> .bashrc
+echo 'echo -e "Bienvenido!"' >> .bashrc
 echo 'echo -e " Teclee cgh o menu para ver el listado de comandos."' >> /root/.bashrc
 echo 'echo -e ""' >> /root/.bashrc
 echo " $(source trans -b pt:${id} "STARTUP AGREGADO EXITOSAMENTE")"
@@ -167,18 +167,18 @@ clear
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "\033[1;32mCAMBIAR ZONA HORARIA EN ( * \033[1;33m menu\033[1;32m *\033[1;33m opcion 7 \033[1;32m*\033[1;33m opcion 14 \033[1;32m)"
 echo -e "${cor[5]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -e "${cor[3]} $(source trans -b pt:${id} "ChumoGH-Pannel Instalada Correctamente!")"
-echo -e "${cor[2]} $(source trans -b pt:${id} "    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE")"
+echo -e "${cor[3]} ChumoGH-Pannel Instalada Correctamente!"
+echo -e "${cor[2]}    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE"
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -e "${cor[3]} |∆| ${cor[2]}$(source trans -b pt:${id} "Ahora puedes acceder al PANNEL")"
+echo -e "${cor[3]} |∆| ${cor[2]} Ahora puedes acceder al PANNEL"
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, chumogh"
 echo $fecha > /bin/ejecutar/fecha
 echo $Key > /bin/ejecutar/key.fix
 echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
-echo -e "${cor[2]} $(source trans -b pt:${id} "Para acceder al MENU, DISFRUTA LA ESTANCIA!")"
-echo -e "${cor[2]} $(source trans -b pt:${id} "Reinicie para completar Instalacion - OPCIONAL - ")"
-echo -e "${cor[2]} $(source trans -b pt:${id} "RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR")"
+echo -e "${cor[2]} Para acceder al MENU, DISFRUTA LA ESTANCIA!"
+echo -e "${cor[2]} Reinicie para completar Instalacion - OPCIONAL - "
+echo -e "${cor[2]} RECOMENDABLE ACCEDER COMO ROOT y/o ADMINISTRADOR"
 echo ""
 figlet $name | lolcat
 exit
@@ -318,8 +318,8 @@ echo -e ""
 echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[5]} INSTALADOR ChumoGH-SCRIPTS ®"
 echo -e "${cor[1]}⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝ "
-echo -e "${cor[3]} Iniciando Instalacion..."
-echo -e "${cor[3]} Script V 4.3 Sujeto a Mejoras del MOD"
+echo -e "${cor[3]} Iniciando Instalacion del ADM..."
+echo -e "${cor[3]} Script V 4.2 Sujeto a Mejoras del MOD"
 echo -e "${cor[1]} MEJORANDO PAQUETES DE DETECCIONES Y MULTILOGIN "
 echo -e "${cor[1]}⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝ "
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
