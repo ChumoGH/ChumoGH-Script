@@ -28,7 +28,11 @@ pidenv1=$(cat $dir$dir_user/$user$pid)
  if [ -e $dir$dir_user/$user$pid2 ]
  then
  pidenv2=$(cat $dir$dir_user/$user$pid2)
+ else
+ pidenv2=""
  fi
+else
+pidenv1=""
 fi
  if [ -z "$limite" ]; then
  limite="5"
