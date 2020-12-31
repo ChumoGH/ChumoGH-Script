@@ -1,112 +1,47 @@
 #!/bin/bash
 
-#copy from SantyHack ss scripts
+function blue(){
+    echo -e "\033[34m\033[01m$1\033[0m"
+}
+function green(){
+    echo -e "\033[32m\033[01m$1\033[0m"
+}
+function red(){
+    echo -e "\033[31m\033[01m$1\033[0m"
+}
+function version_lt(){
+    test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" != "$1"; 
+}
+#copy from 秋水逸冰 ss scripts
 if [[ -f /etc/redhat-release ]]; then
     release="centos"
     systemPackage="yum"
-    systempwd="/usr/lib/systemd/system/"
 elif cat /etc/issue | grep -Eqi "debian"; then
     release="debian"
     systemPackage="apt-get"
-    systempwd="/lib/systemd/system/"
 elif cat /etc/issue | grep -Eqi "ubuntu"; then
     release="ubuntu"
     systemPackage="apt-get"
-    systempwd="/lib/systemd/system/"
 elif cat /etc/issue | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
     systemPackage="yum"
-    systempwd="/usr/lib/systemd/system/"
 elif cat /proc/version | grep -Eqi "debian"; then
     release="debian"
     systemPackage="apt-get"
-    systempwd="/lib/systemd/system/"
 elif cat /proc/version | grep -Eqi "ubuntu"; then
     release="ubuntu"
     systemPackage="apt-get"
-    systempwd="/lib/systemd/system/"
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
     systemPackage="yum"
-    systempwd="/usr/lib/systemd/system/"
 fi
+systempwd="/etc/systemd/system/"
 
+#install & config trojan
 function install_trojan(){
-CHECK=$(grep SELINUX= /etc/selinux/config | grep -v "#")
-if [ "$CHECK" == "SELINUX=enforcing" ]; then
-    echo -e "\033[1;31m======================================================================="
-    echo -e "\033[1;31mSe detecta que S.E Linux está encendido. Para evitar fallas en la solicitud de un certificado, reinicie el VPS antes de ejecutar este script"
-    echo -e "\033[1;31m======================================================================="
-    read -p "¿Quieres reiniciar ahora? Por favor ingresa [Y/n] :" yn
-	[ -z "${yn}" ] && yn="y"
-	if [[ $yn == [Yy] ]]; then
-	    sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-            setenforce 0
-	    echo -e "VPS Reiniciando..."
-	    reboot
-	fi
-    exit
-fi
-if [ "$CHECK" == "SELINUX=permissive" ]; then
-    echo -e "\033[1;31m======================================================================="
-    echo -e "\033[1;31mSe detecta que S.E Linux está en un estado tolerante. Para evitar que no se pueda solicitar un certificado, reinicie el VPS antes de ejecutar este script"
-    echo -e "\033[1;31m======================================================================="
-    read -p "¿Quieres reiniciar ahora? Por favor ingresa [Y/n] :" yn
-	[ -z "${yn}" ] && yn="y"
-	if [[ $yn == [Yy] ]]; then
-	    sed -i 's/SELINUX=permissive/SELINUX=disabled/g' /etc/selinux/config
-            setenforce 0
-	    echo -e "VPS Reiniciando..."
-	    reboot
-	fi
-    exit
-fi
-if [ "$release" == "centos" ]; then
-    if  [ -n "$(grep ' 6\.' /etc/redhat-release)" ] ;then
-    echo -e "\033[1;31m==============="
-    echo -e "\033[1;31mEl sistema actual no es compatible"
-    echo -e "\033[1;31m==============="
-    exit
-    fi
-    if  [ -n "$(grep ' 5\.' /etc/redhat-release)" ] ;then
-    echo -e "\033[1;31m==============="
-    echo -e "\033[1;31mEl sistema actual no es compatible"
-    echo -e "\033[1;31m==============="
-    exit
-    fi
-    systemctl stop firewalld
-    systemctl disable firewalld
-    rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-elif [ "$release" == "ubuntu" ]; then
-    if  [ -n "$(grep ' 14\.' /etc/os-release)" ] ;then
-    echo -e "\033[1;31m==============="
-    echo -e "\033[1;31mEl sistema actual no es compatible"
-    echo -e "\033[1;31m==============="
-    exit
-    fi
-    if  [ -n "$(grep ' 12\.' /etc/os-release)" ] ;then
-    echo -e "\033[1;31m==============="
-    echo -e "\033[1;31mEl sistema actual no es compatible"
-    echo -e "\033[1;31m==============="
-    exit
-    fi
-    systemctl stop ufw
-    systemctl disable ufw
-    apt-get update
-fi
-$systemPackage -y install  nginx wget unzip zip curl tar >/dev/null 2>&1
-systemctl enable nginx.service
-echo -e "\033[1;32m======================="
-echo -e "\033[1;37mIngrese el nombre de dominio vinculado a este VPS"
-echo -e "\033[1;37m======================="
-read your_domain
-real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
-local_addr=`curl ipv4.icanhazip.com`
-if [ $real_addr == $local_addr ] ; then
-	echo -e "\033[1;37m=========================================="
-	echo -e "\033[1;32m       La resolución del nombre de dominio es normal, comience a instalar el troyano"
-	echo -e "\033[1;32m=========================================="
-	sleep 1s
+$systemPackage install -y nginx
+systemctl stop nginx
+sleep 5
 cat > /etc/nginx/nginx.conf <<-EOF
 user  root;
 worker_processes  1;
@@ -135,62 +70,80 @@ http {
     }
 }
 EOF
-	#Configurar una estación de camuflaje
+	#设置伪装站
 	rm -rf /usr/share/nginx/html/*
 	cd /usr/share/nginx/html/
-	wget https://github.com/V2RaySSR/Trojan/raw/master/web.zip
-    	unzip web.zip
-	systemctl restart nginx.service
-	#Solicitar certificado https
-	mkdir /usr/src/trojan-cert
+	wget https://www.dropbox.com/s/qmlxuka3c3gjw5v/web.zip >/dev/null 2>&1
+    	unzip web.zip >/dev/null 2>&1
+	sleep 5
+	#申请https证书
+	if [ ! -d "/usr/src" ]; then
+	    mkdir /usr/src
+	fi
+	mkdir /usr/src/trojan-cert /usr/src/trojan-temp
 	curl https://get.acme.sh | sh
-	~/.acme.sh/acme.sh  --issue  -d $your_domain  --webroot /usr/share/nginx/html/
-    	~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
-        --key-file   /usr/src/trojan-cert/private.key \
-        --fullchain-file /usr/src/trojan-cert/fullchain.cer \
-        --reloadcmd  "systemctl force-reload  nginx.service"
-	if test -s /usr/src/trojan-cert/fullchain.cer; then
+	~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
+	if test -s /root/.acme.sh/$your_domain/fullchain.cer; then
+	systemctl start nginx
         cd /usr/src
 	#wget https://github.com/trojan-gfw/trojan/releases/download/v1.13.0/trojan-1.13.0-linux-amd64.tar.xz
-	wget https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
-	tar xf trojan-1.*
-	#Descarga el cliente troyano
-	wget https://github.com/atrandys/trojan/raw/master/trojan-cli.zip
-	unzip trojan-cli.zip
-	cp /usr/src/trojan-cert/fullchain.cer /usr/src/trojan-cli/fullchain.cer
+	wget https://api.github.com/repos/trojan-gfw/trojan/releases/latest >/dev/null 2>&1
+	latest_version=`grep tag_name latest| awk -F '[:,"v]' '{print $6}'`
+	rm -f latest
+	wget https://www.dropbox.com/s/70swgj1gods17xu/trojan-1.13.0-linux-amd64.tar.xz >/dev/null 2>&1
+	tar xf trojan-1.13.0-linux-amd64.tar.xz >/dev/null 2>&1
+	#下载trojan客户端
+	wget https://www.dropbox.com/s/mldqyuhy0kyn5vn/trojan-cli.zip >/dev/null 2>&1
+	wget -P /usr/src/trojan-temp https://github.com/trojan-gfw/trojan/releases/download/v${latest_version}/trojan-${latest_version}-win.zip >/dev/null 2>&1
+	unzip trojan-cli.zip >/dev/null 2>&1
+	unzip /usr/src/trojan-temp/trojan-${latest_version}-win.zip -d /usr/src/trojan-temp/ >/dev/null 2>&1
+	mv -f /usr/src/trojan-temp/trojan/trojan.exe /usr/src/trojan-cli/ 
 	trojan_passwd=$(cat /dev/urandom | head -1 | md5sum | head -c 8)
-	cat > /usr/src/trojan-cli/config.json <<-EOF
-{
-    "run_type": "client",
-    "local_addr": "127.0.0.1",
-    "local_port": 1080,
-    "remote_addr": "$your_domain",
-    "remote_port": 443,
-    "password": [
-        "$trojan_passwd"
-    ],
-    "log_level": 1,
-    "ssl": {
-        "verify": true,
-        "verify_hostname": true,
-        "cert": "fullchain.cer",
-        "cipher_tls13":"TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384",
-	"sni": "",
-        "alpn": [
-            "h2",
-            "http/1.1"
-        ],
-        "reuse_session": true,
-        "session_ticket": false,
-        "curves": ""
-    },
-    "tcp": {
-        "no_delay": true,
-        "keep_alive": true,
-        "fast_open": false,
-        "fast_open_qlen": 20
-    }
-}
+	cat > /usr/src/trojan-cli/config.yml <<-EOF
+port: 7890
+socks-port: 7891
+redir-port: 7892
+allow-lan: true
+mode: Global
+log-level: info
+external-controller: '0.0.0.0:9090'
+secret: ''
+
+dns:
+  enable: true
+  nameserver:
+    - 1.1.1.1
+	- 1.0.0.1
+
+proxies:
+- name: Trojan 
+  type: "trojan"
+  server: $your_domain
+  port: 443
+  password: $trojan_passwd
+  udp: true
+  sni: www.tuhost.com
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+
+# Eliminar "#" si configura v2ray
+#- name: V2ray
+#  type: vmess
+#  server: 123.0.0.0
+#  port: 
+#  uuid: 
+#  alterId: 
+#  cipher: auto
+#  udp: true
+#  tls: true
+#  skip-cert-verify: true
+#  network: ws
+#  ws-path: /
+#  ws-headers: {host: www.tuhost.com}
+  
+###################################
 EOF
 	rm -rf /usr/src/trojan/server.conf
 	cat > /usr/src/trojan/server.conf <<-EOF
@@ -237,11 +190,11 @@ EOF
 }
 EOF
 	cd /usr/src/trojan-cli/
-	zip -q -r trojan-cli.zip /usr/src/trojan-cli/
+	config.yml /usr/src/trojan-cli/
 	trojan_path=$(cat /dev/urandom | head -1 | md5sum | head -c 16)
 	mkdir /usr/share/nginx/html/${trojan_path}
-	mv /usr/src/trojan-cli/trojan-cli.zip /usr/share/nginx/html/${trojan_path}/
-	#Agregar secuencia de comandos de inicio
+	mv /usr/src/trojan-cli/config.yml /usr/share/nginx/html/${trojan_path}/
+	#增加启动脚本
 	
 cat > ${systempwd}trojan.service <<-EOF
 [Unit]  
@@ -252,47 +205,201 @@ After=network.target
 Type=simple  
 PIDFile=/usr/src/trojan/trojan/trojan.pid
 ExecStart=/usr/src/trojan/trojan -c "/usr/src/trojan/server.conf"  
-ExecReload=  
-ExecStop=/usr/src/trojan/trojan  
-PrivateTmp=true  
+ExecReload=/bin/kill -HUP \$MAINPID
+Restart=on-failure
+RestartSec=1s
    
 [Install]  
 WantedBy=multi-user.target
 EOF
 
 	chmod +x ${systempwd}trojan.service
-	systemctl start trojan.service
 	systemctl enable trojan.service
-	echo -e "\033[1;32m======================================================================"
-	echo -e "\033[1;32mEl troyano se ha instalado, utilice el enlace a continuación para descargar el cliente troyano, este cliente ha configurado todos los parámetros"
-	echo -e "\033[1;32m1. Copie el enlace a continuación, ábralo en el navegador y descargue el cliente."
-	echo -e "\033[1;37mhttp://${your_domain}/$trojan_path/trojan-cli.zip"
-	echo -e "\033[1;31mRegistre la siguiente URL de la regla"
-	echo -e "\033[1;37mhttp://${your_domain}/trojan.txt"
-	echo -e "\033[1;32m2、Descomprima el paquete comprimido descargado, abra la carpeta, abra start.bat para abrir y ejecutar el cliente troyano"
-	echo -e "\033[1;32m3、Abra stop.bat para cerrar el cliente troyano"
-	echo -e "\033[1;32m4、El cliente troyano debe utilizarse con complementos del navegador, como switchyomega, etc."
-	echo -e "\033[1;32mpermiso de acceso  https://www.v2rayssr.com/trojan-1.html ‎ Descargar complementos y tutoriales del navegador"
-	echo -e "\033[1;32m======================================================================"
+	cd /root
+	~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
+        --key-file   /usr/src/trojan-cert/private.key \
+        --fullchain-file  /usr/src/trojan-cert/fullchain.cer \
+	--reloadcmd  "systemctl restart trojan"	
+	green "=============================================================="
+	green "Se ha instalado trojan, utilice el siguiente enlace para\ndescargar el archivo .yml para configurar en Clash."
+	blue "http://${your_domain}/$trojan_path/config.yml"
+	red "Link único y generado de manera aleatoria."
+	green "=============================================================="
+	green "Puede modificar el archivo .yml abriéndolo como Texto. "
+	green "Recuerde modificar el dominio por la ip en el archivo yml. "
+	green "Todo viene configurado, pero para que funcione correctamente\ntiene que modificar el host."
+	green "=============================================================="
+	red "Si gusta configurar manualmente, esta es la información:"
+	blue "Dominio: $your_domain"
+	blue "Puerto: 443"
+	blue "Contraseña: $trojan_passwd"
+	green "=============================================================="
 	else
-        echo -e "\033[1;31m================================"
-	echo -e "\033[1;31mNo hay resultado de aplicación para el certificado https, esta instalación falló"
-	echo -e "\033[1;31m================================"
+        red "==================================="
+	red "Si el certificado https no obtuvo resultados\nde solicitud y la instalación automática falló"
+	green "No se preocupe, puede reparar manualmente la solicitud del certificado."
+	green "1. Reinicie la VPS."
+	green "2. Vuelva a ejecutar el script y use la función de reparación de certificado."
+	red "==================================="
 	fi
+}
+function preinstall_check(){
+
+nginx_status=`ps -aux | grep "nginx: worker" |grep -v "grep"`
+if [ -n "$nginx_status" ]; then
+    systemctl stop nginx
+fi
+$systemPackage -y install net-tools socat
+Port80=`netstat -tlpn | awk -F '[: ]+' '$1=="tcp"{print $5}' | grep -w 80`
+Port443=`netstat -tlpn | awk -F '[: ]+' '$1=="tcp"{print $5}' | grep -w 443`
+if [ -n "$Port80" ]; then
+    process80=`netstat -tlpn | awk -F '[: ]+' '$5=="80"{print $9}'`
+    red "==========================================================="
+    red "Se detectó que el puerto 80 está ocupado, el proceso que lo\nocupa es:${process80}，La instalación ha finalizado."
+    red "==========================================================="
+    exit 1
+fi
+if [ -n "$Port443" ]; then
+    process443=`netstat -tlpn | awk -F '[: ]+' '$5=="443"{print $9}'`
+    red "============================================================="
+    red "Se detectó que el puerto 443 está ocupado, el proceso que lo\nocupa es:：${process443}，La instalación ha finalizado."
+    red "============================================================="
+    exit 1
+fi
+if [ -f "/etc/selinux/config" ]; then
+    CHECK=$(grep SELINUX= /etc/selinux/config | grep -v "#")
+    if [ "$CHECK" != "SELINUX=disabled" ]; then
+        green "Se detectó que SELinux está activado, se agregaran las reglas del puerto 80/443"
+        yum install -y policycoreutils-python >/dev/null 2>&1
+        semanage port -m -t http_port_t -p tcp 80
+        semanage port -m -t http_port_t -p tcp 443
+    fi
+fi
+if [ "$release" == "centos" ]; then
+    if  [ -n "$(grep ' 6\.' /etc/redhat-release)" ] ;then
+    red "==============="
+    red "El sistema actual no es compatible."
+    red "==============="
+    exit
+    fi
+    if  [ -n "$(grep ' 5\.' /etc/redhat-release)" ] ;then
+    red "==============="
+    red "El sistema actual no es compatible."
+    red "==============="
+    exit
+    fi
+    firewall_status=`systemctl status firewalld | grep "Active: active"`
+    if [ -n "$firewall_status" ]; then
+        green "Se detectó que el firewall está activado, se agregaran las reglas del puerto 80/443"
+        firewall-cmd --zone=public --add-port=80/tcp --permanent
+	firewall-cmd --zone=public --add-port=443/tcp --permanent
+	firewall-cmd --reload
+    fi
+    rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+elif [ "$release" == "ubuntu" ]; then
+    if  [ -n "$(grep ' 14\.' /etc/os-release)" ] ;then
+    red "==============="
+    red "El sistema actual no es compatible."
+    red "==============="
+    exit
+    fi
+    if  [ -n "$(grep ' 12\.' /etc/os-release)" ] ;then
+    red "==============="
+    red "El sistema actual no es compatible."
+    red "==============="
+    exit
+    fi
+    ufw_status=`systemctl status ufw | grep "Active: active"`
+    if [ -n "$ufw_status" ]; then
+        ufw allow 80/tcp
+        ufw allow 443/tcp
+    fi
+    apt-get update
+elif [ "$release" == "debian" ]; then
+    ufw_status=`systemctl status ufw | grep "Active: active"`
+    if [ -n "$ufw_status" ]; then
+        ufw allow 80/tcp
+        ufw allow 443/tcp
+    fi
+    apt-get update
+fi
+$systemPackage -y install  wget unzip zip curl tar >/dev/null 2>&1
+green "======================="
+blue "Ingrese el dominio vinculado a esta VPS:"
+green "======================="
+read your_domain
+real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
+local_addr=`curl ipv4.icanhazip.com`
+if [ $real_addr == $local_addr ] ; then
+	green "=========================================="
+	green "La resolución del dominio es normal, se intalará trojan"
+	green "=========================================="
+	sleep 1s
+        install_trojan
 	
 else
-	echo -e "\033[1;31m================================"
-	echo -e "\033[1;31mLa dirección de resolución del nombre de dominio no coincide con la dirección IP del VPS"
-	echo -e "\033[1;31mEsta instalación falló, asegúrese de que la resolución del nombre de dominio sea normal"
-	echo -e "\033[1;31m================================"
+        red "===================================="
+	red "La resolución de dominio es inconsistente con la dirección IP de la VPS"
+	red "Si cree que el análisis es correcto, puede forzar a que el script continúe"
+	red "===================================="
+	read -p "¿Forzar el script? Seleccione [Y/n] :" yn
+	[ -z "${yn}" ] && yn="y"
+	if [[ $yn == [Yy] ]]; then
+            green "Forzar el script"
+	    sleep 1s
+	    install_trojan
+	else
+	    exit 1
+	fi
 fi
 }
 
+function repair_cert(){
+systemctl stop nginx
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+Port80=`netstat -tlpn | awk -F '[: ]+' '$1=="tcp"{print $5}' | grep -w 80`
+if [ -n "$Port80" ]; then
+    process80=`netstat -tlpn | awk -F '[: ]+' '$5=="80"{print $9}'`
+    red "==========================================================="
+    red "Se detectó que el puerto 80 está ocupado, el proceso que lo\nocupa es:${process80}，La instalación ha finalizado."
+    red "==========================================================="
+    exit 1
+fi
+green "======================="
+blue "Ingrese el dominio vinculado a esta VPS."
+blue "Debe ser el mismo dominio que no pudo usar antes."
+green "======================="
+read your_domain
+real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
+local_addr=`curl ipv4.icanhazip.com`
+if [ $real_addr == $local_addr ] ; then
+    ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
+    ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
+        --key-file   /usr/src/trojan-cert/private.key \
+        --fullchain-file /usr/src/trojan-cert/fullchain.cer \
+	--reloadcmd  "systemctl restart trojan"
+    if test -s /usr/src/trojan-cert/fullchain.cer; then
+        green "Solicitud de certificado exitosa."
+	green "Descargue fullchain.cer en /usr/src/trojan-cert/ en la carpeta del cliente trojan-cli"
+	systemctl restart trojan
+	systemctl start nginx
+    else
+    	red "No se pudo solicitar el certificado."
+    fi
+else
+    red "================================"
+    red "La resolución de dominio es inconsistente con la dirección IP de la VPS"
+    red "La instalación falló, asegúrese de que la resolución del dominio sea normal"
+    red "================================"
+fi	
+}
+
 function remove_trojan(){
-    echo -e "\033[1;31m================================"
-    echo -e "\033[1;31mA punto de desinstalar el troyano"
-    echo -e "\033[1;31mAl mismo tiempo, desinstale el nginx instalado"
-    echo -e "\033[1;31m================================"
+    red "================================"
+    red "Trojan se desintalará"
+    red "Nginx también se desintalará"
+    red "================================"
     systemctl stop trojan
     systemctl disable trojan
     rm -f ${systempwd}trojan.service
@@ -303,52 +410,75 @@ function remove_trojan(){
     fi
     rm -rf /usr/src/trojan*
     rm -rf /usr/share/nginx/html/*
-    echo -e "\033[1;32m=============="
-    echo -e "\033[1;32mtroyano eliminado"
-    echo -e "\033[1;32m=============="
+    rm -rf /root/.acme.sh/
+    green "=============="
+    green "Trojan desinstalado."
+    green "=============="
 }
 
-function bbr_boost_sh(){
-    bash <(curl -L -s -k "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh")
+function update_trojan(){
+    /usr/src/trojan/trojan -v 2>trojan.tmp
+    curr_version=`cat trojan.tmp | grep "trojan" | awk '{print $4}'`
+    wget https://api.github.com/repos/trojan-gfw/trojan/releases/latest >/dev/null 2>&1
+    latest_version=`grep tag_name latest| awk -F '[:,"v]' '{print $6}'`
+    rm -f latest
+    rm -f trojan.tmp
+    if version_lt "$curr_version" "$latest_version"; then
+        green "Versión actual: $curr_version, Última versión: $latest_version, actualizando……"
+        mkdir trojan_update_temp && cd trojan_update_temp
+        wget https://github.com/trojan-gfw/trojan/releases/download/v${latest_version}/trojan-${latest_version}-linux-amd64.tar.xz >/dev/null 2>&1
+        tar xf trojan-${latest_version}-linux-amd64.tar.xz >/dev/null 2>&1
+        mv ./trojan/trojan /usr/src/trojan/
+        cd .. && rm -rf trojan_update_temp
+        systemctl restart trojan
+	/usr/src/trojan/trojan -v 2>trojan.tmp
+	green "Se completó la actualización de trojan, la versión actual es:`cat trojan.tmp | grep "trojan" | awk '{print $4}'`"
+	rm -f trojan.tmp
+    else
+        green "Versión actual: $curr_version, Última versión: $latest_version, no es necesario actualizar."
+    fi
+   
+   
 }
 
 start_menu(){
     clear
-    echo -e "\033[1;32m ===================================="
-    echo -e "\033[1;32m Secuencia de comandos automática de instalación de un clic de Trojan      "
-    echo -e "\033[1;32m sistema：centos7+/debian9+/ubuntu16.04+"
-    echo -e "\033[1;32m sitio web：www.v2rayssr.com （Prohibido el acceso）              "
-    echo -e "\033[1;32m Este script es modificado por SantyHack, integra la aceleración BBRPLUS "
-    echo -e "\033[1;32m Youtube：                "
-    echo -e "\033[1;32m ===================================="
+    green " ======================================="
+    green " Script de Instalación de Trojan      "
+    green " Sistemas：centos7+/debian9+/ubuntu16.04+"
+    green " Edicion ChumoGH - ADM         "
+    blue " Declaración："
+    red " *No use este script en ningún entorno de producción."
+    red " *No debe tener ocupados los puertos 80/443."
+	red " *Siga las instrucciones."
+    green " ======================================="
     echo
-    echo -e "\033[1;31m ===================================="
-    echo -e "\033[1;37m 1. instalación Trojan"
-    echo -e "\033[1;31m ===================================="
-    echo -e "\033[1;37m 2. Instale el script de aceleración 4 EN 1 BBRPLUS"
-    echo -e "\033[1;31m ===================================="
-    echo -e "\033[1;37m 3. Desinstalación Trojan"
-    echo -e "\033[1;31m ===================================="
-    echo -e "\033[1;37m 0. Salir"
-    echo -e "\033[1;31m ===================================="
+    green " 1. Instalar trojan"
+    red " 2. Desinstalar trojan"
+    green " 3. Actualizar trojan"
+    green " 4. Reparar certificado"
+    blue " 0. Salir del script"
     echo
-    read -p "Por favor ingrese el numero:" num
+    read -p "Ingrese una opción:" num
     case "$num" in
     1)
-    install_trojan
+    preinstall_check
     ;;
     2)
-    bbr_boost_sh 
+    remove_trojan 
     ;;
     3)
-    remove_trojan
+    update_trojan 
+    ;;
+    4)
+    repair_cert 
     ;;
     0)
-    exit 1
+    adm 1
     ;;
     *)
     clear
-    echo -e "\033[1;31mIngrese el número correcto"
+    red "Ingrese una opción correcta."
     sleep 1s
     start_menu
     ;;
