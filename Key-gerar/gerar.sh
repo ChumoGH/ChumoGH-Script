@@ -96,7 +96,7 @@ arq_list[$i]="${arqx}"
 let i++
 done
 echo -e "[1] -> \033[0;33mINSTALACIÓN ADM-CHUMOGH\033[0m"
-read -p "Elija los archivos que se van a repasar: " readvalue
+read -p "ESCOJE EL ADM : " readvalue
 #CRIA KEY
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
 #PASSA ARQS
