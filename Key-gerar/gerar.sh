@@ -95,15 +95,15 @@ echo -e "[$i] -> ${arqx}"
 arq_list[$i]="${arqx}"
 let i++
 done
-echo -e "[cgh] -> \033[0;33mINSTALACIÓN ADM-CHUMOGH\033[0m"
+echo -e "[1] -> \033[0;33mINSTALACIÓN ADM-CHUMOGH\033[0m"
 read -p "Elija los archivos que se van a repasar: " readvalue
 #CRIA KEY
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
 #PASSA ARQS
-[[ -z $readvalue ]] && readvalue="cgh"
+[[ -z $readvalue ]] && readvalue="1"
 read -p "Nombre de usuario ( dueño de la key ): " nombrevalue
 [[ -z $nombrevalue ]] && nombrevalue="SIN NOMBRE"
-echo -e "Deseas colocar una IP Fija\n" 
+echo -e "Deseas colocar una IP Fija" 
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
@@ -111,7 +111,7 @@ done
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
 read -p "Ingresa Key FIJA ( IP a USAR ): "  IPFIX
 fi
-if [[ $readvalue = @(cgh|CGH) ]]; then
+if [[ $readvalue = @(cgh|1) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
  for arqx in `echo "${arqslist}"`; do
@@ -133,7 +133,7 @@ rm ${SCPT_DIR}/*.x.c &> /dev/null
 echo "$nombrevalue" > ${DIR}/${KEY}.name
 [[ ! -z $IPFIX ]] && echo "$IPFIX" > ${DIR}/${KEY}/keyfixa
 echo -e "$BARRA"
-echo -e "Key activa, y aguardando instalación!"
+echo -e "Key activa, y esperando instalación!"
 echo -e "$BARRA"
 }
 ofus () {
