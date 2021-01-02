@@ -1,5 +1,7 @@
 #!/bin/bash
-
+#
+#
+#
 function blue(){
     echo -e "\033[34m\033[01m$1\033[0m"
 }
@@ -445,8 +447,8 @@ start_menu(){
     clear
     green " ======================================="
     green " Script de Instalación de Trojan      "
-    green " Sistemas：centos7+/debian9+/ubuntu16.04+"
-    green " Edicion ChumoGH - ADM         "
+    green " Sistema：centos7+/debian9+/ubuntu16.04+"
+    green " Mod español by Nao             "
     blue " Declaración："
     red " *No use este script en ningún entorno de producción."
     red " *No debe tener ocupados los puertos 80/443."
