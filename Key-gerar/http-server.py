@@ -119,8 +119,9 @@ log="/etc/gerar-sh-log"
 fun_ip
 _hora=$(printf '%(%D-%H:%M:%S)T') 
 echo "USUARIO: $(cat ${FILE2}.name) SU IP: $USRIP" >> $log
-echo "Key "$(ofus "$IP:$PORTA$KEY/lista-arq") >> $log
+echo "Key "$(ofus "$IP:8888/$KEY/lista-arq") >> $log
 echo "Key Fue Usada >" $_hora  >> $log
+echo "--------------------------------------------------------------------" >> $log
 rm -rf "$FILE2"
 rm "${FILE2}.name"
 fi
