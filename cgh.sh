@@ -174,7 +174,7 @@ echo -e "${cor[2]}    ACTUALIZACION TEMPORAL CONCEDIDA EXITOSAMENTE"
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
 echo -e "${cor[3]} |∆| ${cor[2]} Ahora puedes acceder al PANNEL"
 echo -e "${cor[3]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠"
-echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, chumogh"
+echo -e "${cor[2]} $(source trans -b pt:${id} "Use los Comandos"): cgh, menu, adm"
 echo $fecha > /bin/ejecutar/fecha
 echo $Key > /bin/ejecutar/key.fix
 echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)
@@ -218,7 +218,7 @@ mkdir /etc/adm-lite
 cd /etc/adm-lite
 echo "cd /etc/adm-lite && bash ./menu" > /bin/menu
 echo "cd /etc/adm-lite && bash ./menu" > /bin/cgh
-echo "cd /etc/adm-lite && bash ./menu" > /bin/chumogh
+echo "cd /etc/adm-lite && bash ./menu" > /bin/adm
 chmod +x /bin/menu
 chmod +x /bin/cgh
 chmod +x /bin/chumogh
