@@ -5,6 +5,25 @@ clear
 IVAR="/etc/http-instas"
 BARRA="\033[1;31m•••••••••••••••••••••••••••••••••••••••••••••••••\033[0m"
 
+fun_a(){
+texto=`if netstat -tunlp |grep apache2 1> /dev/null 2> /dev/null; then
+echo -e "ON"
+else
+echo -e "OFF"
+fi`;
+if [[ $texto = "ON" ]];then
+echo "Apache2 Instalado y Activo"
+#sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
+#service apache2 restart > /dev/null 2>&1
+else
+echo "Apache2 No Instalado"
+echo -ne " \033[1;31m[ ! ] INSTALANDO APACHE2 "
+apt-get install apache2 -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
+service apache2 restart > /dev/null 2>&1
+fi
+}
+
 msg () {
 BRAN='\033[1;37m' && VERMELHO='\e[31m' && VERDE='\e[32m' && AMARELO='\e[33m'
 AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCOR='\e[0m'
