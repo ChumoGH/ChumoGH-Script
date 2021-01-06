@@ -49,7 +49,7 @@ fi`;
 echo -e "   ${cor[2]} ${vesaoSCT} ${cor[0]}"
 msg -bar
 echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta "
-#echo -e "System: " $(cat /etc/issue.net)
+echo -e "System: $(cat /etc/issue.net)        \033[0;31mIP :\033[0;32m $(curl ifconfig.me)"
 }
 ####fin puertos
 
