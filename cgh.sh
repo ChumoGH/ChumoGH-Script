@@ -221,7 +221,7 @@ echo "cd /etc/adm-lite && bash ./menu" > /bin/cgh
 echo "cd /etc/adm-lite && bash ./menu" > /bin/adm
 chmod +x /bin/menu
 chmod +x /bin/cgh
-chmod +x /bin/chumogh
+chmod +x /bin/adm
 cd /etc/adm-lite
 touch /etc/adm-lite/index.html
 mv -f ${SCPinstal}/* /etc/adm-lite/
