@@ -103,6 +103,7 @@ TIME=$(echo "${TIME}0"|bc)
 sleep ${TIME}s
 rm -rf /var/www/html/$KEY
 rm -rf /var/www/$KEY
+log="/etc/gerar-sh-log"
 if [[ -d $FILE2 ]]; then
 PERM="${DIR}/${KEY}/keyfixa" 
 if [[ -e $PERM ]]; then
@@ -115,13 +116,12 @@ if [[ -e $PERM ]]; then
   rm "${FILE2}.name"
   fi
 else
-log="/etc/gerar-sh-log"
 fun_ip
 _hora=$(printf '%(%D-%H:%M:%S)T') 
-echo "USUARIO: \033[0;31m$(cat ${FILE2}.name) \033[0;36mSU IP: $USRIP" >> $log
-echo "\033[0;36mKey \033[0;31m"$(ofus "$IP:8888/$KEY/lista-arq") >> $log
-echo "Key Fue Usada >\033[0;31m" $_hora  >> $log
-echo "--------------------------------------------------------------------" >> $log
+echo "\033[0;34mUSUARIO: \033[0;31m$(cat ${FILE2}.name) \033[0;36mSU IP:\033[0;33m $USRIP" >> $log
+echo "\033[0;36mKey \033[0;33m"$(ofus "$IP:8888/$KEY/lista-arq") >> $log
+echo "\033[0;31mKey Fue Usada >\033[0;32m" $_hora  >> $log
+echo "\033[0;33m--------------------------------------------------------------------" >> $log
 rm -rf "$FILE2"
 rm "${FILE2}.name"
 fi
