@@ -64,9 +64,9 @@ echo -e "$barra"
 menu
 }
 act_hora5 () {
-echo "America/New_York"
-echo "America/New_York" > /etc/timezone
-ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime > /dev/null 2>&1
+echo "America/La_Paz"
+echo "America/La_Paz" > /etc/timezone
+ln -fs /usr/share/zoneinfo/America/La_Paz /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
 menu
@@ -113,7 +113,7 @@ echo -e "${cor[4]} [2] > ${cor[5]}ACTUALIZAR HORARIO Local MEXICO"
 echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO Local Argentina"
 echo -e "${cor[4]} [4] > ${cor[5]}ACTUALIZAR HORARIO Local AMERICA/SANTIAGO"
 echo -e "${cor[4]} [5] > ${cor[2]}VER ZONA HORARIA ACTUAL "
-echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO  America/New_York"
+echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO  America/La_Paz ( Bolivia )"
 echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO  America/Guatemala"
 echo -e "${cor[4]} [8] > ${cor[5]}ACTUALIZAR HORARIO  America/Bogota"
 echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO  ECUADOR "
