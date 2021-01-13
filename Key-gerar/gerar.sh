@@ -185,7 +185,7 @@ echo -e "KEY: $keyfinal\n Generada!"
 echo -e "$BARRA"
 echo -e "Instalador Oficial"
 echo -e "$BARRA"
-echo "wget -q -O instala.sh https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh?dl=0; chmod +x instala.sh;./instala.sh"
+echo "wget -q -O instala.sh https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh"
 echo -e "$BARRA"
 read -p "Enter para finalizar"
 }
