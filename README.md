@@ -1,4 +1,4 @@
-# ChumoGH-Script V4.1
+# ChumoGH-Script V4.2
 
 # Proyecto sujeto a mejoras . . . . 
 
@@ -20,7 +20,7 @@ ULTIMA ACTUALIZACION : 13-11-2020 | 8:25
 
 ## Installation
 
-wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/instala.sh; chmod +x instala.sh; ./instala.sh
+wget -q -O instala.sh https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh
 
 ```
 * SIN MINERIA! 
@@ -31,11 +31,13 @@ wget -q https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/instala.
 * Kill Multilogin Funcional
 * V2RAY AGREGADO (LEER REQUERIMIENTOS)
 * V2RAY Version Consola
+* ShowdoSocks-R Funcional
 * Fix Login ROOT Amazon-Google
 * Fix PassWD Vulrt
 * Auto Optimizacion
 * Contador de Usuarios Eliminados
 * Reinicio de Servicios programado
+* Bloqueo de Usuarios
 ```
 
 ```
