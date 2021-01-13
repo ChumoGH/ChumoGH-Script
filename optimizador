@@ -17,8 +17,8 @@ sed '/gnula.sh/ d' /etc/crontab > /bin/ejecutar/crontab
 cat /bin/ejecutar/crontab > /etc/crontab
 echo -e "Activando autolimpieza del Servidor"
 echo -e "Todos los días a las 12 se limpiará el Servidor automáticamente"
-#echo "00 00 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
-echo "00 12 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
+echo "00 00 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
+#echo "00 12 * * * root bash /bin/ejecutar/automatizar.sh" >> /etc/crontab
 echo "00 * * * * root bash  /bin/ejecutar/gnula.sh" >> /etc/crontab
 cat /etc/crontab
 echo -e "Finalizando activacion"
