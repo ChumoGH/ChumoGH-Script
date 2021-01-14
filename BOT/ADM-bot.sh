@@ -5,4 +5,4 @@ curl  https://raw.githubusercontent.com/VPS-MX/VPS-MX-8.0/master/Parches-TEM/ADM
 sed -i "s;VPS•MX;ChumoGH-ADM;g" /tmp/bot.sh
 sed -i "s;@Kalix1;ChumoGH;g" /tmp/bot.sh
 sed -i "s;VPS-MX;chumogh;g" /tmp/bot.sh
-chmod +x /tmp/ssrrmu.sh && bash /tmp/bot.sh
+chmod +x /tmp/bot.sh && bash /tmp/bot.sh
