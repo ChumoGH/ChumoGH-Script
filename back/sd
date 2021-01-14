@@ -2,6 +2,40 @@
 dir_user="/userDIR"
 dir="/etc/adm-lite"
 bc="$HOME/backup"
+arquivo_move="$bc"
+fun_ip () {
+MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
+[[ "$MEU_IP" != "$MEU_IP2" ]] && echo "$MEU_IP2" || echo "$MEU_IP"
+}
+removeonline(){
+i=1
+    [[ -d /var/www/html ]] && [[ -e /var/www/html/$arquivo_move ]] && rm -rf /var/www/html/$arquivo_move > /dev/null 2>&1
+    [[ -e /var/www/$arquivo_move ]] && rm -rf /var/www/$arquivo_move > /dev/null 2>&1
+    echo -e "${cor[5]}Extraxion Exitosa Exitosa"
+    echo -e "$barra"
+echo "SUBIENDO"
+subironline
+}   
+subironline(){
+[ ! -d /var ] && mkdir /var
+[ ! -d /var/www ] && mkdir /var/www
+[ ! -d /var/www/html ] && mkdir /var/www/html
+[ ! -e /var/www/html/index.html ] && touch /var/www/html/index.html
+[ ! -e /var/www/index.html ] && touch /var/www/index.html
+chmod -R 755 /var/www
+cp $HOME/$arquivo_move /var/www/$arquivo_move
+cp $HOME/$arquivo_move /var/www/html/$arquivo_move
+service apache2 restart
+IP="$(fun_ip)"
+echo -e "\033[1;36m http://$IP:81/$arquivo_move\033[0m"
+echo -e "$barra"
+echo -e "${cor[5]}Carga Exitosa!"
+echo -e "$barra"
+read -p "PRESIONE ENTER"
+}
+
+
 echo -e "\033[1;33mMenu de Respaldos de Usuarios\033[1;30m
  ----------------------------------
  \033[1;32m1) \033[1;37mCrear respaldo de usuarios
@@ -89,6 +123,8 @@ done
 }
 if [ $option -eq 1 ]; then
 backup_de_usuarios
+read -p "PRESIONA ENTER PARA CARGAR ONLINE"
+removeonline
 fi
 
 if [ $option -eq 2 ]; then
