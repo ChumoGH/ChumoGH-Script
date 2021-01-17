@@ -57,6 +57,8 @@ clear
 		exit
 fi
 update_pak () {
+apt-get install software-properties-common -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
+apt-add-repository universe -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install SysBanner"
 apt install sysvbanner -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Lolcat   "
@@ -65,7 +67,6 @@ echo -ne " \033[1;31m[ ! ] Install Figlet   "
 apt install figlet -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Install Cowsay   "
 apt install cowsay -y > /dev/null 2>&1 && echo -e "\033[1;32m [ EXITO ]" || echo -e "\033[1;31m [FAIL]"
-echo -e " LOLCAT - FIGLET - COWSAY - TOILET INSTALADOS CORRECTAMENTE "| lolcat
 sleep 2s
 return
 }
@@ -96,7 +97,7 @@ echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 }
 
 fun_bar 'update_pak'
-
+echo -e " LOLCAT - FIGLET - COWSAY - TOILET INSTALADOS CORRECTAMENTE "| lolcat
 function_verify () {
   echo "verify" > $(echo -e $(echo 2f62696e2f766572696679737973|sed 's/../\\x&/g;s/$/ /'))
 }
