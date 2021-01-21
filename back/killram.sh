@@ -12,6 +12,7 @@ echo $idm "Mbs  -  Limpiando y Reiniciado el " $tiempo >> /root/lm.log
 sudo sync
 sudo sysctl -w vm.drop_caches=3 > /dev/null 2>&1
 echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
+killall kswapd0
 swapoff -a && swapon -a 1> /dev/null 2> /dev/null
 rm -rf /tmp/*
 sudo apt autoremove -y
@@ -19,4 +20,12 @@ sudo rm /var/lib/apt/lists/lock && sudo rm /var/cache/apt/archives/lock && sudo 
 echo $idm "Mbs  -  LISTO " $tiempo >> /root/lm.log
 else 
 echo $n "Mbs - Esta bajo el limite " $id1 " el " $tiempo >> /root/lm.log
+sudo sync
+sudo sysctl -w vm.drop_caches=3 > /dev/null 2>&1
+echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
+killall kswapd0
+swapoff -a && swapon -a 1> /dev/null 2> /dev/null
+rm -rf /tmp/*
+sudo apt autoremove -y
+
 fi
