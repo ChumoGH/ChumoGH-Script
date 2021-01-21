@@ -54,3 +54,4 @@ fixsources20;;
 exit;;
 esac
 }
+fixsources
