@@ -14,6 +14,7 @@ read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
 done
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
+unset yesno
 fun_ip
 killall clash 1> /dev/null 2> /dev/null
 echo -e "Î” Instalando Servidor Clash"
@@ -24,13 +25,13 @@ mkdir /root/.config 1> /dev/null 2> /dev/null
 mkdir /root/.config/clash 1> /dev/null 2> /dev/null
 figlet -p -f smslant < /root/name
 echo -e "\033[1;37m      ã€      ChumoGH-ADM Mods. VPSPack      ã€‘\033[0m"
+echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
+read -p ": " nameperfil
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mÎ” Escriba el puerto de Trojan Server"
 read -p ": " troport
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
-echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
-read -p ": " nameperfil
-sed -i "s/puertodelservidor/$troport/g" /root/.config/clash/config.yaml
+#sed -i "s/puertodelservidor/$troport/g" /root/.config/clash/config.yaml
 #sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 echo -e "\033[1;33mÎ” Escriba el password de Trojan Server"
 read -p ": " tropass
@@ -55,11 +56,12 @@ proxy-groups:
   type: select
   proxies:
     - Trojan_Public🦎_CGH
-#    - V2ray CGH
-#    - ShadowsocksR CGH
-#    - SnellPublic ChumoGH
-#    - Socks  V2rayUC ChumoGH
-#    - ShadowsocksPublic ChumoGH
+#----- Trojan_Public2_CGH
+#----- V2ray CGH
+#----- ShadowsocksR CGH
+#----- SnellPublic ChumoGH
+#----- Socks  V2rayUC ChumoGH
+#----- ShadowsocksPublic ChumoGH
   url: http://www.gstatic.com/generate_204
   interval: 300
  
@@ -107,7 +109,70 @@ sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
+#sed -i "s/Trojan_Public2_CGH/$nameperfil/g" /root/.config/clash/config.yaml
+
 echo -e "Î” Iniciando Servidor"
+echo -e "\033[1;33m Deseas Añadir Trojan Clash 2?\033[0m"
+while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
+read -p "[S/N]: " yesno
+tput cuu1 && tput dl1
+done
+if [[ ${yesno} = @(s|S|y|Y) ]]; then
+unset yesno
+fun_ip
+figlet -p -f smslant < /root/name
+echo -e "\033[1;37m      ã€      ChumoGH-ADM Mods. VPSPack      ã€‘\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+#echo -e "\033[1;33mÎ” Escriba el puerto de Trojan Server"
+#read -p ": " troport
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
+read -p ": " nameperfil
+#sed -i "s/puertodelservidor/$troport/g" /root/.config/clash/config.yaml
+#sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
+#echo -e "\033[1;33mÎ” Escriba el password de Trojan Server"
+#read -p ": " tropass
+#sed -i "s/clavedelservidor/$tropass/g" /root/.config/clash/config.yaml
+echo -e "\033[1;33mÎ” Escriba Nuevo el SNI de su metodo"
+read -p ": " trosni
+#sed -i "s/snidelmetodo/$trosni/g" /root/.config/clash/config.yaml
+echo -e "Î” Iniciando Servidor"
+echo -e '
+
+proxies:
+- name: Trojan_Public2🦎_CGH
+  type: "trojan"
+  server: ipdelservidor
+  port: portaaccess
+  password: claveacces
+  udp: true
+  sni: sniacces
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+' >> /root/.config/clash/config.yaml
+sed -i "s/#----- Trojan_Public2_CGH/Trojan_Public2_CGH/g" /root/.config/clash/config.yaml
+sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
+sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
+sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
+sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
+sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
+fi
+echo -e "\033[1;33m Deseas Añadir V2ray si Existe?\033[0m"
+while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
+read -p "[S/N]: " yesno
+tput cuu1 && tput dl1
+done
+if [[ ${yesno} = @(s|S|y|Y) ]]; then
+if [[ $(v2ray info | grep TLS) = "TLS: open" ]]; then
+unset yesno
+fun_ip
+uid=$(v2ray info | grep UUID)
+figlet -p -f smslant < /root/name
+echo $uid
+fi
+fi
 screen -dmS clashse clash
 cp /root/.config/clash/config.yaml /var/www/html/clash.yaml
 clear
