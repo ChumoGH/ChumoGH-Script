@@ -93,6 +93,7 @@ sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
+echo -e "Î” Iniciando Servidor"
 screen -dmS clashse clash
 cp /root/.config/clash/config.yaml /var/www/html/clash.yaml
 clear
