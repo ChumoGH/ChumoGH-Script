@@ -1,3 +1,8 @@
+fun_ip () {
+MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
+[[ "$MEU_IP" != "$MEU_IP2" ]] && IP="$MEU_IP2" || IP="$MEU_IP"
+}
 echo -e "\033[1;33m Se instalara¡ el servidor de \033[1;32mClash\033[0m"
 echo -e "\033[1;33m Debes tener instalado previamente \033[1;32mGO Lang\033[0m"
 [[ -d /usr/local/go ]] && echo -e "\033[1;33m Go Lang Instalado" || echo -e "\033[1;33m Instale Go Lang en ( *\033[1;33m menu\033[1;32m *\033[1;33m opcion 7 \033[1;32m*\033[1;33m opcion 15 \033[1;32m)"
@@ -74,7 +79,7 @@ rules:
 proxies:
 - name: TrojanPublic CGH
   type: "trojan"
-  server: ipdelservidor
+  server: $IP
   port: $troport
   password: $tropass
   udp: true
