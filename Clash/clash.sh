@@ -138,8 +138,6 @@ read -p ": " trosni
 #sed -i "s/snidelmetodo/$trosni/g" /root/.config/clash/config.yaml
 echo -e "Î” Iniciando Servidor"
 echo -e '
-
-proxies:
 - name: Trojan_Public2🦎_CGH
   type: "trojan"
   server: ipdelservidor
