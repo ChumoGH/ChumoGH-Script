@@ -250,12 +250,12 @@ read -p "Enter para finalizar"
 fix_key () {
 echo " Bienvenido, Poravor dijita el numero de veces a generar"
 read -p "Numero de Keys : " numk
+echo -e "$BARRA"
 for((w=0; w<$numk; w++)); do
 valuekey="$(date | md5sum | head -c10)"
 valuekey+="$(echo $(($RANDOM*10))|head -c 5)"
 list_fix "$valuekey"
 keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
-echo -e "$BARRA"
 echo -e "Key Activa $(printf '%(%D-%H:%M:%S)T')\n$keyfinal"
 done
 echo -e "$BARRA"
