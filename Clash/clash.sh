@@ -66,15 +66,15 @@ proxy-groups:
 # By ChumoGï¼ŒBy ChumoGH
 
 rules:
-- DOMAIN-SUFFIX,local,ChumoGH ADM
-- DOMAIN-SUFFIX,google.com,ChumoGH ADM
-- DOMAIN-KEYWORD,google,ChumoGH ADM
-- DOMAIN,google.com,ChumoGH ADM
-- DOMAIN-SUFFIX,ad.com,ChumoGH ADM
-- SRC-IP-CIDR,192.168.1.201/32,ChumoGH ADM
-- IP-CIDR,127.0.0.0/8,ChumoGH ADM
-- GEOIP,IR,ChumoGH ADM
-- MATCH, ChumoGH ADM
+- DOMAIN-SUFFIX,local,ChumoGH-ADM
+- DOMAIN-SUFFIX,google.com,ChumoGH-ADM
+- DOMAIN-KEYWORD,google,ChumoGH-ADM
+- DOMAIN,google.com,ChumoGH-ADM
+- DOMAIN-SUFFIX,ad.com,ChumoGH-ADM
+- SRC-IP-CIDR,192.168.1.201/32,ChumoGH-ADM
+- IP-CIDR,127.0.0.0/8,ChumoGH-ADM
+- GEOIP,IR,ChumoGH-ADM
+- MATCH, ChumoGH-ADM
 
 proxies:
 - name: TrojanPublic CGH
