@@ -27,9 +27,9 @@ echo -e "\033[1;37m      ã€      ChumoGH-ADM Mods. VPSPack      ã€‘\03
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mÎ” Escriba el puerto de Trojan Server"
 read -p ": " troport
-echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+#echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
-read -p ": " nameperfil
+#read -p ": " nameperfil
 sed -i "s/puertodelservidor/$troport/g" /root/.config/clash/config.yaml
 #sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 echo -e "\033[1;33mÎ” Escriba el password de Trojan Server"
@@ -54,7 +54,7 @@ proxy-groups:
 - name: "ChumoGH-ADM"
   type: select
   proxies:
-    - Trojan By nombreperfil
+    - TrojanPublic By CGH
 #    - V2ray CGH
 #    - ShadowsocksR CGH
 #    - SnellPublic ChumoGH
@@ -64,9 +64,9 @@ proxy-groups:
   interval: 300
  
 ###################################
-# ChumoGH ADM
+# ChumoGH-ADM
 
-# By ChumoGH By nombreperfil
+# By ChumoGH By CGH
 
 rules:
 - DOMAIN-SUFFIX,local,ChumoGH-ADM
@@ -80,7 +80,7 @@ rules:
 - MATCH, ChumoGH-ADM
 
 proxies:
-- name: TrojanPublic nombreperfil
+- name: TrojanPublic CGH
   type: "trojan"
   server: ipdelservidor
   port: portaaccess
@@ -96,7 +96,7 @@ sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
-sed -i "s/nombreperfil/$nameperfil/g" /root/.config/clash/config.yaml
+sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 echo -e "Î” Iniciando Servidor"
 screen -dmS clashse clash
 cp /root/.config/clash/config.yaml /var/www/html/clash.yaml
