@@ -155,9 +155,7 @@ echo -e "$BARRA"
 echo -e "Key activa, y esperando instalación!"
 echo -e "$BARRA"
 }
-
 #lista repetida
-##############
 list_fix () {
 rm ${SCPT_DIR}/*.x.c &> /dev/null
 unset KEY
@@ -202,13 +200,7 @@ echo "$nombrevalue" > ${DIR}/${KEY}.name
 #echo -e "Key activa, y esperando instalación!"
 echo -e "-------------------------------------------------"
 }
-
 #fin lista
-
-
-
-
-
 ofus () {
 unset txtofus
 number=$(expr length $1)
@@ -243,10 +235,7 @@ echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x ins
 echo -e "$BARRA"
 read -p "Enter para finalizar"
 }
-
-
-######
-
+#fix keys
 fix_key () {
 echo " Bienvenido, Poravor dijita el numero de veces a generar"
 read -p "Numero de Keys : " numk
@@ -265,10 +254,7 @@ echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x ins
 echo -e "$BARRA"
 read -p "Enter para finalizar"
 }
-
-#####
-
-
+#fn fix key
 att_gen_key () {
 i=0
 rm ${SCPT_DIR}/*.x.c &> /dev/null
