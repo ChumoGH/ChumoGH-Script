@@ -177,7 +177,7 @@ done
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
 #PASSA ARQS
 [[ -z $readvalue ]] && readvalue="1"
-[[ -z $nombrevalue ]] && nombrevalue="adm-$((r++))"
+[[ -z $nombrevalue ]] && nombrevalue="adm-$w"
 if [[ $readvalue = @(cgh|1) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
@@ -249,7 +249,6 @@ read -p "Enter para finalizar"
 
 fix_key () {
 echo " Bienvenido, Poravor dijita el numero de veces a generar"
-r=0
 read -p "Numero de Keys : " numk
 for((w=0; w<$numk; w++)); do
 valuekey="$(date | md5sum | head -c10)"
