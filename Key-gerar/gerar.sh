@@ -159,7 +159,6 @@ echo -e "$BARRA"
 #lista repetida
 ##############
 list_fix () {
-r=$(( r + 1 ))
 rm ${SCPT_DIR}/*.x.c &> /dev/null
 unset KEY
 KEY="$1"
@@ -178,7 +177,7 @@ done
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
 #PASSA ARQS
 [[ -z $readvalue ]] && readvalue="1"
-[[ -z $nombrevalue ]] && nombrevalue="fix-key$r"
+[[ -z $nombrevalue ]] && nombrevalue="adm-$((r++))"
 if [[ $readvalue = @(cgh|1) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
@@ -200,9 +199,8 @@ fi
 rm ${SCPT_DIR}/*.x.c &> /dev/null
 echo "$nombrevalue" > ${DIR}/${KEY}.name
 [[ ! -z $IPFIX ]] && echo "$IPFIX" > ${DIR}/${KEY}/keyfixa
-echo -e "$BARRA"
-echo -e "Key activa, y esperando instalación!"
-echo -e "$BARRA"
+#echo -e "Key activa, y esperando instalación!"
+echo -e "-------------------------------------------------"
 }
 
 #fin lista
@@ -251,7 +249,6 @@ read -p "Enter para finalizar"
 
 fix_key () {
 echo " Bienvenido, Poravor dijita el numero de veces a generar"
-unset r
 r=0
 read -p "Numero de Keys : " numk
 for((w=0; w<$numk; w++)); do
@@ -259,7 +256,8 @@ valuekey="$(date | md5sum | head -c10)"
 valuekey+="$(echo $(($RANDOM*10))|head -c 5)"
 list_fix "$valuekey"
 keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
-echo -e "Key Generada $(printf '%(%D-%H:%M:%S)T') : \n$keyfinal\n"
+echo -e "$BARRA"
+echo -e "Key Activa $(printf '%(%D-%H:%M:%S)T')\n$keyfinal"
 done
 echo -e "$BARRA"
 echo -e "Instalador Oficial"
