@@ -250,6 +250,7 @@ read -p "Enter para finalizar"
 
 fix_key () {
 echo " Bienvenido, Poravor dijita el numero de veces a generar"
+unset r
 read -p "Numero de Keys : " numk
 for((i=0; i<$numk; i++)); do
 valuekey="$(date | md5sum | head -c10)"
