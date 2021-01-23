@@ -174,8 +174,9 @@ done
 #CRIA KEY
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
 #PASSA ARQS
+nms+="$(echo $(($RANDOM*-5))|head -c 5)"
 [[ -z $readvalue ]] && readvalue="1"
-[[ -z $nombrevalue ]] && nombrevalue="adm-$w"
+[[ -z $nombrevalue ]] && nombrevalue="keys$nms"
 if [[ $readvalue = @(cgh|1) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
