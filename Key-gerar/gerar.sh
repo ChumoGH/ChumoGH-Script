@@ -174,12 +174,10 @@ arq_list[$i]="${arqx}"
 let i++
 done
 #CRIA KEY
-for((i=0; i<$rep; i++)); do
 [[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
 #PASSA ARQS
 [[ -z $readvalue ]] && readvalue="1"
 [[ -z $nombrevalue ]] && nombrevalue="fix-key$(( r = r + 1))"
-echo -e "Deseas colocar una IP Fija" 
 if [[ $readvalue = @(cgh|1) ]]; then
 #ADM BASIC
  arqslist="$BASICINST"
