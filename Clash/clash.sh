@@ -79,16 +79,20 @@ rules:
 proxies:
 - name: TrojanPublic CGH
   type: "trojan"
-  server: $IP
-  port: $troport
-  password: $tropass
+  server: ipdelservidor
+  port: portaaccess
+  password: claveacces
   udp: true
-  sni: $trosni
+  sni: sniacces
   alpn:
   - h2
   - http/1.1
   skip-cert-verify: true
 ' > /root/.config/clash/config.yaml
+sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
+sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
+sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
+sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 screen -dmS clashse clash
 cp /root/.config/clash/config.yaml /var/www/html/clash.yaml
 clear
