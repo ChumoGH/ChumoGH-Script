@@ -121,7 +121,7 @@ read -p "ESCOJE EL ADM : " readvalue
 #PASSA ARQS
 [[ -z $readvalue ]] && readvalue="1"
 read -p "Nombre de usuario ( dueño de la key ): " nombrevalue
-[[ -z $nombrevalue ]] && nombrevalue="SIN NOMBRE"
+[[ -z $nombrevalue ]] && nombrevalue="free-key"
 echo -e "Deseas colocar una IP Fija" 
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
@@ -155,6 +155,63 @@ echo -e "$BARRA"
 echo -e "Key activa, y esperando instalación!"
 echo -e "$BARRA"
 }
+
+#lista repetida
+##############
+list_fix () {
+rm ${SCPT_DIR}/*.x.c &> /dev/null
+unset KEY
+KEY="$1"
+#CRIA DIR
+[[ ! -e ${DIR} ]] && mkdir ${DIR}
+#ENVIA ARQS
+i=0
+VALUE+="gerar.sh instgerador.sh http-server.py lista $BASICINST"
+for arqx in `ls ${SCPT_DIR}`; do
+[[ $(echo $VALUE|grep -w "${arqx}") ]] && continue 
+echo -e "[$i] -> ${arqx}"
+arq_list[$i]="${arqx}"
+let i++
+done
+#CRIA KEY
+for((i=0; i<$rep; i++)); do
+[[ ! -e ${DIR}/${KEY} ]] && mkdir ${DIR}/${KEY}
+#PASSA ARQS
+[[ -z $readvalue ]] && readvalue="1"
+[[ -z $nombrevalue ]] && nombrevalue="fix-key$(( r = r + 1))"
+echo -e "Deseas colocar una IP Fija" 
+if [[ $readvalue = @(cgh|1) ]]; then
+#ADM BASIC
+ arqslist="$BASICINST"
+ for arqx in `echo "${arqslist}"`; do
+ [[ -e ${DIR}/${KEY}/$arqx ]] && continue #ANULA ARQUIVO CASO EXISTA
+ cp ${SCPT_DIR}/$arqx ${DIR}/${KEY}/
+ echo "$arqx" >> ${DIR}/${KEY}/${LIST}
+ done
+else
+ for arqx in `echo "${readvalue}"`; do
+ #UNE ARQ
+ [[ -e ${DIR}/${KEY}/${arq_list[$arqx]} ]] && continue #ANULA ARQUIVO CASO EXISTA
+ rm ${SCPT_DIR}/*.x.c &> /dev/null
+ cp ${SCPT_DIR}/${arq_list[$arqx]} ${DIR}/${KEY}/
+ echo "${arq_list[$arqx]}" >> ${DIR}/${KEY}/${LIST}
+ done
+echo "TRUE" >> ${DIR}/${KEY}/FERRAMENTA
+fi
+rm ${SCPT_DIR}/*.x.c &> /dev/null
+echo "$nombrevalue" > ${DIR}/${KEY}.name
+[[ ! -z $IPFIX ]] && echo "$IPFIX" > ${DIR}/${KEY}/keyfixa
+echo -e "$BARRA"
+echo -e "Key activa, y esperando instalación!"
+echo -e "$BARRA"
+}
+
+#fin lista
+
+
+
+
+
 ofus () {
 unset txtofus
 number=$(expr length $1)
@@ -181,14 +238,39 @@ valuekey="$(date | md5sum | head -c10)"
 valuekey+="$(echo $(($RANDOM*10))|head -c 5)"
 fun_list "$valuekey"
 keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
-echo -e "KEY: $keyfinal\n Generada!"
+echo -e "Key Generada $(printf '%(%D-%H:%M:%S)T') : \n$keyfinal\n"
 echo -e "$BARRA"
 echo -e "Instalador Oficial"
 echo -e "$BARRA"
-echo "wget -q -O instala.sh https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh"
+echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh"
 echo -e "$BARRA"
 read -p "Enter para finalizar"
 }
+
+
+######
+
+fix_key () {
+echo " Bienvenido, Poravor dijita el numero de veces a generar"
+read -p "Numero de Keys : " numk
+for((i=0; i<$numk; i++)); do
+valuekey="$(date | md5sum | head -c10)"
+valuekey+="$(echo $(($RANDOM*10))|head -c 5)"
+list_fix "$valuekey"
+keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
+echo -e "Key Generada $(printf '%(%D-%H:%M:%S)T') : \n$keyfinal\n"
+done
+echo -e "$BARRA"
+echo -e "Instalador Oficial"
+echo -e "$BARRA"
+echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh"
+echo -e "$BARRA"
+read -p "Enter para finalizar"
+}
+
+#####
+
+
 att_gen_key () {
 i=0
 rm ${SCPT_DIR}/*.x.c &> /dev/null
@@ -360,7 +442,7 @@ msg -bar
 echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m GENERAR 1 KEY ALEATORIA"
 echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m APAGAR/VER KEYS"
 echo -e "\033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;33m LIMPIAR KEYS USADAS"
-echo -e "\033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m<\033[0;33m ALTERAR ARCHIVOS DE KEY BASICA"
+echo -e "\033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m<\033[0;33m Generar Varias Keys Aleatorias"
 echo -e "\033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m<\033[0;33m INICIAR/PARAR KEYGEN $PID_GEN\033[0m"
 echo -e "\033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m<\033[0;33m REGISTRO DE KEYS"
 echo -e "\033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m<\033[0;33m Checar KEY ACTIVADA"
@@ -384,7 +466,8 @@ remover_key
 elif [[ ${varread} = 3 ]]; then
 remover_key_usada
 elif [[ ${varread} = 4 ]]; then
-mudar_instacao
+fix_key
+#mudar_instacao
 elif [[ ${varread} = 5 ]]; then
 start_gen
 elif [[ ${varread} = 6 ]]; then
