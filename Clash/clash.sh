@@ -29,7 +29,7 @@ echo -e "\033[1;33mÎ” Escriba el puerto de Trojan Server"
 read -p ": " troport
 #echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
-#read -p ": " nameperfil
+read -p ": " nameperfil
 sed -i "s/puertodelservidor/$troport/g" /root/.config/clash/config.yaml
 #sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 echo -e "\033[1;33mÎ” Escriba el password de Trojan Server"
