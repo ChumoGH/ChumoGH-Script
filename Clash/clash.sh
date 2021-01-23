@@ -56,7 +56,7 @@ proxy-groups:
   type: select
   proxies:
     - Trojan_Public🦎_CGH
-#----- Trojan_Public2_CGH
+#----- Trojan_Public2🦎_CGH
 #----- V2ray CGH
 #----- ShadowsocksR CGH
 #----- SnellPublic ChumoGH
@@ -152,7 +152,7 @@ proxies:
   - http/1.1
   skip-cert-verify: true
 ' >> /root/.config/clash/config.yaml
-sed -i "s/#----- Trojan_Public2_CGH/Trojan_Public2_CGH/g" /root/.config/clash/config.yaml
+sed -i "s/#----- Trojan_Public2🦎_CGH/Trojan_Public2🦎_CGH/g" /root/.config/clash/config.yaml
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
@@ -171,6 +171,7 @@ fun_ip
 uid=$(v2ray info | grep UUID)
 figlet -p -f smslant < /root/name
 echo $uid
+read -p ""
 fi
 fi
 screen -dmS clashse clash
