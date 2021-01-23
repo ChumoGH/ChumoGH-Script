@@ -29,7 +29,7 @@ echo -e "\033[1;33mÎ” Escriba el puerto de Trojan Server"
 read -p ": " troport
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
-#read -p ": " nameperfil
+read -p ": " nameperfil
 sed -i "s/puertodelservidor/$troport/g" /root/.config/clash/config.yaml
 #sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 echo -e "\033[1;33mÎ” Escriba el password de Trojan Server"
@@ -54,7 +54,7 @@ proxy-groups:
 - name: "ChumoGH-ADM"
   type: select
   proxies:
-    - "TrojanPublic by CGH"
+    - Trojan_Public🦎_CGH
 #    - V2ray CGH
 #    - ShadowsocksR CGH
 #    - SnellPublic ChumoGH
@@ -67,7 +67,17 @@ proxy-groups:
 # ChumoGH-ADM
 
 # By ChumoGH By CGH
+- name: "ServidoresPremiumGratis💢ProhibidaSuVenta"
+  type: select
+  proxies: 
+    - "ChumoGH-ADM"
 
+- name: "Para a entrar a nuestro Team contactar +593987072611 Whatsapp"
+  type: select
+  proxies:
+    - "ChumoGH-ADM"
+    
+    
 rules:
 - DOMAIN-SUFFIX,local,ChumoGH-ADM
 - DOMAIN-SUFFIX,google.com,ChumoGH-ADM
@@ -80,7 +90,7 @@ rules:
 - MATCH, ChumoGH-ADM
 
 proxies:
-- name: "TrojanPublic by CGH"
+- name: Trojan_Public🦎_CGH
   type: "trojan"
   server: ipdelservidor
   port: portaaccess
