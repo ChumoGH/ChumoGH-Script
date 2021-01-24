@@ -183,7 +183,7 @@ parche=$(cat < patch)
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
 echo "Habilitando Seleccion en Menu"
-sed -i 's/#- V2ray🇪🇨_CGH/- V2ray🇪🇨_CGH/g' /root/.config/clash/config.yaml
+sed -i 's/#-/-/g' /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando IP"
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
@@ -245,7 +245,7 @@ echo -e '
   - http/1.1
   skip-cert-verify: true
 ' >> /root/.config/clash/config.yaml
-sed -i 's/#- Trojan🇪🇨_Public2_CGH/- Trojan🇪🇨_Public2_CGH/g' /root/.config/clash/config.yaml
+sed -i 's/#-/-/g' /root/.config/clash/config.yaml
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
