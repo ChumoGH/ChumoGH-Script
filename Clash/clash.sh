@@ -147,7 +147,8 @@ echo '
 ' >> /root/.config/clash/config.yaml
 #v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
 #PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
-par=$(v2ray info | grep path |awk -F : '{print $4}')
+#par=$(v2ray info | grep path |awk -F : '{print $4}')
+echo "Ruta pach"$par
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
 sed -i "s/#----- V2ray_CGH✓✓™🎮🦎/ - V2ray_CGH✓✓™🎮🦎/g" /root/.config/clash/config.yaml
