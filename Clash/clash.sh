@@ -253,11 +253,10 @@ sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/v-3/$nameperfil/g" /root/.config/clash/config.yaml
 fi
+figlet -p -f smslant < /root/name
 echo -e "🦎” \033[1;32mIniciando y Reiniciando Servicio CLASH > Trojan > V2ray"
 screen -dmS clashse clash
 cp /root/.config/clash/config.yaml /var/www/html/clash.yaml
-clear
-figlet -p -f smslant < /root/name
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mClash Server Instalado"
 echo -e "\033[1;32mRuta de Configuracion: /root/.config/clash/config.yaml"
