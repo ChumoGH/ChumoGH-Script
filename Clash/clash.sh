@@ -57,7 +57,7 @@ proxy-groups:
   proxies:
     - Trojan_Public🦎_CGH
 #----- Trojan_Public2🦎_CGH
-#----- V2ray CGH
+#----- V2ray_CGH✓✓™🎮🦎
 #----- ShadowsocksR CGH
 #----- SnellPublic ChumoGH
 #----- Socks  V2rayUC ChumoGH
@@ -110,8 +110,53 @@ sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 #sed -i "s/Trojan_Public2_CGH/$nameperfil/g" /root/.config/clash/config.yaml
-
 echo -e "Î” Iniciando Servidor"
+echo -e "\033[1;33m Deseas Añadir V2ray si Existe?\033[0m"
+while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
+read -p "[S/N]: " yesno
+tput cuu1 && tput dl1
+done
+if [[ ${yesno} = @(s|S|y|Y) ]]; then
+if [[ $(v2ray info | grep TLS) = "TLS: open" ]]; then
+unset yesno
+fun_ip
+v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
+PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
+par=$(v2ray info | grep path |awk -F : '{print $4}')
+figlet -p -f smslant < /root/name
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+read -p ": " nameperfil
+echo -e "\033[1;33mÎ” Escriba Nuevo el SNI de su metodo"
+read -p ": " trosni
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+echo '
+- name: V2ray_CGH✓✓™🎮🕹️
+  type: vmess
+  server: ipdelservidor
+  port: portacces
+  mduuid
+  alterId: 2
+  cipher: auto
+  udp: true
+  tls: true
+  skip-cert-verify: true
+  network: ws
+  ws-path: parchatete
+  ws-headers: {Host: sniacces}
+' >> /root/.config/clash/config.yaml
+uid=$(v2ray info | grep UUID)
+uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
+sed -i "s/#----- V2ray_CGH✓✓™🎮🦎/V2ray_CGH✓✓™🎮🦎/g" /root/.config/clash/config.yaml
+sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
+sed -i "s/mduuid/$uid/g" /root/.config/clash/config.yaml
+sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
+sed -i "s/portacces/$tropass/g" /root/.config/clash/config.yaml
+sed -i "s/parchatete/$par/g" /root/.config/clash/config.yaml
+read -p ""
+fi
+fi
 echo -e "\033[1;33m Deseas Añadir Trojan Clash 2?\033[0m"
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
@@ -156,21 +201,6 @@ sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
-fi
-echo -e "\033[1;33m Deseas Añadir V2ray si Existe?\033[0m"
-while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
-read -p "[S/N]: " yesno
-tput cuu1 && tput dl1
-done
-if [[ ${yesno} = @(s|S|y|Y) ]]; then
-if [[ $(v2ray info | grep TLS) = "TLS: open" ]]; then
-unset yesno
-fun_ip
-uid=$(v2ray info | grep UUID)
-figlet -p -f smslant < /root/name
-echo $uid
-read -p ""
-fi
 fi
 screen -dmS clashse clash
 cp /root/.config/clash/config.yaml /var/www/html/clash.yaml
