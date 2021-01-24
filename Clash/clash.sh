@@ -152,6 +152,7 @@ echo "Ruta pach"$par
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
 sed -i "s/#----- V2ray_CGH✓✓™🎮🦎/ - V2ray_CGH✓✓™🎮🦎/g" /root/.config/clash/config.yaml
+sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 sed -i "s/mduuid/$uid/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
