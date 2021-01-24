@@ -84,9 +84,9 @@ proxy-groups:
 - name: "ChumoGH-ADM"
   type: select
   proxies:
-    - Trojan_Public🦎_CGH
-    #- V2ray_CGH
-    #- Trojan_Public2_CGH
+    - Trojan🇪🇨_Public🦎_CGH
+    #- V2ray🇪🇨_CGH
+    #- Trojan🇪🇨_Public2_CGH
 #----- ShadowsocksR CGH
 #----- SnellPublic ChumoGH
 #----- Socks  V2rayUC ChumoGH
@@ -121,7 +121,7 @@ rules:
 - MATCH, ChumoGH-ADM
 
 proxies:
-- name: Trojan_Public🦎_CGH
+- name: Trojan🇪🇨_Public🦎_CGH
   type: "trojan"
   server: ipdelservidor
   port: portaaccess
@@ -160,7 +160,7 @@ echo -e "\033[1;33mÎ” Escriba Nuevo el SNI de su metodo"
 read -p ": " trosni
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo '
-- name: V2ray_CGH
+- name: V2ray🇪🇨_CGH
   type: vmess
   server: ipdelservidor
   port: portacces
@@ -182,7 +182,7 @@ echo "Ruta pach = "$parche
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
 echo "Habilitando Seleccion en Menu"
-sed -i "s/#- V2ray_CGH/- V2ray_CGH/g" /root/.config/clash/config.yaml
+sed -i 's/#- V2ray🇪🇨_CGH/- V2ray🇪🇨_CGH/g' /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando IP"
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
@@ -200,7 +200,7 @@ echo "Habilitando Puerto V2ray en Clash"
 sed -i "s/portacces/$v2port/g" /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando Pach en Clash V2ray"
-sed -i "s/pathacces$parche/g" /root/.config/clash/config.yaml
+sed -i 's/pathacces$parche/g' /root/.config/clash/config.yaml
 read -p "V2ray Configurado, Enter to Continued"
 else
 echo -e "\033[1;31mV2ray no Found 00x3"
@@ -232,7 +232,7 @@ read -p ": " trosni
 #sed -i "s/snidelmetodo/$trosni/g" /root/.config/clash/config.yaml
 echo -e "Î” Iniciando Servidor"
 echo -e '
-- name: Trojan_Public2_CGH
+- name: Trojan🇪🇨_Public2_CGH
   type: "trojan"
   server: ipdelservidor
   port: portaaccess
@@ -244,7 +244,7 @@ echo -e '
   - http/1.1
   skip-cert-verify: true
 ' >> /root/.config/clash/config.yaml
-sed -i "s/#- Trojan_Public2_CGH/- Trojan_Public2_CGH/g" /root/.config/clash/config.yaml
+sed -i 's/#- Trojan🇪🇨_Public2_CGH/- Trojan🇪🇨_Public2_CGH/g' /root/.config/clash/config.yaml
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
