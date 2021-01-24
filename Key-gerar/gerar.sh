@@ -1,5 +1,4 @@
 #!/bin/bash
-# INSTALACAO BASICA
 clear
 [[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh trans verifica confdropbear get PDirect.py ultimatebot versao_script dados.zip idioma_geral MasterBin.sh PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh updateadm fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user"
 IVAR="/etc/http-instas"
@@ -51,7 +50,6 @@ echo -e "   \033[0;31mSystem:\033[0;32m$(cat /etc/issue.net) \033[0;31mIP:\033[0
 msg -bar
 echo -ne "$(msg -verd "        Keys Usadas") $(msg -azu " : ") " && msg -bra "\033[1;41m $(cat $IVAR) $porta"
 }
-####fin puertos
 
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
@@ -155,7 +153,7 @@ echo -e "$BARRA"
 echo -e "Key activa, y esperando instalación!"
 echo -e "$BARRA"
 }
-#lista repetida
+
 list_fix () {
 rm ${SCPT_DIR}/*.x.c &> /dev/null
 unset KEY
@@ -198,10 +196,8 @@ fi
 rm ${SCPT_DIR}/*.x.c &> /dev/null
 echo "$nombrevalue" > ${DIR}/${KEY}.name
 [[ ! -z $IPFIX ]] && echo "$IPFIX" > ${DIR}/${KEY}/keyfixa
-#echo -e "Key activa, y esperando instalación!"
 echo -e "-------------------------------------------------"
 }
-#fin lista
 ofus () {
 unset txtofus
 number=$(expr length $1)
@@ -236,7 +232,6 @@ echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x ins
 echo -e "$BARRA"
 read -p "Enter para finalizar"
 }
-#fix keys
 fix_key () {
 echo " Bienvenido, Poravor dijita el numero de veces a generar"
 read -p "Numero de Keys : " numk
@@ -256,7 +251,6 @@ echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x ins
 echo -e "$BARRA"
 read -p "Enter para finalizar"
 }
-#fn fix key
 att_gen_key () {
 i=0
 rm ${SCPT_DIR}/*.x.c &> /dev/null
@@ -368,7 +362,7 @@ screen -dmS generador /bin/http-server.sh -start
 # screen -dmS generador /bin/http-server-pass.sh -start
 else
 killall http-server.sh
-# killall http-server-pass.sh
+
 fi
 }
 message_gen () {
