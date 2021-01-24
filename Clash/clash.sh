@@ -124,6 +124,9 @@ echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 read -p ": " nameperfil
+echo -e "\033[1;33mÎ” Escriba el puerto de V2RAY Server Activo"
+read -p ": " troport
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mÎ” Escriba Nuevo el SNI de su metodo"
 read -p ": " trosni
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
@@ -133,7 +136,7 @@ echo '
   server: ipdelservidor
   port: portacces
   mduuid
-  alterId: 2
+  alterId: 0
   cipher: auto
   udp: true
   tls: true
@@ -142,8 +145,8 @@ echo '
   ws-path: parchatete
   ws-headers: {Host: sniacces}
 ' >> /root/.config/clash/config.yaml
-v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
-PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
+#v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
+#PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
 par=$(v2ray info | grep path |awk -F : '{print $4}')
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
@@ -151,7 +154,7 @@ sed -i "s/#----- V2ray_CGH✓✓™🎮🦎/ - V2ray_CGH✓✓™🎮🦎/g" /ro
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 sed -i "s/mduuid/$uid/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
-sed -i "s/portacces/$PORT/g" /root/.config/clash/config.yaml
+sed -i "s/portacces/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/parchatete/$par/g" /root/.config/clash/config.yaml
 read -p ""
 else
