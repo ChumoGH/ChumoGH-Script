@@ -56,8 +56,8 @@ proxy-groups:
   type: select
   proxies:
     - Trojan_Public🦎_CGH
-#----- Trojan_Public2🦎_CGH
 #----- V2ray_CGH✓✓™🎮🦎
+#----- Trojan_Public2🦎_CGH
 #----- ShadowsocksR CGH
 #----- SnellPublic ChumoGH
 #----- Socks  V2rayUC ChumoGH
@@ -119,9 +119,6 @@ if [[ ${yesno} = @(s|S|y|Y) ]]; then
 if [[ $(v2ray info | grep TLS) = "TLS: open" ]]; then
 unset yesno
 fun_ip
-v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
-PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
-par=$(v2ray info | grep path |awk -F : '{print $4}')
 figlet -p -f smslant < /root/name
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
@@ -145,13 +142,16 @@ echo '
   ws-path: parchatete
   ws-headers: {Host: sniacces}
 ' >> /root/.config/clash/config.yaml
+v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
+PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
+par=$(v2ray info | grep path |awk -F : '{print $4}')
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
-sed -i "s/#----- V2ray_CGH✓✓™🎮🦎/V2ray_CGH✓✓™🎮🦎/g" /root/.config/clash/config.yaml
+sed -i "s/#----- V2ray_CGH✓✓™🎮🦎/ - V2ray_CGH✓✓™🎮🦎/g" /root/.config/clash/config.yaml
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 sed -i "s/mduuid/$uid/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
-sed -i "s/portacces/$tropass/g" /root/.config/clash/config.yaml
+sed -i "s/portacces/$PORT/g" /root/.config/clash/config.yaml
 sed -i "s/parchatete/$par/g" /root/.config/clash/config.yaml
 read -p ""
 else
@@ -196,7 +196,7 @@ echo -e '
   - http/1.1
   skip-cert-verify: true
 ' >> /root/.config/clash/config.yaml
-sed -i "s/#----- Trojan_Public2🦎_CGH/Trojan_Public2🦎_CGH/g" /root/.config/clash/config.yaml
+sed -i "s/#----- Trojan_Public2🦎_CGH/ - Trojan_Public2🦎_CGH/g" /root/.config/clash/config.yaml
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
