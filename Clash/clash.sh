@@ -176,10 +176,10 @@ echo '
 ' >> /root/.config/clash/config.yaml
 #v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
 #PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
-parche=$(v2ray info | grep path |awk -F : '{print $4}')
-#sed -i 's/ /c/g' patch
-#parche=$(cat < patch)
-#echo "Ruta pach = "$parche
+echo $(v2ray info | grep path |awk -F : '{print $4}') > patch
+sed -i 's/ /c/g' patch
+parche=$(cat < patch)
+echo "Ruta pach = "$parche
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
 echo "Habilitando Seleccion en Menu"
