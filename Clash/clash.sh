@@ -148,7 +148,8 @@ echo '
 #v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
 #PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
 #par=$(v2ray info | grep path |awk -F : '{print $4}')
-echo "Ruta pach"$par
+echo "Ruta pach = "$par
+parche="$par"
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
 sed -i "s/#----- V2ray_CGH✓✓/- V2ray_CGH✓✓/g" /root/.config/clash/config.yaml
@@ -157,8 +158,8 @@ sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 sed -i "s/mduuid/$uid/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/portacces/$troport/g" /root/.config/clash/config.yaml
-sed -i "s/parchatete/$par/g" /root/.config/clash/config.yaml
-read -p ""
+sed -i "s/parchatete/$parche/g" /root/.config/clash/config.yaml
+read -p "V2ray Configurado, Enter to Continued"
 else
 echo -e "\033[1;31mV2ray no Found 00x3"
 fi
