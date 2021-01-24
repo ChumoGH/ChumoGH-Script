@@ -110,7 +110,6 @@ sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 #sed -i "s/Trojan_Public2_CGH/$nameperfil/g" /root/.config/clash/config.yaml
-echo -e "Î” Iniciando Servidor"
 echo -e "\033[1;33m Deseas Añadir V2ray si Existe?\033[0m"
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
@@ -155,6 +154,8 @@ sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/portacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/parchatete/$par/g" /root/.config/clash/config.yaml
 read -p ""
+else
+echo -e "\033[1;31mV2ray no Found 00x3"
 fi
 fi
 echo -e "\033[1;33m Deseas Añadir Trojan Clash 2?\033[0m"
@@ -202,6 +203,7 @@ sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 fi
+echo -e "🦎” \033[1;32mIniciando y Reiniciando Servicio CLASH > Trojan > V2ray"
 screen -dmS clashse clash
 cp /root/.config/clash/config.yaml /var/www/html/clash.yaml
 clear
