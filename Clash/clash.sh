@@ -3,7 +3,35 @@ MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9
 MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
 [[ "$MEU_IP" != "$MEU_IP2" ]] && IP="$MEU_IP2" || IP="$MEU_IP"
 }
-echo -e "\033[1;33m Se instalara¡ el servidor de \033[1;32mClash\033[0m"
+
+fun_bar () {
+comando[0]="$1"
+comando[1]="$2"
+(
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} -y > /dev/null 2>&1
+${comando[1]} -y > /dev/null 2>&1
+touch $HOME/fim
+) > /dev/null 2>&1 &
+tput civis
+echo -ne "  \033[1;33mESPERE \033[1;37m- \033[1;33m["
+while true; do
+for((i=0; i<18; i++)); do
+echo -ne "\033[1;31m#"
+sleep 0.1s
+done
+[[ -e $HOME/fim ]] && rm $HOME/fim && break
+echo -e "\033[1;33m]"
+sleep 1s
+tput cuu1
+tput dl1
+echo -ne "  \033[1;33mESPERE \033[1;37m- \033[1;33m["
+done
+echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+tput cnorm
+}
+
+echo -e "\033[1;36m Se instalara¡ el servidor de \033[1;32mClash\033[0m"
 echo -e "\033[1;33m Debes tener instalado previamente \033[1;32mGO Lang\033[0m"
 [[ -d /usr/local/go ]] && echo -e "\033[1;33m Go Lang Instalado" || echo -e "\033[1;33m Instale Go Lang en ( *\033[1;33m menu\033[1;32m *\033[1;33m opcion 7 \033[1;32m*\033[1;33m opcion 15 \033[1;32m)"
 echo -e "\033[1;33m Debes tener instalado previamente \033[1;32mTrojan Server\033[0m"
@@ -17,10 +45,11 @@ if [[ ${yesno} = @(s|S|y|Y) ]]; then
 unset yesno
 fun_ip
 killall clash 1> /dev/null 2> /dev/null
-echo -e "Î” Instalando Servidor Clash"
-go get -u -v github.com/Dreamacro/clash 1> /dev/null 2> /dev/null
+echo -e "🦎” Cargando Configuracion del Repositorio Original ChumoGH"
+fun_bar 'go get -u -v github.com/Dreamacro/clash' # 1> /dev/null 2> /dev/null
 clear
-echo -e "Î” Creando Directorios y Archivos"
+echo -e "🦎” Creando Directorios y Archivos"
+[[ -d /root/.config ]] && rm -rf /root/.config
 mkdir /root/.config 1> /dev/null 2> /dev/null
 mkdir /root/.config/clash 1> /dev/null 2> /dev/null
 figlet -p -f smslant < /root/name
@@ -147,17 +176,30 @@ echo '
 ' >> /root/.config/clash/config.yaml
 #v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
 #PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
-#par=$(v2ray info | grep path |awk -F : '{print $4}')
-parche="$par"
+echo $(v2ray info | grep path |awk -F : '{print $4}') > patch
+parche=$(cat < patch)
 echo "Ruta pach = "$parche
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
+echo "Habilitando Seleccion en Menu"
 sed -i "s/#- V2ray_CGH/- V2ray_CGH/g" /root/.config/clash/config.yaml
+sleep 1
+echo "Habilitando IP"
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
+sleep 1
+echo "Habilitando Nombre en Menu"
 sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
+sleep 1
+echo "Habilitando UUID en V2ray"
 sed -i "s/mduuid/$uid/g" /root/.config/clash/config.yaml
+sleep 1
+echo "Habilitando SNI del MEtodo"
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
+sleep 1
+echo "Habilitando Puerto V2ray en Clash"
 sed -i "s/portacces/$v2port/g" /root/.config/clash/config.yaml
+sleep 1
+echo "Habilitando Pach en Clash V2ray"
 sed -i "s/pathacces$parche/g" /root/.config/clash/config.yaml
 read -p "V2ray Configurado, Enter to Continued"
 else
