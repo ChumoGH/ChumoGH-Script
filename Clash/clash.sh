@@ -246,7 +246,7 @@ echo -e '
   - http/1.1
   skip-cert-verify: true
 ' >> /root/.config/clash/config.yaml
-sed -i "s/#-/-/g" /root/.config/clash/config.yaml
+sed -i 's/#-/-/g' /root/.config/clash/config.yaml
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
