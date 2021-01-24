@@ -86,11 +86,11 @@ proxy-groups:
   proxies:
     - Trojan🇪🇨_Public🦎_CGH
     #- V2ray🇪🇨_CGH
-    #- Trojan🇪🇨_Public2_CGH
-#----- ShadowsocksR CGH
-#----- SnellPublic ChumoGH
-#----- Socks  V2rayUC ChumoGH
-#----- ShadowsocksPublic ChumoGH
+    ##- Trojan🇪🇨_Public2_CGH
+#####----- ShadowsocksR CGH
+######----- SnellPublic ChumoGH
+#######----- Socks  V2rayUC ChumoGH
+########----- ShadowsocksPublic ChumoGH
   url: http://www.gstatic.com/generate_204
   interval: 300
  
@@ -177,8 +177,9 @@ echo '
 #v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
 #PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
 echo $(v2ray info | grep path |awk -F : '{print $4}') > patch
+sed -i 's/ /c/g' patch
 parche=$(cat < patch)
-echo "Ruta pach = "$parche
+#echo "Ruta pach = "$parche
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
 echo "Habilitando Seleccion en Menu"
@@ -200,7 +201,7 @@ echo "Habilitando Puerto V2ray en Clash"
 sed -i "s/portacces/$v2port/g" /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando Pach en Clash V2ray"
-sed -i 's/pathacces$parche/g' /root/.config/clash/config.yaml
+sed -i 's/pathacces/$parche/g' /root/.config/clash/config.yaml
 read -p "V2ray Configurado, Enter to Continued"
 else
 echo -e "\033[1;31mV2ray no Found 00x3"
