@@ -201,7 +201,7 @@ echo "Habilitando Puerto V2ray en Clash"
 sed -i "s/portacces/$v2port/g" /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando Pach en Clash V2ray"
-sed -i s/bychumogh/chumogh/g' /root/.config/clash/config.yaml
+sed -i 's/bychumogh/chumogh/g' /root/.config/clash/config.yaml
 read -p "V2ray Configurado, Enter to Continued"
 else
 echo -e "\033[1;31mV2ray no Found 00x3"
