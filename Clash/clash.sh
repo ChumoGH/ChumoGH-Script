@@ -37,6 +37,7 @@ echo -e "\033[1;33m Debes tener instalado previamente \033[1;32mGO Lang\033[0m"
 echo -e "\033[1;33m Debes tener instalado previamente \033[1;32mTrojan Server\033[0m"
 echo -e "\033[1;33m IMPORTANTE DEBES TENER LIBRES PUERTOS \033[1;32m7890 / 7891 / 7892 / 9090\033[0m"
 echo -e "\033[1;33m Continuar?\033[0m"
+unset yesno
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
 tput cuu1 && tput dl1
@@ -211,6 +212,7 @@ else
 echo -e "\033[1;31mV2ray no Found 00x3"
 fi
 fi
+unset yesno
 echo -e "\033[1;33m Deseas Añadir Trojan Clash 2?\033[0m"
 while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
 read -p "[S/N]: " yesno
