@@ -87,8 +87,8 @@ proxy-groups:
   proxies:
     - Trojan🇪🇨_Public🦎_CGH
     #- V2ray🇪🇨_v-2
-    ##- Trojan🇪🇨_Public2_v-3
-    ###- Trojan🇪🇨_Public2_v-4
+    #- Trojan🇪🇨_Public2_v-3
+    #- Trojan🇪🇨_Public3_v-4
 ######----- SnellPublic ChumoGH
 #######----- Socks  V2rayUC ChumoGH
 ########----- ShadowsocksPublic ChumoGH
@@ -188,7 +188,8 @@ echo "Ruta pach = "$parche
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
 echo "Habilitando Seleccion en Menu"
-sed -i 's/#-/-/g' /root/.config/clash/config.yaml
+#sed -i 's/#-/-/g' /root/.config/clash/config.yaml
+sed -i 's/#- V2ray🇪🇨_v-2/- V2ray🇪🇨_v-2/g' /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando IP"
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
@@ -252,7 +253,9 @@ echo -e '
   - http/1.1
   skip-cert-verify: true
 ' >> /root/.config/clash/config.yaml
-sed -i 's/#-/-/g' /root/.config/clash/config.yaml
+
+#sed -i 's/#-/-/g' /root/.config/clash/config.yaml
+sed -i 's/#- Trojan🇪🇨_Public2_v-3/- Trojan🇪🇨_Public2_v-3/g' /root/.config/clash/config.yaml
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
@@ -280,7 +283,7 @@ read -p ": " nameperfil
 echo -e "\033[1;33mÎ” Escriba Nuevo el SNI de su metodo"
 read -p ": " trosni
 echo -e '
-- name: Trojan🇪🇨_Public2_v-4
+- name: Trojan🇪🇨_Public3_v-4
   type: "trojan"
   server: ipdelservidor
   port: portaaccess
@@ -292,7 +295,8 @@ echo -e '
   - http/1.1
   skip-cert-verify: true
 ' >> /root/.config/clash/config.yaml
-sed -i 's/#-/-/g' /root/.config/clash/config.yaml
+sed -i 's/#- Trojan🇪🇨_Public3_v-4/- Trojan🇪🇨_Public3_v-4/g' /root/.config/clash/config.yaml
+#sed -i 's/#-/-/g' /root/.config/clash/config.yaml
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
