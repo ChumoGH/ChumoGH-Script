@@ -85,8 +85,8 @@ proxy-groups:
   type: select
   proxies:
     - Trojan🇪🇨_Public🦎_CGH
-    #- V2ray🇪🇨_CGH
-    ##- Trojan🇪🇨_Public2_CGH
+    #- V2ray🇪🇨_v-2
+    ##- Trojan🇪🇨_Public2_v-3
 #####----- ShadowsocksR CGH
 ######----- SnellPublic ChumoGH
 #######----- Socks  V2rayUC ChumoGH
@@ -160,7 +160,7 @@ echo -e "\033[1;33mÎ” Escriba Nuevo el SNI de su metodo"
 read -p ": " trosni
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 echo '
-- name: V2ray🇪🇨_CGH
+- name: V2ray🇪🇨_v-2
   type: vmess
   server: ipdelservidor
   port: portacces
@@ -176,9 +176,9 @@ echo '
 ' >> /root/.config/clash/config.yaml
 #v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
 #PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
-echo $(v2ray info | grep path |awk -F : '{print $4}') > patch
-sed -i 's/ /c/g' patch
-parche=$(cat < patch)
+parche=$(v2ray info | grep path |awk -F : '{print $4}')
+#sed -i 's/ /c/g' patch
+#parche=$(cat < patch)
 #echo "Ruta pach = "$parche
 uid=$(v2ray info | grep UUID)
 uid=$(echo $uid |tr [[:upper:]] [[:lower:]])
@@ -189,7 +189,7 @@ echo "Habilitando IP"
 sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando Nombre en Menu"
-sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
+sed -i "s/v-2/$nameperfil/g" /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando UUID en V2ray"
 sed -i "s/mduuid/$uid/g" /root/.config/clash/config.yaml
@@ -201,7 +201,7 @@ echo "Habilitando Puerto V2ray en Clash"
 sed -i "s/portacces/$v2port/g" /root/.config/clash/config.yaml
 sleep 1
 echo "Habilitando Pach en Clash V2ray"
-sed -i 's/pathacces/$parche/g' /root/.config/clash/config.yaml
+sed -i "s/pathacces/$parche/g" /root/.config/clash/config.yaml
 read -p "V2ray Configurado, Enter to Continued"
 else
 echo -e "\033[1;31mV2ray no Found 00x3"
@@ -221,6 +221,7 @@ echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 #echo -e "\033[1;33mÎ” Escriba el puerto de Trojan Server"
 #read -p ": " troport
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+unset nameperfil
 echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
 read -p ": " nameperfil
 #sed -i "s/puertodelservidor/$troport/g" /root/.config/clash/config.yaml
@@ -233,7 +234,7 @@ read -p ": " trosni
 #sed -i "s/snidelmetodo/$trosni/g" /root/.config/clash/config.yaml
 echo -e "Î” Iniciando Servidor"
 echo -e '
-- name: Trojan🇪🇨_Public2_CGH
+- name: Trojan🇪🇨_Public2_v-3
   type: "trojan"
   server: ipdelservidor
   port: portaaccess
@@ -250,7 +251,7 @@ sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
 sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
-sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
+sed -i "s/v-3/$nameperfil/g" /root/.config/clash/config.yaml
 fi
 echo -e "🦎” \033[1;32mIniciando y Reiniciando Servicio CLASH > Trojan > V2ray"
 screen -dmS clashse clash
