@@ -142,7 +142,7 @@ echo '
   tls: true
   skip-cert-verify: true
   network: ws
-  ws-path: parchatete
+  ws-path: /parchatete/
   ws-headers: {Host: sniacces}
 ' >> /root/.config/clash/config.yaml
 #v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
@@ -158,7 +158,7 @@ sed -i "s/CGH/$nameperfil/g" /root/.config/clash/config.yaml
 sed -i "s/mduuid/$uid/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/portacces/$troport/g" /root/.config/clash/config.yaml
-sed -i "s/parchatete/$parche/g" /root/.config/clash/config.yaml
+sed -i "s//parchatete//$parche/g" /root/.config/clash/config.yaml
 read -p "V2ray Configurado, Enter to Continued"
 else
 echo -e "\033[1;31mV2ray no Found 00x3"
