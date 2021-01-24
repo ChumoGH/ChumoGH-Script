@@ -88,7 +88,7 @@ proxy-groups:
     - Trojan🇪🇨_Public🦎_CGH
     #- V2ray🇪🇨_v-2
     ##- Trojan🇪🇨_Public2_v-3
-#####----- ShadowsocksR CGH
+    ###- Trojan🇪🇨_Public2_v-4
 ######----- SnellPublic ChumoGH
 #######----- Socks  V2rayUC ChumoGH
 ########----- ShadowsocksPublic ChumoGH
@@ -151,7 +151,7 @@ unset yesno
 fun_ip
 figlet -p -f smslant < /root/name
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
-echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
+echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash de V2RAY"
 echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
 read -p ": " nameperfil
 echo -e "\033[1;33mÎ” Escriba el puerto de V2RAY Server Activo"
@@ -258,6 +258,46 @@ sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
 sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
 sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
 sed -i "s/v-3/$nameperfil/g" /root/.config/clash/config.yaml
+fi
+unset yesno
+echo -e "\033[1;33m Deseas Añadir Trojan Clash 3?\033[0m"
+while [[ ${yesno} != @(s|S|y|Y|n|N) ]]; do
+read -p "[S/N]: " yesno
+tput cuu1 && tput dl1
+done
+if [[ ${yesno} = @(s|S|y|Y) ]]; then
+unset yesno
+fun_ip
+figlet -p -f smslant < /root/name
+echo -e "\033[1;37m      ã€      ChumoGH-ADM Mods. VPSPack      ã€‘\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+#echo -e "\033[1;33mÎ” Escriba el puerto de Trojan Server"
+#read -p ": " troport
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
+unset nameperfil
+echo -e "\033[1;33mÎ” Nombre de Su Perfil Clash"
+read -p ": " nameperfil
+echo -e "\033[1;33mÎ” Escriba Nuevo el SNI de su metodo"
+read -p ": " trosni
+echo -e '
+- name: Trojan🇪🇨_Public2_v-4
+  type: "trojan"
+  server: ipdelservidor
+  port: portaaccess
+  password: claveacces
+  udp: true
+  sni: sniacces
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+' >> /root/.config/clash/config.yaml
+sed -i 's/#-/-/g' /root/.config/clash/config.yaml
+sed -i "s/ipdelservidor/$IP/g" /root/.config/clash/config.yaml
+sed -i "s/portaaccess/$troport/g" /root/.config/clash/config.yaml
+sed -i "s/claveacces/$tropass/g" /root/.config/clash/config.yaml
+sed -i "s/sniacces/$trosni/g" /root/.config/clash/config.yaml
+sed -i "s/v-4/$nameperfil/g" /root/.config/clash/config.yaml
 fi
 figlet -p -f smslant < /root/name
 echo -e "🦎” \033[1;32mIniciando y Reiniciando Servicio CLASH > Trojan > V2ray"
