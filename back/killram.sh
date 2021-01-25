@@ -27,5 +27,6 @@ killall kswapd0
 swapoff -a && swapon -a 1> /dev/null 2> /dev/null
 rm -rf /tmp/*
 sudo apt autoremove -y
-
 fi
+echo "Haciendo COPIA DE USUARIOS EN " $tiempo >> /root/lm.log
+source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/autobackup.sh)
