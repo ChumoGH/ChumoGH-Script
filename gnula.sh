@@ -5,7 +5,6 @@
 echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
 sysctl -w vm.drop_caches=3 1> /dev/null 2> /dev/null
 swapoff -a && swapon -a 1> /dev/null 2> /dev/null
-
 reiniciar_ser () {
 echo -ne " \033[1;31m[ ! ] Services BadVPN and Netflix restart"
 kill -9 $(ps x | grep badvpn | grep -v grep | awk '{print $1'}) > /dev/null 2>&1
@@ -14,6 +13,9 @@ unset pid_badvpn
 [[ -e /bin/badvpn-udpgw ]] && screen -dmS screen /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 > /dev/null 2>&1 && bash <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/netflix.sh) > /dev/null && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 pid_badvpn=$(ps x | grep badvpn | grep -v grep | awk '{print $1}')
 ##
+echo -ne " \033[1;31m[ ! ] Services ssh restart"
+service ssh restart > /dev/null 2>&1
+[[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Services stunnel4 restart"
 service stunnel4 restart > /dev/null 2>&1
 [[ -e /etc/init.d/stunnel4 ]] && /etc/init.d/stunnel4 restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
@@ -33,9 +35,6 @@ service openvpn restart > /dev/null 2>&1
 echo -ne " \033[1;31m[ ! ] Services dropbear restart"
 service dropbear restart > /dev/null 2>&1
 [[ -e /etc/init.d/dropbear ]] && /etc/init.d/dropbear restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services ssh restart"
-service ssh restart > /dev/null 2>&1
-[[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Services Trojan restart"
 killall trojan &> /dev/null 2>&1
 [[ -e /usr/local/etc/trojan/config.json ]] && screen -dmS trojanserv trojan /usr/local/etc/trojan/config.json > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
@@ -60,3 +59,5 @@ echo $tiempo >> /tmp/dropcache
 reiniciar_ser >> /root/lm.log
 echo -e >> $HOME/lm.log
 echo "Limpio >" $tiempo >> /root/lm.log
+killall bash
+
