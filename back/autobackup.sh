@@ -51,6 +51,9 @@ data_user=$(chage -l "$user" |grep -i co |awk -F ":" '{print $2}')
 data_user_sec=$(date +%s --date="$data_user")
 variavel_soma=$(($data_user_sec - $data_sec))
 dias_use=$(($variavel_soma / 86400))
+if [ $dias_use < 0 ]; then
+dias_use=0
+fi
 sl=$((dias_use + 1))
 i=$((i + 1))
  if [ -z "$limite" ]; then
