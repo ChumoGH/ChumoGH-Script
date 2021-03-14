@@ -2,7 +2,7 @@
 # -*- ENCODING: UTF-8 -*-
 
 # verificacion primarias
-[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="ADMbot.sh C-SSR.sh Crear-Demo.sh PDirect.py PGet.py POpen.py PPriv.py PPub.py Shadowsocks-R.sh Shadowsocks-libev.sh Unlock-Pass-VULTR.sh apacheon.sh blockBT.sh budp.sh dns-netflix.sh dropbear.sh fai2ban.sh gestor.sh menu message.txt openvpn.sh paysnd.sh ports.sh shadowsocks.sh sockspy.sh speed.sh speedtest.py squid.sh squidpass.sh ssl.sh tcp.sh ultrahost usercodes utils.sh v2ray.sh Proxy.sh"
+[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="ferramentas limitera menu_inst painel.zip PPub.py speedtest.py usercodes bot_codes ferramentascodes limiterb menu-txt payloads ssl user-txt cabecalho ferramentas-txt limiter.sh paysnd.sh trans verifica confdropbear get PDirect.py ultimatebot v-local.log dados.zip idioma_geral MasterBin.sh PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh fai2ban insta_painel menu_credito overtcp PPriv.py ShellBot.sh user"
 SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 INSTA_ARQUIVOS="ADMVPS.zip"
@@ -17,13 +17,13 @@ valuekey+="$(echo $(($RANDOM*10))|head -c 5)"
 fun_list "$valuekey"
 keyfinal=$(ofus "$IP:8888/$valuekey/$LIST")
 local bot_retorno="$LINE\n"
-bot_retorno+="✅ Key Generada Con Exito! ✅\n"
+bot_retorno+="✅ Key Generada Con Exito! $(printf '%(%D-%H:%M:%S)T') ✅ \n"
 bot_retorno+="$LINE\n"
 bot_retorno+="${keyfinal}\n"
 bot_retorno+="$LINE\n"
-bot_retorno+="sudo apt update -y; apt upgrade -y; wget https://raw.githubusercontent.com/rudi9999/VPS-MX-8.0/master/instalscript.sh; chmod 777 instalscript.sh; ./instalscript.sh\n"
+bot_retorno+="wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh\n"
 bot_retorno+="$LINE\n"
-bot_retorno+="Esta key se autodestruira en 4hs\npasado este tiempo deve generar una nueva key.\n"
+bot_retorno+="Esta key se eliminara en 24hs\npasado este tiempo deve generar una nueva key.\n"
 bot_retorno+="$LINE\n"
 msj_fun
 
@@ -40,7 +40,7 @@ KEY="$1"
 [[ ! -e ${DIR} ]] && mkdir ${DIR}
 #ENVIA ARQS
 i=0
-VALUE+="gerar.sh instgerador.sh http-server.py lista-arq $BASICINST"
+VALUE+="gerar.sh instgerador.sh http-server.py lista index.html $BASICINST"
 for arqx in `ls ${SCPT_DIR}`; do
 [[ $(echo $VALUE|grep -w "${arqx}") ]] && continue 
 echo -e "[$i] -> ${arqx}"
@@ -61,7 +61,7 @@ done
 rm ${SCPT_DIR}/*.x.c &> /dev/null
 echo "$nombrevalue" > ${DIR}/${KEY}.name
 [[ ! -z $IPFIX ]] && echo "$IPFIX" > ${DIR}/${KEY}/keyfixa
-at now +4 hours <<< "rm -rf ${DIR}/${KEY} && rm -rf ${DIR}/${KEY}.name"
+at now +24 hours <<< "rm -rf ${DIR}/${KEY} && rm -rf ${DIR}/${KEY}.name"
 }
 
 ofus () {
