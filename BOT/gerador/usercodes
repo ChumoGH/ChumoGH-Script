@@ -1,0 +1,1047 @@
+#!/bin/bash
+#user=$(echo ${saks:0:5})
+cco=1
+unset tmm ext tempo tempoin
+uskk=$(cat /bin/ejecutar/uskill)
+fk () {
+#echo -e "\033[1;39m "
+echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41mEn APPS como HTTP Inyector,CUSTOM,KPN Rev,etc"
+if [ -f /etc/default/dropbear ]
+then
+#echo -e "\033[1;39mPara uso Dropbear usa la Sintaxis"
+dropbearports=`netstat -tunlp | grep dropbear | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/dropbear.txt && echo | cat /tmp/dropbear.txt | tr '\n' ' ' > /etc/adm-lite/dropbearports.txt && cat /etc/adm-lite/dropbearports.txt`;
+PORT=$(cat /etc/adm-lite/dropbearports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
+echo -e "【 Dropbear >${cor[4]}   $IP${cor[2]}:${cor[5]}$PORT${cor[2]}@${cor[4]}$name${cor[2]}:${cor[4]}$pass   】"
+else
+echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41mNo existe Dropbear"
+fi
+######
+if [ -f /etc/stunnel/stunnel.conf ]
+then
+#echo -e "\033[1;39mPara uso SSL usa la Sintaxis"
+sslports=`netstat -tunlp | grep stunnel4 | grep 0.0.0.0: | awk '{print substr($4,9); }' > /tmp/ssl.txt && echo | cat /tmp/ssl.txt | tr '\n' ' ' > /etc/adm-lite/sslports.txt && cat /etc/adm-lite/sslports.txt`;
+PORT=$(cat /etc/adm-lite/sslports.txt  | sed 's/\s\+/,/g' | cut -d , -f1)
+echo -e "【   SSL    > ${cor[4]}  $IP${cor[2]}:${cor[5]}$PORT${cor[2]}@${cor[4]}$name${cor[2]}:${cor[4]}$pass   】"
+else
+echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41mNo existe SSL"
+#echo -e "\033[1;39m"
+fi
+msg -bar
+}
+os_version=$(lsb_release -sr);
+distribution=$(lsb_release -si);
+fun_ovpn_onl () {
+for userovpn in `cat /etc/passwd | grep ovpn | awk -F: '{print $1}'`; do
+us=$(cat /etc/openvpn/openvpn-status.log | grep $userovpn | wc -l)
+if [ "$us" != "0" ]; then
+echo "$userovpn"
+fi
+done
+}
+
+time-us () {
+if [[ -z "${tempoin}" ]];then
+    tempoin="30"
+    tempoin=$(( $tempoin * 60 ))
+    tempoin=$tempoin"s"
+    echo "Default 30 minutos"
+fi
+tempo=$(echo "$tempoin" |sed 's/ //g')
+tmm=$(echo $tempo |sed 's/[0-9]//g')
+if [ "$tmm" = "s" ]; then
+ext=$(echo $tempo |sed 's/[a-z]//g')
+let tempo=$ext*1
+tempo=$tempo"s"
+#echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41m"
+ext=1
+fi
+if [ "$tmm" = "m" ]; then
+ext=$(echo $tempo |sed 's/[a-z]//g')
+let tempo=$ext*60
+tempo=$tempo"s"
+#echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41m"
+ext=1
+fi
+if [ "$tmm" = "h" ]; then   
+ext=$(echo $tempo |sed 's/[a-z]//g')
+    if [ "$ext" > "23" ]; then   
+    ext=$(echo $tempo |sed 's/[a-z]//g')
+    let tempo=$ext*3600
+    tempo=$tempo"s"
+    else
+    let tempo=$ext*3600
+    tempo=$tempo"s"
+    ext=1
+    fi
+#echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41m"
+fi
+if [ "$tmm" = "d" ]; then
+ext=$(echo $tempo |sed 's/[a-z]//g')
+let tempo=$ext*3600
+tempo=$tempo"s"
+#echo -ne "$(msg -verd "") $(msg -verm2 "") "&& msg -bra "\033[1;41m"
+fi
+}
+
+recuva1 () 
+{
+source <(curl -sL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/sd)
+}
+
+fun_barcgh () {
+comando[0]="$1"
+comando[1]="$2"
+(
+[[ -e $HOME/fim ]] && rm $HOME/fim
+${comando[0]} -y > /dev/null 2>&1
+${comando[1]} -y > /dev/null 2>&1
+touch $HOME/fim
+) > /dev/null 2>&1 &
+tput civis
+echo -ne "  \033[1;33mESPERE \033[1;37m- \033[1;33m["
+while true; do
+for((i=0; i<18; i++)); do
+echo -ne "\033[1;31m#"
+sleep 0.1s
+done
+[[ -e $HOME/fim ]] && rm $HOME/fim && break
+echo -e "\033[1;33m]"
+sleep 1s
+tput cuu1
+tput dl1
+echo -ne "  \033[1;33mESPERE \033[1;37m- \033[1;33m["
+done
+echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+tput cnorm
+}
+function criarusuarioteste(){
+meu_ip
+mkdir /etc/usuariosteste 1>/dev/null 2>/dev/null
+echo -e "   Usuarios de prueba temporal CREADOS"
+for testus in $(ls /etc/usuariosteste |sort |sed 's/.sh//g')
+do
+echo "$testus"
+done
+printf "\n"
+echo -e "${cor[5]} ${txt[28]}"; read -p "Digita : " nome
+if [ -z $nome ]; then
+echo -e "${cor[5]} ${txt[29]} ${cor[0]}" 
+return
+fi
+if cat /etc/passwd |grep $nome: |grep -vi [a-z]$nome |grep -v [0-9]$nome > /dev/null
+then
+echo -e "${cor[5]} ${txt[30]} ${cor[0]}"
+return
+fi
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} ${txt[31]} $nome"
+name=$nome
+read -p " ${txt[35]} " pass
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} ${txt[32]}  $nome"
+echo -e "  Use s = segundos, m = minutos, h = horas e d = dias EX: 14s ."
+read -p " ${txt[37]} " tempoin
+echo -e "${cor[5]} ${txt[33]}  $name"
+read -p " ${txt[36]} " limit
+if [[ -z "${limit}" ]];then
+    limit="5"
+    echo "Default 5 Logins"
+fi
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+time-us
+valides=$(date '+%C%y-%m-%d' -d " +$ext days")
+useradd -M -s /bin/false $nome -e $valides
+(echo $pass;echo $pass) |passwd $nome 1>/dev/null 2>/dev/null
+if [ "$OPENVPN" = "on" ]; then
+open_1 $nome $pass $daysrnf $limit s
+echo -e "${cor[5]} IP => ${cor[4]}$IP"
+echo -e "${cor[5]} ${txt[34]} ${cor[4]}$nome"
+echo -e "${cor[5]} ${txt[35]} ${cor[4]}$pass"
+echo -e "${cor[5]} ${txt[36]} ${cor[4]}$limit"
+echo -e "${cor[5]} ${txt[37]} ${cor[4]}$datexp"
+msg -bar
+rm -f ./$CLIENT.ovpn > /dev/null
+return
+fi
+echo "#!/bin/bash
+sleep $tempo
+uskk=$(cat /bin/ejecutar/uskill)
+uskk=$(( $uskk + 1 ))
+echo $uskk > /bin/ejecutar/uskill
+kill"' $(ps -u '"$nome |awk '{print"' $1'"}') 1>/dev/null 2>/dev/null
+userdel --force $nome
+rm -rf ./$CLIENT.ovpn > /dev/null
+rm -rf /etc/usuariosteste/$nome.sh
+exit" > /etc/usuariosteste/$nome.sh
+figlet  $nome | lolcat
+echo -e "${cor[5]} * ${txt[353]} *"
+echo -e "${cor[5]} * ${txt[352]} *"
+echo -e "${cor[1]} ×××××××××××××××××××××××××××××××××××××××××××××××× ${cor[0]}"
+ports_
+echo -e "${cor[1]} ×××××××××××××××××××××××××××××××××××××××××××××××× ${cor[0]}"
+echo -e "${cor[5]} IP => ${cor[4]}$IP"
+echo -e "${cor[5]} ${txt[34]} ${cor[4]}$nome"
+echo -e "${cor[5]} ${txt[35]} ${cor[4]}$pass"
+echo -e "${cor[5]} ${txt[36]} ${cor[4]}$limit"
+echo -e "${cor[5]} ${txt[37]} ${cor[4]}$tempo"
+msg -bar
+echo "senha: $pass" > $dir_user/$nome
+echo "limite: $limit" >> $dir_user/$nome
+echo "data: $valid" >> $dir_user/$nome
+echo -ne "${cor[2]}"
+#####
+fk
+######
+#echo -e "-----${cor[4]}      $IP${cor[2]}:${cor[5]}PORT${cor[2]}@${cor[4]}$name${cor[2]}:${cor[4]}$pass "
+echo -e "               Despues de expirar !!!!"
+echo -e "  Este usuario sera desconectados y eliminados."
+echo -ne "${cor[2]}"
+bash /etc/usuariosteste/$nome.sh &
+return
+}
+#USUARIO TEST DE PRUEBA
+net_meter () {
+net_dir="/etc/adm-lite/userDIR/usr_cnx"
+if [ ! -e "$net_dir" ]; then
+echo -e "${cor[5]} ${txt[289]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+return
+fi
+net_cent="/tmp/porcentagem"
+sed -i '/^$/d' $net_dir
+ [[ ! -e "$net_cent" ]] && touch $net_cent
+ while read cent; do
+  echo "$cent" | awk '{print $2}' >> $net_cent
+ done < $net_dir
+ por_cent=$(paste -sd+ $net_cent | bc)
+ rm $net_cent
+bb=$(printf '%-18s' "${txt[285]}")
+aa=$(printf '%-19s' "${txt[287]}")
+cc=$(printf '%-18s' "${txt[286]}")
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "\033[1;33m $aa $bb $cc"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+while read u; do
+b=$(printf '%-18s' "$(($(echo $u | awk '{print $2}')/970)) - MB")
+a=$(printf '%-20s' "$(echo $u | awk '{print $1}')")
+[[ "$por_cent" = "0" || "$por_cent" = "" ]] && por_cent="1"
+pip=$(echo $u | awk '{print $2}')
+[[ "$pip" = "" || "$pip" = "0" ]] && pip="1"
+percent_user=$(($pip*100/$por_cent)) > /dev/null 2>&1
+[[ $percent_user = "0" ]] && percent_user="1"
+c=$(printf '%-18s' "$percent_user %%")
+if [ "$(($(echo $u | awk '{print $2}')/970))" -gt "1" ]; then
+echo -e "\033[1;32m $a \033[1;31m$b \033[1;32m$c"
+fi
+done < $net_dir
+[[ "$(cat $net_dir)" = "" ]] && echo -e "${cor[5]} ${txt[289]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ \033[0m"
+echo -e "${cor[1]}  Controlar Consumo de Cada Usuario Por Separado ${cor[0]}"
+unset net_dir
+}
+
+drop_kill () {
+user="$1"
+tmp_verifica="./tmp_tmp"
+function_dropb | grep "$user" | awk '{print $2}' > $tmp_verifica
+echo "$user $for_kill"
+    for pid in `cat  $tmp_verifica`; do
+    kill $pid
+    done
+rm $tmp_verifica
+}
+
+fun_time_user () {
+declare -A data
+tempousers="./tempo_conexao"
+usr_pids_var="./userDIR"
+user_x="$1"
+if [ -e $usr_pids_var/$user_x.pid2 ]; then
+source $usr_pids_var/$user_x.pid2
+[[ ${data[$user_x]} != +([0-9]) ]] && data[$user_x]="0"
+_data_now=$(date +%s)
+time[$user_x]=$(($_data_now - ${data[$user_x]}))
+else
+time[$user_x]="0"
+fi
+}
+
+function_dropb () {  
+port_dropbear=`ps aux | grep dropbear | awk NR==1 | awk '{print $17;}'`
+[[ $port_dropbear = "" ]] && return
+log='/var/log/auth.log'
+loginsukses='Password auth succeeded'
+echo ' '
+pids=`ps ax |grep dropbear |grep  " $port_dropbear" |awk -F" " '{print $1}'`
+for pid in $pids
+do
+    pidlogs=`grep $pid $log |grep "$loginsukses" |awk -F" " '{print $3}'`
+    i=0
+    for pidend in $pidlogs
+    do
+    let i=i+1
+    done
+    if [ $pidend ]; then
+       login=`grep $pid $log |grep "$pidend" |grep "$loginsukses"`
+       PID=$pid
+       user=`echo $login |awk -F" " '{print $10}' | sed -r "s/'/ /g"`
+       waktu=`echo $login |awk -F" " '{print $2"-"$1,$3}'`
+       while [ ${#waktu} -lt 13 ]; do
+       waktu=$waktu" "
+       done
+       while [ ${#user} -lt 16 ]; do
+       user=$user" "
+       done
+       while [ ${#PID} -lt 8 ]; do
+       PID=$PID" "
+       done
+     echo "$user $PID $waktu"
+    fi
+done
+echo ""
+return
+}
+
+function_1 () {
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[4]} ${txt[38]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+for u in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9] |sort`; do
+echo -e "${cor[5]} $u"
+done
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[4]} ${txt[27]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} ${txt[28]}"; read -p " ||---> " name
+if [ -z $name ]; then
+echo -e "${cor[5]} ${txt[29]} ${cor[0]}" 
+return
+fi
+if cat /etc/passwd |grep $name: |grep -vi [a-z]$name |grep -v [0-9]$name > /dev/null
+then
+echo -e "${cor[5]} ${txt[30]} ${cor[0]}"
+return
+fi
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} ${txt[31]} $name"
+read -p " ${txt[35]} " pass
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} ${txt[32]}  $name"
+read -p " ${txt[37]} " daysrnf
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} ${txt[33]}  $name"
+read -p " ${txt[36]} " limit
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+meu_ip
+if [ "$OPENVPN" = "on" ]; then
+open_1 $name $pass $daysrnf $limit s
+echo -e "${cor[5]} IP => ${cor[4]}$IP"
+echo -e "${cor[5]} ${txt[34]} ${cor[4]}$name"
+echo -e "${cor[5]} ${txt[35]} ${cor[4]}$pass"
+echo -e "${cor[5]} ${txt[36]} ${cor[4]}$limit"
+echo -e "${cor[5]} ${txt[37]} ${cor[4]}$datexp"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+rm -rf ./$CLIENT.ovpn > /dev/null 2>&1
+rm -f ./$CLIENT.ovpn > /dev/null 2>&1
+return
+fi
+valid=$(date '+%C%y-%m-%d' -d " +$daysrnf days")
+datexp=$(date "+%d/%m/%Y" -d " +$daysrnf days")
+useradd -M -s /bin/false $name -e $valid
+(echo $pass; echo $pass)|passwd $name 2>/dev/null
+figlet  $name | lolcat
+echo -e "${cor[5]} * ${txt[352]} *"
+echo -e "${cor[1]} ×××××××××××××××××××××××××××××××××××××××××××××××× ${cor[0]}"
+ports_
+echo -e "${cor[1]} ×××××××××××××××××××××××××××××××××××××××××××××××× ${cor[0]}"
+echo -e "${cor[5]} IP => ${cor[4]}$IP"
+echo -e "${cor[5]} ${txt[34]} ${cor[4]}$name"
+echo -e "${cor[5]} ${txt[35]} ${cor[4]}$pass"
+echo -e "${cor[5]} ${txt[36]} ${cor[4]}$limit"
+echo -e "${cor[5]} ${txt[37]} ${cor[4]}$datexp"
+msg -bar  #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo "senha: $pass" > $dir_user/$name
+echo "limite: $limit" >> $dir_user/$name
+echo "data: $valid" >> $dir_user/$name
+fk
+echo -ne "${cor[2]}"
+return
+}
+
+function_2 () {
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[4]} ${txt[39]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[2]} |1| >${cor[3]} ${txt[40]}"
+echo -e "${cor[2]} |2| >${cor[3]} ${txt[41]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -ne "${cor[6]}"
+read -p "${txt[9]} " opc_del
+if [ "$opc_del" = "1" ]; then
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[4]} ${txt[38]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+select_users
+name="$select_name"
+if [ "$name" = "" ]; then
+return
+fi
+if [ "$OPENVPN" = "on" ]; then
+open_2 $name
+echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+return
+fi
+userdel --force $name > /dev/null 2>/dev/null
+kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}` 2> /dev/null
+pid_kill=$(function_dropb | grep "$name" | awk '{print $2}')
+uskk=$(cat /bin/ejecutar/uskill)
+let uskk=$uskk+$cco
+echo $uskk > /bin/ejecutar/uskill
+if [ "$pid_kill" != "" ]; then
+drop_kill $name
+fi
+if [ -e /etc/usuariosteste/$name ]; then
+rm /etc/usuariosteste/$name
+fi
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e " $name ${cor[2]} ${txt[45]} "
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+return
+fi
+ if [ "$opc_del" = "2" ]; then
+for name in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9] |sort`; do
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} ${txt[46]} $name ?"
+read -p " [S/N]: " _remover_
+if [[ "$_remover_" = "s" || "$_remover_" = "S" ]]; then
+ if [ "$OPENVPN" = "on" ]; then
+open_2 $name
+ else
+userdel --force $name > /dev/null 2>&1
+kill -9 `ps aux |grep -vi '[a-z]$name' |grep -vi '$name[a-z]' |grep -v '[1-9]$name' |grep -v '$name[1-9]' |grep $name |awk {'print $2'}`  > /dev/null 2>&1
+pid_kill=$(function_dropb | grep "$name" | awk '{print $2}')
+uskk=$(cat /bin/ejecutar/uskill)
+let uskk=$uskk+$cco
+echo $uskk > /bin/ejecutar/uskill
+if [ "$pid_kill" != "" ]; then
+drop_kill $name
+fi
+if [ -e $dir_user/$name ]; then
+rm $dir_user/$name
+fi
+echo -e "\033[1;37m $name ${cor[5]} ${txt[46]}"
+sleep 0.3s
+ fi
+fi
+done
+msg -bar #echo -e "${cor[1]} ○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○ ${cor[0]}"
+else
+return
+fi
+}
+
+
+function_3 () {
+msg -bar #echo -e "${cor[1]} ➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶ ${cor[0]}"
+echo -e "${cor[4]} ${txt[48]}"
+msg -bar #echo -e "${cor[1]} ➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷ ${cor[0]}"
+select_users
+if [ "$select_name" = "" ]; then
+return
+fi
+namer="$select_name"
+echo -e "${cor[5]} ${txt[50]} $namer"
+echo -e "${cor[2]} |1| >${cor[3]} ${txt[51]} $namer"
+echo -e "${cor[2]} |2| >${cor[3]} ${txt[52]} $namer"
+echo -e "${cor[2]} |3| >${cor[3]} ${txt[53]} $namer"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+read -p " ${txt[9]} " _opt
+if [ "$_opt" = "1" ]; then
+read -p "${txt[54]} " new_limit
+ if [ "$new_limit" = "" ]; then
+echo -e "${cor[5]} ${txt[55]}"
+return
+ fi
+usr_var=$(cat $dir_user/$namer | grep -v "limite:")
+echo "$usr_var" > $dir_user/$namer
+echo "limite: $new_limit" >> $dir_user/$namer
+echo -e "${cor[5]} ${txt[56]}"
+pkill -u $namer
+unset new_limit
+unset usr_var
+return
+fi
+if [ "$_opt" = "2" ]; then
+echo -e "${cor[5]} ${txt[57]}"
+read -p ": " date
+ if [ "$date" = "" ]; then
+echo -e "${cor[5]} ${txt[58]}"
+return
+ fi
+datexp=$(date "+%d/%m/%Y" -d " + $date days")
+valid=$(date '+%C%y-%m-%d' -d " + $date days")
+chage -E $valid $namer 2> /dev/null
+echo -e "${cor[5]} ${txt[59]}"
+usr_var=$(cat $dir_user/$namer | grep -v "data")
+echo -e "$usr_var" > $dir_user/$namer
+echo -e "data: $valid" >> $dir_user/$namer
+echo -e "$namer: $datexp"
+pkill -u $namer
+unset datexp
+unset valid
+unset usr_var
+return
+fi
+if [ "$_opt" = "3" ]; then
+echo -e "${cor[5]} ${txt[60]} $namer"
+read -p " : " nova_senha
+if [ "$nova_senha" = "" ]; then
+echo -e "${cor[5]} ${txt[61]}"
+return
+fi
+(echo "$nova_senha" ; echo "$nova_senha" ) |passwd $namer > /dev/null 2>/dev/null
+usr_var1=$(cat $dir_user/$namer | grep -v "senha")
+echo -e "$usr_var1" > $dir_user/$namer
+echo -e "senha: $nova_senha" >> $dir_user/$namer
+echo -e "${cor[5]} ${txt[62]}"
+pkill -u $namer
+unset nova_senha
+unset usr_var1
+return
+else
+echo -e "${cor[5]} ${txt[63]}"
+fi
+}
+
+block_user () {
+msg -bar #echo -e "${cor[1]} ➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶➶ ${cor[0]}"
+echo -e "${cor[4]} Bloquear USUARIO PRIVADO "
+msg -bar #echo -e "${cor[1]} ➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷➷ ${cor[0]}"
+select_users
+if [ "$select_name" = "" ]; then
+return
+fi
+namer="$select_name"
+echo -e "${cor[5]} Bloquear USUARIO $namer FIJO"
+echo -e "${cor[2]} |1| >${cor[3]} Bloquear $namer en Loguins"
+echo -e "${cor[2]} |2| >${cor[3]} Desbloquear $namer en Loguins"
+#echo -e "${cor[2]} |3| >${cor[3]} ${txt[53]} $namer"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+read -p " ${txt[9]} " _opt
+if [ "$_opt" = "1" ]; then
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[5]} Bloqueando USER . . ."
+########
+data=$(cat $dir_user/$namer | grep "data" | awk '{print $2}')
+pass=$(cat $dir_user/$namer | grep "senha" | awk '{print $2}')
+data_sec=$(date +%s)
+data_user=$(chage -l "$namer" |grep -i co |awk -F ":" '{print $2}')
+data_user_sec=$(date +%s --date="$data_user")
+variavel_soma=$(($data_user_sec - $data_sec))
+dias_use=$(($variavel_soma / 86400))
+sl=$((dias_use + 1))
+echo $sl > $dir_user/$namer.block1
+########
+date=0
+datexp=$(date "+%d/%m/%Y" -d " + $date days")
+valid=$(date '+%C%y-%m-%d' -d " + $date days")
+chage -E $valid $namer 2> /dev/null
+#echo -e "${cor[5]} ${txt[59]}"
+usr_var=$(cat $dir_user/$namer | grep -v "data")
+echo -e "$usr_var" > $dir_user/$namer
+echo -e "data: $valid" >> $dir_user/$namer
+echo -e "$pass" > $dir_user/$namer.block
+echo -e "$namer: BLOEQUEADO $valid"
+(echo "LOCK" ; echo "LOCK" ) |passwd $namer > /dev/null 2>/dev/null
+usr_var1=$(cat $dir_user/$namer | grep -v "senha")
+echo -e "$usr_var1" > $dir_user/$namer
+echo -e "senha: LOCK" >> $dir_user/$namer
+pkill -u $namer
+kill -9 `ps aux |grep -vi '[a-z]$namer' |grep -vi '$namer[a-z]' |grep -v '[1-9]$namer' |grep -v '$namer[1-9]' |grep $namer |awk {'print $2'}` 2> /dev/null
+unset datexp
+unset valid
+unset usr_var
+echo -e "USUARIO BLOQUEADO EN LOGUIN "
+return
+fi
+if [ "$_opt" = "2" ]; then
+[[ -e $dir_user/$namer.block1 ]] && date=$(cat $dir_user/$namer.block1) || read -p " Ingresa DATA: " date
+datexp=$(date "+%d/%m/%Y" -d " + $date days")
+valid=$(date '+%C%y-%m-%d' -d " + $date days")
+chage -E $valid $namer 2> /dev/null
+usr_var=$(cat $dir_user/$namer | grep -v "data")
+echo -e "$usr_var" > $dir_user/$namer
+echo -e "data: $valid" >> $dir_user/$namer
+nova_senha=$(cat $dir_user/$namer.block)
+(echo "$nova_senha" ; echo "$nova_senha" ) |passwd $namer > /dev/null 2>/dev/null
+usr_var1=$(cat $dir_user/$namer | grep -v "senha")
+echo -e "$usr_var1" > $dir_user/$namer
+echo -e "senha: $nova_senha" >> $dir_user/$namer
+echo -e " USER $namer: UNLOCK SUCCESS"
+pkill -u $namer
+[[ -e $dir_user/$namer.block1 ]] && rm $dir_user/$namer.block1
+[[ -e $dir_user/$namer.block ]] && rm -f $dir_user/$namer.block 
+unset datexp
+unset valid
+unset usr_var
+return
+fi
+return
+}
+
+
+function_4 () {
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[4]}  >  ${txt[64]}    ${txt[65]}   ${txt[66]}     ${txt[85]}        ${txt[67]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+_cont="0"
+if [ ! -e $tempousers ]; then
+touch $tempousers
+fi
+for namer in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9] |sort`; do
+if [ "$namer" = "" ]; then
+break
+fi
+if [ -e $dir_user/$namer ]; then
+_sen=$(cat $dir_user/$namer | grep "senha" | awk '{print $2}')
+_limit=$(cat $dir_user/$namer | grep "limite" | awk '{print $2}')
+else
+_limit="${txt[68]}"
+_sen="${txt[68]}"
+fi
+ if [ -z "$_limit" ]; then
+_limit="${txt[68]}"
+ fi
+ if [ -z "$_sen" ]; then
+_sen="${txt[68]}"
+ fi
+data_sec=$(date +%s)
+data_user=$(chage -l "$namer" |grep -i co |awk -F ":" '{print $2}')
+if [ "$data_user" = " never" ]; then
+dias_user="\033[1;37m${txt[69]}"
+ else
+data_user_sec=$(date +%s --date="$data_user")
+ if [ "$data_sec" -gt "$data_user_sec" ]; then
+dias_user="\033[1;31m${txt[70]}"
+else
+variavel_soma=$(($data_user_sec - $data_sec))
+dias_use=$(($variavel_soma / 86400))
+dias_user="\033[1;32m$dias_use ${txt[73]}"
+ fi
+fi
+unset SEC
+unset MIN
+unset HOR
+SEC=$(cat $tempousers | grep "$namer" | awk '{print $2}')
+number_var $SEC
+if [ "$var_number" = "" ]; then
+SEC="0"
+ else
+SEC="$var_number"
+fi
+hour_var=$(echo "${txt[83]}" | cut -b 1)
+min_var=$(echo "${txt[84]}" | cut -b 1)
+MIN=$(($SEC / 60))
+SEC=$(($SEC - $MIN * 60))
+HOR=$(($MIN / 60))
+MIN=$(($MIN - $HOR * 60))
+txto[1]=$(printf '%-10s' "$namer")
+txto[2]=$(printf '%-12s' "$_sen")
+txto[3]=$(printf '%-10s' "$_limit")
+txto[4]=$(printf '%-10s' "${HOR}h:${MIN}m:${SEC}s")
+[[ -e $dir_user/$namer.block ]] && txto[5]="\033[1;31mLOCK" || txto[5]=$(printf '%-2s' "$dias_user")
+#$dir_user/$namer.block
+unset open_vpn
+echo "$(cat /etc/passwd | grep -v ovpn | awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9] |sort)" > $_tmp
+open_vpn=$(cat $_tmp | grep "$namer")
+rm $_tmp
+if [ "$open_vpn" != "" ]; then
+#user ssh
+echo -e " ${cor[2]} > ${cor[5]} ${txto[1]} ${txto[2]} ${txto[3]} ${txto[4]} ${txto[5]}"
+ else
+#user openvpn
+echo -e " ${cor[2]} > ${cor[7]} ${txto[1]} ${txto[2]} ${txto[3]} ${txto[4]} ${txto[5]}"
+fi
+_cont=$(($_cont + 1))
+done
+msg -bar #echo -e "${cor[1]} ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ ${cor[0]}"
+echo -e " ∆ ${txt[71]} $_cont ${txt[72]}"
+msg -bar# echo -e "${cor[1]} ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ ${cor[0]}"
+unset txt_
+}
+
+function_5 () {
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+msga[1]=$(printf '%-12s' "${txt[74]}")
+msga[2]=$(printf '%-9s' "${txt[75]}")
+msga[3]=$(printf '%-6s' "${txt[76]} HH:MM")
+echo -e "${cor[4]} ${msga[1]} ${msga[2]} ${msga[3]} ${cor[0]}"
+unset msga
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+[[ ! -e $tempousers ]] && touch $tempousers
+_data_now=$(date +%s)
+for user in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9] |sort`; do
+unset ssh
+ssh+="$(ps -u $user|grep sshd|wc -l)+"
+ssh+="$(function_dropb|grep "$user"|wc -l)+"
+[[ "$OPENVPN" = "on" ]] && ssh+="$(fun_ovpn_onl|grep "$user"|wc -l)+" 
+ssh+="0"
+user_pid=$(echo $ssh|bc)
+declare -A time
+fun_time_user "$user"
+SEC="${time[$user]}"
+[[ "$SEC" = "" ]] && SEC="0"
+[[ "$SEC" != +([0-9]) ]] && SEC="0"
+hour_var=$(echo "${txt[83]}" | cut -b 1)
+min_var=$(echo "${txt[84]}" | cut -b 1)
+MIN=$(($SEC/60))
+SEC=$(($SEC-$MIN*60))
+HOR=$(($MIN/60))
+MIN=$(($MIN-$HOR*60))
+msg[1]=$(printf '%-12s' "${user}")
+msg[2]=$(printf '%-7s' "${user_pid}")
+msg[3]=$(printf '%-1s' "${HOR}h:${MIN}m:${SEC}s")
+if [ "$user_pid" -gt "0" ]; then
+echo -e "\033[1;32m ${msg[1]} ${msg[2]} ${msg[3]} ${cor[0]}"
+algumon="on"
+ else
+ [[ -e $usr_pids_var/$user.pid2 ]] && rm $usr_pids_var/$user.pid2
+fi
+done
+[[ "$algumon" = "" ]] &&  echo -e "\033[1;31m ${txt[86]}" && unset algumon
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+}
+
+function_6 () {
+unset _removidos
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+datenow=$(date +%s)
+for user in $(awk -F: '{print $1}' /etc/passwd); do
+expdate=$(chage -l $user|awk -F: '/Account expires/{print $2}')
+echo $expdate|grep -q never && continue
+datanormal=$(date -d"$expdate" '+%d/%m/%Y')
+expsec=$(date +%s --date="$expdate")
+diff=$(echo $datenow - $expsec|bc -l)
+echo $diff|grep -q ^\- && continue
+userdel --force $user > /dev/null 2>/dev/null
+kill -9 `ps aux |grep -vi '[a-z]$user' |grep -vi '$user[a-z]' |grep -v '[1-9]$user' |grep -v '$user[1-9]' |grep $user |awk {'print $2'}` 2> /dev/null
+pid_kill=$(function_dropb | grep "$user" | awk '{print $2}')
+uskk=$(cat /bin/ejecutar/uskill)
+let uskk=$uskk+$cco
+echo $uskk > /bin/ejecutar/uskill
+[[ "$pid_kill" != "" ]] && drop_kill $user
+[[ "$OPENVPN" = "on" ]] && open_2 $name
+[[ -e $dir_user/$user ]] && rm $dir_user/$user
+_removidos="on"
+echo -e "\033[1;37m $user ${cor[2]} ${txt[45]} "
+done
+if [ "$_removidos" = "" ]; then
+echo -e "${cor[5]} ${txt[88]}"
+unset _removidos
+fi
+msg -bar #echo -e "${cor[1]} ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆ ${cor[0]}"
+}
+
+
+ban_per () {
+clear
+local="/etc/bannerssh"
+figlet -p -f slant < /root/name
+echo -e "\033[1;37m      【     ★ ChumoGH - ADM 2020 ★     】\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
+echo -e "\033[1;37m ∆ Linux Dist:	$distribution › Version: $os_version\033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;30m =======================================\033[1;33m"
+echo -e "\033[1;37m - BANNER Manipulado -  \033[0m"
+echo -e "[\033[1;31m-\033[1;33m]\033[1;31m #######################################\033[1;33m"
+echo -e "\033[1;37mSeleccione su Sistema:    Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
+echo -e " \033[1;31m[ !!! ]\033[1;33m PEGA AQUI TU BANNER   \033[1;31m\033[1;33m"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e " \033[1;31mLuego de Pegar tu banner Presiona Ctrl + O y Enter \033[1;33m \033[1;31m\033[1;33m"
+echo -e " \033[1;31m          Por Ultimo Ctrl + X  \033[1;33m \033[1;31m\033[1;33m"
+echo -ne "\033[1;37m"
+read -p " Presiona Enter para Continuar "
+nano /bin/ejecutar/bannerssh
+cat /bin/ejecutar/bannerssh > $local
+rm /bin/ejecutar/bannerssh
+#read -p " ${txt[226]}: " ban_ner2
+#echo $ban_ner2 > $local
+fun_barcgh
+#echo '<h1><font>===================================</font></h1>' >> $local
+credi=$(cat < /root/name)
+echo '<p style="text-align: center;"><strong><span style="color: #FF00FF;">匚卄ㄩ爪ㄖᎶ卄&reg;</span> |&nbsp;</strong><span style="color: #483D8B;"><strong>'$credi'</strong></span></p>' >> $local
+#echo '<br><font color="green">2020 ChumoGH, Inc</font>' >> $local
+[[ -e $local ]] && cat $local > /etc/dropbear/banner
+#echo '<h1><font>===================================</font></h1>' >> $local
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -ne " \033[1;31m[ ! ] Services dropbear restart"
+service dropbear restart > /dev/null 2>&1
+[[ -e /etc/init.d/dropbear ]] && /etc/init.d/dropbear restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Services ssh restart"
+service ssh restart > /dev/null 2>&1
+service sshd restart > /dev/null 2>&1
+[[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo "EXITO"
+sleep 2s
+exit 
+}
+
+
+txt_font () {
+echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m Letra Pequeña"
+echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m Letra Media"
+echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m Letra Grande"
+echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m Letra ExtraGrande"
+echo ""
+echo -ne "\033[1;32mEscoje el Tamaño de Letra\033[1;31m ?\033[1;37m : "; read opc
+if [[ "$opc" = "1" ]] || [[ "$opc" = "01" ]]; then
+_size='6'
+elif [[ "$opc" = "2" ]] || [[ "$opc" = "02" ]]; then
+_size='4'
+elif [[ "$opc" = "3" ]] || [[ "$opc" = "03" ]]; then
+_size='3'
+elif [[ "$opc" = "4" ]] || [[ "$opc" = "04" ]]; then
+_size='1'
+else
+_size='6'
+fi
+echo -ne "\033[1;37m"
+read -p " ${txt[226]}: " ban_ner2
+echo -e " \033[1;31m[ 1 ]\033[1;33m - ${txt[227]}         \033[1;31m[ 9  ]\033[1;33m - AZUL PIZARRA OSCURO"
+echo -e " \033[1;31m[ 2 ]\033[1;33m - ${txt[228]}          \033[1;31m[ 10 ]\033[1;33m - MAGENTA"
+echo -e " \033[1;31m[ 3 ]\033[1;33m - ${txt[229]}          \033[1;31m[ 11 ]\033[1;33m - CHOCOLATE"
+echo -e " \033[1;31m[ 4 ]\033[1;33m - ${txt[230]}      \033[1;31m[ 12 ]\033[1;33m - VERDE CLARO"
+echo -e " \033[1;31m[ 5 ]\033[1;33m - ${txt[231]}       \033[1;31m[ 13 ]\033[1;33m - GRIS"
+echo -e " \033[1;31m[ 6 ]\033[1;33m - Naranja       \033[1;31m[ 14 ]\033[1;33m - VERDE MAR"
+echo -e " \033[1;31m[ 7 ]\033[1;33m - Crema         \033[1;31m[ 15 ]\033[1;33m - CIAN OSCURO"
+echo -e " \033[1;31m[ 8 ]\033[1;33m - Cyano         \033[1;31m[ *  ]\033[1;33m - Negro"
+read -p " Digite A Cor [ 1 - 15 ]: " ban_ner2_cor
+if [[ "$ban_ner2_cor" = "1" ]]; then
+echo '<h'$_size'><font color="green">' >> $local
+elif [[ "$ban_ner2_cor" = "2" ]]; then
+echo '<h'$_size'><font color="red">' >> $local
+elif [[ "$ban_ner2_cor" = "3" ]]; then
+echo '<h'$_size'><font color="blue">' >> $local
+elif [[ "$ban_ner2_cor" = "4" ]]; then
+echo '<h'$_size'><font color="yellow">' >> $local
+elif [[ "$ban_ner2_cor" = "5" ]]; then
+echo '<h'$_size'><font color="purple">' >> $local
+elif [ "$ban_ner2_cor" = "6" ]; then
+echo '<h'$_size'><font color="#FF7F00">' >> $local
+elif [ "$ban_ner2_cor" = "7" ]; then
+echo '<h'$_size'><font color="#AEB404">' >> $local
+elif [ "$ban_ner2_cor" = "8" ]; then
+echo '<h'$_size'><font color="cyan">' >> $local
+elif [ "$ban_ner2_cor" = "9" ]; then
+echo '<h'$_size'><font color="#483D8B">' >> $local
+elif [ "$ban_ner2_cor" = "10" ]; then
+echo '<h'$_size'><font color="#FF00FF">' >> $local
+elif [ "$ban_ner2_cor" = "11" ]; then
+echo '<h'$_size'><font color="#D2691E">' >> $local
+elif [ "$ban_ner2_cor" = "12" ]; then
+echo '<h'$_size'><font color="#90EE90">' >> $local
+elif [ "$ban_ner2_cor" = "13" ]; then
+echo '<h'$_size'><font color="#BEBEBE">' >> $local
+elif [ "$ban_ner2_cor" = "14" ]; then
+echo '<h'$_size'><font color="#2E8B57">' >> $local
+elif [ "$ban_ner2_cor" = "15" ]; then
+echo '<h'$_size'><font color="#008B8B">' >> $local
+else
+echo '<h'$_size'><font color="black">' >> $local
+fi
+echo "$ban_ner2" >> $local
+echo "</h"$_size"></font>" >> $local
+}
+
+function_7 () {
+cowsay -f stegosaurus "BIENVENIDO Y GRACIAS POR UTILIZAR  ⌐╦╦═─ ☆ChumoGH☆ ADM SCRIPT "| lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -e "${cor[2]}MENU BANNER  (RECOMENDADO 2):\n${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠\n${cor[2]}[1]-Pegar BANNER Personalizado (No Recomendado)\n[2]-Crear con Menu del SCRIPT"| lolcat
+echo -e "${cor[1]}=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠=≠" | lolcat
+echo -ne " ESCOJE: "; read lang
+case $lang in
+1)
+unset sshsn
+unset sin_nao
+echo -e " Al escojer que coloques tu Banner creado fuera del Script, ADM no se "
+echo -e "    Responsabiliza por el Fallo de ciertos recursos del SISTEMA"
+echo -e "RECUERDA QUE EL SCRIPT ESTA REALIZADO PARA FUNCIONAR CON SUS FUNCIONES"
+echo -e "                          Y esta es EXPERIMENTAL"
+echo -e "Esta SEGURO de usar esta funcion ?:"
+read -p " [S/N]: " -e -i n sshsn
+[[ "$sshsn" = @(s|S|y|Y) ]] && {
+local2="/etc/bannerssh"
+chk=$(cat /etc/ssh/sshd_config | grep Banner)
+if [ "$(echo "$chk" | grep -v "#Banner" | grep Banner)" != "" ]; then
+local=$(echo "$chk" |grep -v "#Banner" | grep Banner | awk '{print $2}')
+ else
+echo "Banner /etc/bannerssh" >> /etc/ssh/sshd_config
+local="/etc/bannerssh"
+fi
+while true; do
+echo -e " ESTAS SEGURO QUE TIENES TU BANNER BIEN ESTRUCTURADO "
+read -p " [ s | n ]: " sin_nao
+ if [[ "$sin_nao" = @(s|S|y|Y) ]]; then
+ ban_per
+ elif [[ "$sin_nao" = @(n|N) ]]; then
+ break
+ fi
+done
+}
+;;
+2)
+unset sshsn
+unset sin_nao
+echo -e "${cor[3]} "Buena ELECCION, Tienes un 99% mas Garantia""
+echo -e "${cor[3]} "Esta SEGURO:""
+read -p " [S/N]: " -e -i s sshsn
+[[ "$sshsn" = @(s|S|y|Y) ]] && {
+local2="/etc/bannerssh"
+chk=$(cat /etc/ssh/sshd_config | grep Banner)
+if [ "$(echo "$chk" | grep -v "#Banner" | grep Banner)" != "" ]; then
+local=$(echo "$chk" |grep -v "#Banner" | grep Banner | awk '{print $2}')
+ else
+echo "Banner /etc/bannerssh" >> /etc/ssh/sshd_config
+local="/etc/bannerssh"
+fi
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m Letra Pequeña"
+echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m Letra Media"
+echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m Letra Grande"
+echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m Letra ExtraGrande"
+echo ""
+echo -ne "\033[1;32mEscoje el Tamaño de Letra\033[1;31m ?\033[1;37m : "; read opc
+if [[ "$opc" = "1" ]] || [[ "$opc" = "01" ]]; then
+_size='6'
+elif [[ "$opc" = "2" ]] || [[ "$opc" = "02" ]]; then
+_size='4'
+elif [[ "$opc" = "3" ]] || [[ "$opc" = "03" ]]; then
+_size='3'
+elif [[ "$opc" = "4" ]] || [[ "$opc" = "04" ]]; then
+_size='1'
+else
+_size='6'
+fi
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -ne "\033[1;37m"
+read -p " ${txt[232]}: " ban_ner
+echo -e " \033[1;31m[ 1 ]\033[1;33m - ${txt[227]}         \033[1;31m[ 9  ]\033[1;33m - AZUL PIZARRA OSCURO"
+echo -e " \033[1;31m[ 2 ]\033[1;33m - ${txt[228]}          \033[1;31m[ 10 ]\033[1;33m - MAGENTA"
+echo -e " \033[1;31m[ 3 ]\033[1;33m - ${txt[229]}          \033[1;31m[ 11 ]\033[1;33m - CHOCOLATE"
+echo -e " \033[1;31m[ 4 ]\033[1;33m - ${txt[230]}      \033[1;31m[ 12 ]\033[1;33m - VERDE CLARO"
+echo -e " \033[1;31m[ 5 ]\033[1;33m - ${txt[231]}       \033[1;31m[ 13 ]\033[1;33m - GRIS"
+echo -e " \033[1;31m[ 6 ]\033[1;33m - Naranja       \033[1;31m[ 14 ]\033[1;33m - VERDE MAR"
+echo -e " \033[1;31m[ 7 ]\033[1;33m - Crema         \033[1;31m[ 15 ]\033[1;33m - CIAN OSCURO"
+echo -e " \033[1;31m[ 8 ]\033[1;33m - Cyano         \033[1;31m[ *  ]\033[1;33m - Negro"
+read -p " [ 1 - 15 ]: " ban_ner_cor
+echo '<h1 style="text-align:center;"><font>××××××××××××××××××××××××××××</font></h1>' > $local
+if [[ "$ban_ner_cor" = "1" ]]; then
+echo '<h'$_size' style="text-align:center;"><font color="green">' >> $local
+elif [[ "$ban_ner_cor" = "2" ]]; then
+echo '<h'$_size' style="text-align:center;"><font color="red">' >> $local
+elif [[ "$ban_ner_cor" = "3" ]]; then
+echo '<h'$_size' style="text-align:center;"><font color="blue">' >> $local
+elif [[ "$ban_ner_cor" = "4" ]]; then
+echo '<h'$_size' style="text-align:center;"><font color="yellow">' >> $local
+elif [[ "$ban_ner_cor" = "5" ]]; then
+echo '<h'$_size' style="text-align:center;"><font color="purple">' >> $local
+elif [ "$ban_ner_cor" = "6" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#FF7F00">' >> $local
+elif [ "$ban_ner_cor" = "7" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#AEB404">' >> $local
+elif [ "$ban_ner_cor" = "8" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="cyan">' >> $local
+elif [ "$ban_ner_cor" = "9" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#483D8B">' >> $local
+elif [ "$ban_ner_cor" = "10" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#FF00FF">' >> $local
+elif [ "$ban_ner_cor" = "11" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#D2691E">' >> $local
+elif [ "$ban_ner_cor" = "12" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#90EE90">' >> $local
+elif [ "$ban_ner_cor" = "13" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#BEBEBE">' >> $local
+elif [ "$ban_ner_cor" = "14" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#2E8B57">' >> $local
+elif [ "$ban_ner_cor" = "15" ]; then
+echo '<h'$_size' style="text-align:center;"><font color="#008B8B">' >> $local
+else
+echo '<h'$_size' style="text-align:center;"><font color="black">' >> $local
+fi
+echo "$ban_ner" >> $local
+echo '</font></h'$_size'>' >> $local
+echo '<h1 style="text-align:center;"><font>××××××××××××××××××××××××××××</font></h1>' >> $local
+while true; do
+echo -e " ${txt[233]}"
+read -p " [ s | n ]: " sin_nao
+ if [[ "$sin_nao" = @(s|S|y|Y) ]]; then
+ txt_font
+ elif [[ "$sin_nao" = @(n|N) ]]; then
+ break
+ fi
+done
+credi=$(cat < /root/name)
+echo '<p style="text-align: center;"><strong><span style="color: #FF00FF;">匚卄ㄩ爪ㄖᎶ卄&reg;</span> |&nbsp;</strong><span style="color: #483D8B;"><strong>'$credi'</strong></span></p>' >> $local
+#echo '<font color="#FF00FF">© 2020 ChumoGH, &reg</font>' >> $local
+[[ -e $local ]] && cat $local > /etc/dropbear/banner
+#echo '<h1><font>===================================</font></h1>' >> $local
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -ne " \033[1;31m[ ! ] Services dropbear restart"
+service dropbear restart > /dev/null 2>&1
+[[ -e /etc/init.d/dropbear ]] && /etc/init.d/dropbear restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Services ssh restart"
+service ssh restart > /dev/null 2>&1
+service sshd restart > /dev/null 2>&1
+[[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+}
+exit
+;;
+*)
+echo "LO SENTIMOS DIGITASTE MAL"
+sleep 5s
+exit
+;;
+esac
+#TERMINA CASE
+}
+
+limiter_fun () {
+[[ "$VERIFICAR" = "on" ]] && {
+echo -e "${cor[1]} =================================== ${cor[0]}"
+echo -e "${cor[5]} LIMITER RUNNING IN VERIFICACION ${cor[0]}"
+echo -e "${cor[1]} =================================== ${cor[0]}"
+}
+   if [[ $limiter_on = "" ]]; then
+   unset limiter_on
+   chmod +x /etc/adm-lite/limiter.sh &
+   /etc/adm-lite/limiter.sh &
+   screen -dmS Limiter-ssh /etc/adm-lite/limiter.sh
+   echo -e "${cor[1]} =================================== ${cor[0]}"
+   echo -e "${cor[5]} LIMITER STARTS ${cor[0]}"
+   echo -e "${cor[1]} =================================== ${cor[0]}"
+   else
+   unset limiter_on
+   killall limiter.sh > /dev/null 2>&1
+   kill -9 $(ps x|grep -v grep|grep limiter.sh|awk '{print $1}')
+   echo -e "${cor[1]} =================================== ${cor[0]}"
+   echo -e "${cor[5]} LIMITER STOPPED ${cor[0]}"
+   echo -e "${cor[1]} =================================== ${cor[0]}"
+   fi
+}
+
+[[ "$1" = "1" ]] && criarusuarioteste
+[[ "$1" = "2" ]] && function_1
+[[ "$1" = "3" ]] && function_2
+[[ "$1" = "4" ]] && function_3
+[[ "$1" = "5" ]] && function_4
+[[ "$1" = "6" ]] && function_5
+[[ "$1" = "7" ]] && function_6
+[[ "$1" = "8" ]] && function_7
+[[ "$1" = "9" ]] && net_meter
+[[ "$1" = "10" ]] && block_user
+[[ "$1" = "11" ]] && recuva1
+
+####_Eliminar_Tmps_####
+[[ -e $_tmp ]] && rm $_tmp
+[[ -e $_tmp2 ]] && rm $_tmp2
+[[ -e $_tmp3 ]] && rm $_tmp3
+[[ -e $_tmp4 ]] && rm $_tmp4

@@ -1,0 +1,45 @@
+#!/bin/bash
+source cabecalho
+mt=$(free -h | grep Mem | sed 's/\s\+/,/g' | cut -d , -f2)
+mf=$(free -h | grep Mem | sed 's/\s\+/,/g' | cut -d , -f4)
+mb=$(free -h | grep Mem | sed 's/\s\+/,/g' | cut -d , -f6)
+ml=$(free -h | grep Mem | sed 's/\s\+/,/g' | cut -d , -f7)
+pp=$(cat /proc/cpuinfo | grep "model name" | uniq | awk -F ":" '{print $2}')
+csss=$(cat /proc/cpuinfo | grep processor | wc -l)
+usoo=$(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}')
+CPU=$(echo $usoo | awk '{printf("%d\n",$1 + 0.5)}')
+##
+opti=$(cat < /bin/ejecutar/val)
+if [ "$opti" = "0" ]; then
+_opti="\033[1;31m${txt[11]}"
+else
+_opti="\033[1;32m${txt[10]}"
+fi
+[[ -e /etc/bash.bashrc-bakup ]] && _autorun="\033[1;32m${txt[10]}" || _autorun="\033[1;31m${txt[11]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+#echo -e $pp $csss "CPUs"
+echo -e "\033[1;34m  ▴ \033[1;31m${txt[345]} \033[0;33m${txt[343]} "
+#echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+#echo -e "${cor[2]} ⌐╦╦═─ ${cor[5]} ${txt[4]}"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "\033[1;34m ▸\033[1;31m TOTAL:\033[1;32m "$mt "\033[1;34m ◂ \033[1;32m Libre:\033[1;31m "$ram2 "\033[1;34m ◂ \033[1;31m Usada:\033[1;32m "$ram3
+echo -e "\033[1;34m ▴\033[1;31m Uso RAM:\033[1;32m"$_usor "\033[1;34m▸\033[1;31m Uso CPU:\033[1;32m$_usop \033[1;34m ▸\033[1;31m Cache:\033[1;32m"$mb # $CPU"%"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+echo -e "${cor[2]} [1] >${cor[3]} ${txt[5]} "
+echo -e "${cor[2]} [2] >${cor[3]} ${txt[6]}$_badvpn${cor[3]}${txt[455]}$_tcpspeed"
+echo -e "${cor[2]} [3] >${cor[0]}\033[0;33m [!]\033[1;32m OPTIMIZAR VPS "
+echo -e "${cor[2]} [4] >${cor[0]}\033[1;31m [!] ${txt[339]}"
+echo -e "${cor[2]} [5] >${cor[3]} ${txt[12]}"
+echo -e "${cor[2]} [6] >${cor[3]} ${txt[20]} $VERIFICAR_PID"
+echo -e "${cor[2]} [7] > \033[1;42m${txt[347]}\033[0;33m ${txt[342]}"
+##\033[0;33m [?]\033[1;32m ${txt[341]}\033[0;33m ${txt[342]} "
+echo -e "${cor[2]} [8] >${cor[3]} ${txt[322]} $_autorun"
+echo -e "${cor[2]} [9] >${cor[3]} ${txt[256]}"
+echo -e "${cor[2]} [10] >${cor[3]} Optimizacion Automatica $_opti"
+#echo -e "${cor[2]} [11] >${cor[3]} Optimizacion Automatica $_opti"
+echo -e "${cor[2]} [99] >\033[0;33m [!] ${txt[340]}\033[1;32m"
+#echo -e "${cor[2]} [0] >${cor[4]} ${txt[13]}"
+echo -ne "$(msg -verd " [0]") $(msg -verm2 ">") "&& msg -bra "\033[1;41m[Regresar / Salir]"
+msg -bar #echo -e "${cor[1]} ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪ ${cor[0]}"
+#  ceniza
+#\033[1;41m rojo

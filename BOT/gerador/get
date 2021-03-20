@@ -1,0 +1,682 @@
+sys de importación, tiempo, getopt, socket, threading, base64
+
+
+# CONFIG
+CONFIG_LISTENING = '0.0.0.0:8799'
+CONFIG_PASS = 'pwd.pwd'
+
+
+registrador de clase:
+
+    logLock = threading.Lock ()
+    LOG_INFO = 1
+    LOG_WARN = 2
+    LOG_ERROR = 3
+
+    def printWarn (self, log):
+        self.log (log)
+
+    def printInfo (self, log):
+        self.log (log)
+
+    def printError (self, log):
+        self.log (log)
+
+    def printLog (self, log, logLevel):
+        if logLevel == Logger.LOG_INFO:
+            self.printInfo ('<->' + log)
+        elif logLevel == Logger.LOG_WARN:
+            self.printWarn ('<!>' + log)
+        elif logLevel == Logger.LOG_ERROR:
+            self.printError ('<#>' + log)
+
+    def log (self, log):
+        con Logger.logLock:
+            registro de impresión
+
+		
+
+clase PasswordSet:
+    FILE_EXEMPLE = 'master = passwd123 \ n127.0.0.1: 22 = pwd321; 321pawd \ n1.23.45.67: 443 = pass123'
+
+    def __init __ (self, masterKey = None):
+        self.masterKey = masterKey
+
+    def parseFile (self, fileName):
+        isValid = False
+
+        con abierto (fileName) como f:
+            contenido = f.readlines ()
+
+        contenido = [x.strip () para x en contenido]
+        content = [ítem para ítem en contenido si no es str (ítem) .startswith ('#')]
+
+        si len (contenido)> 0:
+            masterKey = contenido [0]
+
+            si self.splitParam (masterKey, '=') no es None y masterKey.startswith ('master'):
+                self.masterKey = self.splitParam (masterKey, '=') [1]
+
+            isValid = True
+            self.map = dict ()
+
+            para i, v en enumerate (contenido [1:]):
+                hostAndPass = self.splitParam (v, '=')
+
+                si hostAndPass no es None:
+                    self.map [hostAndPass [0]] = hostAndPass [1] .split (';')
+
+        el retorno es válido
+
+    def isValidKey (self, key, target):
+        válido = falso
+
+        si no es self.masterKey == key:
+            if hasattr (self, 'mapa'):
+                if self.map.has_key (target):
+                    válido = clave en self.map [target]
+        más:
+            válido = verdadero
+
+        devolución válida
+
+
+    def splitParam (self, param, c):
+        index = param.find (c)
+
+        ret = Ninguno
+
+        si index! = -1:
+            ret = []
+            ret.append (parámetro [0: índice])
+            ret.append (parámetro [índice + 1:])
+
+        volver ret
+
+
+
+
+clase ClientRequest:
+    MAX_LEN_CLIENT_REQUEST = 1024 * 100
+    HEADER_CONTENT_LENGTH = 'Content-Length'
+    HEADER_ACTION = 'X-Action'
+    ACTION_CLOSE = 'cerrar'
+    ACTION_DATA = 'datos'
+
+    def __init __ (self, socket):
+        self.socket = socket
+        self.readConent = False
+
+    def parse (self):
+        línea = ''
+        cuenta = 0
+        self.isValid = False
+        self.data = Ninguno
+        self.contentLength = Ninguno
+        self.action = Ninguno
+
+        while line! = '\ r \ n' y cuenta <ClientRequest.MAX_LEN_CLIENT_REQUEST:
+            line = self.readHttpLine ()
+
+            si la línea es Ninguna:
+                descanso
+
+            si line.startswith (ClientRequest.HEADER_ACTION):
+                self.action = self.getHeaderVal (línea)
+
+                si no es self.action es None:
+                    si self.action == ClientRequest.ACTION_CLOSE o self.action == ClientRequest.ACTION_DATA:
+                        self.isValid = True
+
+            cuenta + = len (línea)
+
+        si self.readConent:
+            if self.contentLength> 0 y self.contentLength <ClientRequest.MAX_LEN_CLIENT_REQUEST:
+                self.data = self.readFully (self.contentLength)
+
+        return self.isValid
+
+    def readHttpLine (self):
+        línea = ''
+        cuenta = 0
+        socket = self.socket
+
+        b = socket.recv (1)
+
+        si no b:
+            regresar Ninguno
+
+        mientras cuenta <ClientRequest.MAX_LEN_CLIENT_REQUEST:
+            cuenta + = 1
+            línea + = b
+
+            si b == '\ r':
+                b = socket.recv (1)
+                cuenta + = 1
+
+                si no b:
+                    descanso
+
+                línea + = b
+
+                si b == '\ n':
+                    descanso
+
+            b = socket.recv (1)
+
+            si no b:
+                descanso
+
+        si no b:
+            regresar Ninguno
+
+        Linea de retorno
+
+    def getHeaderVal (self, encabezado):
+        ini = header.find (':')
+
+        si ini == -1:
+            regresar Ninguno
+
+        ini + = 2
+
+        fim = header.find ('\ r \ n')
+
+        si fim == -1:
+            encabezado = encabezado [ini:]
+
+        regresar encabezado [ini: fim]
+
+    def readFully (self, n):
+        cuenta = 0
+        datos = ''
+
+        mientras cuenta <n:
+            paquete = self.socket.recv (n - cuenta)
+
+            si no paquete:
+                descanso
+
+            cuenta + = len (paquete)
+            datos + = paquete
+
+
+
+
+Cliente de clase (threading.Thread):
+    ACTION_DATA = 'datos'
+    BUFFER_SIZE = 4096
+
+    def __init __ (self, id, readSocket, target):
+        super (Cliente, propio) .__ init __ ()
+        self.targetHostPort = target
+        self.id = id
+        self.readSocket = readSocket
+        self.logger = Logger ()
+        self.isStopped = False
+        self.onCloseFunction = Ninguno
+        self.closeLock = threading.Lock ()
+        self.threadEndCount = 0
+        self.writeSocket = Ninguno
+
+    def connectTarget (self):
+        aux = self.targetHostPort.find (':')
+
+        host = self.targetHostPort [: aux]
+        puerto = int (self.targetHostPort [aux + 1:])
+
+        self.target = socket.socket (socket.AF_INET, socket.SOCK_STREAM)
+        self.target.connect ((host, puerto))
+
+    def run (auto):
+        tratar:
+            self.connectTarget ()
+
+            request = ClientRequest (self.readSocket)
+            request.readConent = False
+
+            si no request.parse () o no Client.ACTION_DATA == request.action:
+                elevar excepción ('el cliente envía una solicitud no válida')
+
+            threadRead = ThreadRelay (self.readSocket, self.target, self.finallyClose)
+            threadRead.logFunction = self.log
+            threadRead.start ()
+
+            threadWrite = ThreadRelay (self.target, self.writeSocket, self.finallyClose)
+            threadWrite.logFunction = self.log
+            threadWrite.start ()
+        excepto Excepción como e:
+            self.log ('error de conexión -' + str (tipo (e)) + '-' + str (e), Logger.LOG_ERROR)
+            self.close ()
+
+    def finalmenteClose (self):
+        con self.closeLock:
+            self.threadEndCount + = 1
+
+            si self.threadEndCount == 2:
+                self.close ()
+
+    def cerrar (auto):
+        si no es self.isStopped:
+            self.isStopped = True
+
+            if hasattr (self, 'target'):
+                tratar:
+                    self.target.close ()
+                excepto:
+                    pasar
+
+            if hasattr (self, 'writeSocket'):
+                tratar:
+                    self.writeSocket.close ()
+                excepto:
+                    pasar
+
+            if hasattr (self, 'readSocket'):
+                tratar:
+                    self.readSocket.close ()
+                excepto:
+                    pasar
+
+            self.onClose ()
+            self.log ('cerrado', Logger.LOG_INFO)
+
+    def onClose (auto):
+        si no es self.onCloseFunction es None:
+            self.onCloseFunction (self)
+
+    def log (self, msg, logLevel):
+        msg = 'Cliente' + str (self.id) + ':' + mensaje
+        self.logger.printLog (msg, logLevel)
+
+
+clase ThreadRelay (threading.Thread):
+    def __init __ (self, readSocket, writeSocket, closeFunction = None):
+        super (ThreadRelay, self) .__ init __ ()
+        self.readSocket = readSocket
+        self.writeSocket = writeSocket
+        self.logFunction = Ninguno
+        self.closeFuntion = closeFunction
+
+    def run (auto):
+        tratar:
+            mientras cierto:
+                data = self.readSocket.recv (Client.BUFFER_SIZE)
+                si no datos:
+                    descanso
+                self.writeSocket.sendall (datos)
+
+            self.writeSocket.shutdown (socket.SHUT_WR)
+        excepto Excepción como e:
+            si no es self.log La función es None:
+                self.logFunction ('threadRelay error:' + str (type (e)) + '-' + str (e), Logger.LOG_ERROR)
+        finalmente:
+            si no es self.closeFuntion es None:
+                self.closeFuntion ()
+
+
+
+
+clase AcceptClient (threading.Thread):
+    MAX_QTD_BYTES = 5000
+    HEADER_BODY = 'X-Body'
+    HEADER_ACTION = 'X-Action'
+    HEADER_TARGET = 'X-Target'
+    HEADER_PASS = 'X-Pass'
+    HEADER_ID = 'X-Id'
+    ACTION_CREATE = 'crear'
+    ACTION_COMPLETE = 'complete'
+    MSG_CONNECTION_CREATED = 'Creado'
+    MSG_CONNECTION_COMPLETED = 'Completado'
+
+    ID_COUNT = 0
+    ID_LOCK = threading.Lock ()
+
+    def __init __ (self, socket, server, passwdSet = None):
+        super (AcceptClient, self) .__ init __ ()
+        self.server = server
+        self.passwdSet = passwdSet
+        self.socket = socket
+
+    def run (auto):
+        needClose = True
+
+        tratar:
+            head = self.readHttpRequest ()
+
+            bodyLen = self.getHeaderVal (head, AcceptClient.HEADER_BODY)
+            si no bodyLen es None:
+                tratar:
+                    self.readFully (int (bodyLen))
+                excepto ValueError:
+                    pasar
+
+            action = self.getHeaderVal (head, AcceptClient.HEADER_ACTION)
+
+            si la acción es Ninguna:
+                self.log ('el cliente no envía encabezado de acción', Logger.LOG_WARN)
+                self.socket.sendall ('HTTP / 1.1 400 NoActionHeader! \ r \ nServer: GetTunnelServer \ r \ n \ r \ n')
+                regreso
+
+            if action == AcceptClient.ACTION_CREATE:
+                target = self.getHeaderVal (head, AcceptClient.HEADER_TARGET)
+
+                si no es self.passwdSet es None:
+                    passwd = self.getHeaderVal (head, AcceptClient.HEADER_PASS)
+
+                    tratar:
+                        passwd = base64.b64decode (passwd)
+                    excepto:
+                        passwd = Ninguno
+                        pasar
+
+                    si passwd es None o no self.passwdSet.isValidKey (passwd, target):
+                        self.log ('el cliente envía una clave incorrecta', Logger.LOG_WARN)
+                        self.socket.sendall ('HTTP / 1.1 403 Prohibido \ r \ nServer: GetTunnelServer \ r \ n \ r \ n')
+                        regreso
+
+                si el destino no es None y self.isValidHostPort (target):
+                    id = self.generateId ()
+
+                    cliente = Cliente (id, self.socket, target)
+                    client.onCloseFunction = self.server.removeClient
+                    self.server.addClient (cliente)
+                    self.socket.sendall ('HTTP / 1.1 200' + AcceptClient.MSG_CONNECTION_CREATED + '\ r \ nServer: GetTunnelServer \ r \ nX-Id:' + str (id) + '\ r \ nContent-Type: text / plain \ r \ nContent-Length: 0 \ r \ nConexión: Keep-Alive \ r \ n \ r \ n ')
+                    self.log ('conexión creada -' + str (id), Logger.LOG_INFO)
+                    needClose = False
+                más:
+                    self.log ('el cliente no envía un objetivo válido', Logger.LOG_WARN)
+                    self.socket.sendall ('HTTP / 1.1 400 Target! \ r \ nServer: GetTunnelServer \ r \ n \ r \ n')
+
+            acción elif == AcceptClient.ACTION_COMPLETE:
+                id = self.getHeaderVal (head, AcceptClient.HEADER_ID)
+
+                si no la identificación es Ninguno:
+                    cliente = self.server.getClient (id)
+
+                    si no el cliente es Ninguno:
+                        client.writeSocket = self.socket
+
+                        self.log ('conexión completada -' + str (id), Logger.LOG_INFO)
+                        self.socket.sendall ('HTTP / 1.1 200' + AcceptClient.MSG_CONNECTION_COMPLETED + '\ r \ nServer: GetTunnelServer \ r \ nConexión: Keep-Alive \ r \ n \ r \ n')
+
+                        client.start ()
+                        needClose = False
+                    más:
+                        self.log ('el cliente intenta completar una conexión no existente', Logger.LOG_WARN)
+                        self.socket.sendall ('HTTP / 1.1 400 CreateFirst! \ r \ nServer: GetTunnelServer \ r \ n \ r \ n')
+                más:
+                    self.log ('el cliente no envía encabezado de identificación', Logger.LOG_WARN)
+                    self.socket.sendall ('HTTP / 1.1 400 NoID! \ r \ nServer: GetTunnelServer \ r \ n \ r \ n')
+            más:
+                self.log ('el cliente envía una acción no válida', Logger.LOG_WARN)
+                self.socket.sendall ('HTTP / 1.1 400 InvalidAction! \ r \ nServer: GetTunnelServer \ r \ n \ r \ n')
+
+        excepto Excepción como e:
+            self.log ('error de conexión -' + str (tipo (e)) + '-' + str (e), Logger.LOG_ERROR)
+        finalmente:
+            si es necesario
+                tratar:
+                    self.socket.close ()
+                excepto:
+                    pasar
+
+    def log (self, msg, logLevel):
+        self.server.log (msg, logLevel)
+
+    def readHttpRequest (self):
+        solicitud = ''
+        linha = ''
+        cuenta = 0
+
+        while linha! = '\ r \ n' y cuenta <AcceptClient.MAX_QTD_BYTES:
+            linha = self.readHttpLine ()
+
+            si linha es None:
+                descanso
+
+            solicitud + = linha
+            cuenta + = len (linha)
+
+        solicitud de devolución
+
+    def readHttpLine (self):
+        línea = ''
+        cuenta = 0
+        socket = self.socket
+
+        b = socket.recv (1)
+
+        si no b:
+            regresar Ninguno
+
+        mientras cuenta <AcceptClient.MAX_QTD_BYTES:
+            cuenta + = 1
+            línea + = b
+
+            si b == '\ r':
+                b = socket.recv (1)
+                cuenta + = 1
+
+                si no b:
+                    descanso
+
+                línea + = b
+
+                si b == '\ n':
+                    descanso
+
+            b = socket.recv (1)
+
+            si no b:
+                descanso
+
+        si no b:
+            regresar Ninguno
+
+        Linea de retorno
+
+    def getHeaderVal (self, head, header):
+        si no head.startswith ('\ r \ n'):
+            header = '\ r \ n' + header
+
+        si no header.endswith (':'):
+            encabezado = encabezado + ':'
+
+        ini = head.find (encabezado)
+
+        si ini == -1:
+            regresar Ninguno
+
+        end = head.find ('\ r \ n', ini + 2)
+
+        ini + = len (encabezado)
+
+        si end == -1 o ini> end o ini> = len (cabeza):
+            regresar Ninguno
+
+        cabeza de retorno [ini: final]
+
+    def readFully (self, n):
+        cuenta = 0
+
+        mientras cuenta <n:
+            paquete = self.socket.recv (n - cuenta)
+
+            si no paquete:
+                descanso
+
+            cuenta + = len (paquete)
+
+    def isValidHostPort (self, hostPort):
+        aux = hostPort.find (':')
+
+        si aux == -1 o aux> = len (hostPort) -1:
+            falso retorno
+
+        tratar:
+            int (hostPort [aux + 1:])
+            volver verdadero
+        excepto ValueError:
+            falso retorno
+
+    def generateId (self):
+        con AcceptClient.ID_LOCK:
+            AcceptClient.ID_COUNT + = 1
+            regresar AcceptClient.ID_COUNT
+
+
+
+Servidor de clase (threading.Thread):
+
+    def __init __ (self, listening, passwdSet = None):
+        super (Servidor, self) .__ init __ ()
+        self.listening = escuchar
+        self.passwdSet = passwdSet
+        self.running = False
+        self.logger = Logger ()
+        self.isStopped = False
+        self.clientsLock = threading.Lock ()
+        self.clients = []
+
+    def run (auto):
+        tratar:
+            self.soc = socket.socket (socket.AF_INET)
+            self.soc.setsockopt (socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            self.soc.settimeout (2)
+            self.soc.bind ((self.listening [: self.listening.find (':')], int (self.listening [self.listening.find (':') + 1:])))
+            self.soc.listen (0)
+
+            self.log ('corriendo en' + self.listening, Logger.LOG_INFO)
+
+            self.running = True
+            mientras se corre por sí mismo:
+                tratar:
+                    c, addr = self.soc.accept ()
+                    c. bloqueo de configuración (1)
+
+                    self.log ('conexión opennig -' + str (addr), Logger.LOG_INFO)
+                    self.acceptClient (c)
+                excepto socket.timeout:
+                    Seguir
+        excepto Excepción como e:
+            self.log ('error de conexión -' + str (tipo (e)) + '-' + str (e), Logger.LOG_ERROR)
+        finalmente:
+            self.running = False
+            self.close ()
+
+    def acceptClient (self, socket):
+        accept = AcceptClient (socket, self, self.passwdSet)
+        accept.start ()
+
+    def addClient (self, client):
+        con self.clientsLock:
+            self.clients.append (cliente)
+
+    def removeClient (self, client):
+        con self.clientsLock:
+            self.clients.remove (cliente)
+
+    def getClient (self, id):
+        cliente = Ninguno
+        con self.clientsLock:
+            para c en self.clients:
+                si str (c.id) == str (id):
+                    cliente = c
+                    descanso
+        cliente de retorno
+
+    def cerrar (auto):
+        si no es self.isStopped:
+            self.isStopped = True
+
+            if hasattr (self, 'soc'):
+                tratar:
+                    self.soc.close ()
+                excepto:
+                    pasar
+
+            con self.clientsLock:
+                clientsCopy = self.clients [:]
+
+            para c en clientes Copiar:
+                c.close ()
+
+            self.log ('cerrado', Logger.LOG_INFO)
+
+    def log (self, msg, logLevel):
+        msg = 'Servidor:' + msg
+        self.logger.printLog (msg, logLevel)
+
+
+
+
+def print_usage ():
+    print '\ nUso: python get.py -b escuchando -p pass'
+    imprimir 'Ej. : python get.py -b 0.0.0.0:80 -p pass123 '
+    print ': python get.py -b 0.0.0.0:80 -p passFile.pwd \ n'
+    imprimir '___Password file ex.:___'
+    print PasswordSet.FILE_EXEMPLE
+
+def parse_args (argv):
+    CONFIG_LISTENING global
+    CONFIG_PASS global
+
+    tratar:
+        opts, args = getopt.getopt (argv, "hb: p:", ["bind =", "pass ="])
+    excepto getopt.GetoptError:
+        print_usage ()
+        sys.exit (2)
+    para opt, arg en opts:
+        si opt == '-h':
+            print_usage ()
+            sys.exit ()
+        elif opt in ('-b', '--bind'):
+            CONFIG_LISTENING = arg
+        elif opt in ('-p', '--pass'):
+            CONFIG_PASS = arg
+
+def main ():
+    print '\ n -> GetTunnelPy - Server v.' + '25 / 06/2017 '+' \ n '
+    print '-> Listening:' + CONFIG_LISTENING
+
+    pwdSet = Ninguno
+
+    si no, CONFIG_PASS es Ninguno:
+        si CONFIG_PASS.endswith ('. pwd'):
+            pwdSet = PasswordSet ()
+
+            tratar:
+                isValidFile = pwdSet.parseFile (CONFIG_PASS)
+            excepto IOError como e:
+                print '- # Error al leer el archivo:' + str (type (e)) + '-' + str (e)
+                sys.exit ()
+
+            si no esValidFile:
+                print '- # ¡Error al analizar el archivo! \ n'
+                print_usage ()
+                regreso
+
+            imprimir '-> Pasar archivo:' + CONFIG_PASS + '\ n'
+        más:
+            if (len (CONFIG_PASS)> 0):
+                print '-> Pase: sí \ n'
+                pwdSet = PasswordSet (CONFIG_PASS)
+            más:
+                print '-> Pase: no \ n'
+
+    servidor = Servidor (CONFIG_LISTENING)
+    server.passwdSet = pwdSet
+    server.start ()
+
+    mientras cierto:
+        tratar:
+            time.sleep (2)
+        excepto KeyboardInterrupt:
+            imprima '<-> Deteniendo el servidor ...'
+            server.running = False
+            descanso
+
+if __name__ == '__main__':
+    parse_args (sys.argv [1:])
+    principal()
