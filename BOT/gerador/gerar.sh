@@ -3,8 +3,6 @@
 clear
 #[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="ADMbot.sh C-SSR.sh Crear-Demo.sh PDirect.py PGet.py POpen.py PPriv.py PPub.py Shadowsocks-R.sh Shadowsocks-libev.sh Unlock-Pass-VULTR.sh apacheon.sh blockBT.sh budp.sh dns-netflix.sh   dropbear.sh fai2ban.sh gestor.sh menu message.txt openvpn.sh  ports.sh shadowsocks.sh sockspy.sh speed.sh speedtest.py squid.sh squidpass.sh ssl.sh tcp.sh ultrahost usercodes utils.sh v2ray.sh Proxy.sh"
 [[ -e /etc/newadm-instalacao ]] &&  BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="ferramentas limitera menu_inst PPub.py speedtest.py usercodes ferramentascodes limiterb  menu-txt payloads ssl user-txt cabecalho ferramentas-txt limiter.sh trans verifica confdropbear get PDirect.py v-local.log idioma_geral MasterBin.sh PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh fai2ban menu_credito PPriv.py user"
-}
-
 SCPT_DIR="/etc/SCRIPT"
 IVAR="/etc/http-instas"
 BARRA="\033[1;36m-----------------------------------------------------\033[0m"
