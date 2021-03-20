@@ -9,11 +9,9 @@ clear
   ferramentas 
   limitera 
   menu_inst 
-  painel.zip 
   PPub.py 
   speedtest.py 
   usercodes 
-  bot_codes 
   ferramentascodes 
   limiterb 
   menu-txt 
@@ -29,9 +27,7 @@ clear
   confdropbear
   get
   PDirect.py
-  ultimatebot
   v-local.log
-  dados.zip
   idioma_geral
   MasterBin.sh
   PGet.py 
@@ -47,7 +43,6 @@ clear
   menu_credito
   overtcp
   PPriv.py
-  ShellBot.sh 
   user"
 }
 
@@ -151,14 +146,12 @@ while [[ ${var[$value]} != 0 ]]; do
 	BASICINST="$(cat /etc/newadm-instalacao)"
 } || {
 	BASICINST="
- ferramentas 
+  ferramentas 
   limitera 
   menu_inst 
-  painel.zip 
   PPub.py 
   speedtest.py 
   usercodes 
-  bot_codes 
   ferramentascodes 
   limiterb 
   menu-txt 
@@ -174,9 +167,7 @@ while [[ ${var[$value]} != 0 ]]; do
   confdropbear
   get
   PDirect.py
-  ultimatebot
   v-local.log
-  dados.zip
   idioma_geral
   MasterBin.sh
   PGet.py 
@@ -192,7 +183,6 @@ while [[ ${var[$value]} != 0 ]]; do
   menu_credito
   overtcp
   PPriv.py
-  ShellBot.sh 
   user"
 }
 
@@ -405,13 +395,13 @@ echo -e "Key Activa $(printf '%(%D-%H:%M:%S)T')  \n\n 💥 $keyfinal  💥"
 msg -bar
 echo -e "Instalador Oficial"
 msg -bar
-echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh"
+echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh\n"
 msg -bar
-echo -e " 🧬 Soporte : Ubuntu 14.04 - 16.04 - 20.04"
-echo -e "Verificada, https://t.me/ChumoGH Reseller : $vkey"
+echo -e " 🧬 Soporte : Ubuntu 14.04 - 16.04 - 20.04\n"
+echo -e "Verificada, https://t.me/ChumoGH Reseller : $vkey\n"
 echo -e ' 🪦 Solicita tus Creditos 🛡️⚔️'
 msg -bar
-links_inst $linck
+#links_inst $linck
 echo -ne "\033[1;37m Enter para Finalizar"
 read foo
 }
