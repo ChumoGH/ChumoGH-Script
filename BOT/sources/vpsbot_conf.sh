@@ -136,7 +136,7 @@ unset PIDGEN
 PIDGEN=$(ps aux|grep -v grep|grep "VPSBot.sh")
 [[ $PIDGEN ]] && killall VPSBot.sh
 [[ -e $HOME/update.sh ]] && rm $HOME/update.sh
-wget -O $HOME/update.sh https://raw.githubusercontent.com/rudi9999/VPSBot/main/update.sh &> /dev/null
+wget -O $HOME/update.sh https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/BOT/update.sh &> /dev/null
 chmod +x $HOME/update.sh
 $HOME/update.sh
 exit
