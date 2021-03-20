@@ -1,8 +1,0 @@
-#!/bin/bash
-
-link_src () {
-	bot_retorno="$LINE\n"
-	bot_retorno+="wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh\n"
-	bot_retorno+="$LINE\n"
-msj_fun
-}
