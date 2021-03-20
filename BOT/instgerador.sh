@@ -2,7 +2,7 @@
 BARRA="\033[1;36m-----------------------------------------------------\033[0m"
 IVAR="/etc/http-instas"
 SCPT_DIR="/etc/SCRIPT"
-SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3J1ZGk5OTk5L0dlbmVyYWRvcl9HZW5fVlBTLU1YL21hc3Rlci9nZXJhZG9y"
+SCPresq="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0NodW1vR0gvQ2h1bW9HSC1TY3JpcHQvbWFzdGVyL0JPVC9nZXJhZG9y"
 SUB_DOM='base64 -d'
 rm $(pwd)/$0
 
@@ -86,8 +86,8 @@ number=$(expr length $1)
 for((i=1; i<$number+1; i++)); do
 txt[$i]=$(echo "$1" | cut -b $i)
 case ${txt[$i]} in
-".")txt[$i]="+";;
-"+")txt[$i]=".";;
+".")txt[$i]="*";;
+"*")txt[$i]=".";;
 "1")txt[$i]="@";;
 "@")txt[$i]="1";;
 "2")txt[$i]="?";;
@@ -123,7 +123,7 @@ echo "$IP" > /usr/bin/vendor_code
 }
 
 function_verify () {
-  permited=$(curl -sSL "https://raw.githubusercontent.com/rudi9999/Control/master/Control-IP")
+  permited=$(curl -sSL "https://raw.githubusercontent.com/ChumoGH/VPSbot/main/TeleBotGen/Control/Control-Bot")
   [[ $(echo $permited|grep "${IP}") = "" ]] && {
   echo -e "\n\n\n\033[1;31m====================================================="
   echo -e "\033[1;31m       ¡LA IP $(wget -qO- ipv4.icanhazip.com) NO ESTA AUTORIZADA!"
@@ -133,7 +133,7 @@ function_verify () {
   exit 1
   } || {
   ### INTALAR VERCION DE SCRIPT
-  v1=$(curl -sSL "https://raw.githubusercontent.com/rudi9999/Generador_Gen_VPS-MX/master/Vercion")
+  v1=$(curl -sSL "https://www.dropbox.com/s/blxo0jifysvyrey/v-new.log")
   echo "$v1" > /etc/versin_script
   }
 }
@@ -165,7 +165,7 @@ echo "$Key" > $IVAR
 cp /bin/http-server.sh /etc/SCRIPT
 mv /etc/SCRIPT/http-server.sh /etc/SCRIPT/http-server.py
 chmod +x /etc/SCRIPT/http-server.py
-wget https://raw.githubusercontent.com/rudi9999/Generador_Gen_VPS-MX/master/gerador/gerar.sh &>/dev/null
+wget https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/BOT/gerador/gerar.sh &>/dev/null
 mv gerar.sh /etc/SCRIPT
 chmod +x /etc/SCRIPT/gerar.sh
 cd /etc/SCRIPT/
