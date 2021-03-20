@@ -3,7 +3,6 @@
 clear
 #[[ -e /etc/newadm-instalacao ]] && BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="ADMbot.sh C-SSR.sh Crear-Demo.sh PDirect.py PGet.py POpen.py PPriv.py PPub.py Shadowsocks-R.sh Shadowsocks-libev.sh Unlock-Pass-VULTR.sh apacheon.sh blockBT.sh budp.sh dns-netflix.sh   dropbear.sh fai2ban.sh gestor.sh menu message.txt openvpn.sh  ports.sh shadowsocks.sh sockspy.sh speed.sh speedtest.py squid.sh squidpass.sh ssl.sh tcp.sh ultrahost usercodes utils.sh v2ray.sh Proxy.sh"
 [[ -e /etc/newadm-instalacao ]] &&  BASICINST="$(cat /etc/newadm-instalacao)" || BASICINST="ferramentas limitera menu_inst PPub.py speedtest.py usercodes ferramentascodes limiterb  menu-txt payloads ssl user-txt cabecalho ferramentas-txt limiter.sh trans verifica confdropbear get PDirect.py v-local.log idioma_geral MasterBin.sh PGet.py pwd.pwd ultrahost idioma_menuinst menu optimizador POpen.py shadowsocks.sh fai2ban menu_credito PPriv.py user"
-SCPT_DIR="/etc/SCRIPT"
 IVAR="/etc/http-instas"
 BARRA="\033[1;36m-----------------------------------------------------\033[0m"
 BARRA2="\033[1;31m=====================================================\033[0m"
@@ -84,11 +83,41 @@ echo "$MEU_IP2" > /etc/MEUIPADM
 #fi
 }
 
-# SCPT_DIR="/etc/SCRIPT"
+ofus () {
+unset server
+server=$(echo ${txt_ofuscatw}|cut -d':' -f1)
+unset txtofus
+number=$(expr length $1)
+for((i=1; i<$number+1; i++)); do
+txt[$i]=$(echo "$1" | cut -b $i)
+case ${txt[$i]} in
+".")txt[$i]="+";;
+"+")txt[$i]=".";;
+"1")txt[$i]="@";;
+"@")txt[$i]="1";;
+"2")txt[$i]="?";;
+"?")txt[$i]="2";;
+"3")txt[$i]="%";;
+"%")txt[$i]="3";;
+"/")txt[$i]="K";;
+"K")txt[$i]="/";;
+esac
+txtofus+="${txt[$i]}"
+done
+echo "$txtofus" | rev
+}
+
+
+SCPT_DIR="/etc/SCRIPT"
 [[ ! -e ${SCPT_DIR} ]] && mkdir ${SCPT_DIR}
 INSTA_ARQUIVOS="ADMVPS.zip"
 DIR="/etc/http-shell"
 LIST="lista-arq"
+P_SERVER="https://www.dropbox.com/s/blxo0jifysvyrey/"
+v1=$(curl -sSL "${P_SERVER}/v-new.log")
+v2=$(cat $SCPT_DIR/v-local.log)
+txt[315]="💥 ChumoGH Keygen 💥 IS UPDATED!"
+txt[316]="⚠️ ChumoGH Keygen ⚠️ NEEDS UPDATE!"
 meu_ip () {
 MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 MIP2=$(wget -qO- ipv4.icanhazip.com)
@@ -131,29 +160,6 @@ done
 }
 
 
-ofus () {
-unset server
-server=$(echo ${txt_ofuscatw}|cut -d':' -f1)
-unset txtofus
-number=$(expr length $1)
-for((i=1; i<$number+1; i++)); do
-txt[$i]=$(echo "$1" | cut -b $i)
-case ${txt[$i]} in
-".")txt[$i]="+";;
-"+")txt[$i]=".";;
-"1")txt[$i]="@";;
-"@")txt[$i]="1";;
-"2")txt[$i]="?";;
-"?")txt[$i]="2";;
-"3")txt[$i]="%";;
-"%")txt[$i]="3";;
-"/")txt[$i]="K";;
-"K")txt[$i]="/";;
-esac
-txtofus+="${txt[$i]}"
-done
-echo "$txtofus" | rev
-}
 
 gen_key_menu () {
 if [[ $1 = 1 ]]; then
@@ -309,7 +315,7 @@ echo -e "Key Activa $(printf '%(%D-%H:%M:%S)T')  \n\n 💥 $keyfinal  💥"
 msg -bar
 echo -e "Instalador Oficial"
 msg -bar
-echo "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh\n"
+echo -e "wget -q https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh \n"
 msg -bar
 echo -e " 🧬 Soporte : Ubuntu 14.04 - 16.04 - 20.04\n"
 echo -e "Verificada, https://t.me/ChumoGH Reseller : $vkey\n"
