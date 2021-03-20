@@ -27,6 +27,31 @@ else
 echo "$(cat /etc/MEU_IP)"
 fi
 }
+
+#OFUSCATE
+ofus () {
+unset txtofus
+number=$(expr length $1)
+for((i=1; i<$number+1; i++)); do
+txt[$i]=$(echo "$1" | cut -b $i)
+case ${txt[$i]} in
+".")txt[$i]="+";;
+"+")txt[$i]=".";;
+"1")txt[$i]="@";;
+"@")txt[$i]="1";;
+"2")txt[$i]="?";;
+"?")txt[$i]="2";;
+"3")txt[$i]="%";;
+"%")txt[$i]="3";;
+"/")txt[$i]="K";;
+"K")txt[$i]="/";;
+esac
+txtofus+="${txt[$i]}"
+done
+echo "$txtofus" | rev
+}
+
+
 # LOOP PARA EXECUCAO DO PROGRAMA
 listen_fun () {
 local PORTA="8888" && local PROGRAMA="/bin/http-server.sh"
