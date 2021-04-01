@@ -39,8 +39,12 @@ echo -ne " \033[1;31m[ ! ] Services dropbear restart"
 service dropbear restart > /dev/null 2>&1
 [[ -e /etc/init.d/dropbear ]] && /etc/init.d/dropbear restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Services Trojan restart"
+echo -ne " \033[1;31m[ ! ] Services Trojan restart"
 killall trojan &> /dev/null 2>&1
 [[ -e /usr/local/etc/trojan/config.json ]] && screen -dmS trojanserv trojan /usr/local/etc/trojan/config.json > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Services Clash for Android restart"
+killall clash &> /dev/null 2>&1
+[[ -e /root/.config/clash/config.yaml ]] && screen -dmS clashse /root/.config/clash/clash > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Services fail2ban restart"
 ( 
 [[ -e /etc/init.d/ssh ]] && /etc/init.d/ssh restart
