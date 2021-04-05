@@ -690,7 +690,7 @@ info_fecha=$(printf '%-16s' "${_fecha}")
 info_hora=$(printf '%-16s' "${_hora}")
 
 msg -bar
-echo -e "\033[7;49;35m      =====>>►► 🐲 GEN ChumoGH•VPS 🐲 ◄◄<<=====       \033[0m"
+echo -e "\033[7;49;35m      =====>>►► 🐲 GENERADOR ADM•VPS 🐲 ◄◄<<=====       \033[0m"
 msg -bar
 echo -e " \033[1;32mSISTEMA                 MEMORIA         PROSESADOR"
 echo -e " \033[1;49;96mS.O: \033[1;37m$info_so \033[1;49;96mRAM:    \033[1;32m$info_ram1 \033[1;49;96mCPU: \033[1;32m$_core"
