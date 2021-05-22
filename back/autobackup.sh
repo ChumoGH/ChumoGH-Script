@@ -1,8 +1,9 @@
 #!/bin/bash
 dir_user="/userDIR"
 dir="/etc/adm-lite"
-bc="$HOME/backup"
-arquivo_move="backup"
+name=$(cat < /bin/ejecutar/autt)
+bc="$HOME/$name"
+arquivo_move="$name"
 fun_ip () {
 MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
@@ -77,3 +78,4 @@ echo -e "\033[1;37mLa informacion de los usuarios $i se encuentra en el archivo 
 }
 backup_de_usuarios
 removeonline
+rm $HOME/$arquivo_move
