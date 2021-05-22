@@ -22,9 +22,9 @@ service stunnel4 restart > /dev/null 2>&1
 echo -ne " \033[1;31m[ ! ] Services V2RAY restart"
 service v2ray restart > /dev/null 2>&1
 [[ -e /etc/v2ray/config.json ]] && v2ray restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services V2RAY restart"
-v2-uiv restart > /dev/null 2>&1
-[[ -e /etc/v2ray/config.json ]] && v2ray restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+echo -ne " \033[1;31m[ ! ] Services V2-UI restart"
+v2-ui restart > /dev/null 2>&1
+[[ -e /usr/local/v2-ui/bin/config.json ]] && v2-ui restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Services squid restart"
 service squid restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -ne " \033[1;31m[ ! ] Services squid3 restart"
@@ -38,7 +38,6 @@ service openvpn restart > /dev/null 2>&1
 echo -ne " \033[1;31m[ ! ] Services dropbear restart"
 service dropbear restart > /dev/null 2>&1
 [[ -e /etc/init.d/dropbear ]] && /etc/init.d/dropbear restart > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
-echo -ne " \033[1;31m[ ! ] Services Trojan restart"
 echo -ne " \033[1;31m[ ! ] Services Trojan restart"
 killall trojan &> /dev/null 2>&1
 [[ -e /usr/local/etc/trojan/config.json ]] && screen -dmS trojanserv trojan /usr/local/etc/trojan/config.json > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
