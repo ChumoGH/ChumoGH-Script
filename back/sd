@@ -1,8 +1,6 @@
 #!/bin/bash
 dir_user="/userDIR"
 dir="/etc/adm-lite"
-bc="$HOME/backup"
-arquivo_move="backup"
 fun_ip () {
 MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
@@ -44,6 +42,8 @@ echo -e "\033[1;33mMenu de Respaldos de Usuarios\033[1;30m
  ----------------------------------"
 read -p "ECOJE: " option
 function backup_de_usuarios(){
+echo -e "--------------------------------------------------------"
+read -p "Ingrese Nombre de su Fichero o pulse ENTER: " name
 clear
 i=1
 [[ -e $bc ]] && rm $bc
@@ -52,7 +52,6 @@ for user in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |gre
 do
 if [ -e $dir$dir_user/$user ]
 then
-
 pass=$(cat $dir$dir_user/$user | grep "senha" | awk '{print $2}')
 limite=$(cat $dir$dir_user/$user | grep "limite" | awk '{print $2}')
 data=$(cat $dir$dir_user/$user | grep "data" | awk '{print $2}')
@@ -61,7 +60,8 @@ data_user=$(chage -l "$user" |grep -i co |awk -F ":" '{print $2}')
 data_user_sec=$(date +%s --date="$data_user")
 variavel_soma=$(($data_user_sec - $data_sec))
 dias_use=$(($variavel_soma / 86400))
-if [ $dias_use < 0 ]; then
+if [[ "$dias_use" -le 0 ]]; 
+then
 dias_use=0
 fi
 sl=$((dias_use + 1))
@@ -81,13 +81,15 @@ echo -e "\033[1;37mUser $user Backup [\033[1;31mOK\033[1;37m]\033[0m"
 done
 echo " "
 echo -e "\033[1;31mBackup Completado !!!\033[0m"
+bc="$HOME/$name"
+arquivo_move="$name"
 echo " "
 echo -e "\033[1;37mLa informacion de los usuarios $i se encuentra en el archivo \033[1;31m $bc \033[1;37m"
 }
 function restaurar_usuarios(){
 cd $HOME
-echo -n "INGRESE LINK DEL POSTER DE BACKUP : " 
-read url1
+echo -n "INGRESE LINK DEL POSTER DE BACKUP " 
+read -p "Pega tu Link : "url1
 wget -q -O recovery $url1 && echo -e "\033[1;31m- \033[1;32mFile Exito!" || echo -e "\033[1;31m- \033[1;31mFile Fallo"
 #echo -n "Escriba el directorio del archivo Backup: "
 echo -e "\033[1;37mRestaurando Usuarios...\033[0m"
@@ -129,8 +131,16 @@ done
 if [ $option -eq 1 ]; then
 backup_de_usuarios
 echo -e ""
-read -p "PRESIONA ENTER PARA CARGAR ONLINE"
 removeonline
+echo -e "		\033[4;31mNOTA importante\033[0m"
+echo -e "Recuerda Ir a GitHub y cargarlo Online, para luego poder Restaurarlo!!"
+echo -e "-------------------------------------------------------"
+echo -e " \033[0;31mSi esta usando maquina, Montalo Online"
+echo -e "  Para luego usar el Link del Fichero, y puedas ."
+echo -e " Descargarlo desde cualquier sitio con acceso WEB"
+echo -e "    Ejemplo : http://ip-del-vps:81/tu-fichero.\033[0m"
+echo -e "-------------------------------------------------------"
+read -p "PRESIONA ENTER PARA CARGAR ONLINE"
 fi
 
 if [ $option -eq 2 ]; then
