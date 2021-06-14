@@ -130,8 +130,7 @@ done
 }
 if [ $option -eq 1 ]; then
 backup_de_usuarios
-echo -e ""
-removeonline
+echo -e "-------------------------------------------------------"
 echo -e "		\033[4;31mNOTA importante\033[0m"
 echo -e "Recuerda Ir a GitHub y cargarlo Online, para luego poder Restaurarlo!!"
 echo -e "-------------------------------------------------------"
@@ -141,6 +140,7 @@ echo -e " Descargarlo desde cualquier sitio con acceso WEB"
 echo -e "    Ejemplo : http://ip-del-vps:81/tu-fichero.\033[0m"
 echo -e "-------------------------------------------------------"
 read -p "PRESIONA ENTER PARA CARGAR ONLINE"
+removeonline
 fi
 
 if [ $option -eq 2 ]; then
