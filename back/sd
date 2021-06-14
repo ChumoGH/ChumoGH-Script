@@ -36,9 +36,9 @@ read -p "PRESIONE ENTER"
 
 echo -e "\033[1;33mMenu de Respaldos de Usuarios\033[1;30m
  ----------------------------------
- \033[1;32m1) \033[1;37mCrear respaldo de usuarios
+ \033[1;32m1) \033[1;37mCrear respaldo de usuarios Online
  ----------------------------------
- \033[1;32m2) \033[1;37mRestaurar usuarios de un backup
+ \033[1;32m2) \033[1;37mRestaurar usuarios de un backup Online
  ----------------------------------"
 read -p "ECOJE: " option
 function backup_de_usuarios(){
