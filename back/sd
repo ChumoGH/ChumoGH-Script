@@ -44,6 +44,8 @@ read -p "ECOJE: " option
 function backup_de_usuarios(){
 echo -e "--------------------------------------------------------"
 read -p "Ingrese Nombre de su Fichero o pulse ENTER: " name
+bc="$HOME/$name"
+arquivo_move="$name"
 clear
 i=1
 [[ -e $bc ]] && rm $bc
@@ -81,8 +83,6 @@ echo -e "\033[1;37mUser $user Backup [\033[1;31mOK\033[1;37m]\033[0m"
 done
 echo " "
 echo -e "\033[1;31mBackup Completado !!!\033[0m"
-bc="$HOME/$name"
-arquivo_move="$name"
 echo " "
 echo -e "\033[1;37mLa informacion de los usuarios $i se encuentra en el archivo \033[1;31m $bc \033[1;37m"
 }
