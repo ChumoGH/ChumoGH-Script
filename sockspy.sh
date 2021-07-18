@@ -65,6 +65,10 @@ echo -e "\033[1;97mSelecciona Puerto Local\033[1;37m"
 msg -bar
 echo -ne "Digite Un Puerto SSH/DROPBEAR activo: \033[1;37m" && read puetoantla 
  msg -bar
+echo -ne "Respuesta de Encabezado (101,200,484,500,etc) : \033[1;37m" && read respo_stat
+if [[ -z $respo_stat  ]]; then
+	respo_stat="200"
+fi
 (
 less << PYTHON  > ${SCPinst}/PDirect.py
 import socket, threading, thread, select, signal, sys, time, getopt
@@ -82,7 +86,7 @@ PASS = ''
 BUFLEN = 4096 * 4
 TIMEOUT = 60
 DEFAULT_HOST = '127.0.0.1:$puetoantla'
-RESPONSE = 'HTTP/1.1 200 <strong>$texto_soket</strong>\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 Connection established\r\n\r\n'
+RESPONSE = 'HTTP/1.1 $respo_stat <strong>$texto_soket</strong>\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 Connection established\r\n\r\n'
 #RESPONSE = 'HTTP/1.1 200 Hello_World!\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 Connection established\r\n\r\n'  # lint:ok
 
 class Server(threading.Thread):
@@ -375,7 +379,7 @@ pidproxy3=$(ps x | grep -w  "PDirect.py" | grep -v "grep" | awk -F "pts" '{print
 pidproxy4=$(ps x | grep -w  "POpen.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy4 ]] && P4="\033[1;32m[ON]" || P4="\033[1;31m[OFF]"
 pidproxy5=$(ps x | grep "PGet.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy5 ]] && P5="\033[1;32m[ON]" || P5="\033[1;31m[OFF]"
 pidproxy6=$(ps x | grep "scktcheck" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy6 ]] && P6="\033[1;32m[ON]" || P6="\033[1;31m[OFF]"
-echo -e "\033[1;32m INSTALADOR SOCKS ADM-ChumoGH Mod V4.1"
+echo -e "\033[1;32m INSTALADOR SOCKS ADM-ChumoGH Mod V$(cat < /etc/adm-lite/v-local.log)"
 msg -bar
 echo -e "${cor[4]} [1] > \033[1;36m  Socks Python SIMPLE $P1"
 echo -e "${cor[4]} [2] > \033[1;36m  Socks Python SEGURO $P2"
@@ -405,6 +409,7 @@ done
 echo -e "Introdusca su Mini-Banner"
 msg -bar
 echo -ne "Introduzca el texto de estado plano o en HTML:\n \033[1;37m" && read texto_soket
+
     msg -bar
     case $portproxy in
     1)screen -dmS screen python ${SCPinst}/PPub.py "$porta_socket" "$texto_soket";;
