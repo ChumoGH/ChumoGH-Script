@@ -345,6 +345,7 @@ PYTHON
 chmod +x ${SCPinst}/PDirect.py
 
 screen -dmS pydic-"$porta_socket" python ${SCPinst}/PDirect.py "$porta_socket" "$texto_soket" && echo ""$porta_socket" "$texto_soket"" >> /bin/ejecutar/PortPD.log
+cp ${SCPinst}/PDirect.py $HOME/PDirect.py && echo -e "Fichero Original Alojado en : ${SCPinst}/PDirect.py \n Respaldo alojado en : $HOME/PDirect.py "
 }
 
 
