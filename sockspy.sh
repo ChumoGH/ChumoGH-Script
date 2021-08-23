@@ -63,9 +63,9 @@ screen -dmS getpy python ${SCPinst}/PGet.py -b "0.0.0.0:$1" -p "${SCPinst}/pwd.p
 PythonDic_fun () {
 echo -e "\033[1;97mSelecciona Puerto Local\033[1;37m" 
 msg -bar
-echo -ne "Digite Un Puerto SSH/DROPBEAR activo: \033[1;37m" && read puetoantla 
+echo -ne "Digite Un Puerto SSH/DROPBEAR activo: \033[1;37m" && read -p " Ingresa : " puetoantla 
  msg -bar
-echo -ne "Respuesta de Encabezado (101,200,484,500,etc) : \033[1;37m" && read respo_stat
+echo -ne "Respuesta de Encabezado (101,200,484,500,etc) : \033[1;37m" && read -p " Ingresa : " respo_stat
 if [[ -z $respo_stat  ]]; then
 	respo_stat="200"
 fi
@@ -344,7 +344,7 @@ PYTHON
 
 chmod +x ${SCPinst}/PDirect.py
 
-screen -dmS pydic-"$porta_socket" python ${SCPinst}/PDirect.py "$porta_socket" "$texto_soket" && echo ""$porta_socket" "$texto_soket"" >> /bin/ejecutar/PortPD.log
+screen -dmS pydic-"$porta_socket" python ${SCPinst}/PDirect.py "$porta_socket" "$texto_soket" && echo ""$porta_socket" "$texto_soket"" > /bin/ejecutar/PortPD.log
 cp ${SCPinst}/PDirect.py $HOME/PDirect.py && echo -e "\n\n Fichero Alojado en : ${SCPinst}/PDirect.py \n\n Respaldo alojado en : $HOME/PDirect.py \n"
 }
 
