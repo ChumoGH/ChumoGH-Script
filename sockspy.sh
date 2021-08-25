@@ -410,7 +410,7 @@ done
 echo -e "Introdusca su Mini-Banner"
 msg -bar
 echo -ne "Introduzca el texto de estado plano o en HTML:\n \033[1;37m" && read texto_soket
-
+[[ "$texto_soket" = "" ]]&& texto_soket=' <font color="red"> @ChumoGH </font> '
     msg -bar
     case $portproxy in
     1)screen -dmS screen python ${SCPinst}/PPub.py "$porta_socket" "$texto_soket";;
