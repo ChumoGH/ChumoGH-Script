@@ -367,10 +367,10 @@ pidproxy3=$(ps x | grep "PDirect.py" | grep -v "grep" | awk -F "pts" '{print $1}
 pidproxy4=$(ps x | grep "POpen.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy4 ]] && pid_kill $pidproxy4
 pidproxy5=$(ps x | grep "PGet.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy5 ]] && pid_kill $pidproxy5
 pidproxy6=$(ps x | grep "scktcheck" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy6 ]] && pid_kill $pidproxy6
+[[ -e /bin/ejecutar/PortPD.log ]] && rm -f /bin/ejecutar/PortPD.log
 echo -e "\033[1;91m  Socks DETENIDOS"
 msg -bar
 rm -rf /bin/ejecutar/PortPD.log
-echo "" > /bin/ejecutar/PortPD.log
 exit 0
 }
 iniciarsocks () {
