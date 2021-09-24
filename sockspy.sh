@@ -372,7 +372,6 @@ pidproxy6=$(ps x | grep "scktcheck" | grep -v "grep" | awk -F "pts" '{print $1}'
 [[ -e /bin/ejecutar/PortPD.log ]] && rm /bin/ejecutar/PortPD.log
 echo -e "\033[1;91m  Socks DETENIDOS"
 msg -bar
-rm  /bin/ejecutar/PortPD.log
 read -p "Enter para continuar" && menu
 }
 iniciarsocks () {
