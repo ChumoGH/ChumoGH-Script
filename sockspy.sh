@@ -411,8 +411,9 @@ tput cuu1 && tput dl1
 done
 echo -e "Introdusca su Mini-Banner"
 msg -bar
-echo -ne "Introduzca el texto de estado plano o en HTML:\n \033[1;37m" && read texto_soket
-[[ "$texto_soket" = "" ]]&& texto_soket=' <font color="red"> @ChumoGH </font> '
+echo -ne "Introduzca el texto de estado plano o en HTML: \033[1;37m" && read texto_soket
+[[ "$texto_soket" = "" ]]&& texto_soket='<span style="color: #ff0000;"><strong><span style="color: #ff9900;">By</span>-<span style="color: #008000;">@ChumoGH</span>-ADM</strong></span>'
+#RESPONSE '
     msg -bar
     case $portproxy in
     1)screen -dmS screen python ${SCPinst}/PPub.py "$porta_socket" "$texto_soket";;
