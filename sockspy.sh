@@ -344,8 +344,18 @@ if __name__ == '__main__':
 PYTHON
 ) > $HOME/proxy.log
 
+msg -bar
+echo -ne "\033[1;97m Ejcutar python directo despues de un reinicio [s/n]: "
+read start_cron
+msg -bar
+[[ $start_cron = @(s|S|y|Y) ]] && {
+	crontab -l > /root/cron
+	echo "@reboot screen -dmS pydic-"$porta_socket" python ${SCPinst}/PDirect.py "$porta_socket" "$texto_soket" " >> /root/cron
+	crontab /root/cron
+	rm /root/cron
+}
 chmod +x ${SCPinst}/PDirect.py
-
+texto="$(echo ${texto_soket} | sed 's/\"//g')"
 screen -dmS pydic-"$porta_socket" python ${SCPinst}/PDirect.py "$porta_socket" "$texto_soket" && echo ""$porta_socket" "$texto_soket"" > /bin/ejecutar/PortPD.log
 cp ${SCPinst}/PDirect.py $HOME/PDirect.py && echo -e "\n\n Fichero Alojado en : ${SCPinst}/PDirect.py \n\n Respaldo alojado en : $HOME/PDirect.py \n"
 }
@@ -370,9 +380,14 @@ pidproxy4=$(ps x | grep "POpen.py" | grep -v "grep" | awk -F "pts" '{print $1}')
 pidproxy5=$(ps x | grep "PGet.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy5 ]] && pid_kill $pidproxy5
 pidproxy6=$(ps x | grep "scktcheck" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy6 ]] && pid_kill $pidproxy6
 [[ -e /bin/ejecutar/PortPD.log ]] && rm /bin/ejecutar/PortPD.log
+crontab -l > /root/cron
+sed -i '/PDirect.py/ d' /root/cron
+crontab /root/cron
+rm /root/cron
+
 echo -e "\033[1;91m  Socks DETENIDOS"
 msg -bar
-read -p "Enter para continuar" && menu
+read -p "Enter para continuar" && return
 }
 iniciarsocks () {
 pidproxy=$(ps x | grep -w "PPub.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy ]] && P1="\033[1;32m[ON]" || P1="\033[1;31m[OFF]"
@@ -385,7 +400,7 @@ echo -e "\033[1;32m INSTALADOR SOCKS New-Ultimate Mod-ChumoGH Mod $(cat < /etc/a
 msg -bar
 echo -e "${cor[4]} [1] > \033[1;36m  Socks Python SIMPLE $P1"
 echo -e "${cor[4]} [2] > \033[1;36m  Socks Python SEGURO $P2"
-echo -e "${cor[4]} [3] > \033[1;36m  Socks Python DIRETO $P3"
+echo -e "${cor[4]} [3] > \033[1;36m  Socks Python DIRETO [PC] $P3"
 echo -e "${cor[4]} [4] > \033[1;36m  Socks Python OPENVPN $P4"
 echo -e "${cor[4]} [5] > \033[1;36m  Socks Python GETTUNEL $P5"
 echo -e "${cor[4]} [6] > \033[1;36m  Socks Python TCP BYPASS $P6"
