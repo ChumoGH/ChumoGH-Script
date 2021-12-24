@@ -9,6 +9,8 @@ COLOR[3]='\e[33m' #AMARELO='\e[33m'
 COLOR[4]='\e[34m' #AZUL='\e[34m'
 COLOR[5]='\e[91m' #MAGENTA='\e[35m'
 COLOR[6]='\033[1;97m' #MAG='\033[1;36m'
+COLOR[7]='\033[1;49;95m'
+COLOR[8]='\033[1;49;96m'
 else
 local COL=0
 for number in $(cat $colors); do
@@ -20,6 +22,8 @@ case $number in
 5)COLOR[$COL]='\e[34m';;
 6)COLOR[$COL]='\e[35m';;
 7)COLOR[$COL]='\033[1;36m';;
+8)COLOR[$COL]='\033[1;49;95m';;
+9)COLOR[$COL]='\033[1;49;96m';;
 esac
 let COL++
 done
@@ -27,17 +31,17 @@ fi
 NEGRITO='\e[1m'
 SEMCOR='\e[0m'
  case $1 in
-  -ne)ccor="${COLOR[1]}${NEGRITO}" && echo -ne "${ccor}${2}${SEMCOR}";;
-  -ama)ccor="${COLOR[3]}${NEGRITO}" && echo -e "${ccor}${2}${SEMCOR}";;
-  -verm)ccor="${COLOR[3]}${NEGRITO}[!] ${COLOR[1]}" && echo -e "${ccor}${2}${SEMCOR}";;
-  -verm2)ccor="${COLOR[1]}${NEGRITO}" && echo -e "${ccor}${2}${SEMCOR}";;
-  -azu)ccor="${COLOR[6]}${NEGRITO}" && echo -e "${ccor}${2}${SEMCOR}";;
-  -verd)ccor="${COLOR[2]}${NEGRITO}" && echo -e "${ccor}${2}${SEMCOR}";;
-  -bra)ccor="${COLOR[0]}${SEMCOR}" && echo -e "${ccor}${2}${SEMCOR}";;
-  "-bar2"|"-bar")ccor="${COLOR[1]}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
+  -ne)cor="${COLOR[1]}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
+  -ama)cor="${COLOR[3]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -verm)cor="${COLOR[3]}${NEGRITO}[!] ${COLOR[1]}" && echo -e "${cor}${2}${SEMCOR}";;
+  -verm2)cor="${COLOR[1]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -aqua)cor="${COLOR[8]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -azu)cor="${COLOR[6]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -verd)cor="${COLOR[2]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
+  -bra)cor="${COLOR[0]}${SEMCOR}" && echo -e "${cor}${2}${SEMCOR}";;
+  "-bar2"|"-bar")cor="${COLOR[7]}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${SEMCOR}${cor}${SEMCOR}";;
  esac
 }
-
 
 fun_bar () {
 comando[0]="$1"
