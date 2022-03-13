@@ -1,4 +1,7 @@
 #!/bin/bash
+service dropbear stop > /dev/null 2>&1
+service ssh restart > /dev/null 2>&1
+service dropbear start > /dev/null 2>&1
 dir_user="/userDIR"
 dir="/etc/adm-lite"
 name=$(cat < /bin/ejecutar/autt)
