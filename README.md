@@ -1,4 +1,4 @@
-# ChumoGH-Script V4.2
+# ChumoGH-Script V4.8c
 
 # Proyecto sujeto a mejoras . . . . 
 
@@ -20,24 +20,23 @@ ULTIMA ACTUALIZACION : 13-11-2020 | 8:25
 
 ## Installation
 
-wget -q -O instala.sh https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmod +x instala.sh;./instala.sh
+apt update -y; apt upgrade -y; wget -q https://raw.githubusercontent.com/ChumoGH/ScriptCGH/main/setup; chmod 777 setup; ./setup
 
 ```
 * SIN MINERIA! 
 * VERSION OFICIAL
-* Key: +593987072611 ChumoGH
-* SIN VIRUS TROJANO (BOTNET) 
-* Soporte Netflix Escucha (Exerimental)
 * Kill Multilogin Funcional
 * V2RAY AGREGADO (LEER REQUERIMIENTOS)
 * V2RAY Version Consola
 * ShowdoSocks-R Funcional
-* Fix Login ROOT Amazon-Google
+* Fix Login ROOT Amazon-Google-Oracle
 * Fix PassWD Vulrt
 * Auto Optimizacion
 * Contador de Usuarios Eliminados
 * Reinicio de Servicios programado
 * Bloqueo de Usuarios
+* SERVICIO TROJAN - CLASH
+* CHISEL
 ```
 
 ```
@@ -45,7 +44,7 @@ wget -q -O instala.sh https://www.dropbox.com/s/i87udxpj1lj17sa/instala.sh; chmo
 
  Grupo de Script Oficial en Telegram
 
-☆ https://t.me/joinchat/AAAAAFeVnscijP7aZd1ChQ ☆
+☆ https://t.me/ChumoGH_ADM ☆
 
 ```
 WEB SITE
