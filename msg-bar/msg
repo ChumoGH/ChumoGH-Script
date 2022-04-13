@@ -1,4 +1,5 @@
 #!/bin/bash
+
 msg () {
 local colors="/etc/new-adm-color"
 if [[ ! -e $colors ]]; then
@@ -70,3 +71,4 @@ while true; do
 done
 echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 }
+wget -q -O /bin/ejecutar/msg https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/msg-bar/msg 
