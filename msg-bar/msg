@@ -16,6 +16,13 @@ menu_func(){
     esac
   done
  }
+ 
+tittle () {
+    clear&&clear
+    msg -bar
+    echo -e "\033[1;44;44m   \033[1;33m=====>>►► 🐲 ChumoGH 💥 Plus 🐲 ◄◄<<=====  \033[0m \033[0;33m[$(less /etc/ADMcgh/v-local.log)]"
+    msg -bar
+}
 
 msg () {
 local colors="/etc/new-adm-color"
