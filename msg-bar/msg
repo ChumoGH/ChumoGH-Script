@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # menu maker (opciones 1, 2, 3,.....)
+
+flech='➮' && TOP='‣' && TTini='=====>>►► 🐲' && TTfin='🐲 ◄◄<<=====' && TTcent='💥' && RRini='【  ★' && RRfin='★  】'
+
 menu_func(){
   local options=${#@}
   local array
