@@ -2,7 +2,8 @@
 
 # menu maker (opciones 1, 2, 3,.....)
 
-flech='➮' && TOP='‣' && TTini='=====>>►► 🐲' && TTfin='🐲 ◄◄<<=====' && TTcent='💥' && RRini='【  ★' && RRfin='★  】' && CHeko='✅' && ScT='🛡️' && FlT='⚔️' && BoLCC='🪦' && ceLL='🧬' && aLerT='⚠️' && lLaM='🔥'
+flech='➮' && TOP='‣' && TTini='=====>>►► 🐲' && TTfin='🐲 ◄◄<<=====' && TTcent='💥' && RRini='【  ★' && RRfin='★  】' && CHeko='✅' && ScT='🛡️' && FlT='⚔️' && BoLCC='🪦' && ceLL='🧬' && aLerT='⚠️' && lLaM='🔥' && pPIniT='∘' && bOTg='🤖' && rAy='⚡' && tTfIn='】' && TtfIn='【' tTfLe='►'
+cOpyRig='©'
 
 menu_func(){
   local options=${#@}
