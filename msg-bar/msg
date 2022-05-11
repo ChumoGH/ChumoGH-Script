@@ -2,7 +2,7 @@
 
 # menu maker (opciones 1, 2, 3,.....)
 
-flech='➮' && TOP='‣' && TTini='=====>>►► 🐲' && TTfin='🐲 ◄◄<<=====' && TTcent='💥' && RRini='【  ★' && RRfin='★  】' && CHeko='✅' && ScT='🛡️' && FlT='⚔️' && BoLCC='🪦' && ceLL='🧬'
+flech='➮' && TOP='‣' && TTini='=====>>►► 🐲' && TTfin='🐲 ◄◄<<=====' && TTcent='💥' && RRini='【  ★' && RRfin='★  】' && CHeko='✅' && ScT='🛡️' && FlT='⚔️' && BoLCC='🪦' && ceLL='🧬' && aLerT='⚠️' && lLaM='🔥'
 
 menu_func(){
   local options=${#@}
