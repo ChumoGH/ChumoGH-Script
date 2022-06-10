@@ -35,11 +35,12 @@ tar xf badvpn-1.999.128.tar.bz2
 cd /etc/adm-lite/badvpn-1.999.128
 cmake /etc/adm-lite/badvpn-1.999.128 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
 make install
-badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 75 > /dev/nul &
+screen -dmS badudp72 badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 75 > /dev/nul &
 echo 'badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 75 > /dev/nul &' > /etc/rc.local
 cd /etc/adm-lite/
-[[ -d badvpn-1.999.128/ ]] && rm -rf badvpn-1.999.128
+[[ -d badvpn-1.999.128/ ]] && rm -rf badvpn*
 rm -f badvpn-1.999.128.tar.*
 rm -f install > /dev/nul
 echo "Finalizado"
 echo "Modulo BadUDP - ChumoGH"
+return
