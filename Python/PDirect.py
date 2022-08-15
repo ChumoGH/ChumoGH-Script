@@ -1,20 +1,51 @@
-import socket, threading, thread, select, signal, sys, time, getopt
+# -*- coding: utf-8 -*-
+import socket, threading, thread, select, signal, sys, time, getopt, argparse
 
-# Listen
+parser = argparse.ArgumentParser()
+parser.add_argument("-l", "--local", help="Nombre de archivo a procesar")
+parser.add_argument("-p", "--port", help="Nombre de archivo a procesar")
+parser.add_argument("-c", "--contr", help="Nombre de archivo a procesar")
+parser.add_argument("-r", "--response", help="Nombre de archivo a procesar")
+parser.add_argument("-t", "--texto", help="Nombre de archivo a procesar")
+
+args = parser.parse_args()
+
+#==================================
 LISTENING_ADDR = '0.0.0.0'
-if sys.argv[1:]:
-  LISTENING_PORT = sys.argv[1]
-else:
-  LISTENING_PORT = 80  
-#Pass
-PASS = ''
 
-# CONST
+if args.port:
+    LISTENING_PORT = int(args.port)
+else:
+    print " Deve ingresar el puerto que usara como socks..."
+    sys.exit()
+
+if args.contr:
+    PASS = str(args.contr)
+else:
+    PASS = str()
+
 BUFLEN = 4096 * 4
 TIMEOUT = 60
-DEFAULT_HOST = '127.0.0.1:22'
-RESPONSE = 'HTTP/1.1 200 <strong>(<span style="color: #ff0000;"><strong><span style="color: #ff9900;">By</span>-<span style="color: #008000;">VPS</span>-MEX</strong></span>)</strong>\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 conexion exitosa\r\n\r\n'
-#RESPONSE = 'HTTP/1.1 200 Hello_World!\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 Connection established\r\n\r\n'  # lint:ok
+
+if args.local:
+    DEFAULT_HOST = '127.0.0.1:' + args.local
+else:
+    print " Deve seleccionar un puerto existente para redireccionar el trafico..."
+    sys.exit()
+
+if args.response:
+    STATUS_RESP = args.response
+else:
+    STATUS_RESP = '200'
+
+if args.texto:
+    STATUS_TXT = args.texto
+elif STATUS_RESP == '101':
+    STATUS_TXT = '<font color="red">Switching Protocols</font>'
+else:
+    STATUS_TXT = '<font color="red">Connection established</font>'
+
+RESPONSE = str('HTTP/1.1 ' + STATUS_RESP + ' ' + STATUS_TXT + '\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 Connection established\r\n\r\n')
 
 class Server(threading.Thread):
     def __init__(self, host, port):
@@ -30,8 +61,7 @@ class Server(threading.Thread):
         self.soc = socket.socket(socket.AF_INET)
         self.soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.soc.settimeout(2)
-        intport = int(self.port)
-        self.soc.bind((self.host, intport))
+        self.soc.bind((self.host, self.port))
         self.soc.listen(0)
         self.running = True
 
@@ -170,9 +200,12 @@ class ConnectionHandler(threading.Thread):
             host = host[:i]
         else:
             if self.method=='CONNECT':
-                port = 22
+                port = 443
             else:
-                port = sys.argv[1]
+                port = 80
+                port = 8080
+                port = 8799
+                port = 3128
 
         (soc_family, soc_type, proto, _, address) = socket.getaddrinfo(host, port)[0]
 
@@ -219,41 +252,20 @@ class ConnectionHandler(threading.Thread):
                         break
             if count == TIMEOUT:
                 error = True
+
             if error:
                 break
 
-
-def print_usage():
-    print 'Usage: proxy.py -p <port>'
-    print '       proxy.py -b <bindAddr> -p <port>'
-    print '       proxy.py -b 0.0.0.0 -p 80'
-
-def parse_args(argv):
-    global LISTENING_ADDR
-    global LISTENING_PORT
-    
-    try:
-        opts, args = getopt.getopt(argv,"hb:p:",["bind=","port="])
-    except getopt.GetoptError:
-        print_usage()
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt == '-h':
-            print_usage()
-            sys.exit()
-        elif opt in ("-b", "--bind"):
-            LISTENING_ADDR = arg
-        elif opt in ("-p", "--port"):
-            LISTENING_PORT = int(arg)
-
-
 def main(host=LISTENING_ADDR, port=LISTENING_PORT):
+
     print "\n:-------PythonProxy-------:\n"
     print "Listening addr: " + LISTENING_ADDR
     print "Listening port: " + str(LISTENING_PORT) + "\n"
     print ":-------------------------:\n"
+
     server = Server(LISTENING_ADDR, LISTENING_PORT)
     server.start()
+
     while True:
         try:
             time.sleep(2)
@@ -262,6 +274,5 @@ def main(host=LISTENING_ADDR, port=LISTENING_PORT):
             server.close()
             break
 
-#######    parse_args(sys.argv[1:])
 if __name__ == '__main__':
     main()
