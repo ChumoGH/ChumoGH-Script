@@ -69,7 +69,7 @@ SEMCOR='\e[0m'
   -verd)cor="${COLOR[2]}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}";;
   -bra)cor="${COLOR[0]}${SEMCOR}" && echo -e "${cor}${2}${SEMCOR}";;
   -bar)ccor="${COLOR[1]}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
-  -bar2)ccor="${COLOR[1]}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
+  -bar2)ccor="${COLOR[1]}=====================================================" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
   -bar3)ccor="${COLOR[3]}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
   -bar4)ccor="${COLOR[5]}•••••••••••••••••••••••••••••••••••••••••••••••••" && echo -e "${SEMCOR}${ccor}${SEMCOR}";;
    esac
@@ -87,7 +87,7 @@ touch $HOME/fim
 echo -ne "\033[1;33m ["
 while true; do
    for((i=0; i<18; i++)); do
-   echo -ne "\033[1;31m☵"
+   echo -ne "\033[1;31m##"
    sleep 0.1s
    done
    [[ -e $HOME/fim ]] && rm $HOME/fim && break
@@ -102,3 +102,5 @@ echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 [[ -d /bin/ejecutar ]] && {
 [[ -e /bin/ejecutar/msg ]] || wget -q -O /bin/ejecutar/msg https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/msg-bar/msg 
 } || mkdir /bin/ejecutar
+export -f msg
+export -f fun_bar
