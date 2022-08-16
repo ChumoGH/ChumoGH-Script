@@ -1,9 +1,12 @@
 #!/bin/bash
 #19/05/2020
+
 source <(curl -sSL https://www.dropbox.com/s/i32r4rvk9doay0x/module)
 clear
 msg -bar
 ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
+apt install python -y &>/dev/null
+apt install python3 -y &>/dev/null
 mportas () {
 unset portas
 portas_var=$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN")
@@ -89,7 +92,7 @@ while [[ -z $porta_socket ]]; do
 
  if [[ $1 = "PDirect" ]]; then
 
-     print_center -azu "Selec Puerto Local SSH/DROPBEAR/OPENVPN"
+     print_center -azu " Puerto Local SSH/DROPBEAR/OPENVPN"
      msg -bar3
 
      while [[ -z $local ]]; do
@@ -106,9 +109,9 @@ while [[ -z $porta_socket ]]; do
             msg -bar3
         }
     done
-	msg -bar
+	msg -bar3
 echo -e " Respuesta de Encabezado (101,200,484,500,etc)  \033[1;37m" 
-msg -bar
+msg -bar3
      print_center -azu "Response personalizado (enter por defecto 200)"
      print_center -ama "NOTA : Para OVER WEBSOCKET escribe (101)"
      msg -bar3
@@ -117,9 +120,9 @@ msg -bar
      tput cuu1 && tput dl1
      if [[ -z $response ]]; then
         response="200"
-        echo -e "\033[1;33m   Response:\033[1;32m ${response} OK"
+        echo -e "\033[1;33m   CABECERA :\033[1;32m ${response} OK"
     else
-        echo -e "\033[1;33m   Response:\033[1;32m ${response} OK"
+        echo -e "\033[1;33m   CABECERA :\033[1;32m ${response} OK"
     fi
     msg -bar3
  fi
@@ -127,8 +130,8 @@ msg -bar
     if [[ ! $1 = "PGet" ]] && [[ ! $1 = "POpen" ]]; then
         print_center -azu "Introdusca su Mini-Banner"
         msg -bar3
-        print_center -azu "Introduzca un texto [Plano] o en [HTML]"
-        echo ""
+        print_center -azu "Introduzca un texto [NORMAL] o en [HTML]"
+        echo "-> : "
         read texto_soket
     fi
 
