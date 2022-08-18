@@ -132,7 +132,7 @@ msg -bar3
         print_center -azu "Introdusca su Mini-Banner"
         msg -bar3
         print_center -azu "Introduzca un texto [NORMAL] o en [HTML]"
-        echo "-> : "
+        echo -ne "-> : "
         read texto_soket
     fi
 
@@ -151,6 +151,7 @@ msg -bar3
     else
         py="python"
     fi
+[[ -z ${texto_soket} ]] && texto_soket='<span style="color: #ff0000;"><strong><span style="color: #ff9900;">By</span>-<span style="color: #008000;">@ChumoGH</span>-ADM</strong></span>'
 
     [[ ! -z $porta_bind ]] && conf="-b $porta_bind "|| conf="-p $porta_socket "
     [[ ! -z $pass_file ]] && conf+="-p $pass_file"
