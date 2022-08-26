@@ -221,10 +221,10 @@ msg -bar
 
 py=6
 if [[ $(lsof -V -i tcp -P -n|grep -v "ESTABLISHED"|grep -v "COMMAND"|grep "python"|wc -l) -ge "2" ]]; then
-    echo -e "$(msg -verd "  [6]") $(msg -verm2 ">") $(msg -azu "DETENER TODOS") $(msg -verd "  [7]") $(msg -verm2 ">") $(msg -azu "DETENER UN PUERTO")"
+    echo -e "$(msg -verd "  [6]") $(msg -verm2 ">") $(msg -azu "ANULAR TODOS") $(msg -verd "  [7]") $(msg -verm2 ">") $(msg -azu "ELIMINAR UN PUERTO")"
     py=7
 else
-    echo -e "$(msg -verd "  [6]") $(msg -verm2 ">") $(msg -azu "DETENER TODOS")"
+    echo -e "$(msg -verd "  [6]") $(msg -verm2 ">") $(msg -azu "ELIMINAR TODOS")"
 fi
 
 msg -bar
