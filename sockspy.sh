@@ -1,13 +1,21 @@
 #!/bin/bash
 #19/05/2020
-#UPDATE 16/08/2022
+#UPDATE 27/08/2022
 
 source <(curl -sSL https://www.dropbox.com/s/i32r4rvk9doay0x/module)
 clear
 msg -bar
 ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
+system=$(cat -n /etc/issue |grep 1 |cut -d ' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
+vercion=$(echo $system|awk '{print $2}'|cut -d '.' -f1,2)
 apt install python -y &>/dev/null
 apt install python3 -y &>/dev/null
+[[ $vv > 20 ]] && {
+echo -e ""
+msg -bar
+echo -e "	SU VERSION DE UBUNTU POSIBLEMENTE ES 22.04 O SUPERIOR "
+apt install python-is-python3 -y &>/dev/null
+}
 mportas () {
 unset portas
 portas_var=$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN")
