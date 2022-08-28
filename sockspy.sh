@@ -1,7 +1,7 @@
 #!/bin/bash
 #19/05/2020
 #UPDATE 27/08/2022
-
+clear
 source <(curl -sSL https://www.dropbox.com/s/i32r4rvk9doay0x/module)
 msg -bar
 ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
@@ -21,6 +21,7 @@ echo -e "	SU VERSION DE UBUNTU ${vercion} ES INFERIOR O 18.04 "
 apt install python -y &>/dev/null
 apt install python3 -y &>/dev/null
 }
+sleep 3s && clear
 mportas () {
 unset portas
 portas_var=$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN")
