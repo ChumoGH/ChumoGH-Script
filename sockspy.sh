@@ -8,16 +8,16 @@ ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
 system=$(cat -n /etc/issue |grep 1 |cut -d ' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
 vercion=$(echo $system|awk '{print $2}'|cut -d '.' -f1,2)
 echo -e " ESPERE UN MOMENTO MIENTRAS FIXEAMOS SU SISTEMA "
-[[ ${vv} -ge "20" ]] && {
+[[ ${vercion} -ge "20" ]] && {
 echo -e ""
 msg -bar
-echo -e "	SU VERSION DE UBUNTU ${vv} ES SUPERIOR A 18.04 "
+echo -e "	SU VERSION DE UBUNTU ${vercion} ES SUPERIOR A 18.04 "
 apt purge python* -y &> /dev/null
 sudo apt install software-properties-common -y
 apt install python2 -y &> /dev/null
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1 &> /dev/null
 } || {
-echo -e "	SU VERSION DE UBUNTU ${vv} ES INFERIOR O 18.04 "
+echo -e "	SU VERSION DE UBUNTU ${vercion} ES INFERIOR O 18.04 "
 apt install python -y &>/dev/null
 apt install python3 -y &>/dev/null
 }
