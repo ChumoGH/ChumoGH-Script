@@ -26,6 +26,7 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1 &> 
 	killall tcpdump > /dev/null 2>&1
 	killall ksoftirqd > /dev/null 2>&1
 	rm -f /var/log/*
+	echo > /etc/fixpython
 }
 function aguarde() {
 	sleep .1
@@ -50,7 +51,7 @@ function aguarde() {
 echo -e ""
 msg -bar
 echo -e "SU VERSION DE UBUNTU ${vercion} ES SUPERIOR A 18.04 "
-aguarde
+[[ -e /etc/fixpython ]] || aguarde
 } || {
 echo -e "	SU VERSION DE UBUNTU ${vercion} ES INFERIOR O 18.04 "
 apt install python -y &>/dev/null
