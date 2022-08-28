@@ -28,7 +28,7 @@ echo "America/Chihuahua" > /etc/timezone
 ln -fs /usr/share/zoneinfo/America/Chihuahua /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
-menu
+return 0
 }
 act_hora1 () {
 echo "America/Mexico_City"
@@ -36,32 +36,31 @@ echo "America/Mexico_City" > /etc/timezone
 ln -fs /usr/share/zoneinfo/America/Mexico_City /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
-menu
+return 0
 }
 act_hora2 () {
 echo "Argentina"
 ln -sf /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
-menu
+return 0
 }
 act_hora3 () {
-echo "America/Santiago"
+echo "CHILE"
 timedatectl > /dev/null 2>&1
-timedatectl list-timezones > /dev/null 2>&1
-timedatectl list-timezones  | grep Santiago > /dev/null 2>&1
-timedatectl set-timezone America/Santiago > /dev/null 2>&1
+timedatectl list-timezones  | grep Chile/Continental > /dev/null 2>&1
+timedatectl set-timezone Chile/Continental > /dev/null 2>&1
+dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
-menu
+return 0
 }
 act_hora4 () {
 echo "America/Los_Angeles"
 timedatectl > /dev/null 2>&1
-timedatectl list-timezones > /dev/null 2>&1
 timedatectl list-timezones  | grep Los_Angeles > /dev/null 2>&1
 timedatectl set-timezone America/Los_Angeles > /dev/null 2>&1
 echo -e "$barra"
-menu
+return 0
 }
 act_hora5 () {
 echo "America/La_Paz"
@@ -69,7 +68,7 @@ echo "America/La_Paz" > /etc/timezone
 ln -fs /usr/share/zoneinfo/America/La_Paz /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
-menu
+return 0
 }
 act_hora6 () {
 echo "America/Guatemala"
@@ -77,7 +76,7 @@ echo "America/Guatemala" > /etc/timezone
 ln -fs /usr/share/zoneinfo/America/Guatemala /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
-menu
+return 0
 }
 act_hora7 () {
 echo "America/Bogota"
@@ -85,7 +84,7 @@ echo "America/Bogota" > /etc/timezone
 ln -fs /usr/share/zoneinfo/America/Bogota /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
-menu
+return 0
 }
 act_hora8 () {
 echo "America/Guayaquil"
@@ -93,14 +92,14 @@ echo "America/Guayaquil" > /etc/timezone
 ln -fs /usr/share/zoneinfo/America/Guayaquil /etc/localtime > /dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 echo -e "$barra"
-menu
+return 0
 }
 
 verzm () {
 timedatectl
 echo -e "\033[1;31m PRESIONE ENTER PARA CONTINUAR \033[0m"
 read -p " "
-menu
+return 0
 }
 shadowe_fun () {
 #source /etc/adm-lite/cabelcaho
@@ -108,16 +107,16 @@ unset opx
 echo -e " \033[1;36m ZONA HORARIO \033[1;32m[ChumoGH-ADM]"
 echo -e "$barra"
 while true; do
-echo -e "${cor[4]} [1] > ${cor[5]}ACTUALIZAR HORARIO Local CHICHUAHUA"
-echo -e "${cor[4]} [2] > ${cor[5]}ACTUALIZAR HORARIO Local MEXICO"
-echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO Local Argentina"
-echo -e "${cor[4]} [4] > ${cor[5]}ACTUALIZAR HORARIO Local AMERICA/SANTIAGO"
-echo -e "${cor[4]} [5] > ${cor[2]}VER ZONA HORARIA ACTUAL "
-echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO  America/La_Paz ( Bolivia )"
-echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO  America/Guatemala"
-echo -e "${cor[4]} [8] > ${cor[5]}ACTUALIZAR HORARIO  America/Bogota"
-echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO  ECUADOR "
-echo -e "${cor[4]} [10] > ${cor[5]}ACTUALIZAR HORARIO  America/Los_Angeles"
+echo -e "${cor[4]} [1] > ${cor[2]}VER ZONA HORARIA ACTUAL "
+echo -e "${cor[4]} [2] > ${cor[5]}ACTUALIZAR HORARIO MEXICO"
+echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO Argentina"
+echo -e "${cor[4]} [4] > ${cor[5]}ACTUALIZAR HORARIO CHILE"
+echo -e "${cor[4]} [5] > ${cor[5]}ACTUALIZAR HORARIO MEXICO"
+echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO Bolivia "
+echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO Guatemala"
+echo -e "${cor[4]} [8] > ${cor[5]}ACTUALIZAR HORARIO COLOMBIA"
+echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO ECUADOR "
+echo -e "${cor[4]} [10] > ${cor[5]}ACTUALIZAR HORARIO Los Angeles (USA)"
 echo -e "${cor[4]} [0] > ${cor[0]}SALIR\n${barra}"
 while [[ ${opx} != @(0|[1-9]) ]]; do
 echo -ne "${cor[0]}Digite una Opcion (1 a 1O) : \033[1;37m" && read opx
@@ -128,7 +127,7 @@ case $opx in
 	exit;;
 	1)
 	fun_bar
-	act_hora
+	verzm
 	unset opx
 	break;;
 	2)
@@ -147,7 +146,7 @@ case $opx in
 	unset opx
 	break;;
 	 5)
-	verzm
+	act_hora
 	unset opx
 	break;;
 	 6)
