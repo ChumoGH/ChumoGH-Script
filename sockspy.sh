@@ -8,7 +8,7 @@ ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
 system=$(cat -n /etc/issue |grep 1 |cut -d ' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
 vercion=$(echo $system|awk '{print $2}'|cut -d '.' -f1,2)
 echo -e " ESPERE UN MOMENTO MIENTRAS FIXEAMOS SU SISTEMA "
-[[ "${vercion}" -ge "20" ]] && {
+[[ "${vercion}" > "20" ]] && {
 echo -e ""
 msg -bar
 echo -e "	SU VERSION DE UBUNTU ${vercion} ES SUPERIOR A 18.04 "
