@@ -7,15 +7,50 @@ msg -bar
 ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
 system=$(cat -n /etc/issue |grep 1 |cut -d ' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
 vercion=$(echo $system|awk '{print $2}'|cut -d '.' -f1,2)
-echo -e " ESPERE UN MOMENTO MIENTRAS FIXEAMOS SU SISTEMA "
+echo -e "ESPERE UN MOMENTO MIENTRAS FIXEAMOS SU SISTEMA "
+
+
+fun_limpram() {
+	sync
+	echo 3 >/proc/sys/vm/drop_caches
+	sync && sysctl -w vm.drop_caches=3
+	sysctl -w vm.drop_caches=0
+	swapoff -a
+	swapon -a
+apt purge python* -y &> /dev/null
+sudo apt install software-properties-common -y &> /dev/null
+apt install python2 -y &> /dev/null
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1 &> /dev/null
+	rm -rf /tmp/* > /dev/null 2>&1
+	killall kswapd0 > /dev/null 2>&1
+	killall tcpdump > /dev/null 2>&1
+	killall ksoftirqd > /dev/null 2>&1
+	rm -f /var/log/*
+}
+function aguarde() {
+	sleep .1
+	helice() {
+		fun_limpram >/dev/null 2>&1 &
+		tput civis
+		while [ -d /proc/$! ]; do
+			for i in / - \\ \|; do
+				sleep .1
+				echo -ne "\e[1D$i"
+			done
+		done
+		tput cnorm
+	}
+	echo -ne "\033[1;37m OPTIMIZANDO Y \033[1;32mFIXEANDO \033[1;37mPYTHON \033[1;32m.\033[1;32m.\033[1;33m.\033[1;31m. \033[1;33m"
+	helice
+	echo -e "\e[1DOk"
+}
+
+
 [[ "${vercion}" > "20" ]] && {
 echo -e ""
 msg -bar
-echo -e "	SU VERSION DE UBUNTU ${vercion} ES SUPERIOR A 18.04 "
-apt purge python* -y &> /dev/null
-sudo apt install software-properties-common -y
-apt install python2 -y &> /dev/null
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1 &> /dev/null
+echo -e "SU VERSION DE UBUNTU ${vercion} ES SUPERIOR A 18.04 "
+aguarde
 } || {
 echo -e "	SU VERSION DE UBUNTU ${vercion} ES INFERIOR O 18.04 "
 apt install python -y &>/dev/null
