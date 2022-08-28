@@ -3,18 +3,23 @@
 #UPDATE 27/08/2022
 
 source <(curl -sSL https://www.dropbox.com/s/i32r4rvk9doay0x/module)
-clear
 msg -bar
 ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
 system=$(cat -n /etc/issue |grep 1 |cut -d ' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
 vercion=$(echo $system|awk '{print $2}'|cut -d '.' -f1,2)
-apt install python -y &>/dev/null
-apt install python3 -y &>/dev/null
+echo -e " ESPERE UN MOMENTO MIENTRAS FIXEAMOS SU SISTEMA "
 [[ $vv > 20 ]] && {
 echo -e ""
 msg -bar
-echo -e "	SU VERSION DE UBUNTU POSIBLEMENTE ES 22.04 O SUPERIOR "
-apt install python-is-python3 -y &>/dev/null
+echo -e "	SU VERSION DE UBUNTU ES SUPERIOR A 18.04 "
+apt purge python* -y &> /dev/null
+sudo apt install software-properties-common -y
+apt install python2 -y &> /dev/null
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1 &> /dev/null
+} || {
+echo -e "	SU VERSION DE UBUNTU ES 18.04 O INFERIOR "
+apt install python -y &>/dev/null
+apt install python3 -y &>/dev/null
 }
 mportas () {
 unset portas
