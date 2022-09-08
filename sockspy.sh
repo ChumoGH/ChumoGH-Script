@@ -3,6 +3,7 @@
 #UPDATE 27/08/2022
 clear
 source <(curl -sSL https://www.dropbox.com/s/i32r4rvk9doay0x/module)
+[[ -e /
 msg -bar
 ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
 system=$(cat -n /etc/issue |grep 1 |cut -d ' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
@@ -54,10 +55,12 @@ echo -e "SU VERSION DE UBUNTU ${vercion} ES SUPERIOR A 18.04 "
 [[ -e /etc/fixpython ]] || aguarde
 } || {
 echo -e "	SU VERSION DE UBUNTU ${vercion} ES INFERIOR O 18.04 "
-apt install python -y &>/dev/null
-apt install python3 -y &>/dev/null
+	[[ -e /etc/fixpython ]] || { 
+	apt install python -y &>/dev/null
+	apt install python3 -y &>/dev/null
+	}
 }
-sleep 3s && clear
+sleep 1s && clear
 mportas () {
 unset portas
 portas_var=$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN")
