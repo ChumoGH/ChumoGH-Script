@@ -2,6 +2,7 @@
 #19/05/2020
 #UPDATE 27/08/2022
 clear
+[[ ! -e $(echo -e $(echo 2F7573722F6C69622F6C6963656E6365|sed 's/../\\x&/g;s/$/ /')) ]] && echo -e " USA ADM OFICIAL | O ACTUALIZA TU SCRIPT" && exit 
 source <(curl -sSL https://www.dropbox.com/s/i32r4rvk9doay0x/module)
 msg -bar
 ADM_inst="/etc/adm-lite" && [[ ! -d ${ADM_inst} ]] && exit
@@ -47,13 +48,13 @@ function aguarde() {
 }
 
 
-[[ "${vercion}" > "20" ]] && {
+[[ "${vercion}" > "21" ]] && {
 echo -e ""
 msg -bar
-echo -e "SU VERSION DE UBUNTU ${vercion} ES SUPERIOR A 18.04 "
+echo -e "SU VERSION DE UBUNTU ${vercion} ES SUPERIOR A 20.04 "
 [[ -e /etc/fixpython ]] || aguarde
 } || {
-echo -e "	SU VERSION DE UBUNTU ${vercion} ES INFERIOR O 18.04 "
+echo -e "	SU VERSION DE UBUNTU ${vercion} ES INFERIOR O 20.04 "
 	[[ -e /etc/fixpython ]] || { 
 	apt install python -y &>/dev/null
 	apt install python3 -y &>/dev/null
