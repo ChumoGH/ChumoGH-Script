@@ -27,7 +27,16 @@ tittle () {
     echo -e "\033[1;44;44m   \033[1;33m=====>>►► 🐲 ChumoGH 💥 Plus 🐲 ◄◄<<=====  \033[0m \033[0;33m[$(less /etc/ADMcgh/v-local.log)]"
     msg -bar
 }
-
+in_opcion(){
+  unset opcion
+  if [[ -z $2 ]]; then
+      msg -nazu " $1: " >&2
+  else
+      msg $1 " $2: " >&2
+  fi
+  read opcion
+  echo "$opcion"
+}
 # centrado de texto
 print_center(){
   if [[ -z $2 ]]; then
@@ -181,3 +190,4 @@ export -f tittle
 export -f enter
 export -f back
 export -f print_center
+export -f in_opcion
