@@ -174,6 +174,14 @@ while true; do
 done
 echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 }
+
+del(){
+  for (( i = 0; i < $1; i++ )); do
+    tput cuu1 && tput dl1
+  done
+}
+
+
 [[ -d /bin/ejecutar ]] && {
 [[ -e /bin/ejecutar/msg ]] || wget -q -O /bin/ejecutar/msg https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/msg-bar/msg 
 } || mkdir /bin/ejecutar
@@ -191,3 +199,4 @@ export -f enter
 export -f back
 export -f print_center
 export -f in_opcion
+export -f del
