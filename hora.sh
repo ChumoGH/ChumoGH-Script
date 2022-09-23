@@ -171,31 +171,37 @@ case ${selection} in
 	fun_bar
 	echo "Etc/UTC" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 	;;
 	12)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 	;;
 	13)
 	fun_bar
 	echo "America/Sao_Paulo" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 	;;
 	14)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 	;;
 	15)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 	;;
 	16)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
 	;;
 	17)
 	fun_bar
