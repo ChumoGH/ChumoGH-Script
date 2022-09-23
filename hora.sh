@@ -117,9 +117,10 @@ echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO Guatemala"
 echo -e "${cor[4]} [8] > ${cor[5]}ACTUALIZAR HORARIO COLOMBIA"
 echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO ECUADOR "
 echo -e "${cor[4]} [10] > ${cor[5]}ACTUALIZAR HORARIO Los Angeles (USA)"
+echo -e "${cor[4]} [11] > ${cor[5]}RESTAURAR ZONA HORARIA ORIGINAL"
 echo -e "${cor[4]} [0] > ${cor[0]}SALIR\n${barra}"
 while [[ ${opx} != @(0|[1-9]) ]]; do
-echo -ne "${cor[0]}Digite una Opcion (1 a 1O) : \033[1;37m" && read opx
+echo -ne "${cor[0]}Digite una Opcion (1 a 11) : \033[1;37m" && read opx
 tput cuu1 && tput dl1
 done
 case $opx in
@@ -174,6 +175,11 @@ case $opx in
 	act_hora4
 	unset opx
   	break;;
+	11)
+	fun_bar
+	echo "Etc/UTC" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+	break ;;
 esac
 done
 }
