@@ -103,21 +103,25 @@ return 0
 }
 shadowe_fun () {
 #source /etc/adm-lite/cabelcaho
+clear&&clear
+_tm=$(timedatectl | grep "Time zone")
 unset opx
 echo -e " \033[1;36m ZONA HORARIO \033[1;32m[ChumoGH-ADM]"
 echo -e "$barra"
+echo -e "${_tm}"
+echo -e "$barra"
 while true; do
-echo -e "${cor[4]} [1] > ${cor[2]}VER ZONA HORARIA ACTUAL "
-echo -e "${cor[4]} [2] > ${cor[5]}ACTUALIZAR HORARIO MEXICO"
-echo -e "${cor[4]} [3] > ${cor[5]}ACTUALIZAR HORARIO Argentina"
-echo -e "${cor[4]} [4] > ${cor[5]}ACTUALIZAR HORARIO CHILE"
-echo -e "${cor[4]} [5] > ${cor[5]}ACTUALIZAR HORARIO MEXICO"
-echo -e "${cor[4]} [6] > ${cor[5]}ACTUALIZAR HORARIO Bolivia "
-echo -e "${cor[4]} [7] > ${cor[5]}ACTUALIZAR HORARIO Guatemala"
-echo -e "${cor[4]} [8] > ${cor[5]}ACTUALIZAR HORARIO COLOMBIA"
-echo -e "${cor[4]} [9] > ${cor[5]}ACTUALIZAR HORARIO ECUADOR "
-echo -e "${cor[4]} [10] > ${cor[5]}ACTUALIZAR HORARIO Los Angeles (USA)"
-echo -e "${cor[4]} [11] > ${cor[5]}RESTAURAR ZONA HORARIA ORIGINAL"
+echo -e "${cor[4]} [1] > ${cor[2]}VER ZONA HORARIA ACTUAL    ${cor[4]} [12] > ${cor[2]} HORARIO VENEZUELA"
+echo -e "${cor[4]} [2] > ${cor[5]}HORARIO MEXICO             ${cor[4]} [13] > ${cor[2]} HORARIO BRAZIL"
+echo -e "${cor[4]} [3] > ${cor[5]}HORARIO Argentina"
+echo -e "${cor[4]} [4] > ${cor[5]}HORARIO CHILE"
+echo -e "${cor[4]} [5] > ${cor[5]}HORARIO MEXICO"
+echo -e "${cor[4]} [6] > ${cor[5]}HORARIO Bolivia "
+echo -e "${cor[4]} [7] > ${cor[5]}HORARIO Guatemala"
+echo -e "${cor[4]} [8] > ${cor[5]}HORARIO COLOMBIA"
+echo -e "${cor[4]} [9] > ${cor[5]}HORARIO ECUADOR "
+echo -e "${cor[4]} [10] > ${cor[5]}HORARIO Los Angeles (USA)"
+echo -e "${cor[4]} [11] > ${cor[5]}RESTAURAR ZONA ORIGINAL"
 echo -e "${cor[4]} [0] > ${cor[0]}SALIR\n${barra}"
 while [[ ${opx} != @(0|[1-9]) ]]; do
 echo -ne "${cor[0]}Digite una Opcion (1 a 11) : \033[1;37m" && read opx
@@ -180,6 +184,51 @@ case $opx in
 	echo "Etc/UTC" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
 	break ;;
+	12)
+	fun_bar
+	echo "America/Caracas" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	break;;
+	13)
+	fun_bar
+	echo "America/Sao_Paulo" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+	break;;
+	14)
+	fun_bar
+	echo "America/Caracas" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	break;;
+	15)
+	fun_bar
+	echo "America/Caracas" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	break;;
+	16)
+	fun_bar
+	echo "America/Caracas" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	break;;
+	17)
+	fun_bar
+	echo "America/Caracas" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	break;;
+	18)
+	fun_bar
+	echo "America/Caracas" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	break;;
+	19)
+	fun_bar
+	echo "America/Caracas" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	break;;
+	20)
+	fun_bar
+	echo "America/Caracas" > /etc/timezone
+	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	break;;
 esac
 done
 }
