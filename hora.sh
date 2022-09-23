@@ -112,7 +112,8 @@ echo -e "${cor[4]} [8] > ${cor[5]}HORARIO COLOMBIA"
 echo -e "${cor[4]} [9] > ${cor[5]}HORARIO ECUADOR "
 echo -e "${cor[4]} [10] > ${cor[5]}HORARIO Los Angeles (USA)"
 echo -e "${cor[4]} [11] > ${cor[5]}RESTAURAR ZONA ORIGINAL"
-echo -e "${cor[4]} [0] > ${cor[0]}SALIR\n${barra}"
+echo -e "${cor[4]} [0] > ${cor[0]}SALIR"
+msg -bar
 selection=$(selection_fun 13)
 case ${selection} in
 	0)
