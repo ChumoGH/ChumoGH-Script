@@ -123,8 +123,8 @@ echo -e "${cor[4]} [9] > ${cor[5]}HORARIO ECUADOR "
 echo -e "${cor[4]} [10] > ${cor[5]}HORARIO Los Angeles (USA)"
 echo -e "${cor[4]} [11] > ${cor[5]}RESTAURAR ZONA ORIGINAL"
 echo -e "${cor[4]} [0] > ${cor[0]}SALIR\n${barra}"
-while [[ ${opx} != @(0|[1-9]) ]]; do
-echo -ne "${cor[0]}Digite una Opcion (1 a 11) : \033[1;37m" && read opx
+while [[ ${opx} != @(0|[1-20]) ]]; do
+echo -ne "${cor[0]}Digite una Opcion (1 a 12) : \033[1;37m" && read opx
 tput cuu1 && tput dl1
 done
 case $opx in
