@@ -122,91 +122,108 @@ case ${selection} in
 	fun_bar
 	verzm
 	unset selection
+	sleep 2s
 	;;
 	2)
 	fun_bar
 	act_hora1
 	unset selection
+	sleep 2s
 	;;
 	3)
 	fun_bar
 	act_hora2
 	unset selection
+	sleep 2s
 	;;
    	 4)
 	 fun_bar
 	act_hora3
 	unset selection
+	sleep 2s
 	;;
 	 5)
 	act_hora
 	unset selection
+	sleep 2s
 	;;
 	 6)
 	 fun_bar
 	act_hora5
 	unset selection
+	sleep 2s
 	;;
 	 7)
 	 fun_bar
 	act_hora6
 	unset selection
+	sleep 2s
 	;;
 	 8)
 	 fun_bar
 	act_hora7
 	unset selection
+	sleep 2s
 	;;
 	 9)
 	 fun_bar
 	act_hora8
 	unset selection
+	sleep 2s
 	;;
 	10)
 	fun_bar
 	act_hora4
 	unset selection
+	sleep 2s
   	;;
 	11)
 	fun_bar
 	echo "Etc/UTC" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
 	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+	sleep 2s
 	;;
 	12)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
 	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+	sleep 2s
 	;;
 	13)
 	fun_bar
 	echo "America/Sao_Paulo" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+	sleep 2s
 	;;
 	14)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
 	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+	sleep 2s
 	;;
 	15)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
 	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+	sleep 2s
 	;;
 	16)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
 	dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
+	sleep 2s
 	;;
 	17)
 	fun_bar
 	echo "America/Caracas" > /etc/timezone
 	ln -fs /usr/share/zoneinfo/America/Caracas /etc/localtime
+	sleep 2s
 	;;
 	18)
 	fun_bar
