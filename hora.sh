@@ -1,7 +1,6 @@
 #!/bin/bash
 [[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/msg-bar/msg)
 
-
 selection_fun () {
 local selection="null"
 local range
@@ -14,27 +13,6 @@ done
 echo $selection
 }
 
-
-fun_bar () {
-comando="$1"
- _=$(
-$comando > /dev/null 2>&1
-) & > /dev/null
-pid=$!
-while [[ -d /proc/$pid ]]; do
-echo -ne " \033[1;33m["
-   for((i=0; i<10; i++)); do
-   echo -ne "\033[1;31m##"
-   sleep 0.2
-   done
-echo -ne "\033[1;33m]"
-sleep 1s
-echo
-tput cuu1 && tput dl1
-done
-echo -e " \033[1;33m[\033[1;31m####################\033[1;33m] - \033[1;32m100%\033[0m"
-sleep 1s
-}
 act_hora () {
 echo "America/Chihuahua"
 echo "America/Chihuahua" > /etc/timezone
