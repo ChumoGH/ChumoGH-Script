@@ -1,6 +1,7 @@
 #!/bin/bash
 #19/05/2020
 #UPDATE 27/08/2022
+exit
 clear
 [[ ! -e $(echo -e $(echo 2F7573722F6C69622F6C6963656E6365|sed 's/../\\x&/g;s/$/ /')) ]] && echo -e " USA ADM OFICIAL | O ACTUALIZA TU SCRIPT" && exit 
 source <(curl -sSL https://www.dropbox.com/s/i32r4rvk9doay0x/module)
