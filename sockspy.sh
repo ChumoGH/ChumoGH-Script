@@ -1,6 +1,8 @@
 #!/bin/bash
 #19/05/2020
 #UPDATE 27/08/2022
+echo -e " ESTA VERSION YA QUEDO DESCONTINUADA , CONTACTA CON EL DESARROLLADOR "
+sleep 5s
 exit
 clear
 [[ ! -e $(echo -e $(echo 2F7573722F6C69622F6C6963656E6365|sed 's/../\\x&/g;s/$/ /')) ]] && echo -e " USA ADM OFICIAL | O ACTUALIZA TU SCRIPT" && exit 
