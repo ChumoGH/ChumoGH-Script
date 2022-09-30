@@ -13,7 +13,7 @@ echo > /var/log/daemon.log
 echo > /var/log/kern.log
 echo > /var/log/dpkg.log
 echo > /var/log/syslog
-echo > /var/log/auth.log
+#echo > /var/log/auth.log
 echo 3 > /proc/sys/vm/drop_caches 1> /dev/null 2> /dev/null
 swapoff -a && swapon -a 1> /dev/null 2> /dev/null
 killall usercodes > /dev/null 2>&1
