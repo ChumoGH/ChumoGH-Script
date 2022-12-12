@@ -80,9 +80,9 @@ read -p "Introduzca la contraseña manualmente o pulse ENTER: " pass
 pass="$user"
  fi
 fi
-[[ $(echo $limite) = "HWID" ]] && echo "$user:$user:HWID:$sl:$pass" >> $bc && echo -e "\033[1;37mUser $pass | HWID Backup [\033[1;31mOK\033[1;37m] con $sl DIAS\033[0m"
-[[ $(echo $limite) = "TOKEN" ]] && echo "$user:$passTK:TOKEN:$sl:$pass" >> $bc && echo -e "\033[1;37mUser $pass TOKEN Backup [\033[1;31mOK\033[1;37m] con $sl DIAS\033[0m"
-[[ "$limite" =~ ^[0-9]+$ ]] && echo "$user:$pass:$limite:$sl" >> $bc && echo -e "\033[1;37mUser $user SSH Backup [\033[1;31mOK\033[1;37m] con $sl DIAS\033[0m"
+[[ $(echo $limite) = "HWID" ]] && echo "$user:$user:HWID:$sl:$pass" >> $bc && echo -e "\033[1;37mUser $pass \033[0;35m [\033[0;36m$limite\033[0;35m]\033[0;31m Backup [\033[1;31mOK\033[1;37m] con $sl DIAS\033[0m"
+[[ $(echo $limite) = "TOKEN" ]] && echo "$user:$passTK:TOKEN:$sl:$pass" >> $bc && echo -e "\033[1;37mUser $pass \033[0;35m [\033[0;36m$limite\033[0;35m]\033[0;31m Backup [\033[1;31mOK\033[1;37m] con $sl DIAS\033[0m"
+[[ "$limite" =~ ^[0-9]+$ ]] && echo "$user:$pass:$limite:$sl" >> $bc && echo -e "\033[1;37mUser $user \033[0;35m [\033[0;36mSSH\033[0;35m]\033[0;31m Backup [\033[1;31mOK\033[1;37m] con $sl DIAS\033[0m"
 done
 echo " "
 echo -e "\033[1;31mBackup Completado !!!\033[0m"
