@@ -119,7 +119,7 @@ echo "$user" |cut -d: -f3 1> /dev/null 2>/dev/null
   limit $usuario $limite 1> /dev/null 2> /dev/null
   [[ $(echo $limite) = "HWID" ]] && echo "senha: $usrHT" > /etc/adm-lite/userDIR/$usuario
   [[ $(echo $limite) = "TOKEN" ]] && echo "senha: $usrHT" > /etc/adm-lite/userDIR/$usuario
-  [[ $limite > 0 ]] && echo "senha: $senha" > /etc/adm-lite/userDIR/$usuario
+  [[ "$limite" =~ ^[0-9]+$ ]] && echo "senha: $senha" > /etc/adm-lite/userDIR/$usuario
   echo "limite: $limite" >> /etc/adm-lite/userDIR/$usuario
   echo "data: $valid" >> /etc/adm-lite/userDIR/$usuario
   chage -E $valid $usuario 2> /dev/null
