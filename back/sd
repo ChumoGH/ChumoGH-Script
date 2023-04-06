@@ -1,5 +1,13 @@
 #!/bin/bash
-#Modificado el 14/06
+
+_Key='/etc/cghkey'
+
+clear
+
+[[ ! -e ${_Key} ]] && exit 
+
+#Modificado el 06-04-2023
+
 dir_user="/userDIR"
 dir="/etc/adm-lite"
 
@@ -201,6 +209,9 @@ done
 }
 
 if [ $option -eq 1 ]; then
+_SFTP="$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" | grep apache2)"
+portFTP=$(echo -e "$_SFTP" |cut -d: -f2 | cut -d' ' -f1 | uniq)
+portFTP=$(echo ${portFTP} | sed 's/\s\+/,/g' | cut -d , -f1)
 backup_de_usuarios
 echo -e "-------------------------------------------------------"
 echo -e "		\033[4;31mNOTA importante\033[0m"
@@ -209,10 +220,10 @@ echo -e "-------------------------------------------------------"
 echo -e " \033[0;31mSi esta usando maquina, Montalo Online"
 echo -e "  Para luego usar el Link del Fichero, y puedas ."
 echo -e " Descargarlo desde cualquier sitio con acceso WEB"
-echo -e "    Ejemplo : http://ip-del-vps:81/tu-fichero.\033[0m"
+echo -e "    Ejemplo : http://ip-del-vps:${portFTP}/tu-fichero.\033[0m"
 echo -e "-------------------------------------------------------"
 read -p "PRESIONA ENTER PARA CARGAR ONLINE"
-removeonline
+[[ -z $portFTP ]] && echo -e "SERVICIO FTP NO ACTIVO " || removeonline
 fi
 
 if [ $option -eq 2 ]; then
