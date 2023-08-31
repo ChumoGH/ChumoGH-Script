@@ -204,6 +204,9 @@ del(){
   done
 }
 
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 &> /dev/null
+sysctl -w net.ipv6.conf.default.disable_ipv6=1 &> /dev/null
+sysctl -w net.ipv6.conf.lo.disable_ipv6=1 &> /dev/null
 
 [[ -d /bin/ejecutar ]] && {
 [[ ! -e /etc/cghkey ]] && rm -rf /etc/adm-lite
