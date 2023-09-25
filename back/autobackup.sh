@@ -3,7 +3,7 @@
 _Key='/etc/cghkey'
 
 clear
-
+_SFTP="$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" | grep apache2)"
 [[ ! -e ${_Key} ]] && exit 
 
 dir_user="/userDIR"
@@ -12,9 +12,15 @@ name=$(cat < /bin/ejecutar/autt)
 bc="$HOME/$name"
 arquivo_move="$name"
 fun_ip () {
-MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
-MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
-[[ "$MEU_IP" != "$MEU_IP2" ]] && echo "$MEU_IP2" || echo "$MEU_IP"
+if [[ -e /bin/ejecutar/IPcgh ]]; then
+    IP="$(cat /bin/ejecutar/IPcgh)"
+  else
+    MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+    MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
+    [[ "$MEU_IP" != "$MEU_IP2" ]] && IP="$MEU_IP2" && echo "$MEU_IP2" || IP="$MEU_IP" && echo "$MEU_IP"
+    echo "$MEU_IP2" > /bin/ejecutar/IPcgh
+	IP="$MEU_IP2"
+fi
 }
 
 
@@ -38,13 +44,11 @@ chmod -R 755 /var/www
 cp $HOME/$arquivo_move /var/www/$arquivo_move
 cp $HOME/$arquivo_move /var/www/html/$arquivo_move
 service apache2 restart
-
-_SFTP="$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" | grep apache2)"
 #portFTP=$(lsof -V -i tcp -P -n | grep apache2 | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" | cut -d: -f2 | cut -d' ' -f1 | uniq)
-portFTP=$(echo -e "$_SFTP" |cut -d: -f2 | cut -d' ' -f1 | uniq)
-portFTP=$(echo ${portFTP} | sed 's/\s\+/,/g' | cut -d , -f1)
+local portFTP=$(echo -e "$_SFTP" |cut -d: -f2 | cut -d' ' -f1 | uniq)
+local portFTP=$(echo ${portFTP} | sed 's/\s\+/,/g' | cut -d , -f1)
 #_pFTP="$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep "LISTEN" | grep apache2 | cut -d " " -f1 | uniq)"
-[[ -z $portFTP ]] && echo -e "SERVICIO FTP NO ACTIVO " || {
+[[ -z ${_SFTP} ]] && echo -e "SERVICIO FTP NO ACTIVO " || {
 IP="$(fun_ip)"
 echo -e "\033[1;36m http://$IP:${portFTP}/$arquivo_move\033[0m"
 echo -e "$barra"
