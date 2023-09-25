@@ -100,5 +100,5 @@ echo " "
 echo -e "\033[1;37mLa informacion de los usuarios $i se encuentra en el archivo \033[1;31m $bc \033[1;37m"
 }
 backup_de_usuarios
-[[ -z $portFTP ]] && echo -e "SERVICIO FTP NO ACTIVO " || removeonline
+[[ -z ${_SFTP} ]] && echo -e "SERVICIO FTP NO ACTIVO / REMOVIDO " || removeonline
 rm $HOME/$arquivo_move
